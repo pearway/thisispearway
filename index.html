@@ -359,16 +359,20 @@ section{
 .iform-btn:hover{opacity:.8;transform:scale(1.02)}
 .iform-btn:disabled{opacity:.35}
 .iform-success{
-  display:none;text-align:center;padding:60px 0;
+  display:none;text-align:center;padding:80px 0;
 }
 .iform-success.show{display:block}
-.iform-success-icon{font-size:40px;margin-bottom:16px}
+.iform-success-icon{font-size:48px;margin-bottom:20px}
 .iform-success-txt{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(28px,4vw,52px);letter-spacing:-.02em;text-transform:uppercase;
-  color:#1B4AE8;margin-bottom:12px;
+  font-size:clamp(40px,5vw,72px);letter-spacing:-.02em;text-transform:uppercase;
+  color:#1B4AE8;margin-bottom:16px;
 }
-.iform-success-sub{font-size:15px;font-weight:300;color:#1B4AE8;opacity:.45}
+.iform-success-sub{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:18px;letter-spacing:.06em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.8;
+}
 
 /* ─────── MARQUEE STRIP ─────── */
 .mq-wrap{background:#0A0A0A;overflow:hidden;padding:0}
@@ -1145,7 +1149,7 @@ const PROJECTS = [
   5. 생성된 URL을 아래 SHEET_URL에 붙여넣기
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 */
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxpnM5PZK2SJxZNhd2KQBL4Mk14KKGMBaQ-OVTMrRCmCwfIBZRsGUwzN0zx9lkLxqogJA/exec'; // ← 여기에 Apps Script 웹 앱 URL 붙여넣기
+const SHEET_URL = ''; // ← ppearwayy 계정으로 배포 후 URL 입력
 
 async function submitForm(e) {
   e.preventDefault();
