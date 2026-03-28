@@ -79,7 +79,7 @@ nav *{pointer-events:auto}
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:#1B4AE8;text-decoration:none;
-  opacity:.5;transition:opacity .2s;
+  opacity:.85;transition:opacity .2s;
 }
 .nav-center a:hover{opacity:1}
 .nav-type{
@@ -195,7 +195,7 @@ section{
   font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   padding:18px 26px;background:none;border:none;
   color:#1B4AE8;cursor:none;
-  opacity:.3;transition:opacity .2s;
+  opacity:.55;transition:opacity .2s;
   border-bottom:2px solid transparent;margin-bottom:-1px;
 }
 .ftab:hover{opacity:.7}
@@ -273,19 +273,19 @@ section{
 /* ─────── CONTACT — Deep warm ink ─────── */
 #contact{background:var(--s3);color:#1B4AE8;min-height:auto;padding:100px 44px 80px}
 
-.contact-top{max-width:1400px}
+.contact-top{max-width:1400px;margin-bottom:64px}
 .ctag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;color:#1B4AE8;margin-bottom:24px}
 .c-cta{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(72px,11vw,168px);line-height:.85;
+  font-size:clamp(52px,8vw,120px);line-height:.88;
   letter-spacing:-.03em;text-transform:uppercase;color:#1B4AE8;
-  max-width:75%;
 }
 .c-bottom{
   display:flex;justify-content:space-between;align-items:flex-end;
   margin-top:80px;
   border-top:1px solid rgba(27,74,232,.15);
   padding-top:28px;
+  max-width:1400px;
 }
 .c-email{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
@@ -301,77 +301,65 @@ section{
   display:flex;gap:40px;
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  color:#1B4AE8;opacity:1;
+  color:#1B4AE8;
 }
 
-/* ─────── INQUIRY FORM ─────── */
-#inquiry{
-  background:var(--bg);
-  padding:100px 44px;
-  border-top:1px solid rgba(27,74,232,.1);
-}
-.inquiry-inner{max-width:900px;margin:0 auto}
-.inquiry-top{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-bottom:52px;
-}
-.inquiry-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(48px,6vw,88px);line-height:.88;
-  letter-spacing:-.025em;text-transform:uppercase;color:#1B4AE8;
-}
-.inquiry-sub{
-  font-size:13px;font-weight:300;color:#1B4AE8;opacity:.5;
-  max-width:240px;text-align:right;line-height:1.6;
-}
+/* ─────── INQUIRY FORM (inside contact) ─────── */
+.contact-form-wrap{max-width:1400px}
+
 .iform{display:flex;flex-direction:column;gap:0}
 .iform-row{
   display:grid;grid-template-columns:1fr 1fr;
-  border-bottom:1px solid rgba(27,74,232,.1);
+  border-bottom:1px solid rgba(27,74,232,.12);
 }
 .iform-row.full{grid-template-columns:1fr}
 .ifield{
   display:flex;flex-direction:column;
   padding:24px 0;
-  border-right:1px solid rgba(27,74,232,.1);
+  border-right:1px solid rgba(27,74,232,.12);
 }
 .ifield:last-child{border-right:none}
 .ifield-label{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.45;margin-bottom:10px;
+  color:#1B4AE8;opacity:.7;margin-bottom:10px;
 }
 .ifield input,.ifield select,.ifield textarea{
   background:transparent;border:none;outline:none;
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:clamp(18px,2.2vw,28px);letter-spacing:-.01em;
-  color:#1B4AE8;padding:0;
-  transition:opacity .2s;
+  color:#1B4AE8;padding:0;opacity:1;
   -webkit-appearance:none;
 }
-.ifield input::placeholder,.ifield textarea::placeholder{
-  color:#1B4AE8;opacity:.2;
+.ifield input::placeholder,
+.ifield textarea::placeholder{
+  color:#1B4AE8;
+  opacity:1;
 }
 .ifield textarea{resize:none;min-height:80px;line-height:1.5}
-.ifield select option{background:var(--bg);color:#1B4AE8}
-.ifield select{cursor:none}
+.ifield select option{background:#1A1410;color:#1B4AE8}
+.ifield select option[value=""]{color:rgba(27,74,232,.5)}
+.ifield select{cursor:none;color:#1B4AE8}
 .iform-submit{
   margin-top:40px;
   display:flex;justify-content:space-between;align-items:center;
 }
-.iform-notice{font-size:12px;color:#1B4AE8;opacity:.35;font-weight:300;max-width:280px;line-height:1.6}
+.iform-notice{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.8;max-width:280px;line-height:1.6;
+}
 .iform-btn{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:14px;letter-spacing:.14em;text-transform:uppercase;
-  background:#1B4AE8;color:var(--bg);
+  background:#1B4AE8;color:#1A1410;
   padding:18px 44px;border-radius:99px;border:none;cursor:none;
   transition:opacity .2s,transform .2s;
 }
 .iform-btn:hover{opacity:.8;transform:scale(1.02)}
-.iform-btn:disabled{opacity:.35;cursor:not-allowed}
+.iform-btn:disabled{opacity:.35}
 .iform-success{
-  display:none;
-  text-align:center;padding:60px 0;
+  display:none;text-align:center;padding:60px 0;
 }
 .iform-success.show{display:block}
 .iform-success-icon{font-size:40px;margin-bottom:16px}
@@ -381,16 +369,6 @@ section{
   color:#1B4AE8;margin-bottom:12px;
 }
 .iform-success-sub{font-size:15px;font-weight:300;color:#1B4AE8;opacity:.45}
-
-@media(max-width:768px){
-  #inquiry{padding:64px 20px}
-  .inquiry-top{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:36px}
-  .inquiry-sub{text-align:left;max-width:100%}
-  .iform-row{grid-template-columns:1fr}
-  .ifield{border-right:none}
-  .iform-submit{flex-direction:column;gap:16px;align-items:flex-start}
-  .iform-notice{max-width:100%}
-}
 
 /* ─────── MARQUEE STRIP ─────── */
 .mq-wrap{background:#0A0A0A;overflow:hidden;padding:0}
@@ -485,10 +463,15 @@ section{
 
   /* Contact */
   #contact{padding:64px 20px 48px}
-  .c-cta{font-size:clamp(44px,14vw,90px);max-width:100%}
+  .contact-top{margin-bottom:40px}
+  .c-cta{font-size:clamp(44px,12vw,80px)}
   .c-bottom{margin-top:40px;flex-direction:column;align-items:flex-start;gap:20px}
   .c-email{font-size:15px}
   .c-foot{flex-direction:column;gap:8px}
+  .iform-row{grid-template-columns:1fr}
+  .ifield{border-right:none}
+  .iform-submit{flex-direction:column;gap:16px;align-items:flex-start}
+  .iform-notice{max-width:100%}
 
   section{padding:64px 20px;min-height:auto}
 
@@ -596,7 +579,7 @@ body::after{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:.6;transition:opacity .2s;
+  opacity:.85;transition:opacity .2s;
 }
 .tp-close:hover{opacity:1}
 
@@ -718,7 +701,7 @@ body::after{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
   font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:.6;transition:opacity .2s;
+  opacity:.85;transition:opacity .2s;
 }
 #detail-close:hover{opacity:1}
 
@@ -878,7 +861,6 @@ body::after{
   <a href="index.html" class="logo">THISISPEARWAY</a>
   <ul class="nav-center">
     <li><a href="#works">Work</a></li>
-    <li><a href="#inquiry">Inquiry</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#" class="nav-type" onclick="openType();return false;">Type ↗</a>
@@ -915,21 +897,24 @@ body::after{
 
 <!-- ═══ CONTACT ═══ -->
 <!-- ═══ INQUIRY FORM ═══ -->
-<section id="inquiry">
-  <div class="inquiry-inner">
-    <div class="inquiry-top rv">
-      <div class="inquiry-title">Design<br>Inquiry.</div>
-      <div class="inquiry-sub">작업 의뢰 내용을 남겨주시면 검토 후 연락드립니다.</div>
-    </div>
+<section id="contact">
 
-    <!-- 성공 메시지 -->
+  <!-- CTA 헤더 -->
+  <div class="contact-top">
+    <div class="ctag">Let's work together</div>
+    <div class="c-cta rv">Let's Make<br>Great Things.</div>
+  </div>
+
+  <!-- 의뢰 폼 -->
+  <div class="contact-form-wrap rv">
+
     <div class="iform-success" id="iformSuccess">
       <div class="iform-success-icon">✦</div>
       <div class="iform-success-txt">Thank you.</div>
       <div class="iform-success-sub">메시지가 전달되었습니다. 곧 연락드릴게요.</div>
     </div>
 
-    <form class="iform rv" id="iform" onsubmit="submitForm(event)">
+    <form class="iform" id="iform" onsubmit="submitForm(event)">
       <div class="iform-row">
         <div class="ifield">
           <div class="ifield-label">이름</div>
@@ -981,13 +966,8 @@ body::after{
       </div>
     </form>
   </div>
-</section>
 
-<section id="contact">
-  <div class="contact-top">
-    <div class="ctag">Let's work together</div>
-    <div class="c-cta rv">Let's<br>Make<br>Great<br>Things.</div>
-  </div>
+  <!-- 하단 푸터 -->
   <div class="c-bottom rv">
     <a href="mailto:ppearwayy@gmail.com" class="c-email">
       ppearwayy@gmail.com <span class="c-arr">↗</span>
@@ -998,6 +978,7 @@ body::after{
       <span>Graphic Designer</span>
     </div>
   </div>
+
 </section>
 
 <!-- ═══ TYPE PAGE OVERLAY ═══ -->
