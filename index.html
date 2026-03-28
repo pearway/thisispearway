@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THISISPEARWAY</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,900;1,900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0A0A0A;
+  --fg:#F0EBE3;
+  --s1:#EDEAE3;   /* works section — warm cream */
+  --s2:#1B4AE8;   /* about section — electric blue */
+  --s3:#1A1410;   /* contact section — deep warm ink */
+}
+
+html{scroll-behavior:auto;font-size:16px}
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Barlow',sans-serif;
+  cursor:none;
+  overflow-x:hidden;
+}
+
+/* ─────── CURSOR ─────── */
+#dot{
+  position:fixed;width:10px;height:10px;
+  border-radius:50%;background:#1B4AE8;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .25s,height .25s;
+}
+#dot.xl{width:64px;height:64px}
+
+/* ─────── LOADER ─────── */
+#loader{
+  position:fixed;inset:0;background:#0A0A0A;
+  z-index:7000;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity 1s cubic-bezier(.77,0,.18,1);
+}
+#loader.gone{opacity:0;pointer-events:none}
+.l-line{
+  overflow:hidden;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:clamp(18px,3.5vw,48px);
+  letter-spacing:-.02em;text-transform:uppercase;color:#1B4AE8;
+}
+.l-line span{
+  display:inline-block;
+  animation:rise .7s cubic-bezier(.77,0,.18,1) forwards;
+  opacity:0;transform:translateY(100%);
+}
+.l-line:nth-child(2) span{animation-delay:.08s}
+.l-line:nth-child(3) span{animation-delay:.16s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ─────── NAV ─────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:600;
+  padding:22px 44px;
+  display:flex;justify-content:space-between;align-items:center;
+  pointer-events:none;
+}
+nav *{pointer-events:auto}
+.logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;text-decoration:none;
+}
+.nav-center{
+  display:flex;gap:28px;list-style:none;
+}
+.nav-center a{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;text-decoration:none;
+  opacity:.5;transition:opacity .2s;
+}
+.nav-center a:hover{opacity:1}
+.nav-type{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;text-decoration:none;
+  border:1px solid #1B4AE8;
+  padding:5px 14px;border-radius:99px;
+  opacity:1;transition:opacity .2s;
+}
+.nav-type:hover{opacity:.6}
+
+/* ─────── HERO ─────── */
+#hero{
+  position:relative;
+  width:100vw;height:100vh;
+  background:var(--bg);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+/* Each text line — full width, magnetic */
+.mag-line{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-size:clamp(80px, 19.5vw, 300px);
+  line-height:.88;
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  color:transparent;
+  -webkit-text-stroke:1.5px #1B4AE8;
+  white-space:nowrap;
+  will-change:transform;
+  text-align:center;
+  cursor:none;
+  transition:color .3s,-webkit-text-stroke .3s;
+  -webkit-font-smoothing:antialiased;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+.mag-line:hover{
+  color:#1B4AE8;
+  -webkit-text-stroke:0px transparent;
+}
+
+/* Small info bits */
+.hero-info{
+  position:absolute;bottom:40px;left:44px;
+  display:flex;gap:32px;
+}
+.hi-item{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.6;
+}
+.hero-scroll{
+  position:absolute;bottom:40px;right:44px;
+  writing-mode:vertical-rl;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.5;
+  animation:scrollbob 2.5s ease-in-out infinite;
+}
+@keyframes scrollbob{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:.9;transform:translateY(6px)}}
+
+/* ─────── SECTION BASE ─────── */
+section{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 44px;
+  overflow:hidden;
+  transition:background .6s cubic-bezier(.77,0,.18,1);
+}
+
+/* ─────── WORKS — Cream section ─────── */
+#works{background:var(--s1);color:#1B4AE8;padding:0 44px 80px}
+
+/* Title row: big number left, title right */
+.works-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:80px 0 28px;
+  border-bottom:1px solid rgba(27,74,232,.15);
+}
+.works-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(80px,12vw,180px);line-height:.85;
+  letter-spacing:-.04em;opacity:.1;
+}
+.big-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(52px,7vw,104px);
+  line-height:.85;letter-spacing:-.03em;text-transform:uppercase;
+}
+.yr-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.5;padding-bottom:8px}
+
+/* Filter — sticky, full bleed left */
+.frow{
+  display:flex;gap:0;
+  border-bottom:1px solid rgba(27,74,232,.12);
+  margin:0 -44px 2px;
+  padding:0 44px;
+  position:sticky;top:0;z-index:50;
+  background:var(--s1);
+}
+.ftab{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  padding:18px 26px;background:none;border:none;
+  color:#1B4AE8;cursor:none;
+  opacity:.3;transition:opacity .2s;
+  border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+.ftab:hover{opacity:.7}
+.ftab.on{opacity:1;border-bottom-color:#1B4AE8}
+
+/* Works grid */
+.wgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+  margin:0 -44px;
+}
+.wcell{
+  aspect-ratio:3/2;position:relative;overflow:hidden;cursor:none;
+  background:rgba(10,10,10,.06);
+  transition:opacity .25s ease,visibility .25s ease;
+}
+.wcell-bg{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:52px;opacity:.07;letter-spacing:-2px;
+  transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .3s;
+}
+.wcell:hover .wcell-bg{transform:scale(1.07);opacity:.14}
+.wcell-ov{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:24px;opacity:0;transition:opacity .3s;
+  background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 55%);
+}
+.wcell:hover .wcell-ov{opacity:1}
+.wcell-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:#fff;
+}
+.wcell-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:3px}
+
+/* ─────── ABOUT — Blue section ─────── */
+#about{background:var(--s2);color:var(--fg);min-height:auto;padding:100px 44px}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  max-width:1400px;
+  align-items:end;
+}
+.about-left{border-right:1px solid rgba(240,235,227,.15);padding-right:60px}
+.about-right{padding-left:60px}
+.stag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;opacity:.4;margin-bottom:20px}
+.about-hl{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(64px,8vw,120px);line-height:.86;
+  letter-spacing:-.03em;text-transform:uppercase;
+}
+.about-txt{
+  font-size:17px;line-height:1.8;font-weight:300;
+  opacity:.7;margin-bottom:48px;
+}
+.svcs{
+  border-top:1px solid rgba(240,235,227,.15);
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.svc{
+  padding:13px 0;border-bottom:1px solid rgba(240,235,227,.08);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.4;cursor:none;
+  transition:opacity .2s,letter-spacing .3s;
+}
+.svc:hover{opacity:1;letter-spacing:.2em}
+
+/* ─────── CONTACT — Deep warm ink ─────── */
+#contact{background:var(--s3);color:#1B4AE8;min-height:auto;padding:100px 44px 80px}
+
+.contact-top{max-width:1400px}
+.ctag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;color:#1B4AE8;margin-bottom:24px}
+.c-cta{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(72px,11vw,168px);line-height:.85;
+  letter-spacing:-.03em;text-transform:uppercase;color:#1B4AE8;
+  max-width:75%;
+}
+.c-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-top:80px;
+  border-top:1px solid rgba(27,74,232,.15);
+  padding-top:28px;
+}
+.c-email{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:18px;letter-spacing:.1em;text-transform:uppercase;
+  color:#1B4AE8;text-decoration:none;
+  border-bottom:2px solid #1B4AE8;padding-bottom:3px;
+  transition:opacity .2s;display:inline-block;
+}
+.c-email:hover{opacity:.5}
+.c-arr{display:inline-block;transition:transform .2s}
+.c-email:hover .c-arr{transform:translate(5px,-5px)}
+.c-foot{
+  display:flex;gap:40px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:#1B4AE8;opacity:1;
+}
+
+/* ─────── MARQUEE STRIP ─────── */
+.mq-wrap{background:#0A0A0A;overflow:hidden;padding:0}
+.mq-inner{display:flex;white-space:nowrap;animation:mq 14s linear infinite}
+.mq-txt{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(44px,7vw,96px);letter-spacing:-.025em;text-transform:uppercase;
+  color:#1B4AE8;padding:10px 40px 10px 0;flex-shrink:0;
+}
+.mq-dot{color:#1B4AE8;opacity:.35}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─────── SCROLL REVEAL ─────── */
+.rv{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);
+}
+.rv.in{opacity:1;transform:none}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — Tablet (768px) & Mobile (480px)
+═══════════════════════════════════════════ */
+
+/* ── 터치 기기: cursor none 제거 ── */
+@media (hover:none),(pointer:coarse){
+  body{cursor:auto}
+  #dot{display:none}
+  .mag-line,.svc,.wcell,.ftab,.tp-xbtn,.tp-ak,.tp-close{cursor:auto}
+}
+
+/* ── Tablet ≤ 900px ── */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .logo{font-size:10px}
+  .nav-center{gap:20px}
+  .nav-center a{font-size:11px}
+  .nav-type{font-size:11px;padding:4px 12px}
+
+  .mag-line{font-size:clamp(52px,13vw,140px)}
+
+  .hero-info{left:24px;gap:20px}
+  .hero-scroll{right:24px}
+
+  #works{padding:0 24px 60px}
+  .works-top{padding:60px 0 20px}
+  .big-label{font-size:clamp(40px,7vw,80px)}
+  .wgrid{margin:0 -24px;grid-template-columns:repeat(2,1fr)}
+  .frow{margin:0 -24px;padding:0 24px}
+
+  #contact{padding:80px 24px 60px}
+  .c-cta{font-size:clamp(52px,9vw,120px);max-width:100%}
+  .c-bottom{flex-direction:column;align-items:flex-start;gap:24px;margin-top:48px}
+
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .about-left{border-right:none;padding-right:0;border-bottom:1px solid rgba(240,235,227,.15);padding-bottom:40px}
+  .about-right{padding-left:0}
+
+  section{padding:80px 24px;min-height:auto}
+
+  .d-content{padding:80px 24px 60px}
+  .d-title{font-size:clamp(36px,8vw,80px)}
+}
+
+/* ── Mobile ≤ 480px ── */
+@media(max-width:480px){
+  nav{padding:16px 20px}
+  .logo{font-size:9px;letter-spacing:.1em}
+  .nav-center{gap:14px}
+  .nav-center a{font-size:10px;letter-spacing:.1em}
+  .nav-type{font-size:10px;padding:4px 10px;letter-spacing:.08em}
+
+  /* Hero: 글자 크기 줄이고 세로 여백 줄임 */
+  .mag-line{
+    font-size:clamp(44px,22vw,100px);
+    -webkit-text-stroke:1px #1B4AE8;
+  }
+  .hero-info{
+    left:20px;bottom:28px;
+    flex-direction:column;gap:4px;
+  }
+  .hi-item{font-size:11px}
+  .hero-scroll{display:none} /* 모바일에선 Scroll 힌트 숨김 */
+
+  /* Works: 1열 그리드 */
+  #works{padding:0 20px 48px}
+  .works-top{padding:48px 0 16px;flex-direction:column;align-items:flex-start;gap:8px}
+  .big-label{font-size:clamp(36px,10vw,64px)}
+  .yr-tag{font-size:11px}
+  .wgrid{margin:0 -20px;grid-template-columns:1fr}
+  .frow{margin:0 -20px;padding:0 20px;overflow-x:auto;flex-wrap:nowrap}
+  .ftab{padding:14px 18px;font-size:11px;flex-shrink:0}
+
+  /* Contact */
+  #contact{padding:64px 20px 48px}
+  .c-cta{font-size:clamp(44px,14vw,90px);max-width:100%}
+  .c-bottom{margin-top:40px;flex-direction:column;align-items:flex-start;gap:20px}
+  .c-email{font-size:15px}
+  .c-foot{flex-direction:column;gap:8px}
+
+  section{padding:64px 20px;min-height:auto}
+
+  /* Type overlay hero */
+  .tp-hero{height:60vh}
+  #tp-bigL{font-size:clamp(120px,45vw,280px);-webkit-text-stroke:1px #1B4AE8}
+  .tp-co.tr,.tp-co.br{display:none}
+  .tp-co.tl{top:20px;left:20px}
+  .tp-co.bl{bottom:48px;left:20px}
+  .tp-nav{padding:16px 20px}
+  .tp-preview{padding:48px 20px}
+  .tp-prev-hd{flex-direction:column;align-items:flex-start}
+  .tp-glyphs,.tp-wts{padding:48px 20px}
+  .tp-dl{padding:60px 20px}
+  .tp-dl-in{grid-template-columns:1fr;gap:40px}
+  .tp-dl-hl{font-size:clamp(44px,11vw,88px)}
+  #tp-ptxt{font-size:48px !important}
+  .tp-pph{font-size:48px !important;top:44px;left:44px}
+
+  /* Detail overlay */
+  .d-content{padding:64px 20px 48px}
+  .d-title{font-size:clamp(32px,10vw,64px)}
+  #detail-close{right:20px;top:20px}
+}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.03;pointer-events:none;z-index:9990;
+}
+/*
+  ─── 우아한 세리프 폰트 설정 ───
+  폰트 파일 준비되면:
+  1. index.html과 같은 폴더에 fonts/ 폴더 생성
+  2. 폰트 파일을 fonts/ 안에 넣기
+  3. 아래 url() 경로를 실제 파일명으로 수정
+*/
+@font-face {
+  font-family: 'UahanSerif';
+  font-weight: 300;
+  src: url('fonts/우아한세리프-Light.otf') format('opentype'),
+       url('fonts/우아한세리프-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'UahanSerif';
+  font-weight: 700;
+  src: url('fonts/우아한세리프-Bold.otf') format('opentype'),
+       url('fonts/우아한세리프-Bold.ttf') format('truetype');
+}
+
+/* 폰트 적용 클래스 */
+.uahan-light { font-family:'UahanSerif','Barlow',sans-serif; font-weight:300; }
+.uahan-bold  { font-family:'UahanSerif','Barlow',sans-serif; font-weight:700; }
+
+/* 미리보기 / 히어로에도 폰트 적용 */
+#tp-bigL,
+#tp-ptxt,
+#tp-pph { font-family:'UahanSerif','Barlow Condensed',sans-serif; }
+
+/* 히어로 글자 — 한글이라 letter-spacing, text-transform 제거 */
+#tp-bigL{
+  letter-spacing:0;
+  text-transform:none;
+}
+
+/* 한글 자모 스트립 */
+.tp-ak{
+  font-family:'UahanSerif','Barlow Condensed',sans-serif;
+  text-transform:none;
+  letter-spacing:0;
+}
+
+/* 글리프 섹션 폰트 */
+.tp-alpha { font-family:'UahanSerif','Barlow Condensed',sans-serif; text-transform:none; letter-spacing:0; }
+.tp-numrow{ font-family:'UahanSerif','Barlow Condensed',sans-serif; }
+
+/* 웨이트 샘플 */
+.tp-ws { font-family:'UahanSerif','Barlow Condensed',sans-serif; letter-spacing:0; text-transform:none; }
+
+/* ─────── TYPE PAGE OVERLAY ─────── */
+#type-ov{
+  position:fixed;inset:0;z-index:3000;
+  background:#0A0A0A;
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transform:translateY(40px);
+  transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);
+}
+#type-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* Type nav */
+.tp-nav{
+  position:sticky;top:0;z-index:10;
+  padding:22px 44px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:#0A0A0A;
+  border-bottom:1px solid rgba(27,74,232,.12);
+}
+.tp-logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;
+}
+.tp-close{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;background:none;border:none;cursor:none;
+  opacity:.6;transition:opacity .2s;
+}
+.tp-close:hover{opacity:1}
+
+/* Hero */
+.tp-hero{
+  position:relative;width:100%;height:90vh;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.tp-stage{perspective:800px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.tp-wrap{transform-style:preserve-3d;will-change:transform}
+#tp-bigL{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(200px,38vw,580px);
+  line-height:.85;letter-spacing:-.04em;text-transform:uppercase;
+  color:transparent;-webkit-text-stroke:1.5px #1B4AE8;
+  user-select:none;pointer-events:none;display:block;
+  transition:color .35s,-webkit-text-stroke .35s;
+}
+#tp-bigL.fill{color:#1B4AE8;-webkit-text-stroke:0px transparent}
+.tp-co{position:absolute;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#1B4AE8;opacity:.3;pointer-events:none;font-family:'Barlow Condensed',sans-serif;font-weight:900}
+.tp-co.tl{top:28px;left:44px}
+.tp-co.tr{top:28px;right:44px;text-align:right}
+.tp-co.bl{bottom:56px;left:44px}
+.tp-co.br{bottom:56px;right:44px;text-align:right}
+
+#tp-astrip{position:absolute;bottom:0;left:0;right:0;display:flex;border-top:1px solid rgba(27,74,232,.1)}
+.tp-ak{
+  flex:1;padding:12px 0;text-align:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(8px,1.1vw,13px);letter-spacing:.04em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.2;cursor:none;
+  transition:opacity .15s;
+  border-right:1px solid rgba(27,74,232,.08);
+}
+.tp-ak:last-child{border-right:none}
+.tp-ak:hover{opacity:.8}
+.tp-ak.on{opacity:1}
+
+/* Preview */
+.tp-preview{background:#F0EBE3;color:#0A0A0A;padding:80px 44px}
+.tp-prev-hd{max-width:1200px;margin:0 auto 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.tp-prev-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
+.tp-ctrls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.tp-sw{display:flex;align-items:center;gap:8px}
+.tp-sw label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
+#tp-szR{width:100px;accent-color:#0A0A0A;cursor:none}
+#tp-szV{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;min-width:40px}
+.tp-btns{display:flex;gap:3px}
+.tp-xbtn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 14px;border-radius:99px;
+  border:1.5px solid rgba(10,10,10,.2);
+  color:#0A0A0A;background:transparent;cursor:none;opacity:.35;transition:all .2s;
+}
+.tp-xbtn:hover{opacity:.7}
+.tp-xbtn.on{background:#0A0A0A;color:#F0EBE3;border-color:#0A0A0A;opacity:1}
+.tp-pbox{max-width:1200px;margin:0 auto;border:1px solid rgba(10,10,10,.1);border-radius:6px;padding:44px;min-height:140px;position:relative;background:#fff}
+#tp-ptxt{width:100%;border:none;background:transparent;outline:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:72px;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:#0A0A0A;resize:none;cursor:none;overflow:hidden}
+.tp-pph{position:absolute;top:44px;left:44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:72px;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:rgba(10,10,10,.1);pointer-events:none}
+
+/* Glyphs */
+.tp-glyphs{background:#111;padding:80px 44px}
+.tp-glabel{display:block;max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.5}
+.tp-alpha{max-width:1200px;margin:0 auto;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(44px,7.5vw,108px);line-height:.9;letter-spacing:-.015em;text-transform:uppercase;word-break:break-all}
+.tp-alpha .ta{color:#F0EBE3}
+.tp-alpha .tb{color:rgba(240,235,227,.12)}
+.tp-alpha .ty{color:#1B4AE8}
+.tp-alpha .tr2{color:#1B4AE8;opacity:.5}
+.tp-numrow{max-width:1200px;margin:16px auto 0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,5.5vw,80px);letter-spacing:-.02em;color:rgba(240,235,227,.2);line-height:1}
+
+/* Weights */
+.tp-wts{background:#0A0A0A;padding:80px 44px}
+.tp-wlb{max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.5}
+.tp-wr{max-width:1200px;margin:0 auto;display:flex;align-items:baseline;gap:24px;padding:24px 0;border-bottom:1px solid rgba(27,74,232,.1)}
+.tp-wr:last-child{border:none}
+.tp-wn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1B4AE8;opacity:.35;min-width:100px}
+.tp-ws{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,56px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#F0EBE3}
+
+/* Download */
+.tp-dl{background:#1B4AE8;padding:90px 44px;position:relative;overflow:hidden}
+.tp-dl-bg{position:absolute;right:-10px;bottom:-20px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(140px,22vw,320px);letter-spacing:-.04em;text-transform:uppercase;color:rgba(240,235,227,.08);pointer-events:none;user-select:none;line-height:1}
+.tp-dl-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;position:relative}
+.tp-dl-hl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(56px,8.5vw,132px);line-height:.86;letter-spacing:-.025em;text-transform:uppercase;color:#F0EBE3;margin-bottom:20px}
+.tp-dl-desc{font-size:15px;line-height:1.75;font-weight:300;color:#F0EBE3;opacity:.65;max-width:340px}
+.tp-dl-row{padding:18px 0;border-bottom:1px solid rgba(240,235,227,.2);display:flex;justify-content:space-between}
+.tp-dl-row:first-child{border-top:1px solid rgba(240,235,227,.2)}
+.tp-dk{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#F0EBE3;opacity:.5}
+.tp-dv{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#F0EBE3}
+.tp-dl-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:28px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:#F0EBE3;color:#1B4AE8;padding:18px 36px;border-radius:99px;text-decoration:none;border:none;cursor:none}
+.tp-soon{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(240,235,227,.15);color:#F0EBE3;padding:7px 14px;border-radius:99px}
+.tp-sd{width:5px;height:5px;border-radius:50%;background:#F0EBE3;animation:p 1.5s ease-in-out infinite}
+
+/* ─────── DETAIL OVERLAY — Behance Style ─────── */
+#detail-ov{
+  position:fixed;inset:0;z-index:4000;
+  background:#0A0A0A;
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transform:translateY(30px);
+  transition:opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
+}
+#detail-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* Sticky top bar */
+.d-topbar{
+  position:sticky;top:0;z-index:20;
+  background:#0A0A0A;
+  border-bottom:1px solid rgba(27,74,232,.12);
+  padding:18px 44px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.d-topbar-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.5;
+}
+#detail-close{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;background:none;border:none;cursor:none;
+  opacity:.6;transition:opacity .2s;
+}
+#detail-close:hover{opacity:1}
+
+/* Hero cover image */
+.d-cover{
+  width:100%;
+  aspect-ratio:16/7;
+  overflow:hidden;
+  position:relative;
+}
+.d-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.d-cover-color{width:100%;height:100%}
+
+/* Project info header */
+.d-header{
+  max-width:1200px;margin:0 auto;
+  padding:64px 44px 52px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  border-bottom:1px solid rgba(27,74,232,.1);
+}
+.d-header-left{}
+.d-meta{display:flex;gap:20px;align-items:center;margin-bottom:20px}
+.d-cat{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:#1B4AE8;opacity:.7;
+}
+.d-year{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#F0EBE3;opacity:.25;
+}
+.d-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(44px,6vw,96px);line-height:.88;
+  letter-spacing:-.03em;text-transform:uppercase;
+  color:#F0EBE3;
+}
+.d-header-right{
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.d-desc{
+  font-size:17px;line-height:1.85;font-weight:300;
+  color:#F0EBE3;opacity:.6;margin-bottom:36px;
+}
+.d-tags{display:flex;flex-wrap:wrap;gap:8px}
+.d-tag{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#1B4AE8;border:1px solid rgba(27,74,232,.3);
+  padding:5px 14px;border-radius:99px;
+}
+
+/* ── Image section — Behance layouts ── */
+.d-body{padding:0 0 100px}
+
+/* Section: full-width image */
+.d-block{margin:0;padding:0}
+.d-block img{width:100%;display:block}
+
+/* Section: 2-col images */
+.d-block-2col{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4px;
+}
+.d-block-2col img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+
+/* Section: 3-col images */
+.d-block-3col{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:4px;
+}
+.d-block-3col img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+
+/* Section: text block */
+.d-block-text{
+  max-width:720px;margin:80px auto;
+  padding:0 44px;
+}
+.d-block-text h2{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(28px,3vw,48px);letter-spacing:-.02em;text-transform:uppercase;
+  color:#F0EBE3;margin-bottom:20px;
+}
+.d-block-text p{
+  font-size:16px;line-height:1.85;font-weight:300;
+  color:#F0EBE3;opacity:.55;
+}
+
+/* Section: image + text side by side */
+.d-block-split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4px;align-items:center;
+}
+.d-block-split img{width:100%;display:block}
+.d-block-split-txt{
+  padding:60px;
+  font-size:16px;line-height:1.85;font-weight:300;
+  color:#F0EBE3;opacity:.6;
+}
+
+/* Nav between projects */
+.d-nav{
+  max-width:1200px;margin:0 auto;
+  padding:40px 44px;
+  display:flex;justify-content:space-between;
+  border-top:1px solid rgba(27,74,232,.1);
+}
+.d-nav-btn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:#1B4AE8;background:none;border:none;cursor:none;
+  opacity:.5;transition:opacity .2s;
+}
+.d-nav-btn:hover{opacity:1}
+.d-nav-btn:disabled{opacity:.15;pointer-events:none}
+
+/* Placeholder when no images */
+.d-placeholder{
+  width:100%;aspect-ratio:16/7;
+  display:flex;align-items:center;justify-content:center;
+  opacity:.15;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(32px,5vw,72px);letter-spacing:-.02em;
+  text-transform:uppercase;color:#F0EBE3;
+}
+
+@media(max-width:768px){
+  .d-topbar{padding:16px 20px}
+  .d-header{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
+  .d-block-2col,.d-block-3col,.d-block-split{grid-template-columns:1fr}
+  .d-block-split-txt{padding:28px 20px}
+  .d-block-text{padding:0 20px;margin:48px 0}
+  .d-nav{padding:32px 20px}
+}
+
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <div class="l-line"><span>THIS</span></div>
+    <div class="l-line"><span>IS</span></div>
+    <div class="l-line"><span>PEARWAY</span></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div id="dot"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">THISISPEARWAY</a>
+  <ul class="nav-center">
+    <li><a href="#works">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-type" onclick="openType();return false;">Type ↗</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div id="hero">
+  <div class="mag-line" id="ml0">THISIS</div>
+  <div class="mag-line" id="ml1">PEAR</div>
+  <div class="mag-line" id="ml2">WAY</div>
+
+  <div class="hero-info">
+    <span class="hi-item">Graphic Designer</span>
+    <span class="hi-item">Seoul, KR</span>
+    <span class="hi-item">2026</span>
+  </div>
+  <div class="hero-scroll">Scroll ↓</div>
+</div>
+
+<!-- ═══ WORKS ═══ -->
+<section id="works">
+  <div class="works-top rv">
+    <div class="big-label">Selected<br>Works</div>
+    <div class="yr-tag">2020<br>—<br>2025</div>
+  </div>
+  <div class="frow rv">
+    <button class="ftab on" data-f="all">All</button>
+    <button class="ftab" data-f="brand">Brand</button>
+    <button class="ftab" data-f="graphic">Graphic</button>
+    <button class="ftab" data-f="spatial">Spatial</button>
+  </div>
+  <div class="wgrid rv" id="wgrid"></div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="contact-top">
+    <div class="ctag">Let's work together</div>
+    <div class="c-cta rv">Let's<br>Make<br>Great<br>Things.</div>
+  </div>
+  <div class="c-bottom rv">
+    <a href="mailto:ppearwayy@gmail.com" class="c-email">
+      ppearwayy@gmail.com <span class="c-arr">↗</span>
+    </a>
+    <div class="c-foot">
+      <span>© 2026 THISISPEARWAY</span>
+      <span>Seoul, Korea</span>
+      <span>Graphic Designer</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TYPE PAGE OVERLAY ═══ -->
+<div id="type-ov">
+
+  <!-- Type page nav -->
+  <div class="tp-nav">
+    <span class="tp-logo">THISISPEARWAY</span>
+    <button class="tp-close" onclick="closeType()">← Back</button>
+  </div>
+
+  <!-- Hero: giant Korean character -->
+  <div class="tp-hero" id="tp-hero">
+    <div class="tp-stage">
+      <div class="tp-wrap" id="tp-wrap"><div id="tp-bigL">우</div></div>
+    </div>
+    <div class="tp-co tl">우아한 세리프<br>Typeface 2026</div>
+    <div class="tp-co tr">클래식 세리프에서 영감을 얻어<br>한글로 표현한 품격있는 서체</div>
+    <div class="tp-co bl">Light &amp; Bold<br>2 Weights</div>
+    <div class="tp-co br">아래 자모를<br>호버해 미리보기</div>
+    <div id="tp-astrip"></div>
+  </div>
+
+  <!-- Interactive preview -->
+  <div class="tp-preview">
+    <div class="tp-prev-hd">
+      <span class="tp-prev-tag">미리보기</span>
+      <div class="tp-ctrls">
+        <div class="tp-sw">
+          <label>크기</label>
+          <input type="range" id="tp-szR" min="24" max="180" value="80">
+          <span id="tp-szV">80px</span>
+        </div>
+        <div class="tp-btns">
+          <button class="tp-xbtn" data-tw="uahan-light">Light</button>
+          <button class="tp-xbtn on" data-tw="uahan-bold">Bold</button>
+        </div>
+      </div>
+    </div>
+    <div class="tp-pbox">
+      <div class="tp-pph" id="tp-pph">우아함이란</div>
+      <textarea id="tp-ptxt" rows="3" spellcheck="false" placeholder="텍스트를 입력하세요"></textarea>
+    </div>
+  </div>
+
+  <!-- Glyphs — 한글 자모 -->
+  <div class="tp-glyphs">
+    <span class="tp-glabel">글리프</span>
+    <div class="tp-alpha">
+      <span class="ta">가</span><span class="tb">나</span><span class="ty">다</span><span class="tb">라</span><span class="tr2">마</span><span class="tb">바</span><span class="ta">사</span><span class="tb">아</span><span class="ty">자</span><span class="tb">차</span><span class="tr2">카</span><span class="tb">타</span><span class="ta">파</span><span class="ty">하</span>
+    </div>
+    <div class="tp-alpha" style="margin-top:8px">
+      <span class="tb">갈</span><span class="ty">꽃</span><span class="tb">달</span><span class="ta">봄</span><span class="tb">숲</span><span class="tr2">얼</span><span class="tb">잎</span><span class="ty">품</span><span class="tb">흙</span>
+    </div>
+    <div class="tp-numrow">0123456789</div>
+  </div>
+
+  <!-- Weights -->
+  <div class="tp-wts">
+    <div class="tp-wlb">Weights</div>
+    <div class="tp-wr">
+      <div class="tp-wn">Light</div>
+      <div class="tp-ws uahan-light">우아함이란 형태의 절제에서 시작된다</div>
+    </div>
+    <div class="tp-wr">
+      <div class="tp-wn">Bold</div>
+      <div class="tp-ws uahan-bold">우아함이란 형태의 절제에서 시작된다</div>
+    </div>
+  </div>
+
+  <!-- Download -->
+  <div class="tp-dl">
+    <div class="tp-dl-bg">무료</div>
+    <div class="tp-dl-in">
+      <div>
+        <div class="tp-dl-hl">우아한<br>세리프를<br>무료로.</div>
+        <p class="tp-dl-desc">개인 프로젝트에 무료로 사용하실 수 있습니다. 상업적 사용은 별도 문의해 주세요.</p>
+      </div>
+      <div>
+        <div class="tp-dl-row"><div class="tp-dk">파일 형식</div><div class="tp-dv">OTF / TTF</div></div>
+        <div class="tp-dl-row"><div class="tp-dk">언어</div><div class="tp-dv">한국어 완성형</div></div>
+        <div class="tp-dl-row"><div class="tp-dk">웨이트</div><div class="tp-dv">Light · Bold</div></div>
+        <div class="tp-dl-row"><div class="tp-dk">라이선스</div><div class="tp-dv">무료 — 개인용</div></div>
+        <!--
+          출시 후: 아래 두 줄 주석 해제, 그 아래 Coming Soon 블록 삭제
+          <a href="fonts/우아한세리프-Light.otf" download class="tp-dl-btn">Light 다운로드 ↓</a>
+          <a href="fonts/우아한세리프-Bold.otf" download class="tp-dl-btn" style="margin-top:8px">Bold 다운로드 ↓</a>
+        -->
+        <a href="#" class="tp-dl-btn" style="opacity:.35;pointer-events:none">다운로드 준비 중 ↓</a>
+        <div class="tp-soon"><div class="tp-sd"></div>출시 준비 중</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ DETAIL OVERLAY ═══ -->
+<div id="detail-ov">
+  <div class="d-topbar">
+    <span class="d-topbar-title" id="d-topbar-title">THISISPEARWAY</span>
+    <button id="detail-close">← Back</button>
+  </div>
+  <div id="d-body"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   ▼ 여기만 편집하면 작업이 추가됩니다 ▼
+   
+   각 항목:
+   - title: 프로젝트 이름
+   - cat: 'brand' | 'typography' | 'graphic' | 'spatial'
+   - color: 이미지 없을 때 배경색 (원하는 색으로 변경 가능)
+   - img: 이미지 URL (없으면 '' 빈칸)
+   
+   예시:
+   { title:'브랜드 프로젝트', cat:'brand', color:'#1B4AE8', img:'' }
+═══════════════════════════════════════════════ */
+const PROJECTS = [
+  /*
+  ════════════════════════════════════════════════════════════
+  ▼ admin.html에서 프로젝트를 추가하세요 ▼
+  직접 편집하려면 아래 형식으로 추가하세요:
+
+  {
+    title: '프로젝트 이름',
+    cat: 'brand',         // brand | typography | graphic | spatial
+    year: '2024',
+    color: '#D0CCCA',     // 썸네일 이미지 없을 때 배경색
+    thumb: '',            // 썸네일 이미지 경로
+    desc: '설명',
+    tags: ['Brand Identity'],
+    blocks: [
+      { type:'img',   src:'images/project-01.jpg' },
+      { type:'2col',  src:['images/project-02.jpg','images/project-03.jpg'] },
+    ]
+  },
+  ════════════════════════════════════════════════════════════
+  */
+];
+/* ▲ 여기까지 ▲ */
+
+// ── 어드민 실시간 연동 — 같은 브라우저에서 admin.html 저장 시 자동 갱신
+window.addEventListener('storage', e => {
+  if (e.key !== 'tip_projects') return;
+  try {
+    const parsed = JSON.parse(e.newValue);
+    if (!Array.isArray(parsed)) return;
+    // PROJECTS 배열 갱신
+    PROJECTS.length = 0;
+    parsed.forEach(p => PROJECTS.push(p));
+    // 그리드 재생성
+    const g = document.getElementById('wgrid');
+    g.innerHTML = '';
+    PROJECTS.forEach((p, i) => {
+      const cell = document.createElement('div');
+      cell.className = 'wcell';
+      cell.dataset.cat = p.cat;
+      cell.dataset.idx = i;
+      const bg = p.thumb
+        ? `background:${p.color};background-image:url('${p.thumb}');background-size:cover;background-position:center`
+        : `background:${p.color}`;
+      cell.innerHTML = `
+        <div class="wcell-bg" style="${bg}"></div>
+        <div class="wcell-ov">
+          <div class="wcell-name">${p.title}</div>
+          <div class="wcell-cat">${LABELS[p.cat]}</div>
+        </div>`;
+      cell.addEventListener('click', () => openDetail(i));
+      g.appendChild(cell);
+    });
+    document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
+  } catch(e) {}
+});
+
+
+const savedProjects = localStorage.getItem('tip_projects');
+if (savedProjects) {
+  try {
+    const parsed = JSON.parse(savedProjects);
+    if (Array.isArray(parsed) && parsed.length) {
+      PROJECTS.length = 0;
+      parsed.forEach(p => PROJECTS.push(p));
+    }
+  } catch(e) {}
+}
+
+// ── 그리드 자동 생성
+const grid = document.getElementById('wgrid');
+const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial'};
+
+PROJECTS.forEach((p, i) => {
+  const cell = document.createElement('div');
+  cell.className = 'wcell';
+  cell.dataset.cat = p.cat;
+  cell.dataset.idx = i;
+  const bg = p.thumb
+    ? `background:${p.color};background-image:url('${p.thumb}');background-size:cover;background-position:center`
+    : `background:${p.color}`;
+  cell.innerHTML = `
+    <div class="wcell-bg" style="${bg}"></div>
+    <div class="wcell-ov">
+      <div class="wcell-name">${p.title}</div>
+      <div class="wcell-cat">${LABELS[p.cat]}</div>
+    </div>`;
+  cell.addEventListener('click', () => openDetail(i));
+  grid.appendChild(cell);
+});
+
+// Works 섹션: 프로젝트 없으면 숨기기
+document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
+
+// ── 상세 페이지 렌더
+let currentIdx = 0;
+
+function renderBlock(b) {
+  if (b.type === 'img') {
+    return `<div class="d-block"><img src="${b.src}" alt="" loading="lazy"></div>`;
+  }
+  if (b.type === '2col') {
+    return `<div class="d-block d-block-2col">
+      <img src="${b.src[0]}" alt="" loading="lazy">
+      <img src="${b.src[1]}" alt="" loading="lazy">
+    </div>`;
+  }
+  if (b.type === '3col') {
+    return `<div class="d-block d-block-3col">
+      <img src="${b.src[0]}" alt="" loading="lazy">
+      <img src="${b.src[1]}" alt="" loading="lazy">
+      <img src="${b.src[2]}" alt="" loading="lazy">
+    </div>`;
+  }
+  if (b.type === 'text') {
+    return `<div class="d-block d-block-text">
+      ${b.heading ? `<h2>${b.heading}</h2>` : ''}
+      ${b.body ? `<p>${b.body}</p>` : ''}
+    </div>`;
+  }
+  if (b.type === 'split') {
+    return `<div class="d-block d-block-split">
+      <img src="${b.src}" alt="" loading="lazy">
+      <div class="d-block-split-txt"><p>${b.body || ''}</p></div>
+    </div>`;
+  }
+  return '';
+}
+
+function openDetail(idx) {
+  currentIdx = idx;
+  const p = PROJECTS[idx];
+  const label = LABELS[p.cat];
+  const ov = document.getElementById('detail-ov');
+  const body = document.getElementById('d-body');
+
+  // topbar 제목 업데이트
+  document.getElementById('d-topbar-title').textContent = p.title;
+
+  // 커버
+  const coverHtml = p.thumb
+    ? `<div class="d-cover"><img src="${p.thumb}" alt="${p.title}"></div>`
+    : `<div class="d-cover"><div class="d-placeholder" style="background:${p.color}">${p.title}</div></div>`;
+
+  // 태그
+  const tagsHtml = (p.tags || []).map(t => `<span class="d-tag">${t}</span>`).join('');
+
+  // 콘텐츠 블록
+  const blocksHtml = (p.blocks && p.blocks.length)
+    ? `<div class="d-body">${p.blocks.map(renderBlock).join('')}</div>`
+    : `<div class="d-body"><div class="d-placeholder" style="background:${p.color};aspect-ratio:16/9">이미지를 추가하세요</div></div>`;
+
+  // prev / next
+  const hasPrev = idx > 0;
+  const hasNext = idx < PROJECTS.length - 1;
+
+  body.innerHTML = `
+    ${coverHtml}
+    <div class="d-header">
+      <div class="d-header-left">
+        <div class="d-meta">
+          <span class="d-cat">${label}</span>
+          <span class="d-year">${p.year || ''}</span>
+        </div>
+        <h1 class="d-title">${p.title}</h1>
+      </div>
+      <div class="d-header-right">
+        <p class="d-desc">${p.desc || ''}</p>
+        <div class="d-tags">${tagsHtml}</div>
+      </div>
+    </div>
+    ${blocksHtml}
+    <div class="d-nav">
+      <button class="d-nav-btn" onclick="openDetail(${idx-1})" ${hasPrev?'':'disabled'}>← Prev</button>
+      <button class="d-nav-btn" onclick="openDetail(${idx+1})" ${hasNext?'':'disabled'}>Next →</button>
+    </div>
+  `;
+
+  ov.scrollTop = 0;
+  ov.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detail-ov').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('detail-close').addEventListener('click', closeDetail);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDetail(); closeType(); } });
+
+// ── Type overlay
+function openType(){
+  document.getElementById('type-ov').classList.add('open');
+  document.body.style.overflow='hidden';
+  initTypeIfNeeded();
+}
+function closeType(){
+  document.getElementById('type-ov').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeType(); closeDetail(); } });
+
+let typeInited=false;
+function initTypeIfNeeded(){
+  if(typeInited) return;
+  typeInited=true;
+
+  // 한글 자모 스트립
+  const bigL=document.getElementById('tp-bigL');
+  const wrap2=document.getElementById('tp-wrap');
+  ['가','나','다','라','마','바','사','아','자','차','카','타','파','하',
+   '갈','꽃','달','봄','숲','얼','잎','품','흙','빛','결','향'].forEach((l,i)=>{
+    const d=document.createElement('div');
+    d.className='tp-ak';d.textContent=l;
+    d.addEventListener('mouseenter',()=>{
+      bigL.textContent=l;
+      document.querySelectorAll('.tp-ak').forEach(b=>b.classList.remove('on'));
+      d.classList.add('on');
+      bigL.classList.add('fill');
+      setTimeout(()=>bigL.classList.remove('fill'),400);
+    });
+    document.getElementById('tp-astrip').appendChild(d);
+  });
+  document.querySelector('.tp-ak').classList.add('on');
+
+  // 3D tilt
+  const tpHero=document.getElementById('tp-hero');
+  tpHero.addEventListener('mousemove',e=>{
+    const nx=(e.clientX/innerWidth-.5)*2,ny=(e.clientY/innerHeight-.5)*2;
+    wrap2.style.transform=`rotateX(${-ny*7}deg) rotateY(${nx*7}deg)`;
+    wrap2.style.transition='transform .05s linear';
+  });
+  tpHero.addEventListener('mouseleave',()=>{
+    wrap2.style.transition='transform .8s cubic-bezier(.16,1,.3,1)';
+    wrap2.style.transform='rotateX(0) rotateY(0)';
+  });
+
+  // Preview controls
+  const ta=document.getElementById('tp-ptxt');
+  const ph=document.getElementById('tp-pph');
+  const szR=document.getElementById('tp-szR');
+  const szV=document.getElementById('tp-szV');
+
+  // 기본 폰트 적용
+  ta.classList.add('uahan-bold');
+  ph.classList.add('uahan-bold');
+
+  szR.addEventListener('input',()=>{
+    const s=szR.value+'px';
+    ta.style.fontSize=ph.style.fontSize=s;
+    szV.textContent=szR.value+'px';
+  });
+  ta.addEventListener('input',()=>{
+    ph.style.display=ta.value?'none':'';
+    ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';
+  });
+
+  // 웨이트 버튼 — 폰트 클래스 방식
+  document.querySelectorAll('[data-tw]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('[data-tw]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      const w=b.dataset.tw;
+      ta.classList.remove('uahan-light','uahan-bold');
+      ph.classList.remove('uahan-light','uahan-bold');
+      ta.classList.add(w);
+      ph.classList.add(w);
+    });
+  });
+
+  // cursor hover for type elements
+  document.querySelectorAll('.tp-ak,.tp-close,.tp-xbtn').forEach(el=>{
+    el.addEventListener('mouseenter',()=>dot.classList.add('xl'));
+    el.addEventListener('mouseleave',()=>dot.classList.remove('xl'));
+  });
+}
+
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),1100));
+
+// ── Cursor
+const dot=document.getElementById('dot');
+let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function tick(){
+  cx+=(mx-cx)*.2;cy+=(my-cy)*.2;
+  dot.style.left=cx+'px';dot.style.top=cy+'px';
+  requestAnimationFrame(tick);
+})();
+document.querySelectorAll('a,button,.wcell,.svc,.mag-line').forEach(el=>{
+  el.addEventListener('mouseenter',()=>dot.classList.add('xl'));
+  el.addEventListener('mouseleave',()=>dot.classList.remove('xl'));
+});
+
+// ── Nav 스크롤
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+// ── Magnetic lines
+const lines=[
+  {el:document.getElementById('ml0'), str:0.028, ox:0,oy:0, tx:0,ty:0},
+  {el:document.getElementById('ml1'), str:0.045, ox:0,oy:0, tx:0,ty:0},
+  {el:document.getElementById('ml2'), str:0.034, ox:0,oy:0, tx:0,ty:0},
+];
+const hero=document.getElementById('hero');
+// ── 터치 기기에서 마그네틱 효과 비활성화
+const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
+
+hero.addEventListener('mousemove',e=>{
+  if(isTouch) return;
+  const cx2=e.clientX-innerWidth/2;
+  const cy2=e.clientY-innerHeight/2;
+  lines.forEach((l,i)=>{
+    const dir=i%2===0?1:-1;
+    l.tx=cx2*l.str*dir;
+    l.ty=cy2*l.str*.5;
+  });
+});
+hero.addEventListener('mouseleave',()=>lines.forEach(l=>{l.tx=0;l.ty=0}));
+(function magTick(){
+  lines.forEach(l=>{
+    const dx=l.tx-l.ox,dy=l.ty-l.oy;
+    if(Math.abs(dx)<0.08) l.ox=l.tx; else l.ox+=dx*.1;
+    if(Math.abs(dy)<0.08) l.oy=l.ty; else l.oy+=dy*.1;
+    l.el.style.transform=`translate(${l.ox.toFixed(1)}px,${l.oy.toFixed(1)}px) translateZ(0)`;
+  });
+  requestAnimationFrame(magTick);
+})();
+
+// ── Filter
+document.querySelectorAll('.ftab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+    tab.classList.add('on');
+    const f=tab.dataset.f;
+    document.querySelectorAll('.wcell').forEach(c=>{
+      const show=f==='all'||c.dataset.cat===f;
+      c.style.visibility=show?'':'hidden';
+      c.style.opacity=show?'1':'0';
+      c.style.pointerEvents=show?'':'none';
+    });
+  });
+});
+
+// ── Scroll reveal
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting)e.target.classList.add('in');
+}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
