@@ -891,6 +891,7 @@ body::after{
     <button class="ftab" data-f="brand">Brand</button>
     <button class="ftab" data-f="graphic">Graphic</button>
     <button class="ftab" data-f="spatial">Spatial</button>
+    <button class="ftab" data-f="web">Web</button>
   </div>
   <div class="wgrid rv" id="wgrid"></div>
 </section>
@@ -1241,7 +1242,7 @@ if (savedProjects) {
 
 // ── 그리드 자동 생성
 const grid = document.getElementById('wgrid');
-const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial'};
+const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial', web:'Web'};
 
 PROJECTS.forEach((p, i) => {
   const cell = document.createElement('div');
