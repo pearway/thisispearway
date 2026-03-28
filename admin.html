@@ -14,7 +14,6 @@
 }
 body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-height:100vh}
 
-/* ── Topbar */
 .topbar{
   position:sticky;top:0;z-index:100;
   background:var(--ink);padding:0 40px;
@@ -22,18 +21,22 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-h
 }
 .topbar-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg)}
 .topbar-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue);padding:4px 12px;border-radius:99px}
-.topbar-actions{display:flex;gap:10px;align-items:center}
-.btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 20px;border-radius:6px;border:none;cursor:pointer;transition:opacity .2s}
-.btn:hover{opacity:.8}
-.btn-primary{background:var(--blue);color:#fff}
-.btn-secondary{background:rgba(240,235,227,.12);color:var(--bg);border:1px solid rgba(240,235,227,.2)}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-sm{padding:6px 14px;font-size:11px}
 
-/* ── Layout */
+/* Guide banner */
+.guide{
+  background:rgba(27,74,232,.07);
+  border-bottom:1px solid var(--border);
+  padding:14px 40px;
+  display:flex;align-items:flex-start;gap:16px;
+}
+.guide-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.guide-txt{font-size:13px;line-height:1.7;color:var(--ink);opacity:.7}
+.guide-txt strong{opacity:1;color:var(--blue);font-weight:700}
+.guide-txt code{background:rgba(27,74,232,.1);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px}
+
 .layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 60px)}
 
-/* ── Sidebar */
+/* Sidebar */
 .sidebar{background:var(--cream);border-right:1px solid var(--border);display:flex;flex-direction:column}
 .sidebar-head{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .sidebar-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
@@ -41,8 +44,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-h
 .proj-item{
   padding:12px 14px;border-radius:8px;margin-bottom:4px;
   cursor:pointer;border:1.5px solid transparent;
-  display:flex;align-items:center;gap:10px;
-  transition:all .15s;
+  display:flex;align-items:center;gap:10px;transition:all .15s;
 }
 .proj-item:hover{background:white;border-color:var(--border)}
 .proj-item.active{background:white;border-color:var(--blue)}
@@ -52,7 +54,8 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-h
   width:40px;height:40px;border-radius:4px;flex-shrink:0;
   background-size:cover;background-position:center;
   display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.08em;color:rgba(0,0,0,.3);
+  font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  letter-spacing:.08em;color:rgba(0,0,0,.3);
 }
 .proj-info{flex:1;min-width:0}
 .proj-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -60,13 +63,13 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-h
 .proj-drag{color:rgba(0,0,0,.18);font-size:14px;flex-shrink:0;cursor:grab}
 .sidebar-footer{padding:14px;border-top:1px solid var(--border)}
 
-/* ── Editor */
-.editor{padding:36px 40px 100px;overflow-y:auto;max-height:calc(100vh - 60px)}
+/* Editor */
+.editor{padding:36px 40px 100px;overflow-y:auto;max-height:calc(100vh - 120px)}
 .editor-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:12px;opacity:.25}
 .editor-empty-icon{font-size:40px}
 .editor-empty-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.1em;text-transform:uppercase;text-align:center}
 
-/* ── Form */
+/* Form */
 .sec{margin-bottom:36px}
 .sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:.65;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -80,6 +83,7 @@ input.fi,select.fi,textarea.fi{
 }
 input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--blue)}
 textarea.fi{resize:vertical;min-height:72px;line-height:1.6}
+.fi-hint{font-size:11px;opacity:.35;margin-top:4px;line-height:1.5}
 
 /* Color */
 .color-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -95,58 +99,51 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
 .tag-x:hover{opacity:1}
 .tag-add{display:flex;gap:8px}
 
-/* ── Image upload zone */
-.upload-zone{
-  border:2px dashed var(--border);border-radius:10px;
-  background:white;cursor:pointer;
-  transition:all .2s;position:relative;overflow:hidden;
-  text-align:center;
+/* Image path input with preview */
+.img-path-row{
+  display:flex;flex-direction:column;gap:6px;
 }
-.upload-zone:hover,.upload-zone.over{border-color:var(--blue);background:#f0f3ff}
-.upload-zone.over{border-style:solid}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.upload-inner{padding:28px 20px;pointer-events:none}
-.upload-icon{font-size:28px;margin-bottom:8px;opacity:.4}
-.upload-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:.7}
-.upload-sub{font-size:11px;color:var(--ink);opacity:.3;margin-top:4px}
-.upload-preview{width:100%;border-radius:6px;display:none;aspect-ratio:16/9;object-fit:cover}
-.upload-preview.show{display:block}
-.upload-change{display:none;padding:10px;text-align:center}
-.upload-change.show{display:block}
-.upload-change-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:none;border:none;cursor:pointer;opacity:.6}
-.upload-change-btn:hover{opacity:1}
+.img-path-input-row{display:flex;gap:8px;align-items:center}
+.img-path-input-row .fi{flex:1}
+.img-preview-sm{
+  width:56px;height:40px;border-radius:4px;
+  background-size:cover;background-position:center;
+  background-color:var(--border);flex-shrink:0;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;opacity:.3;
+}
+.img-preview-sm.has{opacity:1}
 
-/* ── Blocks */
+/* Thumbnail preview large */
+.thumb-preview-lg{
+  width:100%;aspect-ratio:16/9;border-radius:8px;
+  background-size:cover;background-position:center;
+  background-color:var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;opacity:.15;margin-top:8px;
+  transition:opacity .2s;border:1px solid var(--border);
+}
+.thumb-preview-lg.has{opacity:1}
+
+/* Blocks */
 .blocks-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
 .block-card{background:white;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
 .block-head{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
 .block-badge{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(27,74,232,.08);padding:3px 10px;border-radius:99px}
 .block-head-r{display:flex;gap:8px;align-items:center}
 .block-drag{color:rgba(0,0,0,.18);cursor:grab;font-size:13px}
-.block-del{font-size:13px;color:var(--danger);opacity:.55;cursor:pointer;background:none;border:none;transition:opacity .15s}
+.block-del{font-size:13px;color:var(--danger);opacity:.55;cursor:pointer;background:none;border:none}
 .block-del:hover{opacity:1}
 .block-body{padding:14px;display:none;border-top:1px solid var(--border)}
 .block-body.open{display:block}
-
-/* Block image grid inside block */
 .block-imgs{display:flex;flex-direction:column;gap:10px}
-.block-img-slot{
-  border:2px dashed var(--border);border-radius:8px;
-  background:#fafafa;cursor:pointer;
-  position:relative;overflow:hidden;transition:all .2s;
-}
-.block-img-slot:hover,.block-img-slot.over{border-color:var(--blue);background:#f0f3ff}
-.block-img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.slot-inner{padding:16px;text-align:center;pointer-events:none}
-.slot-icon{font-size:20px;opacity:.3;margin-bottom:4px}
-.slot-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:.6}
-.slot-preview{width:100%;border-radius:5px;display:none;max-height:200px;object-fit:cover}
-.slot-preview.show{display:block}
-.slot-del{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.5);color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;font-size:12px;display:none;align-items:center;justify-content:center}
-.slot-del.show{display:flex}
-.slot-del:hover{background:var(--danger)}
 
-/* Add blocks row */
+/* Add block buttons */
+.btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 20px;border-radius:6px;border:none;cursor:pointer;transition:opacity .2s}
+.btn:hover{opacity:.8}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-sm{padding:6px 14px;font-size:11px}
 .add-blocks{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .add-btn{
   font-family:'Barlow Condensed',sans-serif;font-weight:900;
@@ -157,12 +154,10 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
 }
 .add-btn:hover{opacity:1;border-color:var(--blue);color:var(--blue)}
 
-/* Actions bar */
+/* Actions */
 .actions-bar{
-  position:sticky;bottom:0;
-  background:white;border-top:1px solid var(--border);
-  padding:14px 40px;
-  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;bottom:0;background:white;border-top:1px solid var(--border);
+  padding:14px 40px;display:flex;justify-content:space-between;align-items:center;
   margin:0 -40px;
 }
 .save-st{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.3}
@@ -178,11 +173,6 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
   opacity:0;transition:all .22s;pointer-events:none;z-index:500;white-space:nowrap;
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Storage bar */
-.storage-bar{padding:10px 20px;background:rgba(27,74,232,.06);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;font-size:11px;opacity:.6}
-.storage-fill{height:4px;background:var(--blue);border-radius:99px;transition:width .3s}
-.storage-track{flex:1;height:4px;background:rgba(27,74,232,.15);border-radius:99px;overflow:hidden}
 </style>
 </head>
 <body>
@@ -192,15 +182,16 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
     <span class="topbar-logo">THISISPEARWAY</span>
     <span class="topbar-tag">Admin</span>
   </div>
-  <div class="topbar-actions">
-  </div>
 </div>
 
-<!-- Storage usage bar -->
-<div class="storage-bar" id="storageBar">
-  <span>저장소 사용량</span>
-  <div class="storage-track"><div class="storage-fill" id="storageFill" style="width:0%"></div></div>
-  <span id="storageText">계산 중...</span>
+<!-- 이미지 사용법 안내 -->
+<div class="guide">
+  <div class="guide-icon">📁</div>
+  <div class="guide-txt">
+    <strong>이미지 넣는 방법</strong> — 이미지 파일을 <code>images/</code> 폴더에 넣고, 경로를 아래에 입력하세요.<br>
+    예: <code>images/brand/프로젝트1-thumb.jpg</code> · <code>images/graphic/작업2-01.jpg</code><br>
+    GitHub에 <code>images/</code> 폴더와 <code>index.html</code>을 함께 올리면 Vercel에서 자동으로 보여요.
+  </div>
 </div>
 
 <div class="layout">
@@ -229,8 +220,14 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
       <div class="sec">
         <div class="sec-title">기본 정보</div>
         <div class="row">
-          <div class="fg"><label class="lbl">프로젝트 이름 *</label><input class="fi" id="f-title" placeholder="프로젝트 이름"></div>
-          <div class="fg"><label class="lbl">연도</label><input class="fi" id="f-year" placeholder="2024" maxlength="4"></div>
+          <div class="fg">
+            <label class="lbl">프로젝트 이름 *</label>
+            <input class="fi" id="f-title" placeholder="프로젝트 이름">
+          </div>
+          <div class="fg">
+            <label class="lbl">연도</label>
+            <input class="fi" id="f-year" placeholder="2024" maxlength="4">
+          </div>
         </div>
         <div class="row">
           <div class="fg">
@@ -242,7 +239,7 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
             </select>
           </div>
           <div class="fg">
-            <label class="lbl">배경색</label>
+            <label class="lbl">배경색 (이미지 없을 때)</label>
             <div class="color-row">
               <input type="color" id="f-color" value="#D0CCCA">
               <div id="colorDots"></div>
@@ -250,7 +247,10 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
           </div>
         </div>
         <div class="row full">
-          <div class="fg"><label class="lbl">프로젝트 설명</label><textarea class="fi" id="f-desc" placeholder="프로젝트 소개를 입력하세요."></textarea></div>
+          <div class="fg">
+            <label class="lbl">프로젝트 설명</label>
+            <textarea class="fi" id="f-desc" placeholder="프로젝트 소개를 입력하세요."></textarea>
+          </div>
         </div>
       </div>
 
@@ -267,24 +267,21 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
       <!-- 썸네일 -->
       <div class="sec">
         <div class="sec-title">썸네일 이미지</div>
-        <div class="upload-zone" id="thumbZone">
-          <input type="file" accept="image/*" id="thumbFile" onchange="handleThumbUpload(this)">
-          <img class="upload-preview" id="thumbPreview">
-          <div class="upload-inner" id="thumbInner">
-            <div class="upload-icon">🖼</div>
-            <div class="upload-txt">클릭하거나 이미지를 여기 드래그</div>
-            <div class="upload-sub">JPG, PNG, WebP — 1200×800px 권장</div>
-          </div>
-          <div class="upload-change" id="thumbChange">
-            <button type="button" class="upload-change-btn" onclick="clearThumb(event)">✕ 이미지 제거</button>
-          </div>
+        <div class="fg">
+          <label class="lbl">이미지 경로</label>
+          <input class="fi" id="f-thumb" placeholder="images/brand/project1-thumb.jpg" oninput="updateThumbPreview()">
+          <span class="fi-hint">💡 이미지 파일을 <code style="background:rgba(0,0,0,.07);padding:1px 5px;border-radius:3px">images/</code> 폴더에 넣고 경로 입력</span>
         </div>
+        <div class="thumb-preview-lg" id="thumbPreviewLg">🖼</div>
       </div>
 
       <!-- 상세 이미지 블록 -->
       <div class="sec">
-        <div class="sec-title">상세 이미지 — 비핸스 스타일</div>
-        <p style="font-size:12px;opacity:.4;margin-bottom:14px;line-height:1.6">블록을 추가하고 이미지를 직접 업로드하세요.</p>
+        <div class="sec-title">상세 이미지 레이아웃</div>
+        <p style="font-size:12px;opacity:.4;margin-bottom:14px;line-height:1.6">
+          블록을 추가하고 각 슬롯에 이미지 경로를 입력하세요.<br>
+          경로 입력 후 미리보기가 바로 표시됩니다.
+        </p>
         <div class="blocks-list" id="blocksList"></div>
         <div style="margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.35">+ 블록 추가</div>
         <div class="add-blocks">
@@ -310,65 +307,35 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
 <div class="toast" id="toast"></div>
 
 <script>
-// ── State
 let projects = [];
-let cur = null; // current index
+let cur = null;
 let dragSrc = null;
 
-const LABELS = {brand:'Brand',typography:'Typography',graphic:'Graphic',spatial:'Spatial'};
+const LABELS = {brand:'Brand',graphic:'Graphic',spatial:'Spatial'};
 const COLORS = ['#D0CCCA','#C8C4BC','#CECCCA','#C4C0B8','#1B4AE8','#0A0A0A','#E8E4DC','#B8B0A8'];
+const BTYPES = {img:'풀와이드 이미지','2col':'2장 나란히','3col':'3장 나란히',text:'텍스트 블록',split:'이미지 + 텍스트'};
 
-// ── Init
 window.addEventListener('DOMContentLoaded', () => {
   load();
   buildColorDots();
   document.getElementById('tagIn').addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); addTag(); }
   });
-  setupThumbDrop();
-  updateStorage();
 });
 
-// ── Persist
 function load() {
   try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
-  if (!projects.length) projects = defaults();
   renderList();
 }
 
 function persist() {
-  try {
-    localStorage.setItem('tip_projects', JSON.stringify(projects));
-    // notify index.html if open in another tab
-    window.dispatchEvent(new StorageEvent('storage', {
-      key:'tip_projects', newValue:JSON.stringify(projects), storageArea:localStorage
-    }));
-    updateStorage();
-  } catch(e) {
-    if (e.name === 'QuotaExceededError') {
-      toast('저장 공간 부족! 이미지를 줄여주세요.', true);
-    }
-  }
+  localStorage.setItem('tip_projects', JSON.stringify(projects));
+  window.dispatchEvent(new StorageEvent('storage', {
+    key:'tip_projects', newValue:JSON.stringify(projects), storageArea:localStorage
+  }));
 }
 
-function updateStorage() {
-  try {
-    let used = 0;
-    for (let k in localStorage) used += (localStorage[k].length + k.length) * 2;
-    const mb = (used / 1024 / 1024).toFixed(1);
-    const pct = Math.min((used / (5 * 1024 * 1024)) * 100, 100);
-    document.getElementById('storageFill').style.width = pct + '%';
-    document.getElementById('storageText').textContent = `${mb}MB / 5MB`;
-    document.getElementById('storageFill').style.background =
-      pct > 80 ? 'var(--danger)' : pct > 60 ? '#FF6D00' : 'var(--blue)';
-  } catch(e) {}
-}
-
-function defaults() {
-  return [];
-}
-
-// ── Sidebar
+// Sidebar
 function renderList() {
   document.getElementById('projCount').textContent = `프로젝트 (${projects.length})`;
   document.getElementById('projList').innerHTML = projects.map((p, i) => `
@@ -377,7 +344,7 @@ function renderList() {
       ondragstart="onDS(event,${i})" ondragover="onDO(event,${i})"
       ondrop="onDrop(event,${i})" ondragend="onDE()">
       <div class="proj-thumb" style="background:${p.thumb?`url('${p.thumb}') center/cover`:p.color}">
-        ${p.thumb?'':LABELS[p.cat]?.slice(0,2)}
+        ${p.thumb?'':LABELS[p.cat]?.slice(0,2)||'??'}
       </div>
       <div class="proj-info">
         <div class="proj-name">${p.title||'이름 없음'}</div>
@@ -388,7 +355,6 @@ function renderList() {
   `).join('');
 }
 
-// ── Select
 function select(idx) {
   if (cur !== null) syncFormToState();
   cur = idx;
@@ -404,10 +370,11 @@ function renderForm(p) {
   document.getElementById('f-cat').value = p.cat||'brand';
   document.getElementById('f-color').value = p.color||'#D0CCCA';
   document.getElementById('f-desc').value = p.desc||'';
+  document.getElementById('f-thumb').value = p.thumb||'';
   document.getElementById('saveSt').textContent = '저장되지 않음';
   document.getElementById('saveSt').classList.remove('saved');
   renderTags(p.tags||[]);
-  renderThumb(p.thumb||'');
+  updateThumbPreview();
   renderBlocks(p.blocks||[]);
   updateColorDots(p.color);
 }
@@ -420,10 +387,27 @@ function syncFormToState() {
   p.cat   = document.getElementById('f-cat').value;
   p.color = document.getElementById('f-color').value;
   p.desc  = document.getElementById('f-desc').value;
-  // thumb, tags, blocks already synced live
+  p.thumb = document.getElementById('f-thumb').value;
 }
 
-// ── Tags
+// Thumb preview
+function updateThumbPreview() {
+  const src = document.getElementById('f-thumb').value.trim();
+  const el = document.getElementById('thumbPreviewLg');
+  if (src) {
+    el.style.backgroundImage = `url('${src}')`;
+    el.classList.add('has');
+    el.textContent = '';
+  } else {
+    el.style.backgroundImage = '';
+    el.classList.remove('has');
+    el.textContent = '🖼';
+  }
+  if (cur !== null) projects[cur].thumb = src;
+  renderList();
+}
+
+// Tags
 function renderTags(tags) {
   document.getElementById('tagsWrap').innerHTML = (tags||[]).map((t,i) =>
     `<span class="tag-chip">${t}<span class="tag-x" onclick="removeTag(${i})">✕</span></span>`
@@ -444,7 +428,7 @@ function removeTag(i) {
   renderTags(projects[cur].tags);
 }
 
-// ── Color dots
+// Color
 function buildColorDots() {
   document.getElementById('colorDots').innerHTML = COLORS.map(c =>
     `<div class="cdot" style="background:${c}" title="${c}" onclick="setColor('${c}')"></div>`
@@ -460,146 +444,57 @@ function updateColorDots(active) {
     d.classList.toggle('sel', d.title === active));
 }
 
-// ── Thumb upload
-function setupThumbDrop() {
-  const zone = document.getElementById('thumbZone');
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault(); zone.classList.remove('over');
-    const f = e.dataTransfer.files[0];
-    if (f && f.type.startsWith('image/')) processThumbFile(f);
-  });
-}
-
-function handleThumbUpload(input) {
-  if (input.files[0]) processThumbFile(input.files[0]);
-}
-
-function processThumbFile(file) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    // 파일이 1.5MB 이하면 원본 그대로 사용 (압축 없음)
-    if (file.size <= 1.5 * 1024 * 1024) {
-      const b64 = e.target.result;
-      if (cur !== null) projects[cur].thumb = b64;
-      renderThumb(b64);
-      renderList();
-      return;
-    }
-    // 1.5MB 초과면 리사이즈 후 저장
-    const isPng = file.type === 'image/png';
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const MAX = 1200;
-      const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
-      canvas.width  = Math.round(img.width  * ratio);
-      canvas.height = Math.round(img.height * ratio);
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      if (!isPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      const b64 = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', isPng ? 1 : 0.92);
-      if (cur !== null) projects[cur].thumb = b64;
-      renderThumb(b64);
-      renderList();
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function renderThumb(src) {
-  const preview = document.getElementById('thumbPreview');
-  const inner   = document.getElementById('thumbInner');
-  const change  = document.getElementById('thumbChange');
-  if (src) {
-    preview.src = src;
-    preview.classList.add('show');
-    inner.style.display = 'none';
-    change.classList.add('show');
-  } else {
-    preview.classList.remove('show');
-    inner.style.display = '';
-    change.classList.remove('show');
-  }
-}
-
-function clearThumb(e) {
-  e.stopPropagation();
-  if (cur !== null) projects[cur].thumb = '';
-  renderThumb('');
-  renderList();
-}
-
-// ── Blocks
+// Blocks
 function renderBlocks(blocks) {
   const list = document.getElementById('blocksList');
   if (!blocks.length) {
-    list.innerHTML = `<div style="text-align:center;padding:24px;border:2px dashed var(--border);border-radius:8px;background:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.3">아직 이미지 블록이 없어요</div>`;
+    list.innerHTML = `<div style="text-align:center;padding:20px;border:2px dashed var(--border);border-radius:8px;background:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.3">아직 블록이 없어요</div>`;
     return;
   }
   list.innerHTML = blocks.map((b, i) => buildBlockHTML(b, i)).join('');
-  // setup drop zones for each slot
-  list.querySelectorAll('.block-img-slot').forEach(slot => {
-    slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('over'); });
-    slot.addEventListener('dragleave', () => slot.classList.remove('over'));
-    slot.addEventListener('drop', e => {
-      e.preventDefault(); slot.classList.remove('over');
-      const f = e.dataTransfer.files[0];
-      if (f && f.type.startsWith('image/')) {
-        const bi = +slot.dataset.bi, si = +slot.dataset.si;
-        processSlotFile(f, bi, si);
-      }
-    });
-  });
 }
-
-const BTYPES = {img:'풀와이드 이미지','2col':'2장 나란히','3col':'3장 나란히',text:'텍스트 블록',split:'이미지 + 텍스트'};
 
 function buildBlockHTML(b, i) {
   let body = '';
 
   if (b.type === 'img') {
-    body = slotHTML(b.src||'', i, 0, '이미지 업로드 (풀와이드)');
+    body = imgPathSlot(b.src||'', i, 0, '이미지 경로');
   } else if (b.type === '2col') {
     body = `<div class="block-imgs">
-      ${slotHTML((b.src&&b.src[0])||'', i, 0, '왼쪽 이미지')}
-      ${slotHTML((b.src&&b.src[1])||'', i, 1, '오른쪽 이미지')}
+      ${imgPathSlot((b.src&&b.src[0])||'', i, 0, '왼쪽 이미지 경로')}
+      ${imgPathSlot((b.src&&b.src[1])||'', i, 1, '오른쪽 이미지 경로')}
     </div>`;
   } else if (b.type === '3col') {
     body = `<div class="block-imgs">
-      ${slotHTML((b.src&&b.src[0])||'', i, 0, '이미지 1')}
-      ${slotHTML((b.src&&b.src[1])||'', i, 1, '이미지 2')}
-      ${slotHTML((b.src&&b.src[2])||'', i, 2, '이미지 3')}
+      ${imgPathSlot((b.src&&b.src[0])||'', i, 0, '이미지 1 경로')}
+      ${imgPathSlot((b.src&&b.src[1])||'', i, 1, '이미지 2 경로')}
+      ${imgPathSlot((b.src&&b.src[2])||'', i, 2, '이미지 3 경로')}
     </div>`;
   } else if (b.type === 'text') {
     body = `
       <div class="fg" style="margin-bottom:10px">
         <label class="lbl">제목 (선택)</label>
-        <input class="fi" value="${b.heading||''}" placeholder="Design Process" onchange="blocks_upd(${i},'heading',this.value)">
+        <input class="fi" value="${escHtml(b.heading||'')}" placeholder="Design Process" oninput="bUpd(${i},'heading',this.value)">
       </div>
       <div class="fg">
         <label class="lbl">내용</label>
-        <textarea class="fi" onchange="blocks_upd(${i},'body',this.value)">${b.body||''}</textarea>
+        <textarea class="fi" oninput="bUpd(${i},'body',this.value)">${escHtml(b.body||'')}</textarea>
       </div>`;
   } else if (b.type === 'split') {
     body = `
-      ${slotHTML(b.src||'', i, 0, '이미지')}
+      ${imgPathSlot(b.src||'', i, 0, '이미지 경로')}
       <div class="fg" style="margin-top:10px">
         <label class="lbl">옆 텍스트</label>
-        <textarea class="fi" onchange="blocks_upd(${i},'body',this.value)">${b.body||''}</textarea>
+        <textarea class="fi" oninput="bUpd(${i},'body',this.value)">${escHtml(b.body||'')}</textarea>
       </div>`;
   }
 
   return `
-    <div class="block-card" id="bc-${i}">
+    <div class="block-card">
       <div class="block-head" onclick="toggleBlock(${i})">
         <div style="display:flex;align-items:center;gap:8px">
           <span class="block-drag">⠿</span>
-          <span class="block-badge">${BTYPES[b.type]||b.type}</span>
+          <span class="block-badge">${BTYPES[b.type]}</span>
           <span style="font-size:11px;opacity:.25">#${i+1}</span>
         </div>
         <div class="block-head-r">
@@ -610,80 +505,47 @@ function buildBlockHTML(b, i) {
     </div>`;
 }
 
-function slotHTML(src, bi, si, label) {
+function imgPathSlot(src, bi, si, label) {
+  const hasImg = src && src.trim();
   return `
-    <div class="block-img-slot" data-bi="${bi}" data-si="${si}">
-      <input type="file" accept="image/*" onchange="handleSlotFile(this,${bi},${si})">
-      <img class="slot-preview ${src?'show':''}" src="${src||''}" alt="">
-      <div class="slot-inner" style="${src?'display:none':''}">
-        <div class="slot-icon">📷</div>
-        <div class="slot-txt">${label}</div>
-        <div class="upload-sub">클릭 또는 드래그</div>
+    <div class="img-path-row">
+      <label class="lbl">${label}</label>
+      <div class="img-path-input-row">
+        <input class="fi" value="${escHtml(src)}" placeholder="images/brand/project-01.jpg"
+          oninput="updateSlotPath(${bi},${si},this.value)">
+        <div class="img-preview-sm ${hasImg?'has':''}"
+          id="slot-prev-${bi}-${si}"
+          style="${hasImg?`background-image:url('${src}')`:''}">${hasImg?'':'🖼'}</div>
       </div>
-      <button class="slot-del ${src?'show':''}" onclick="clearSlot(event,${bi},${si})">✕</button>
     </div>`;
 }
 
-function handleSlotFile(input, bi, si) {
-  if (input.files[0]) processSlotFile(input.files[0], bi, si);
-}
-
-function processSlotFile(file, bi, si) {
-  const reader = new FileReader();
-  reader.onload = e => {
-    const saveB64 = b64 => {
-      if (cur === null) return;
-      const block = projects[cur].blocks[bi];
-      if (!block) return;
-      if (block.type === 'img' || block.type === 'split') {
-        block.src = b64;
-      } else {
-        if (!Array.isArray(block.src)) block.src = ['','',''];
-        block.src[si] = b64;
-      }
-      renderBlocks(projects[cur].blocks);
-    };
-
-    // 2MB 이하면 원본 그대로
-    if (file.size <= 2 * 1024 * 1024) {
-      saveB64(e.target.result);
-      return;
-    }
-    // 2MB 초과면 리사이즈
-    const isPng = file.type === 'image/png';
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const MAX = 2000;
-      const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
-      canvas.width  = Math.round(img.width  * ratio);
-      canvas.height = Math.round(img.height * ratio);
-      const ctx = canvas.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      if (!isPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      saveB64(canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', isPng ? 1 : 0.92));
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function clearSlot(e, bi, si) {
-  e.stopPropagation();
+function updateSlotPath(bi, si, val) {
   if (cur === null) return;
   const block = projects[cur].blocks[bi];
   if (!block) return;
   if (block.type === 'img' || block.type === 'split') {
-    block.src = '';
+    block.src = val;
   } else {
-    if (Array.isArray(block.src)) block.src[si] = '';
+    if (!Array.isArray(block.src)) block.src = ['','',''];
+    block.src[si] = val;
   }
-  renderBlocks(projects[cur].blocks);
+  // Update preview
+  const prev = document.getElementById(`slot-prev-${bi}-${si}`);
+  if (prev) {
+    if (val.trim()) {
+      prev.style.backgroundImage = `url('${val}')`;
+      prev.classList.add('has');
+      prev.textContent = '';
+    } else {
+      prev.style.backgroundImage = '';
+      prev.classList.remove('has');
+      prev.textContent = '🖼';
+    }
+  }
 }
 
-function blocks_upd(bi, field, val) {
+function bUpd(bi, field, val) {
   if (cur === null) return;
   const b = projects[cur].blocks[bi];
   if (b) b[field] = val;
@@ -697,10 +559,10 @@ function addBlock(type) {
   if (cur === null) return;
   syncFormToState();
   const defs = {
-    img:   {type:'img', src:''},
-    '2col':{type:'2col', src:['','']},
-    '3col':{type:'3col', src:['','','']},
-    text:  {type:'text', heading:'', body:''},
+    img:   {type:'img',   src:''},
+    '2col':{type:'2col',  src:['','']},
+    '3col':{type:'3col',  src:['','','']},
+    text:  {type:'text',  heading:'', body:''},
     split: {type:'split', src:'', body:''},
   };
   projects[cur].blocks.push({...defs[type]});
@@ -713,7 +575,11 @@ function delBlock(i) {
   renderBlocks(projects[cur].blocks);
 }
 
-// ── Save / New / Delete
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Save / New / Delete
 function saveProject() {
   if (cur === null) return;
   syncFormToState();
@@ -747,7 +613,7 @@ function deleteProject() {
   toast('삭제되었습니다');
 }
 
-// ── Drag reorder
+// Drag reorder
 function onDS(e, i) { dragSrc = i; e.currentTarget.classList.add('dragging'); }
 function onDO(e, i) {
   e.preventDefault();
@@ -767,11 +633,10 @@ function onDE() {
     el.classList.remove('dragging','drag-over'));
 }
 
-// ── Toast
-function toast(msg, err=false) {
+// Toast
+function toast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.style.background = err ? 'var(--danger)' : 'var(--ink)';
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2400);
 }
