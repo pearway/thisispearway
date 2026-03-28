@@ -477,18 +477,31 @@ function handleThumbUpload(input) {
 }
 
 function processThumbFile(file) {
-  // Compress to max 800px wide before saving
   const reader = new FileReader();
   reader.onload = e => {
+    // 파일이 1.5MB 이하면 원본 그대로 사용 (압축 없음)
+    if (file.size <= 1.5 * 1024 * 1024) {
+      const b64 = e.target.result;
+      if (cur !== null) projects[cur].thumb = b64;
+      renderThumb(b64);
+      renderList();
+      return;
+    }
+    // 1.5MB 초과면 리사이즈 후 저장
+    const isPng = file.type === 'image/png';
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement('canvas');
-      const MAX = 800;
+      const MAX = 1200;
       const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
       canvas.width  = Math.round(img.width  * ratio);
       canvas.height = Math.round(img.height * ratio);
-      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-      const b64 = canvas.toDataURL('image/jpeg', 0.82);
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      if (!isPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      const b64 = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', isPng ? 1 : 0.92);
       if (cur !== null) projects[cur].thumb = b64;
       renderThumb(b64);
       renderList();
@@ -618,15 +631,7 @@ function handleSlotFile(input, bi, si) {
 function processSlotFile(file, bi, si) {
   const reader = new FileReader();
   reader.onload = e => {
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const MAX = 1400;
-      const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
-      canvas.width  = Math.round(img.width  * ratio);
-      canvas.height = Math.round(img.height * ratio);
-      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-      const b64 = canvas.toDataURL('image/jpeg', 0.85);
+    const saveB64 = b64 => {
       if (cur === null) return;
       const block = projects[cur].blocks[bi];
       if (!block) return;
@@ -637,6 +642,28 @@ function processSlotFile(file, bi, si) {
         block.src[si] = b64;
       }
       renderBlocks(projects[cur].blocks);
+    };
+
+    // 2MB 이하면 원본 그대로
+    if (file.size <= 2 * 1024 * 1024) {
+      saveB64(e.target.result);
+      return;
+    }
+    // 2MB 초과면 리사이즈
+    const isPng = file.type === 'image/png';
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const MAX = 2000;
+      const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
+      canvas.width  = Math.round(img.width  * ratio);
+      canvas.height = Math.round(img.height * ratio);
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      if (!isPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      saveB64(canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', isPng ? 1 : 0.92));
     };
     img.src = e.target.result;
   };
