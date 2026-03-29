@@ -228,44 +228,14 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
     <span class="topbar-logo">THISISPEARWAY</span>
     <span class="topbar-tag">Admin</span>
   </div>
-  <button class="btn-export" onclick="openExport()">GitHub에 올리기 위한 코드 내보내기 ↗</button>
+  <button class="btn-export" onclick="exportJson()">projects.json 다운로드 ↓</button>
 </div>
 
-<!-- Export Modal -->
-<div class="export-modal-bg" id="exportModal">
-  <div class="export-modal">
-    <div class="export-modal-head">
-      <span class="export-modal-title">코드 내보내기 — GitHub 배포용</span>
-      <button class="export-modal-close" onclick="closeExport()">✕</button>
-    </div>
-    <div class="export-modal-body">
-      <p class="export-modal-desc">
-        어드민에서 저장한 프로젝트는 <strong>이 브라우저에서만</strong> 보여요.<br>
-        모바일·다른 기기에서도 보이려면 아래 코드를 <code>index.html</code>에 넣고 GitHub에 올려야 해요.
-      </p>
-      <ol class="export-modal-steps">
-        <li>아래 코드 전체 복사</li>
-        <li><code>index.html</code> 을 VS Code나 메모장으로 열기</li>
-        <li><code>const PROJECTS = [</code> 부분 찾아서 통째로 교체</li>
-        <li>GitHub Desktop에서 Commit → Push</li>
-        <li>Vercel 자동 재배포 → 완료 🎉</li>
-      </ol>
-      <div class="export-code" id="exportCode"></div>
-    </div>
-    <div class="export-modal-foot">
-      <button class="btn-close-modal" onclick="closeExport()">닫기</button>
-      <button class="btn-copy" onclick="copyExport()">코드 복사 ✓</button>
-    </div>
-  </div>
-</div>
-
-<!-- 이미지 사용법 안내 -->
 <div class="guide">
-  <div class="guide-icon">📁</div>
+  <div class="guide-icon">📋</div>
   <div class="guide-txt">
-    <strong>이미지 넣는 방법</strong> — 이미지 파일을 <code>images/</code> 폴더에 넣고, 경로를 아래에 입력하세요.<br>
-    예: <code>images/brand/프로젝트1-thumb.jpg</code> · <code>images/graphic/작업2-01.jpg</code><br>
-    GitHub에 <code>images/</code> 폴더와 <code>index.html</code>을 함께 올리면 Vercel에서 자동으로 보여요.
+    <strong>배포 방법</strong> — 프로젝트 편집 후 상단 버튼으로 <code>projects.json</code> 다운로드 →
+    GitHub 레포에서 <code>projects.json</code> 파일 교체 → Vercel 자동 재배포 → 모든 기기 반영 🎉
   </div>
 </div>
 
@@ -669,7 +639,8 @@ function escHtml(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// Save / New / Delete
+
+// ── Save / New / Delete
 function saveProject() {
   if (cur === null) return;
   syncFormToState();
@@ -731,50 +702,18 @@ function toast(msg) {
   setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-// Export
-function openExport() {
+// ── projects.json 다운로드
+function exportJson() {
   if (cur !== null) syncFormToState();
-  const code = generateCode();
-  document.getElementById('exportCode').textContent = code;
-  document.getElementById('exportModal').classList.add('open');
-}
-function closeExport() {
-  document.getElementById('exportModal').classList.remove('open');
-}
-function generateCode() {
-  const lines = ['const PROJECTS = ['];
-  projects.forEach((p, i) => {
-    lines.push('  {');
-    lines.push(`    title: ${JSON.stringify(p.title)},`);
-    lines.push(`    cat: ${JSON.stringify(p.cat)},`);
-    lines.push(`    year: ${JSON.stringify(p.year || '')},`);
-    lines.push(`    color: ${JSON.stringify(p.color || '#D0CCCA')},`);
-    lines.push(`    thumb: ${JSON.stringify(p.thumb || '')},`);
-    lines.push(`    desc: ${JSON.stringify(p.desc || '')},`);
-    lines.push(`    tags: ${JSON.stringify(p.tags || [])},`);
-    if (p.blocks && p.blocks.length) {
-      lines.push('    blocks: [');
-      p.blocks.forEach(b => lines.push(`      ${JSON.stringify(b)},`));
-      lines.push('    ],');
-    } else {
-      lines.push('    blocks: [],');
-    }
-    lines.push('  }' + (i < projects.length - 1 ? ',' : ''));
-  });
-  lines.push('];');
-  return lines.join('\n');
-}
-function copyExport() {
-  const code = document.getElementById('exportCode').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    toast('코드가 복사되었습니다 ✓');
-  }).catch(() => {
-    const ta = document.createElement('textarea');
-    ta.value = code; document.body.appendChild(ta);
-    ta.select(); document.execCommand('copy');
-    document.body.removeChild(ta);
-    toast('코드가 복사되었습니다 ✓');
-  });
+  const json = JSON.stringify(projects, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'projects.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('projects.json 다운로드 완료! GitHub에 올려주세요 ✓');
 }
 </script>
 </body>
