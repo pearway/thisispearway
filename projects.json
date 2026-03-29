@@ -1,0 +1,89 @@
+[
+  {
+    "title": "WOOSUNDAM - KOREAN BBQ",
+    "cat": "brand",
+    "year": "2026",
+    "color": "#d0ccca",
+    "thumb": "images/brand/Frame17.jpg",
+    "desc": "논현동의 좁은 골목, 감각적인 민트색 외관으로 시선을 멈추게 하는 곳. '우선담'은 그 이름처럼 변함없는 진심을 담아내는 공간입니다. 언제나 변치 않는 질 좋은 고기를 저렴하게 선보이겠다는 창업자의 고집스러운 철학으로 이 명확한 본질을 시각화하기 위해, 자칫 무거울 수 있는 소고기 전문점의 이미지를 탈피하고 경쾌하면서도 신뢰감 있는 민트 컬러를 브랜드의 페르소나로 설정했습니다. 최고 등급 미국산 소고기가 주는 미식의 즐거움을 누구나 부담 없이 즐길 수 있도록, 우선담은 합리적인 가성비와 프리미엄한 경험 사이의 완벽한 밸런스를 제안합니다. 공간과 맛, 그리고 철학이 하나로 어우러진 우선담의 브랜드 디자인 프로젝트를 소개합니다.",
+    "tags": [],
+    "blocks": [
+      {
+        "type": "img",
+        "src": "images/brand/Frame1.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame2.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame3.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame4.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame5.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame6.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame7.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame8.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame9.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame10.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame11.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame12.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame13.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame14.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame15.png"
+      },
+      {
+        "type": "img",
+        "src": "images/brand/Frame16.png"
+      }
+    ],
+    "url": ""
+  },
+  {
+    "title": "서울연세21세기의원",
+    "cat": "web",
+    "year": "2026",
+    "color": "#d0ccca",
+    "thumb": "images/web/og_thumbnail.jpg",
+    "desc": "병원 홈페이지",
+    "tags": [],
+    "blocks": [],
+    "url": "https://www.xn--21-j52i383d9dc665fyrbmgj4c.com/"
+  }
+]
