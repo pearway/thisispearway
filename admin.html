@@ -21,6 +21,52 @@ body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-h
 }
 .topbar-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg)}
 .topbar-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue);padding:4px 12px;border-radius:99px}
+.btn-export{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--blue);color:white;
+  padding:8px 20px;border-radius:6px;border:none;cursor:pointer;
+  transition:opacity .2s;
+}
+.btn-export:hover{opacity:.8}
+
+/* Export modal */
+.export-modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);
+  z-index:200;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s;
+}
+.export-modal-bg.open{opacity:1;pointer-events:auto}
+.export-modal{
+  background:var(--ink);color:var(--bg);
+  width:min(720px,90vw);border-radius:12px;overflow:hidden;
+}
+.export-modal-head{
+  padding:20px 28px;border-bottom:1px solid rgba(240,235,227,.1);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.export-modal-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+}
+.export-modal-close{background:none;border:none;color:var(--bg);cursor:pointer;font-size:18px;opacity:.5}
+.export-modal-close:hover{opacity:1}
+.export-modal-body{padding:24px 28px}
+.export-modal-desc{font-size:13px;line-height:1.7;opacity:.55;margin-bottom:16px}
+.export-modal-desc strong{color:#4af;opacity:1}
+.export-modal-steps{font-size:13px;line-height:2;opacity:.6;margin-bottom:20px;list-style:none;padding-left:0}
+.export-modal-steps li::before{content:'→ ';color:var(--blue)}
+.export-code{
+  background:#0d0d0d;color:#00ff88;
+  font-family:monospace;font-size:11px;line-height:1.5;
+  padding:16px;border-radius:8px;
+  max-height:280px;overflow-y:auto;
+  white-space:pre;border:1px solid rgba(0,255,136,.1);
+  margin-bottom:16px;
+}
+.export-modal-foot{padding:16px 28px;border-top:1px solid rgba(240,235,227,.1);display:flex;gap:10px;justify-content:flex-end}
+.btn-copy{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:var(--blue);color:#fff;padding:10px 24px;border-radius:6px;border:none;cursor:pointer}
+.btn-close-modal{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:rgba(240,235,227,.1);color:var(--bg);padding:10px 24px;border-radius:6px;border:none;cursor:pointer}
 
 /* Guide banner */
 .guide{
@@ -182,6 +228,35 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
     <span class="topbar-logo">THISISPEARWAY</span>
     <span class="topbar-tag">Admin</span>
   </div>
+  <button class="btn-export" onclick="openExport()">GitHub에 올리기 위한 코드 내보내기 ↗</button>
+</div>
+
+<!-- Export Modal -->
+<div class="export-modal-bg" id="exportModal">
+  <div class="export-modal">
+    <div class="export-modal-head">
+      <span class="export-modal-title">코드 내보내기 — GitHub 배포용</span>
+      <button class="export-modal-close" onclick="closeExport()">✕</button>
+    </div>
+    <div class="export-modal-body">
+      <p class="export-modal-desc">
+        어드민에서 저장한 프로젝트는 <strong>이 브라우저에서만</strong> 보여요.<br>
+        모바일·다른 기기에서도 보이려면 아래 코드를 <code>index.html</code>에 넣고 GitHub에 올려야 해요.
+      </p>
+      <ol class="export-modal-steps">
+        <li>아래 코드 전체 복사</li>
+        <li><code>index.html</code> 을 VS Code나 메모장으로 열기</li>
+        <li><code>const PROJECTS = [</code> 부분 찾아서 통째로 교체</li>
+        <li>GitHub Desktop에서 Commit → Push</li>
+        <li>Vercel 자동 재배포 → 완료 🎉</li>
+      </ol>
+      <div class="export-code" id="exportCode"></div>
+    </div>
+    <div class="export-modal-foot">
+      <button class="btn-close-modal" onclick="closeExport()">닫기</button>
+      <button class="btn-copy" onclick="copyExport()">코드 복사 ✓</button>
+    </div>
+  </div>
 </div>
 
 <!-- 이미지 사용법 안내 -->
@@ -232,7 +307,7 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
         <div class="row">
           <div class="fg">
             <label class="lbl">카테고리</label>
-            <select class="fi" id="f-cat">
+            <select class="fi" id="f-cat" onchange="toggleUrlField()">
               <option value="brand">Brand — 브랜드</option>
               <option value="graphic">Graphic — 그래픽</option>
               <option value="spatial">Spatial — 공간</option>
@@ -251,6 +326,12 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
           <div class="fg">
             <label class="lbl">프로젝트 설명</label>
             <textarea class="fi" id="f-desc" placeholder="프로젝트 소개를 입력하세요."></textarea>
+          </div>
+        </div>
+        <div class="row full" id="url-field" style="display:none">
+          <div class="fg">
+            <label class="lbl">웹사이트 URL <span style="color:var(--blue)">— 클릭 시 이동할 주소</span></label>
+            <input class="fi" id="f-url" placeholder="https://example.com">
           </div>
         </div>
       </div>
@@ -365,6 +446,11 @@ function select(idx) {
   document.getElementById('edForm').style.display = 'block';
 }
 
+function toggleUrlField() {
+  const cat = document.getElementById('f-cat').value;
+  document.getElementById('url-field').style.display = cat === 'web' ? '' : 'none';
+}
+
 function renderForm(p) {
   document.getElementById('f-title').value = p.title||'';
   document.getElementById('f-year').value = p.year||'';
@@ -372,8 +458,10 @@ function renderForm(p) {
   document.getElementById('f-color').value = p.color||'#D0CCCA';
   document.getElementById('f-desc').value = p.desc||'';
   document.getElementById('f-thumb').value = p.thumb||'';
+  document.getElementById('f-url').value = p.url||'';
   document.getElementById('saveSt').textContent = '저장되지 않음';
   document.getElementById('saveSt').classList.remove('saved');
+  toggleUrlField();
   renderTags(p.tags||[]);
   updateThumbPreview();
   renderBlocks(p.blocks||[]);
@@ -389,6 +477,7 @@ function syncFormToState() {
   p.color = document.getElementById('f-color').value;
   p.desc  = document.getElementById('f-desc').value;
   p.thumb = document.getElementById('f-thumb').value;
+  p.url   = document.getElementById('f-url').value;
 }
 
 // Thumb preview
@@ -640,6 +729,52 @@ function toast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// Export
+function openExport() {
+  if (cur !== null) syncFormToState();
+  const code = generateCode();
+  document.getElementById('exportCode').textContent = code;
+  document.getElementById('exportModal').classList.add('open');
+}
+function closeExport() {
+  document.getElementById('exportModal').classList.remove('open');
+}
+function generateCode() {
+  const lines = ['const PROJECTS = ['];
+  projects.forEach((p, i) => {
+    lines.push('  {');
+    lines.push(`    title: ${JSON.stringify(p.title)},`);
+    lines.push(`    cat: ${JSON.stringify(p.cat)},`);
+    lines.push(`    year: ${JSON.stringify(p.year || '')},`);
+    lines.push(`    color: ${JSON.stringify(p.color || '#D0CCCA')},`);
+    lines.push(`    thumb: ${JSON.stringify(p.thumb || '')},`);
+    lines.push(`    desc: ${JSON.stringify(p.desc || '')},`);
+    lines.push(`    tags: ${JSON.stringify(p.tags || [])},`);
+    if (p.blocks && p.blocks.length) {
+      lines.push('    blocks: [');
+      p.blocks.forEach(b => lines.push(`      ${JSON.stringify(b)},`));
+      lines.push('    ],');
+    } else {
+      lines.push('    blocks: [],');
+    }
+    lines.push('  }' + (i < projects.length - 1 ? ',' : ''));
+  });
+  lines.push('];');
+  return lines.join('\n');
+}
+function copyExport() {
+  const code = document.getElementById('exportCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    toast('코드가 복사되었습니다 ✓');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = code; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast('코드가 복사되었습니다 ✓');
+  });
 }
 </script>
 </body>

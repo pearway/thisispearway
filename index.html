@@ -1225,7 +1225,10 @@ window.addEventListener('storage', e => {
           <div class="wcell-name">${p.title}</div>
           <div class="wcell-cat">${LABELS[p.cat]}</div>
         </div>`;
-      cell.addEventListener('click', () => openDetail(i));
+      cell.addEventListener('click', () => {
+        if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
+        else openDetail(i);
+      });
       g.appendChild(cell);
     });
     document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
@@ -1263,7 +1266,10 @@ PROJECTS.forEach((p, i) => {
       <div class="wcell-name">${p.title}</div>
       <div class="wcell-cat">${LABELS[p.cat]}</div>
     </div>`;
-  cell.addEventListener('click', () => openDetail(i));
+  cell.addEventListener('click', () => {
+    if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
+    else openDetail(i);
+  });
   grid.appendChild(cell);
 });
 
