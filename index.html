@@ -1102,29 +1102,8 @@ body::after{
    예시:
    { title:'브랜드 프로젝트', cat:'brand', color:'#1B4AE8', img:'' }
 ═══════════════════════════════════════════════ */
-const PROJECTS = [
-  /*
-  ════════════════════════════════════════════════════════════
-  ▼ admin.html에서 프로젝트를 추가하세요 ▼
-  직접 편집하려면 아래 형식으로 추가하세요:
 
-  {
-    title: '프로젝트 이름',
-    cat: 'brand',         // brand | typography | graphic | spatial
-    year: '2024',
-    color: '#D0CCCA',     // 썸네일 이미지 없을 때 배경색
-    thumb: '',            // 썸네일 이미지 경로
-    desc: '설명',
-    tags: ['Brand Identity'],
-    blocks: [
-      { type:'img',   src:'images/project-01.jpg' },
-      { type:'2col',  src:['images/project-02.jpg','images/project-03.jpg'] },
-    ]
-  },
-  ════════════════════════════════════════════════════════════
-  */
-];
-/* ▲ 여기까지 ▲ */
+
 
 // ── 의뢰 폼 — Google Sheets 연동
 /*
@@ -1204,54 +1183,17 @@ window.addEventListener('storage', e => {
   try {
     const parsed = JSON.parse(e.newValue);
     if (!Array.isArray(parsed)) return;
-    // PROJECTS 배열 갱신
     PROJECTS.length = 0;
     parsed.forEach(p => PROJECTS.push(p));
-    // 그리드 재생성
-    const g = document.getElementById('wgrid');
-    g.innerHTML = '';
-    PROJECTS.forEach((p, i) => {
-      const cell = document.createElement('div');
-      cell.className = 'wcell';
-      cell.dataset.cat = p.cat;
-      cell.dataset.idx = i;
-      const hasThumbnail = p.thumb && p.thumb.trim();
-      const bg = hasThumbnail
-        ? `background-image:url('${p.thumb}');background-color:${p.color}`
-        : `background-color:${p.color}`;
-      cell.innerHTML = `
-        <div class="wcell-bg ${hasThumbnail ? '' : 'no-img'}" style="${bg}">${hasThumbnail ? '' : LABELS[p.cat]?.slice(0,2)||''}</div>
-        <div class="wcell-ov">
-          <div class="wcell-name">${p.title}</div>
-          <div class="wcell-cat">${LABELS[p.cat]}</div>
-        </div>`;
-      cell.addEventListener('click', () => {
-        if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
-        else openDetail(i);
-      });
-      g.appendChild(cell);
-    });
-    document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
+    rebuildGrid();
   } catch(e) {}
 });
 
-
-const savedProjects = localStorage.getItem('tip_projects');
-if (savedProjects) {
-  try {
-    const parsed = JSON.parse(savedProjects);
-    if (Array.isArray(parsed) && parsed.length) {
-      PROJECTS.length = 0;
-      parsed.forEach(p => PROJECTS.push(p));
-    }
-  } catch(e) {}
-}
-
-// ── 그리드 자동 생성
-const grid = document.getElementById('wgrid');
+const PROJECTS = [];
 const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial', web:'Web'};
 
-PROJECTS.forEach((p, i) => {
+// ── 그리드 생성 함수
+function buildCell(p, i) {
   const cell = document.createElement('div');
   cell.className = 'wcell';
   cell.dataset.cat = p.cat;
@@ -1270,11 +1212,45 @@ PROJECTS.forEach((p, i) => {
     if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
     else openDetail(i);
   });
-  grid.appendChild(cell);
-});
+  return cell;
+}
 
-// Works 섹션: 프로젝트 없으면 숨기기
-document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
+function rebuildGrid() {
+  const grid = document.getElementById('wgrid');
+  grid.innerHTML = '';
+  PROJECTS.forEach((p, i) => grid.appendChild(buildCell(p, i)));
+  document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
+}
+
+// ── projects.json 로드 (배포 환경) → 실패 시 localStorage fallback
+async function loadProjects() {
+  // 1순위: localStorage (어드민과 같은 브라우저)
+  const saved = localStorage.getItem('tip_projects');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length) {
+        PROJECTS.push(...parsed);
+        rebuildGrid();
+        return;
+      }
+    } catch(e) {}
+  }
+  // 2순위: projects.json (Vercel 배포 환경)
+  try {
+    const res = await fetch('projects.json?v=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length) {
+        PROJECTS.push(...data);
+        rebuildGrid();
+        return;
+      }
+    }
+  } catch(e) {}
+  rebuildGrid();
+}
+loadProjects();
 
 // ── 상세 페이지 렌더
 let currentIdx = 0;
