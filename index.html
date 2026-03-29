@@ -420,7 +420,6 @@ section{
   .works-top{padding:60px 0 20px}
   .big-label{font-size:clamp(40px,7vw,80px)}
   .wgrid{margin:0 -24px;grid-template-columns:repeat(2,1fr)}
-  .wcell{aspect-ratio:2/3}
   .frow{margin:0 -24px;padding:0 24px}
 
   #contact{padding:80px 24px 60px}
@@ -463,7 +462,6 @@ section{
   .big-label{font-size:clamp(36px,10vw,64px)}
   .yr-tag{font-size:11px}
   .wgrid{margin:0 -20px;grid-template-columns:1fr}
-  .wcell{aspect-ratio:3/4}
   .frow{margin:0 -20px;padding:0 20px;overflow-x:auto;flex-wrap:nowrap}
   .ftab{padding:14px 18px;font-size:11px;flex-shrink:0}
 
@@ -840,7 +838,13 @@ body::after{
 @media(max-width:768px){
   .d-topbar{padding:16px 20px}
   .d-header{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
+  /* 커버 이미지 모바일에서 세로로 꽉 */
+  .d-cover{aspect-ratio:3/4}
+  /* 풀와이드 이미지도 세로형 */
+  .d-block img{aspect-ratio:3/4;object-fit:cover}
+  /* 2열→1열, 세로형 */
   .d-block-2col,.d-block-3col,.d-block-split{grid-template-columns:1fr}
+  .d-block-2col img,.d-block-3col img{aspect-ratio:3/4}
   .d-block-split-txt{padding:28px 20px}
   .d-block-text{padding:0 20px;margin:48px 0}
   .d-nav{padding:32px 20px}
