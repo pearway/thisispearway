@@ -835,6 +835,15 @@ body::after{
   text-transform:uppercase;color:#F0EBE3;
 }
 
+.d-block img, .d-cover img, .d-block-2col img, .d-block-3col img, .d-block-split img {
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.d-block img.loaded, .d-cover img.loaded,
+.d-block-2col img.loaded, .d-block-3col img.loaded, .d-block-split img.loaded {
+  opacity:1;
+}
+
 @media(max-width:768px){
   .d-topbar{padding:16px 20px}
   .d-header{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
@@ -1263,19 +1272,19 @@ let currentIdx = 0;
 
 function renderBlock(b) {
   if (b.type === 'img') {
-    return `<div class="d-block"><img src="${b.src}" alt="" loading="lazy"></div>`;
+    return `<div class="d-block"><img src="${b.src}" alt="" loading="eager" decoding="async"></div>`;
   }
   if (b.type === '2col') {
     return `<div class="d-block d-block-2col">
-      <img src="${b.src[0]}" alt="" loading="lazy">
-      <img src="${b.src[1]}" alt="" loading="lazy">
+      <img src="${b.src[0]}" alt="" loading="eager" decoding="async">
+      <img src="${b.src[1]}" alt="" loading="eager" decoding="async">
     </div>`;
   }
   if (b.type === '3col') {
     return `<div class="d-block d-block-3col">
-      <img src="${b.src[0]}" alt="" loading="lazy">
-      <img src="${b.src[1]}" alt="" loading="lazy">
-      <img src="${b.src[2]}" alt="" loading="lazy">
+      <img src="${b.src[0]}" alt="" loading="eager" decoding="async">
+      <img src="${b.src[1]}" alt="" loading="eager" decoding="async">
+      <img src="${b.src[2]}" alt="" loading="eager" decoding="async">
     </div>`;
   }
   if (b.type === 'text') {
@@ -1286,7 +1295,7 @@ function renderBlock(b) {
   }
   if (b.type === 'split') {
     return `<div class="d-block d-block-split">
-      <img src="${b.src}" alt="" loading="lazy">
+      <img src="${b.src}" alt="" loading="eager" decoding="async">
       <div class="d-block-split-txt"><p>${b.body || ''}</p></div>
     </div>`;
   }
@@ -1345,6 +1354,16 @@ function openDetail(idx) {
   ov.scrollTop = 0;
   ov.classList.add('open');
   document.body.style.overflow = 'hidden';
+
+  // 이미지 로드 완료 시 fade-in
+  ov.querySelectorAll('img').forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+      img.addEventListener('error', () => img.classList.add('loaded'));
+    }
+  });
 }
 
 function closeDetail() {
