@@ -1,1517 +1,1881 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THISISPEARWAY</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,900;1,900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<title>치킨파머스</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --bg:#0A0A0A;
-  --fg:#F0EBE3;
-  --s1:#EDEAE3;   /* works section — warm cream */
-  --s2:#1B4AE8;   /* about section — electric blue */
-  --s3:#1A1410;   /* contact section — deep warm ink */
+  --green:#014A2A;--green-dark:#012D1A;--green-pale:#D4E8D8;
+  --yellow:#E4B331;--yellow-pale:#FBF0C4;
+  --black:#1F1F1F;--gray:#D4D4D4;--gray-light:#F5F5F5;
+  --white:#FFFFFF;--bg:#F5F5F5;--border:#BEBEBE;
+  --text:#1F1F1F;--text-sub:#4A4A4A;--text-light:#888;
 }
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
+img{max-width:100%;}a{text-decoration:none;color:inherit;}
+button{font-family:'Noto Sans KR',sans-serif;cursor:pointer;border:none;}
 
-html{scroll-behavior:auto;font-size:16px}
-body{
-  background:var(--bg);
-  color:var(--fg);
-  font-family:'Barlow',sans-serif;
-  cursor:none;
-  overflow-x:hidden;
-}
+/* SCREENS */
+.screen{display:none;}.screen.on{display:block;}#entry.on{display:flex;}
 
-/* ─────── CURSOR ─────── */
-#dot{
-  position:fixed;width:10px;height:10px;
-  border-radius:50%;background:#1B4AE8;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .25s,height .25s;
-}
-#dot.xl{width:64px;height:64px}
+/* ── ENTRY ── */
+#entry{height:100vh;flex-direction:row;}
+.ep{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;position:relative;overflow:hidden;transition:flex .7s cubic-bezier(.77,0,.175,1);}
+.ep:hover{flex:1.4;}
+.ep-brand{background:#014A2A;}.ep-fr{background:#E4B331;}
+.ep-div{display:none;}
+.ep-inner{position:relative;z-index:2;text-align:center;padding:40px 36px;display:flex;flex-direction:column;align-items:center;}
+.ep-tag{font-size:10px;letter-spacing:5px;text-transform:uppercase;opacity:.55;margin-bottom:22px;border:1px solid rgba(255,255,255,.3);padding:5px 14px;color:#fff;}
+.ep-logo{width:150px;filter:brightness(0) invert(1);margin-bottom:28px;}
+.ep-logo-fb{font-family:'Noto Sans KR',sans-serif;font-size:18px;letter-spacing:4px;font-weight:700;margin-bottom:28px;display:none;}
+.ep-brand .ep-logo-fb{color:#fff;}.ep-fr .ep-logo-fb{color:#1F1F1F;}
+.ep-title{font-family:'Noto Serif KR',serif;font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.35;margin-bottom:16px;}
+.ep-brand .ep-title{color:#fff;}.ep-fr .ep-title{color:#1F1F1F;}
+.ep-desc{font-size:15px;font-weight:500;line-height:1.9;margin-bottom:36px;max-width:280px;}
+.ep-brand .ep-desc{color:rgba(255,255,255,.85);}.ep-fr .ep-desc{color:rgba(31,31,31,.85);}
+.ep-btn{padding:15px 38px;font-size:13px;letter-spacing:2px;font-weight:600;transition:background .25s;background:transparent;cursor:pointer;}
+.ep-brand .ep-btn{border:1px solid rgba(255,255,255,.5);color:#fff;}
+.ep-fr .ep-btn{border:1px solid rgba(31,31,31,.35);color:#1F1F1F;}
+.ep:hover .ep-btn{background:rgba(255,255,255,.12);}
+.ep-arrow{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.ep-brand .ep-arrow{color:rgba(255,255,255,.4);}
+.ep-fr .ep-arrow{color:rgba(31,31,31,.3);}
+.ep-arrow::after{content:'';display:block;width:1px;height:24px;background:currentColor;opacity:.5;}
 
-/* ─────── LOADER ─────── */
-#loader{
-  position:fixed;inset:0;background:#0A0A0A;
-  z-index:7000;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity 1s cubic-bezier(.77,0,.18,1);
-}
-#loader.gone{opacity:0;pointer-events:none}
-.l-line{
-  overflow:hidden;
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;font-size:clamp(18px,3.5vw,48px);
-  letter-spacing:-.02em;text-transform:uppercase;color:#1B4AE8;
-}
-.l-line span{
-  display:inline-block;
-  animation:rise .7s cubic-bezier(.77,0,.18,1) forwards;
-  opacity:0;transform:translateY(100%);
-}
-.l-line:nth-child(2) span{animation-delay:.08s}
-.l-line:nth-child(3) span{animation-delay:.16s}
-@keyframes rise{to{opacity:1;transform:none}}
+/* ── BRAND HEADER ── */
+#brand{background:#fff;}
+.b-header{position:fixed;top:0;left:0;right:0;z-index:500;background:#fff;border-bottom:1px solid var(--border);user-select:none;-webkit-user-select:none;}
+.b-gnb{max-width:1200px;margin:0 auto;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;}
+.b-logo{display:flex;align-items:center;cursor:pointer;}
+.b-logo img{height:38px;object-fit:contain;}
+.b-logo-fb{font-family:'Noto Sans KR',sans-serif;font-size:15px;letter-spacing:4px;font-weight:700;color:#014A2A;}
+.b-nav{display:flex;height:70px;align-items:center;}
+.b-nitem{position:relative;height:70px;display:flex;align-items:center;padding:0 18px;font-size:14px;font-weight:500;cursor:pointer;color:var(--text);white-space:nowrap;user-select:none;}
+.b-nitem:hover{color:#014A2A;}
+.b-ndrop{position:absolute;top:70px;left:0;background:#fff;border:1px solid var(--border);border-top:2px solid #014A2A;min-width:160px;display:none;z-index:600;}
+.b-nitem:hover .b-ndrop{display:block;}
+.b-ndrop a{display:block;padding:12px 20px;font-size:13px;color:var(--text-sub);transition:background .15s;cursor:pointer;}
+.b-ndrop a:hover{background:var(--gray-light);color:#014A2A;}
+.b-hdr-r{display:flex;align-items:center;gap:16px;}
+.b-hdr-tel{font-size:14px;font-weight:700;color:#014A2A;}
+.b-hdr-cta{background:var(--yellow);color:#014A2A;padding:9px 20px;font-size:12px;font-weight:700;transition:opacity .2s;cursor:pointer;}
+.b-hdr-cta:hover{opacity:.85;}
+.b-subnav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:70px;z-index:400;display:none;}
+.b-subnav.show{display:block;}
+.b-subnav-row{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:stretch;}
+.b-sn-section{padding:0 22px;line-height:48px;font-size:13px;font-weight:700;color:#014A2A;border-right:1px solid var(--border);}
+.b-sn-link{padding:0 18px;line-height:48px;font-size:13px;color:var(--text-sub);cursor:pointer;transition:color .2s;}
+.b-sn-link:hover,.b-sn-link.on{color:#014A2A;}
+.b-content{padding-top:70px;min-height:100vh;}
+.b-subpage{display:none;}.b-subpage.on{display:block;}
 
-/* ─────── NAV ─────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:600;
-  padding:22px 44px;
-  display:flex;justify-content:space-between;align-items:center;
-  pointer-events:none;
-}
-nav *{pointer-events:auto}
-.logo{
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;font-size:11px;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;text-decoration:none;
-}
-.nav-center{
-  display:flex;gap:28px;list-style:none;
-}
-.nav-center a{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;text-decoration:none;
-  opacity:.85;transition:opacity .2s;
-}
-.nav-center a:hover{opacity:1}
-.nav-type{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;text-decoration:none;
-  border:1px solid #1B4AE8;
-  padding:5px 14px;border-radius:99px;
-  opacity:1;transition:opacity .2s;
-}
-.nav-type:hover{opacity:.6}
+/* ── BRAND HOME ── */
+.bh-hero{height:580px;position:relative;overflow:hidden;background:#2a3d2f;display:flex;align-items:center;}
+.bh-hero-sl{position:absolute;inset:0;}
+.bh-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s;}
+.bh-slide.on{opacity:1;}
+.bh-slide img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.bh-overlay{position:absolute;inset:0;background:rgba(0,0,0,.42);}
+.bh-hero-txt{position:relative;z-index:2;color:#fff;max-width:1200px;width:100%;margin:0 auto;padding:0 60px;}
+.bh-hero-en{font-size:11px;letter-spacing:5px;text-transform:uppercase;opacity:.6;margin-bottom:14px;}
+.bh-hero-title{font-family:'Noto Serif KR',serif;font-size:clamp(28px,4vw,50px);font-weight:700;line-height:1.3;margin-bottom:20px;}
+.bh-hero-cta{display:inline-block;border:1px solid rgba(255,255,255,.7);color:#fff;padding:12px 28px;font-size:12px;letter-spacing:2px;transition:background .25s;cursor:pointer;}
+.bh-hero-cta:hover{background:rgba(255,255,255,.12);}
+.bh-dots{position:absolute;bottom:28px;right:60px;z-index:3;display:flex;gap:8px;}
+.bh-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .3s;}
+.bh-dot.on{background:#fff;}
+.bh-w{max-width:1200px;margin:0 auto;padding:0 24px;}
+.bh-sec{padding:80px 0;}
+.bh-sec-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;}
+.bh-en{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.bh-title{font-family:'Noto Serif KR',serif;font-size:clamp(22px,2.5vw,32px);font-weight:700;line-height:1.35;}
+.bh-more{font-size:12px;letter-spacing:1px;color:var(--text-sub);border-bottom:1px solid var(--border);padding-bottom:2px;transition:color .2s,border-color .2s;cursor:pointer;}
+.bh-more:hover{color:#014A2A;border-color:#014A2A;}
 
-/* ─────── HERO ─────── */
-#hero{
-  position:relative;
-  width:100vw;height:100vh;
-  background:var(--bg);
-  overflow:hidden;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
+/* Brand story strip */
+.bh-story-bg{background:var(--gray-light);padding:72px 0;}
+.bh-story-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.bh-story-img{aspect-ratio:4/3;overflow:hidden;background:#ddd;}
+.bh-story-img img{width:100%;height:100%;object-fit:cover;}
+.bh-nums{display:flex;gap:40px;margin-top:40px;padding-top:32px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.bh-nv{font-family:'Noto Serif KR',serif;font-size:38px;font-weight:700;color:var(--yellow);line-height:1;}
+.bh-nv span{font-size:18px;}.bh-nv .counter{font-size:inherit;}
+.bh-nl{font-size:11px;color:var(--text-sub);margin-top:6px;}
 
-/* Each text line — full width, magnetic */
-.mag-line{
-  display:block;
-  font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;
-  font-size:clamp(80px, 19.5vw, 300px);
-  line-height:.88;
-  letter-spacing:-.03em;
-  text-transform:uppercase;
-  color:transparent;
-  -webkit-text-stroke:1.5px #1B4AE8;
-  white-space:nowrap;
-  will-change:transform;
-  text-align:center;
-  cursor:none;
-  transition:color .3s,-webkit-text-stroke .3s;
-  -webkit-font-smoothing:antialiased;
-  backface-visibility:hidden;
-  transform:translateZ(0);
-}
-.mag-line:hover{
-  color:#1B4AE8;
-  -webkit-text-stroke:0px transparent;
-}
+/* ── 홈 메뉴 탭 ── */
+.bh-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:36px;}
+.bh-tab{padding:12px 22px;font-size:13px;font-weight:500;cursor:pointer;color:var(--text-sub);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px;user-select:none;}
+.bh-tab.on{color:#014A2A;border-bottom-color:#014A2A;}
+.bh-mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.bh-mc{cursor:pointer;}
+.bh-mc-img{aspect-ratio:1;overflow:hidden;background:#e0e0e0;}
+.bh-mc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s .05s;}
+.bh-mc:hover .bh-mc-img img{transform:scale(1.06);transition-delay:.08s;}
+.bh-mc-body{padding:14px 0;}
+.bh-mc-en{font-size:10px;letter-spacing:3px;color:var(--yellow);text-transform:uppercase;margin-bottom:4px;}
+.bh-mc-name{font-size:15px;font-weight:600;margin-bottom:3px;}
+.bh-mc-price{font-size:13px;color:var(--text-sub);}
 
-/* Small info bits */
-.hero-info{
-  position:absolute;bottom:40px;left:44px;
-  display:flex;gap:32px;
-}
-.hi-item{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.6;
-}
-.hero-scroll{
-  position:absolute;bottom:40px;right:44px;
-  writing-mode:vertical-rl;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.5;
-  animation:scrollbob 2.5s ease-in-out infinite;
-}
-@keyframes scrollbob{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:.9;transform:translateY(6px)}}
+/* Gallery */
+.bh-gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:8px;}
+.bh-gi{overflow:hidden;background:#e0e0e0;}
+.bh-gi:first-child{grid-row:span 2;}
+.bh-gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s .04s;}
+.bh-gi:hover img{transform:scale(1.05);transition-delay:.06s;}
 
-/* ─────── SECTION BASE ─────── */
-section{
-  position:relative;
-  min-height:100vh;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:120px 44px;
-  overflow:hidden;
-  transition:background .6s cubic-bezier(.77,0,.18,1);
-}
+/* Notice */
+.bh-nlist{}
+.bh-nrow{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background .25s .04s;}
+.bh-nrow:hover .bh-nt{color:#014A2A;}
+.bh-nc{background:var(--yellow);color:#1F1F1F;font-size:11px;font-weight:700;padding:3px 10px;margin-right:14px;flex-shrink:0;}
+.bh-nt{font-size:14px;font-weight:500;flex:1;transition:color .2s;}
+.bh-nd{font-size:12px;color:var(--text-light);flex-shrink:0;margin-left:20px;}
 
-/* ─────── WORKS — Cream section ─────── */
-#works{background:var(--s1);color:#1B4AE8;padding:0 44px 80px}
+/* FR CTA band */
+.b-fr-band{background:var(--yellow);padding:60px 0;}
+.b-fr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:40px;}
+.b-fr-h2{font-family:'Noto Serif KR',serif;font-size:clamp(20px,2vw,30px);font-weight:700;color:#1F1F1F;line-height:1.5;}
+.b-fr-p{font-size:13px;color:rgba(31,31,31,.65);margin-top:8px;line-height:1.8;}
+.b-fr-btn{background:#014A2A;color:#fff;padding:15px 36px;font-size:14px;font-weight:700;white-space:nowrap;transition:opacity .2s;cursor:pointer;}
+.b-fr-btn:hover{opacity:.85;}
 
-/* Title row: big number left, title right */
-.works-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  padding:80px 0 28px;
-  border-bottom:1px solid rgba(27,74,232,.15);
-}
-.works-num{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(80px,12vw,180px);line-height:.85;
-  letter-spacing:-.04em;opacity:.1;
-}
-.big-label{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(52px,7vw,104px);
-  line-height:.85;letter-spacing:-.03em;text-transform:uppercase;
-}
-.yr-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.5;padding-bottom:8px}
+/* ── BRAND SUB PAGES ── */
+.bsp-hero{height:260px;background:#1F1F1F;display:flex;align-items:center;position:relative;overflow:hidden;}
+.bsp-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.18;}
+.bsp-hero-txt{position:relative;z-index:2;max-width:1200px;width:100%;margin:0 auto;padding:0 24px;}
+.bsp-bc{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:10px;}
+.bsp-bc span{color:var(--yellow);}
+.bsp-h1{font-family:'Noto Serif KR',serif;font-size:clamp(24px,3vw,38px);font-weight:700;color:#fff;}
+.bsp-body{max-width:1200px;margin:60px auto;padding:0 24px;}
 
-/* Filter — sticky, full bleed left */
-.frow{
-  display:flex;gap:0;
-  border-bottom:1px solid rgba(27,74,232,.12);
-  margin:0 -44px 2px;
-  padding:0 44px;
-  position:sticky;top:0;z-index:50;
-  background:var(--s1);
-}
-.ftab{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  padding:18px 26px;background:none;border:none;
-  color:#1B4AE8;cursor:none;
-  opacity:.55;transition:opacity .2s;
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-}
-.ftab:hover{opacity:.7}
-.ftab.on{opacity:1;border-bottom-color:#1B4AE8}
+/* Story */
+.bs-layout{display:grid;grid-template-columns:300px 1fr;gap:72px;align-items:start;}
+.bs-img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--bg);}
+.bs-h2{font-family:'Noto Serif KR',serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;line-height:1.5;margin-bottom:20px;color:#014A2A;}
+.bs-p{font-size:15px;line-height:2;color:var(--text-sub);margin-bottom:16px;}
+.bs-quote{border-left:4px solid var(--yellow);padding:16px 24px;background:var(--yellow-pale);margin:26px 0;font-family:'Noto Serif KR',serif;font-size:17px;font-weight:600;color:#014A2A;line-height:1.7;}
+.bs-nums{display:flex;gap:44px;margin-top:32px;padding-top:28px;border-top:1px solid var(--border);}
+.bs-nv{font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--yellow);line-height:1;}
+.bs-nv small{font-size:18px;}
+.bs-nl{font-size:12px;color:var(--text-sub);margin-top:5px;}
 
-/* Works grid */
-.wgrid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
-  margin:0 -44px;
-}
-.wcell{
-  aspect-ratio:3/2;position:relative;overflow:hidden;cursor:none;
-  background:rgba(10,10,10,.06);
-  transition:opacity .25s ease,visibility .25s ease;
-}
-.wcell-bg{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:52px;letter-spacing:-2px;
-  transition:transform .6s cubic-bezier(.16,1,.3,1);
-  background-size:cover;background-position:center;
-  color:rgba(255,255,255,.15);
-}
-/* 이미지 없을 때 글자 플레이스홀더 */
-.wcell-bg.no-img{opacity:.07;color:rgba(0,0,0,.4)}
-.wcell:hover .wcell-bg{transform:scale(1.07)}
-.wcell-ov{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:24px;opacity:0;transition:opacity .3s;
-  background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 55%);
-}
-.wcell:hover .wcell-ov{opacity:1}
-.wcell-name{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:18px;letter-spacing:.06em;text-transform:uppercase;color:#fff;
-}
-.wcell-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:3px}
+/* Menu page */
+.mp-cats{display:flex;border-bottom:1px solid var(--border);margin-bottom:40px;}
+.mp-cat{padding:14px 28px;font-size:14px;font-weight:500;cursor:pointer;color:var(--text-sub);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px;user-select:none;}
+.mp-cat.on{color:#014A2A;border-bottom-color:#014A2A;}
+.mp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+.mp-card{cursor:pointer;transition:transform .4s .04s;background:#fff;border-radius:4px;overflow:hidden;}.mp-body{padding:14px 0 14px 4px;}
+.mp-card:hover{transform:translateY(-4px);transition-delay:.06s;}
+.mp-img{aspect-ratio:1;overflow:hidden;background:var(--bg);}
+.mp-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s .05s;}
+.mp-card:hover .mp-img img{transform:scale(1.07);transition-delay:.08s;}
+.mp-body{padding:16px 0 16px 6px;}
+.mp-en{font-size:10px;letter-spacing:3px;color:var(--yellow);text-transform:uppercase;margin-bottom:5px;}
+.mp-name{font-size:16px;font-weight:600;margin-bottom:5px;}
+.mp-price{font-size:14px;color:var(--text-sub);}
 
-/* ─────── ABOUT — Blue section ─────── */
-#about{background:var(--s2);color:var(--fg);min-height:auto;padding:100px 44px}
+/* Interior */
+.ip-grid{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:340px 340px;gap:10px;}
+.ip-item{overflow:hidden;background:var(--bg);cursor:zoom-in;}
+.ip-item:first-child{grid-row:span 2;}
+.ip-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s .05s;}
+.ip-item:hover img{transform:scale(1.05);transition-delay:.08s;}
+.ip-grid-more{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px;}
+.ip-grid-more .ip-item{aspect-ratio:4/3;}
+.ip-caption{margin-top:48px;}
+.ip-caption h3{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;margin-bottom:14px;}
+.ip-caption p{font-size:15px;color:var(--text-sub);line-height:2;}
 
-.about-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0;
-  max-width:1400px;
-  align-items:end;
-}
-.about-left{border-right:1px solid rgba(240,235,227,.15);padding-right:60px}
-.about-right{padding-left:60px}
-.stag{font-size:9px;letter-spacing:.28em;text-transform:uppercase;opacity:.4;margin-bottom:20px}
-.about-hl{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(64px,8vw,120px);line-height:.86;
-  letter-spacing:-.03em;text-transform:uppercase;
-}
-.about-txt{
-  font-size:17px;line-height:1.8;font-weight:300;
-  opacity:.7;margin-bottom:48px;
-}
-.svcs{
-  border-top:1px solid rgba(240,235,227,.15);
-  display:grid;grid-template-columns:1fr 1fr;
-}
-.svc{
-  padding:13px 0;border-bottom:1px solid rgba(240,235,227,.08);
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-  opacity:.4;cursor:none;
-  transition:opacity .2s,letter-spacing .3s;
-}
-.svc:hover{opacity:1;letter-spacing:.2em}
+/* Notice page */
+.np-list .np-row{display:flex;align-items:center;padding:18px 0;border-bottom:1px solid var(--border);cursor:pointer;gap:14px;}
+.np-row:hover .np-title{color:#014A2A;}
+.np-num{font-size:13px;color:var(--text-light);width:40px;text-align:center;flex-shrink:0;}
+.np-cat{background:var(--yellow);color:#1F1F1F;font-size:11px;font-weight:700;padding:3px 10px;flex-shrink:0;}
+.np-title{font-size:14px;font-weight:500;flex:1;transition:color .2s;}
+.np-date{font-size:12px;color:var(--text-light);flex-shrink:0;}
 
-/* ─────── CONTACT — Deep warm ink ─────── */
-#contact{background:var(--s3);color:#1B4AE8;min-height:auto;padding:100px 44px 80px}
+/* FAQ */
+.faq-list .faq-item{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 4px;cursor:pointer;font-size:15px;font-weight:500;user-select:none;}
+.faq-q:hover{color:#014A2A;}
+.faq-icon{font-size:18px;color:var(--text-sub);transition:transform .3s;flex-shrink:0;}
+.faq-a{display:none;padding:0 4px 20px;font-size:14px;color:var(--text-sub);line-height:1.9;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--yellow);}
 
-.contact-top{max-width:1400px;margin-bottom:64px}
-.ctag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.6;color:#1B4AE8;margin-bottom:24px}
-.c-cta{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(52px,8vw,120px);line-height:.88;
-  letter-spacing:-.03em;text-transform:uppercase;color:#1B4AE8;
-}
-.c-bottom{
-  display:flex;justify-content:space-between;align-items:flex-end;
-  margin-top:80px;
-  border-top:1px solid rgba(27,74,232,.15);
-  padding-top:28px;
-  max-width:1400px;
-}
-.c-email{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:18px;letter-spacing:.1em;text-transform:uppercase;
-  color:#1B4AE8;text-decoration:none;
-  border-bottom:2px solid #1B4AE8;padding-bottom:3px;
-  transition:opacity .2s;display:inline-block;
-}
-.c-email:hover{opacity:.5}
-.c-arr{display:inline-block;transition:transform .2s}
-.c-email:hover .c-arr{transform:translate(5px,-5px)}
-.c-foot{
-  display:flex;gap:40px;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  color:#1B4AE8;
-}
+/* Brand footer */
+.b-footer{background:#1F1F1F;padding:48px 0 32px;}
+.b-footer-inner{max-width:1200px;margin:0 auto;padding:0 24px;}
+.b-footer-top{display:grid;grid-template-columns:220px 1fr 1fr 1fr;gap:48px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.08);}
+.b-fl img{height:32px;filter:brightness(0) invert(1);opacity:.45;}
+.b-fl-fb{font-size:13px;letter-spacing:2px;color:rgba(255,255,255,.3);}
+.b-ftit{font-size:12px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.5px;margin-bottom:14px;}
+.b-footer a{display:block;font-size:12px;color:rgba(255,255,255,.28);margin-bottom:8px;transition:color .2s;cursor:pointer;}
+.b-footer a:hover{color:rgba(255,255,255,.7);}
+.b-footer-bot{padding-top:26px;display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.22);}
+.b-back{position:fixed;bottom:28px;left:22px;z-index:700;background:#fff;border:1px solid var(--border);padding:8px 16px;font-size:11px;font-weight:500;color:var(--text-sub);box-shadow:0 2px 10px rgba(0,0,0,.07);transition:all .2s;cursor:pointer;}
+.b-back:hover{color:#014A2A;border-color:#014A2A;}
 
-/* ─────── INQUIRY FORM (inside contact) ─────── */
-.contact-form-wrap{max-width:1400px}
+/* ── FRANCHISE ── */
+#franchise{background:#fff;}
+.fr-top{background:#1F1F1F;padding:8px 0;}
+.fr-top-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;}
+.fr-top-msg{font-size:11px;color:rgba(255,255,255,.45);}
+.fr-top-tel{font-size:14px;font-weight:700;color:var(--yellow);letter-spacing:1px;}
+.fr-nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:500;user-select:none;}
+.fr-nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px;}
+.fr-nav-logo{display:flex;align-items:center;cursor:pointer;}
+.fr-nav-logo img{height:36px;object-fit:contain;}
+.fr-nav-logo-fb{font-family:'Noto Sans KR',sans-serif;font-size:14px;letter-spacing:4px;font-weight:700;color:#014A2A;}
+.fr-nav-links{display:flex;}
+.fr-nav-links a{padding:8px 14px;font-size:13px;font-weight:500;color:var(--text-sub);transition:color .2s;cursor:pointer;user-select:none;}
+.fr-nav-links a:hover{color:#014A2A;}
+.fr-nav-cta{background:var(--green);color:#fff;padding:10px 22px;font-size:12px;font-weight:700;transition:opacity .2s;display:inline-block;cursor:pointer;user-select:none;}
+.fr-nav-cta:hover{opacity:.85;}
+.fr-sec{padding:80px 0;}.fr-sec-alt{background:var(--gray-light);}
+.fr-sec-dk{background:#1F1F1F;}
+.fri{max-width:1200px;margin:0 auto;padding:0 24px;}
+.fr-hd{text-align:center;margin-bottom:56px;}
+.fr-en{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--text-sub);margin-bottom:10px;}
+.fr-sec-dk .fr-en{color:var(--yellow);}
+.fr-h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,3vw,38px);font-weight:700;line-height:1.35;color:var(--text);}
+.fr-sec-dk .fr-h2{color:#fff;}
+.fr-p{font-size:14px;color:var(--text-sub);margin-top:12px;line-height:1.9;}
+.fr-sec-dk .fr-p{color:rgba(255,255,255,.45);}
 
-.iform{display:flex;flex-direction:column;gap:0}
-.iform-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  border-bottom:1px solid rgba(27,74,232,.12);
-}
-.iform-row.full{grid-template-columns:1fr}
-.ifield{
-  display:flex;flex-direction:column;
-  padding:24px 0;
-  border-right:1px solid rgba(27,74,232,.12);
-}
-.ifield:last-child{border-right:none}
-.ifield-label{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.7;margin-bottom:10px;
-}
-.ifield input,.ifield select,.ifield textarea{
-  background:transparent;border:none;outline:none;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(18px,2.2vw,28px);letter-spacing:-.01em;
-  color:#1B4AE8;padding:0;opacity:1;
-  -webkit-appearance:none;
-}
-.ifield input::placeholder,
-.ifield textarea::placeholder{
-  color:#1B4AE8;
-  opacity:1;
-}
-.ifield textarea{resize:none;min-height:80px;line-height:1.5}
-.ifield select option{background:#1A1410;color:#1B4AE8}
-.ifield select option[value=""]{color:rgba(27,74,232,.5)}
-.ifield select{cursor:none;color:#1B4AE8}
-.iform-submit{
-  margin-top:40px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.iform-notice{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.8;max-width:280px;line-height:1.6;
-}
-.iform-btn{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:14px;letter-spacing:.14em;text-transform:uppercase;
-  background:#1B4AE8;color:#1A1410;
-  padding:18px 44px;border-radius:99px;border:none;cursor:none;
-  transition:opacity .2s,transform .2s;
-}
-.iform-btn:hover{opacity:.8;transform:scale(1.02)}
-.iform-btn:disabled{opacity:.35}
-.iform-success{
-  display:none;text-align:center;padding:80px 0;
-}
-.iform-success.show{display:block}
-.iform-success-icon{font-size:48px;margin-bottom:20px}
-.iform-success-txt{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(40px,5vw,72px);letter-spacing:-.02em;text-transform:uppercase;
-  color:#1B4AE8;margin-bottom:16px;
-}
-.iform-success-sub{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:18px;letter-spacing:.06em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.8;
-}
+/* FR Hero */
+.fr-hero{height:100vh;background:#014A2A;position:relative;display:flex;align-items:center;overflow:hidden;}
+.fr-hero-bg{position:absolute;inset:0;background-image:url('https://www.chickenfarmers.kr/images/main_03.png');background-size:cover;background-position:center;opacity:.15;}
+.fr-hero-in{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 60px;width:100%;}
+.fr-badge{display:inline-block;background:var(--yellow);color:#014A2A;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;}
+.fr-hero-h1{font-family:'Noto Serif KR',serif;font-size:clamp(36px,5vw,64px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:18px;}
+.fr-hero-h1 em{font-style:normal;color:var(--yellow);}
+.fr-hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.7);line-height:1.9;margin-bottom:38px;max-width:480px;}
+.fr-hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.fr-btn-a{background:var(--yellow);color:#014A2A;padding:16px 36px;font-size:14px;font-weight:700;display:inline-block;transition:opacity .2s;cursor:pointer;}
+.fr-btn-a:hover{opacity:.85;}
+.fr-btn-b{border:1px solid rgba(255,255,255,.3);color:#fff;padding:16px 36px;font-size:14px;font-weight:300;display:inline-block;transition:background .2s;cursor:pointer;}
+.fr-btn-b:hover{background:rgba(255,255,255,.08);}
+.fr-hero-stats{position:absolute;right:60px;bottom:56px;display:flex;gap:40px;}
+.fr-stat{text-align:center;color:#fff;}
+.fr-stat-n{font-family:'Noto Serif KR',serif;font-size:44px;font-weight:700;line-height:1;}
+.fr-stat-n small{font-size:20px;font-weight:400;}
+.fr-stat-l{font-size:11px;opacity:.5;letter-spacing:1px;margin-top:4px;}
 
-/* ─────── MARQUEE STRIP ─────── */
-.mq-wrap{background:#0A0A0A;overflow:hidden;padding:0}
-.mq-inner{display:flex;white-space:nowrap;animation:mq 14s linear infinite}
-.mq-txt{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(44px,7vw,96px);letter-spacing:-.025em;text-transform:uppercase;
-  color:#1B4AE8;padding:10px 40px 10px 0;flex-shrink:0;
-}
-.mq-dot{color:#1B4AE8;opacity:.35}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* Diff cards */
+.diff-cols{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);}
+.diff-col{padding:48px 36px;border-right:1px solid var(--border);background:#fff;transition:background .65s ease,box-shadow .65s ease,transform .5s ease;}
+.diff-col:last-child{border-right:none;}
+.diff-col:hover{background:#D6EDCC;}
+.diff-top{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;}
+.diff-num{font-family:'Noto Serif KR',serif;font-size:44px;font-weight:700;color:var(--yellow);line-height:1;}
+.diff-title{font-size:18px;font-weight:700;margin-bottom:12px;}
+.diff-desc{font-size:13px;color:var(--text-sub);line-height:1.9;}
 
-/* ─────── SCROLL REVEAL ─────── */
-.rv{
-  opacity:0;transform:translateY(28px);
-  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);
-}
-.rv.in{opacity:1;transform:none}
+/* Revenue */
+.rev-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:center;max-width:740px;margin:0 auto;}
+.rev-box{border:1px solid var(--border);padding:44px 36px;text-align:center;background:#fff;}
+.rev-box-hi{background:var(--yellow);border-color:var(--yellow);}
+.rev-label{font-size:11px;letter-spacing:2px;color:var(--text-sub);text-transform:uppercase;margin-bottom:16px;}
+.rev-box-hi .rev-label{color:rgba(31,31,31,.6);}
+.rev-amount{font-family:'Noto Serif KR',serif;font-size:54px;font-weight:700;color:var(--text);line-height:1;}
+.rev-unit{font-size:22px;}
+.rev-box-hi .rev-amount{color:#1F1F1F;}
+.rev-note-sm{font-size:12px;color:var(--text-sub);margin-top:12px;line-height:1.7;}
+.rev-box-hi .rev-note-sm{color:rgba(31,31,31,.7);}
+.rev-vs{font-family:'Noto Serif KR',serif;font-size:24px;color:var(--border);text-align:center;}
+.rev-caption{text-align:center;margin-top:32px;font-size:14px;color:var(--text-sub);line-height:1.9;max-width:580px;margin-left:auto;margin-right:auto;}
+.rev-caption strong{color:#014A2A;font-weight:700;}
 
-/* ═══════════════════════════════════════════
-   RESPONSIVE — Tablet (768px) & Mobile (480px)
-═══════════════════════════════════════════ */
+/* Support */
+.sup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.sup-card{background:#fff;padding:44px 28px;text-align:center;transition:background .35s .05s;}
+.sup-card:hover{background:var(--gray-light);}
+.sup-num{font-family:'Noto Serif KR',serif;font-size:32px;font-weight:700;color:var(--yellow);margin-bottom:16px;line-height:1;}
+.sup-title{font-size:16px;font-weight:700;margin-bottom:10px;}
+.sup-desc{font-size:12px;color:var(--text-sub);line-height:1.85;}
 
-/* ── 터치 기기: cursor none 제거 ── */
-@media (hover:none),(pointer:coarse){
-  body{cursor:auto}
-  #dot{display:none}
-  .mag-line,.svc,.wcell,.ftab,.tp-xbtn,.tp-ak,.tp-close{cursor:auto}
-}
+/* Cost */
+.cost-wrap{max-width:820px;margin:0 auto;}
+.cost-tbl{width:100%;border-collapse:collapse;background:#fff;}
+.cost-tbl thead th{background:#014A2A;color:#fff;padding:14px 20px;font-size:13px;font-weight:600;text-align:left;}
+.cost-tbl tbody td{padding:14px 20px;font-size:14px;border-bottom:1px solid #E8E0D5;color:#1a1a1a;background:#fff;}
+.cost-tbl tbody tr:nth-child(even) td{background:#FAFAF7;}
+.cost-total td{background:var(--yellow)!important;color:#1F1F1F!important;font-weight:700;font-size:15px;}
+.cost-note{margin-top:12px;font-size:12px;color:rgba(255,255,255,.45);line-height:1.9;}
 
-/* ── Tablet ≤ 900px ── */
+/* Stories */
+.stor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.stor-card{border:1px solid var(--border);overflow:hidden;transition:box-shadow .4s .06s;}
+.stor-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.1);}
+.stor-img{aspect-ratio:16/9;position:relative;overflow:hidden;background:var(--bg);}
+.stor-img img{width:100%;height:100%;object-fit:cover;}
+.stor-loc{position:absolute;bottom:12px;left:12px;background:#fff;padding:3px 12px;font-size:11px;font-weight:700;color:#014A2A;}
+.stor-body{padding:22px;}
+.stor-title{font-size:15px;font-weight:600;line-height:1.6;margin-bottom:10px;}
+.stor-txt{font-size:13px;color:var(--text-sub);line-height:1.8;font-weight:300;}
+.stor-rev{margin-top:14px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:baseline;gap:8px;}
+.stor-rev-val{font-family:'Noto Serif KR',serif;font-size:24px;font-weight:700;color:var(--yellow);}
+.stor-rev-lbl{font-size:12px;color:var(--text-sub);}
+
+/* Consult */
+.consult-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.consult-info{margin-top:28px;display:flex;flex-direction:column;gap:16px;}
+.ci{display:flex;align-items:center;gap:14px;}
+.ci-ico{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.ci-lbl{font-size:11px;color:var(--text-sub);margin-bottom:2px;}
+.ci-val{font-size:16px;font-weight:700;}
+.form-card{background:#fff;border:1px solid var(--border);padding:44px;}
+.form-ttl{font-size:18px;font-weight:700;margin-bottom:26px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.f-row{margin-bottom:15px;}
+.f-lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:6px;}
+.f-inp,.f-sel,.f-txt{width:100%;padding:12px 14px;border:1px solid var(--border);background:#FAFAF7;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.f-inp:focus,.f-sel:focus,.f-txt:focus{border-color:#014A2A;background:#fff;}
+.f-txt{height:88px;resize:vertical;}
+.f-sub{width:100%;background:#014A2A;color:#fff;border:none;padding:15px;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:1px;margin-top:8px;transition:background .2s;}
+.f-sub:hover{background:#012D1A;}
+.f-sub-note{font-size:11px;color:var(--text-light);text-align:center;margin-top:8px;line-height:1.7;}
+
+/* FR footer */
+.fr-footer{background:#1F1F1F;padding:36px 0;}
+.fr-footer-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.fr-fl img{height:30px;filter:brightness(0) invert(1);opacity:.38;}
+.fr-fl-fb{font-size:12px;letter-spacing:2px;color:rgba(255,255,255,.28);}
+.fr-fi{font-size:11px;color:rgba(255,255,255,.22);line-height:1.8;}
+
+/* Floats */
+.floats{position:fixed;right:20px;bottom:68px;z-index:800;display:flex;flex-direction:column;gap:8px;}
+.fl{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.2);text-decoration:none;border:none;transition:transform .2s;font-family:'Noto Sans KR',sans-serif;}
+.fl:hover{transform:scale(1.1);}
+.fl-tel{background:var(--green);color:#fff;}
+.fl-kko{background:#FEE500;color:#3D1D1D;}
+.fl-top{background:#fff;border:1px solid var(--border);color:var(--text);font-size:11px;}
+.fr-back{position:fixed;bottom:28px;left:22px;z-index:700;background:#fff;border:1px solid var(--border);padding:8px 16px;font-size:11px;font-weight:500;color:var(--text-sub);box-shadow:0 2px 10px rgba(0,0,0,.07);transition:all .2s;cursor:pointer;}
+.fr-back:hover{color:#014A2A;border-color:#014A2A;}
+
+/* Scroll animations */
+.sf{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1),background-color .65s ease,box-shadow .65s ease;}
+.sf.in{opacity:1;transform:translateY(0);}
+.sf-left{opacity:0;transform:translateX(-40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1),background-color .65s ease;}
+.sf-left.in{opacity:1;transform:translateX(0);}
+.sf-right{opacity:0;transform:translateX(40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1),background-color .65s ease;}
+.sf-right.in{opacity:1;transform:translateX(0);}
+.sf-scale{opacity:0;transform:scale(.94);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+.sf-scale.in{opacity:1;transform:scale(1);}
+.sf[data-delay="1"],.sf-left[data-delay="1"],.sf-right[data-delay="1"],.sf-scale[data-delay="1"]{transition-delay:.1s;}
+.sf[data-delay="2"],.sf-left[data-delay="2"],.sf-right[data-delay="2"],.sf-scale[data-delay="2"]{transition-delay:.2s;}
+.sf[data-delay="3"],.sf-scale[data-delay="3"]{transition-delay:.3s;}
+.sf[data-delay="4"],.sf-scale[data-delay="4"]{transition-delay:.4s;}
+
+/* Responsive */
 @media(max-width:900px){
-  nav{padding:18px 24px}
-  .logo{font-size:10px}
-  .nav-center{gap:20px}
-  .nav-center a{font-size:11px}
-  .nav-type{font-size:11px;padding:4px 12px}
-
-  .mag-line{font-size:clamp(52px,13vw,140px)}
-
-  .hero-info{left:24px;gap:20px}
-  .hero-scroll{right:24px}
-
-  #works{padding:0 24px 60px}
-  .works-top{padding:60px 0 20px}
-  .big-label{font-size:clamp(40px,7vw,80px)}
-  .wgrid{margin:0 -24px;grid-template-columns:repeat(2,1fr)}
-  .frow{margin:0 -24px;padding:0 24px}
-
-  #contact{padding:80px 24px 60px}
-  .c-cta{font-size:clamp(52px,9vw,120px);max-width:100%}
-  .c-bottom{flex-direction:column;align-items:flex-start;gap:24px;margin-top:48px}
-
-  .about-grid{grid-template-columns:1fr;gap:40px}
-  .about-left{border-right:none;padding-right:0;border-bottom:1px solid rgba(240,235,227,.15);padding-bottom:40px}
-  .about-right{padding-left:0}
-
-  section{padding:80px 24px;min-height:auto}
-
-  .d-content{padding:80px 24px 60px}
-  .d-title{font-size:clamp(36px,8vw,80px)}
+  #entry{flex-direction:column;}
+  .ep:hover{flex:1;}
+  #hoverHint{display:none!important;}
+  .ep-inner{padding:20px 24px;}
+  .ep-logo{width:90px;margin-bottom:12px;}
+  .ep-logo-fb{font-size:13px;margin-bottom:12px;}
+  .ep-title{font-size:clamp(22px,5.5vw,32px);margin-bottom:8px;}
+  .ep-desc{font-size:13px;line-height:1.7;margin-bottom:18px;max-width:240px;}
+  .ep-btn{padding:10px 24px;font-size:11px;letter-spacing:1.5px;}
+  .ep-arrow{display:none;}
+  .bh-hero-txt{padding:0 20px;}.fr-hero-in{padding:0 20px;}
+  .bh-hero-title{font-size:clamp(20px,6vw,34px);}
+  .bh-hero-en{font-size:10px;letter-spacing:3px;}
+  .bh-story-inner,.bs-layout,.consult-layout{grid-template-columns:1fr;gap:24px;}
+  .bh-sec{padding:48px 0;}
+  .bh-story-bg{padding:48px 0;}
+  .bh-w{padding:0 16px;}
+  .bh-sec-hd{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:24px;}
+  .bh-title{font-size:22px;word-break:keep-all;white-space:nowrap;}
+  .bh-nlist{gap:20px;}
+  .bh-nv{font-size:30px;}
+  .bh-nums{flex-direction:column;gap:20px;}
+  .bh-story-img{max-height:260px;overflow:hidden;}
+  .bs-img{max-height:300px;overflow:hidden;}
+  /* 메뉴·지원카드만 2열, diff·stor은 모바일도 유지 */
+  .bh-mgrid,.mp-grid,.sup-grid{grid-template-columns:1fr 1fr;}
+  /* 왜 치킨파머스 — 모바일 1열 세로 */
+  .diff-cols{grid-template-columns:1fr;border:none;gap:1px;}
+  .diff-col{border-right:none;border-bottom:1px solid var(--border);padding:28px 24px;}
+  /* 성공사례 — 모바일 1열 세로 */
+  .stor-grid{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;max-width:320px;}.rev-vs{display:none;}
+  .bh-gallery{grid-template-columns:1fr;grid-template-rows:auto;}
+  .bh-gi:first-child{grid-row:span 1;}
+  .bh-gallery .bh-gi{aspect-ratio:4/3;}
+  .b-nav,.b-hdr-tel,.fr-nav-links{display:none;}
+  .b-footer-top{grid-template-columns:1fr 1fr;}
+  .fr-hero-stats{display:none;}
+  .ip-grid{grid-template-columns:1fr;grid-template-rows:auto;}
+  .ip-item:first-child{grid-row:span 1;}
+  .ip-grid-more{grid-template-columns:1fr;}
+  .ip-item{aspect-ratio:4/3;}
+  #cardDay,#cardNight{height:340px;}
+  #fr-daytime > div:nth-child(2){grid-template-columns:1fr!important;}
+  #fr-daytime > div:last-child{grid-template-columns:1fr!important;}
+  #reelsGrid{grid-template-columns:1fr!important;}
+  #fr-152 .fri > div{grid-template-columns:1fr!important;gap:32px;}
+  #fr-farm .fri > div:last-child{grid-template-columns:1fr!important;}
+  #fr-farm .fri > div:nth-child(2){grid-template-columns:1fr 1fr!important;}
+  /* 히어로 텍스트 가운데 정렬 */
+  .fr-hero-in{text-align:center;}
+  .fr-hero-sub{max-width:100%;}
+  .fr-hero-btns{justify-content:center;}
+  .fr-badge{display:block;margin:0 auto 22px;}
 }
 
-/* ── Mobile ≤ 480px ── */
-@media(max-width:480px){
-  nav{padding:16px 20px}
-  .logo{font-size:9px;letter-spacing:.1em}
-  .nav-center{gap:14px}
-  .nav-center a{font-size:10px;letter-spacing:.1em}
-  .nav-type{font-size:10px;padding:4px 10px;letter-spacing:.08em}
-
-  /* Hero: 글자 크기 줄이고 세로 여백 줄임 */
-  .mag-line{
-    font-size:clamp(44px,22vw,100px);
-    -webkit-text-stroke:1px #1B4AE8;
-  }
-  .hero-info{
-    left:20px;bottom:28px;
-    flex-direction:column;gap:4px;
-  }
-  .hi-item{font-size:11px}
-  .hero-scroll{display:none} /* 모바일에선 Scroll 힌트 숨김 */
-
-  /* Works: 1열 그리드 */
-  #works{padding:0 20px 48px}
-  .works-top{padding:48px 0 16px;flex-direction:column;align-items:flex-start;gap:8px}
-  .big-label{font-size:clamp(36px,10vw,64px)}
-  .yr-tag{font-size:11px}
-  .wgrid{margin:0 -20px;grid-template-columns:1fr}
-  .frow{margin:0 -20px;padding:0 20px;overflow-x:auto;flex-wrap:nowrap}
-  .ftab{padding:14px 18px;font-size:11px;flex-shrink:0}
-
-  /* Contact */
-  #contact{padding:64px 20px 48px}
-  .contact-top{margin-bottom:40px}
-  .c-cta{font-size:clamp(44px,12vw,80px)}
-  .c-bottom{margin-top:40px;flex-direction:column;align-items:flex-start;gap:20px}
-  .c-email{font-size:15px}
-  .c-foot{flex-direction:column;gap:8px}
-  .iform-row{grid-template-columns:1fr}
-  .ifield{border-right:none}
-  .iform-submit{flex-direction:column;gap:16px;align-items:flex-start}
-  .iform-notice{max-width:100%}
-
-  section{padding:64px 20px;min-height:auto}
-
-  /* Type overlay hero */
-  .tp-hero{height:60vh}
-  #tp-bigL{font-size:clamp(120px,45vw,280px);-webkit-text-stroke:1px #1B4AE8}
-  .tp-co.tr,.tp-co.br{display:none}
-  .tp-co.tl{top:20px;left:20px}
-  .tp-co.bl{bottom:48px;left:20px}
-  .tp-nav{padding:16px 20px}
-  .tp-preview{padding:48px 20px}
-  .tp-prev-hd{flex-direction:column;align-items:flex-start}
-  .tp-glyphs,.tp-wts{padding:48px 20px}
-  .tp-dl{padding:60px 20px}
-  .tp-dl-in{grid-template-columns:1fr;gap:40px}
-  .tp-dl-hl{font-size:clamp(44px,11vw,88px)}
-  #tp-ptxt{font-size:48px !important}
-  .tp-pph{font-size:48px !important;top:44px;left:44px}
-
-  /* Detail overlay */
-  .d-content{padding:64px 20px 48px}
-  .d-title{font-size:clamp(32px,10vw,64px)}
-  #detail-close{right:20px;top:20px}
-}
-
-body::after{
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:.03;pointer-events:none;z-index:9990;
-}
-/*
-  ─── 우아한 세리프 폰트 설정 ───
-  폰트 파일 준비되면:
-  1. index.html과 같은 폴더에 fonts/ 폴더 생성
-  2. 폰트 파일을 fonts/ 안에 넣기
-  3. 아래 url() 경로를 실제 파일명으로 수정
-*/
-@font-face {
-  font-family: 'UahanSerif';
-  font-weight: 300;
-  src: url('fonts/우아한세리프-Light.otf') format('opentype'),
-       url('fonts/우아한세리프-Light.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'UahanSerif';
-  font-weight: 700;
-  src: url('fonts/우아한세리프-Bold.otf') format('opentype'),
-       url('fonts/우아한세리프-Bold.ttf') format('truetype');
-}
-
-/* 폰트 적용 클래스 */
-.uahan-light { font-family:'UahanSerif','Barlow',sans-serif; font-weight:300; }
-.uahan-bold  { font-family:'UahanSerif','Barlow',sans-serif; font-weight:700; }
-
-/* 미리보기 / 히어로에도 폰트 적용 */
-#tp-bigL,
-#tp-ptxt,
-#tp-pph { font-family:'UahanSerif','Barlow Condensed',sans-serif; }
-
-/* 히어로 글자 — 한글이라 letter-spacing, text-transform 제거 */
-#tp-bigL{
-  letter-spacing:0;
-  text-transform:none;
-}
-
-/* 한글 자모 스트립 */
-.tp-ak{
-  font-family:'UahanSerif','Barlow Condensed',sans-serif;
-  text-transform:none;
-  letter-spacing:0;
-}
-
-/* 글리프 섹션 폰트 */
-.tp-alpha { font-family:'UahanSerif','Barlow Condensed',sans-serif; text-transform:none; letter-spacing:0; }
-.tp-numrow{ font-family:'UahanSerif','Barlow Condensed',sans-serif; }
-
-/* 웨이트 샘플 */
-.tp-ws { font-family:'UahanSerif','Barlow Condensed',sans-serif; letter-spacing:0; text-transform:none; }
-
-/* ─────── TYPE PAGE OVERLAY ─────── */
-#type-ov{
-  position:fixed;inset:0;z-index:3000;
-  background:#0A0A0A;
-  overflow-y:auto;
-  opacity:0;pointer-events:none;
-  transform:translateY(40px);
-  transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);
-}
-#type-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-
-/* Type nav */
-.tp-nav{
-  position:sticky;top:0;z-index:10;
-  padding:22px 44px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:#0A0A0A;
-  border-bottom:1px solid rgba(27,74,232,.12);
-}
-.tp-logo{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;
-}
-.tp-close{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:.85;transition:opacity .2s;
-}
-.tp-close:hover{opacity:1}
-
-/* Hero */
-.tp-hero{
-  position:relative;width:100%;height:90vh;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-.tp-stage{perspective:800px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-.tp-wrap{transform-style:preserve-3d;will-change:transform}
-#tp-bigL{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(200px,38vw,580px);
-  line-height:.85;letter-spacing:-.04em;text-transform:uppercase;
-  color:transparent;-webkit-text-stroke:1.5px #1B4AE8;
-  user-select:none;pointer-events:none;display:block;
-  transition:color .35s,-webkit-text-stroke .35s;
-}
-#tp-bigL.fill{color:#1B4AE8;-webkit-text-stroke:0px transparent}
-.tp-co{position:absolute;font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:#1B4AE8;opacity:.3;pointer-events:none;font-family:'Barlow Condensed',sans-serif;font-weight:900}
-.tp-co.tl{top:28px;left:44px}
-.tp-co.tr{top:28px;right:44px;text-align:right}
-.tp-co.bl{bottom:56px;left:44px}
-.tp-co.br{bottom:56px;right:44px;text-align:right}
-
-#tp-astrip{position:absolute;bottom:0;left:0;right:0;display:flex;border-top:1px solid rgba(27,74,232,.1)}
-.tp-ak{
-  flex:1;padding:12px 0;text-align:center;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(8px,1.1vw,13px);letter-spacing:.04em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.2;cursor:none;
-  transition:opacity .15s;
-  border-right:1px solid rgba(27,74,232,.08);
-}
-.tp-ak:last-child{border-right:none}
-.tp-ak:hover{opacity:.8}
-.tp-ak.on{opacity:1}
-
-/* Preview */
-.tp-preview{background:#F0EBE3;color:#0A0A0A;padding:80px 44px}
-.tp-prev-hd{max-width:1200px;margin:0 auto 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.tp-prev-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
-.tp-ctrls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.tp-sw{display:flex;align-items:center;gap:8px}
-.tp-sw label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
-#tp-szR{width:100px;accent-color:#0A0A0A;cursor:none}
-#tp-szV{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;min-width:40px}
-.tp-btns{display:flex;gap:3px}
-.tp-xbtn{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding:7px 14px;border-radius:99px;
-  border:1.5px solid rgba(10,10,10,.2);
-  color:#0A0A0A;background:transparent;cursor:none;opacity:.35;transition:all .2s;
-}
-.tp-xbtn:hover{opacity:.7}
-.tp-xbtn.on{background:#0A0A0A;color:#F0EBE3;border-color:#0A0A0A;opacity:1}
-.tp-pbox{max-width:1200px;margin:0 auto;border:1px solid rgba(10,10,10,.1);border-radius:6px;padding:44px;min-height:140px;position:relative;background:#fff}
-#tp-ptxt{width:100%;border:none;background:transparent;outline:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:72px;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:#0A0A0A;resize:none;cursor:none;overflow:hidden}
-.tp-pph{position:absolute;top:44px;left:44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:72px;line-height:1.05;letter-spacing:-.02em;text-transform:uppercase;color:rgba(10,10,10,.1);pointer-events:none}
-
-/* Glyphs */
-.tp-glyphs{background:#111;padding:80px 44px}
-.tp-glabel{display:block;max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.5}
-.tp-alpha{max-width:1200px;margin:0 auto;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(44px,7.5vw,108px);line-height:.9;letter-spacing:-.015em;text-transform:uppercase;word-break:break-all}
-.tp-alpha .ta{color:#F0EBE3}
-.tp-alpha .tb{color:rgba(240,235,227,.12)}
-.tp-alpha .ty{color:#1B4AE8}
-.tp-alpha .tr2{color:#1B4AE8;opacity:.5}
-.tp-numrow{max-width:1200px;margin:16px auto 0;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(32px,5.5vw,80px);letter-spacing:-.02em;color:rgba(240,235,227,.2);line-height:1}
-
-/* Weights */
-.tp-wts{background:#0A0A0A;padding:80px 44px}
-.tp-wlb{max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.5}
-.tp-wr{max-width:1200px;margin:0 auto;display:flex;align-items:baseline;gap:24px;padding:24px 0;border-bottom:1px solid rgba(27,74,232,.1)}
-.tp-wr:last-child{border:none}
-.tp-wn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1B4AE8;opacity:.35;min-width:100px}
-.tp-ws{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,3.5vw,56px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#F0EBE3}
-
-/* Download */
-.tp-dl{background:#1B4AE8;padding:90px 44px;position:relative;overflow:hidden}
-.tp-dl-bg{position:absolute;right:-10px;bottom:-20px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(140px,22vw,320px);letter-spacing:-.04em;text-transform:uppercase;color:rgba(240,235,227,.08);pointer-events:none;user-select:none;line-height:1}
-.tp-dl-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;position:relative}
-.tp-dl-hl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(56px,8.5vw,132px);line-height:.86;letter-spacing:-.025em;text-transform:uppercase;color:#F0EBE3;margin-bottom:20px}
-.tp-dl-desc{font-size:15px;line-height:1.75;font-weight:300;color:#F0EBE3;opacity:.65;max-width:340px}
-.tp-dl-row{padding:18px 0;border-bottom:1px solid rgba(240,235,227,.2);display:flex;justify-content:space-between}
-.tp-dl-row:first-child{border-top:1px solid rgba(240,235,227,.2)}
-.tp-dk{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#F0EBE3;opacity:.5}
-.tp-dv{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#F0EBE3}
-.tp-dl-btn{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:28px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:#F0EBE3;color:#1B4AE8;padding:18px 36px;border-radius:99px;text-decoration:none;border:none;cursor:none}
-.tp-soon{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(240,235,227,.15);color:#F0EBE3;padding:7px 14px;border-radius:99px}
-.tp-sd{width:5px;height:5px;border-radius:50%;background:#F0EBE3;animation:p 1.5s ease-in-out infinite}
-
-/* ─────── DETAIL OVERLAY — Behance Style ─────── */
-#detail-ov{
-  position:fixed;inset:0;z-index:4000;
-  background:#0A0A0A;
-  overflow-y:auto;
-  opacity:0;pointer-events:none;
-  transform:translateY(30px);
-  transition:opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1);
-}
-#detail-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-
-/* Sticky top bar */
-.d-topbar{
-  position:sticky;top:0;z-index:20;
-  background:#0A0A0A;
-  border-bottom:1px solid rgba(27,74,232,.12);
-  padding:18px 44px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.d-topbar-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.5;
-}
-#detail-close{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:.85;transition:opacity .2s;
-}
-#detail-close:hover{opacity:1}
-
-/* Hero cover image */
-.d-cover{
-  width:100%;
-  aspect-ratio:16/7;
-  overflow:hidden;
-  position:relative;
-}
-.d-cover img{width:100%;height:100%;object-fit:cover;display:block}
-.d-cover-color{width:100%;height:100%}
-
-/* Project info header */
-.d-header{
-  max-width:1200px;margin:0 auto;
-  padding:64px 44px 52px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  border-bottom:1px solid rgba(27,74,232,.1);
-}
-.d-header-left{}
-.d-meta{display:flex;gap:20px;align-items:center;margin-bottom:20px}
-.d-cat{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  color:#1B4AE8;opacity:.7;
-}
-.d-year{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:#F0EBE3;opacity:.25;
-}
-.d-title{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(44px,6vw,96px);line-height:.88;
-  letter-spacing:-.03em;text-transform:uppercase;
-  color:#F0EBE3;
-}
-.d-header-right{
-  display:flex;flex-direction:column;justify-content:flex-end;
-}
-.d-desc{
-  font-size:17px;line-height:1.85;font-weight:300;
-  color:#F0EBE3;opacity:.6;margin-bottom:36px;
-}
-.d-tags{display:flex;flex-wrap:wrap;gap:8px}
-.d-tag{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-  color:#1B4AE8;border:1px solid rgba(27,74,232,.3);
-  padding:5px 14px;border-radius:99px;
-}
-
-/* ── Image section — Behance layouts ── */
-.d-body{padding:0 0 100px}
-
-/* Section: full-width image */
-.d-block{margin:0;padding:0}
-.d-block img{width:100%;display:block}
-
-/* Section: 2-col images */
-.d-block-2col{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:4px;
-}
-.d-block-2col img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
-
-/* Section: 3-col images */
-.d-block-3col{
-  display:grid;grid-template-columns:1fr 1fr 1fr;
-  gap:4px;
-}
-.d-block-3col img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
-
-/* Section: text block */
-.d-block-text{
-  max-width:720px;margin:80px auto;
-  padding:0 44px;
-}
-.d-block-text h2{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(28px,3vw,48px);letter-spacing:-.02em;text-transform:uppercase;
-  color:#F0EBE3;margin-bottom:20px;
-}
-.d-block-text p{
-  font-size:16px;line-height:1.85;font-weight:300;
-  color:#F0EBE3;opacity:.55;
-}
-
-/* Section: image + text side by side */
-.d-block-split{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:4px;align-items:center;
-}
-.d-block-split img{width:100%;display:block}
-.d-block-split-txt{
-  padding:60px;
-  font-size:16px;line-height:1.85;font-weight:300;
-  color:#F0EBE3;opacity:.6;
-}
-
-/* Nav between projects */
-.d-nav{
-  max-width:1200px;margin:0 auto;
-  padding:40px 44px;
-  display:flex;justify-content:space-between;
-  border-top:1px solid rgba(27,74,232,.1);
-}
-.d-nav-btn{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:.5;transition:opacity .2s;
-}
-.d-nav-btn:hover{opacity:1}
-.d-nav-btn:disabled{opacity:.15;pointer-events:none}
-
-/* Placeholder when no images */
-.d-placeholder{
-  width:100%;aspect-ratio:16/7;
-  display:flex;align-items:center;justify-content:center;
-  opacity:.15;
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:clamp(32px,5vw,72px);letter-spacing:-.02em;
-  text-transform:uppercase;color:#F0EBE3;
-}
-
-@media(max-width:768px){
-  .d-topbar{padding:16px 20px}
-  .d-header{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
-  .d-block-2col,.d-block-3col,.d-block-split{grid-template-columns:1fr}
-  .d-block-split-txt{padding:28px 20px}
-  .d-block-text{padding:0 20px;margin:48px 0}
-  .d-nav{padding:32px 20px}
-}
-
+/* ── 숫자 롤러 ── */
+.num-roller{display:inline-block;overflow:hidden;vertical-align:middle;position:relative;}
+.num-roller-inner{display:flex;flex-direction:column;transition:transform .06s linear;}
+.num-roller-inner span{display:block;line-height:1;text-align:center;}
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div style="display:flex;flex-direction:column;gap:2px">
-    <div class="l-line"><span>THIS</span></div>
-    <div class="l-line"><span>IS</span></div>
-    <div class="l-line"><span>PEARWAY</span></div>
+<!-- ENTRY -->
+<div id="entry" class="screen on">
+  <div class="ep ep-brand" onclick="goBrand('home')">
+    <div class="ep-inner">
+      <div class="ep-tag">Brand</div>
+      <img data-slot="site-logo" src="https://www.chickenfarmers.kr/images/header_01.png" alt="치킨파머스" class="ep-logo" id="el1" onerror="this.style.display='none';document.getElementById('ef1').style.display='block'">
+      <div class="ep-logo-fb" id="ef1">CHICKEN FARMERS</div>
+      <h2 class="ep-title">치킨파머스<br>브랜드 사이트</h2>
+      <p class="ep-desc">브랜드 스토리, 메뉴, 인테리어,<br>커뮤니티를 확인하세요</p>
+      <button class="ep-btn">브랜드 입장 →</button>
+    </div>
+    <div class="ep-arrow">ENTER</div>
+  </div>
+  <div class="ep-div"></div>
+  <div class="ep ep-fr" onclick="goFr()">
+    <div class="ep-inner">
+      <div class="ep-tag">Franchise</div>
+      <img data-slot="site-logo" src="https://www.chickenfarmers.kr/images/header_01.png" alt="치킨파머스" class="ep-logo" style="filter:brightness(0)" id="el2" onerror="this.style.display='none';document.getElementById('ef2').style.display='block'">
+      <div class="ep-logo-fb" id="ef2">CHICKEN FARMERS</div>
+      <h2 class="ep-title">프랜차이즈<br>창업 안내</h2>
+      <p class="ep-desc">객단가 30,900원 세트메뉴.<br>치킨파머스와 함께 창업하세요</p>
+      <button class="ep-btn">창업 문의 →</button>
+    </div>
+    <div class="ep-arrow">ENTER</div>
   </div>
 </div>
 
-<!-- CURSOR -->
-<div id="dot"></div>
+<!-- BRAND SITE -->
+<div id="brand" class="screen">
+  <header class="b-header">
+    <div class="b-gnb">
+      <div class="b-logo" onclick="goBrand('home')">
+        <img data-slot="site-logo" src="https://www.chickenfarmers.kr/images/header_01.png" alt="치킨파머스" id="blogo" style="filter:brightness(0) saturate(1) invert(19%) sepia(88%) saturate(800%) hue-rotate(115deg) brightness(0.6);" onerror="this.style.display='none';document.getElementById('blogo-fb').style.display='flex'">
+        <span class="b-logo-fb" id="blogo-fb" style="display:none;align-items:center;">CHICKEN FARMERS</span>
+      </div>
+      <nav class="b-nav">
+        <div class="b-nitem" onclick="goBrand('story')">브랜드소개<div class="b-ndrop"><a onclick="event.stopPropagation();goBrand('story')">브랜드 스토리</a><a onclick="event.stopPropagation();goBrand('about')">CEO 인사말</a><a onclick="event.stopPropagation();goBrand('history')">연혁</a></div></div>
+        <div class="b-nitem" onclick="goBrand('menu')">메뉴</div>
+        <div class="b-nitem" onclick="goBrand('interior')">인테리어</div>
+        <div class="b-nitem" onclick="goBrand('notice')">커뮤니티<div class="b-ndrop"><a onclick="event.stopPropagation();goBrand('notice')">공지사항</a><a onclick="event.stopPropagation();goBrand('event')">이벤트·뉴스</a><a onclick="event.stopPropagation();goBrand('review')">고객 리뷰</a></div></div>
+        <div class="b-nitem" onclick="goBrand('faq')">고객게시판<div class="b-ndrop"><a onclick="event.stopPropagation();goBrand('faq')">FAQ</a><a onclick="event.stopPropagation();goBrand('inquiry')">고객 문의</a></div></div>
+        <div class="b-nitem" onclick="goFr()">가맹안내<div class="b-ndrop"><a onclick="goFr()">창업 상담 신청</a><a onclick="goFr()">비용 및 절차</a><a onclick="goFr()">교육프로그램</a></div></div>
+      </nav>
+      <div class="b-hdr-r">
+        <a href="tel:1670-6641" class="b-hdr-tel">1670-6641</a>
 
-<!-- NAV -->
-<nav>
-  <a href="index.html" class="logo">THISISPEARWAY</a>
-  <ul class="nav-center">
-    <li><a href="#works">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="#" class="nav-type" onclick="openType();return false;">Type ↗</a>
-</nav>
+        <button class="b-hdr-cta" onclick="goFr()">창업 상담</button>
+      </div>
+    </div>
+  </header>
+  <div class="b-subnav" id="bSN"><div class="b-subnav-row" id="bSNR"></div></div>
 
-<!-- ═══ HERO ═══ -->
-<div id="hero">
-  <div class="mag-line" id="ml0">THISIS</div>
-  <div class="mag-line" id="ml1">PEAR</div>
-  <div class="mag-line" id="ml2">WAY</div>
+  <main class="b-content">
+    <!-- HOME -->
+    <div class="b-subpage on" id="bsp-home">
+      <div class="bh-hero">
+        <div class="bh-hero-sl">
+          <div class="bh-slide on"><img data-slot="hero-1" src="https://www.chickenfarmers.kr/images/main_03.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="bh-slide"><img data-slot="hero-2" src="https://www.chickenfarmers.kr/images/main_02.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="bh-slide"><img data-slot="hero-3" src="https://www.chickenfarmers.kr/images/main_01.png" alt="" onerror="this.style.display='none'"></div>
+        </div>
+        <div class="bh-overlay"></div>
+        <div class="bh-hero-txt">
+          <div class="bh-hero-en">Chicken &amp; Pasta, One Place</div>
+          <h1 class="bh-hero-title">치킨과 파스타가<br>함께하는 곳,<br>치킨파머스</h1>
+          <span class="bh-hero-cta" onclick="goBrand('menu')">메뉴 보기 →</span>
+        </div>
+        <div class="bh-dots">
+          <div class="bh-dot on" onclick="goSlide(0)"></div>
+          <div class="bh-dot" onclick="goSlide(1)"></div>
+          <div class="bh-dot" onclick="goSlide(2)"></div>
+        </div>
+      </div>
 
-  <div class="hero-info">
-    <span class="hi-item">Graphic Designer</span>
-    <span class="hi-item">Seoul, KR</span>
-    <span class="hi-item">2026</span>
-  </div>
-  <div class="hero-scroll">Scroll ↓</div>
+      <!-- Story -->
+      <div class="bh-story-bg">
+        <div class="bh-story-inner">
+          <div class="bh-story-img sf-left"><img data-slot="bh-story" src="https://www.chickenfarmers.kr/images/con01_01.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="sf-right">
+            <div class="bh-en">Our Brand</div>
+            <h2 class="bh-title" style="margin-bottom:18px;">치킨도, 파스타도<br>모두 잡은 브랜드</h2>
+            <p style="font-size:15px;color:var(--text-sub);line-height:2;margin-bottom:14px;">치킨파머스는 쌀가루·옥수수가루로 튀긴 건강한 치킨에 수제 파스타를 더해, 가족 모두가 만족하는 외식 공간을 만들어갑니다.</p>
+            <span class="bh-more" onclick="goBrand('story')">브랜드 스토리 더 보기</span>
+            <div class="bh-nums sf">
+              <div><div class="bh-nv"><span class="counter" data-target="152" data-suffix="도">152도</span></div><div class="bh-nl">유일한 튀김 온도</div></div>
+              <div><div class="bh-nv">100<span>%</span></div><div class="bh-nl">국내산 냉장육</div></div>
+              <div><div class="bh-nv">100<span>+</span></div><div class="bh-nl">전국 가맹점</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 시그니처 메뉴 -->
+      <div class="bh-sec" style="background:#fff;">
+        <div class="bh-w">
+          <div class="bh-sec-hd">
+            <div><div class="bh-en">Menu</div><h2 class="bh-title">시그니처 메뉴</h2></div>
+            <span class="bh-more" onclick="goBrand('menu')">전체 메뉴 보기</span>
+          </div>
+          <div class="bh-tabs">
+            <div class="bh-tab on" onclick="bhTab(this,'치킨')">치킨</div>
+            <div class="bh-tab" onclick="bhTab(this,'파스타')">파스타</div>
+            <div class="bh-tab" onclick="bhTab(this,'세트')">치파세트</div>
+            <div class="bh-tab" onclick="bhTab(this,'사이드')">사이드</div>
+          </div>
+          <div class="bh-mgrid" id="bhGrid">
+            <div class="bh-mc sf" data-cat="치킨" data-delay="1"><div class="bh-mc-img"><img data-slot="bh-m1" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Signature ★</div><div class="bh-mc-name">맵콘치킨</div><div class="bh-mc-price">23,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="치킨" data-delay="2"><div class="bh-mc-img"><img data-slot="bh-m2" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Honey Corn</div><div class="bh-mc-name">파머스 허니콘치킨</div><div class="bh-mc-price">23,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="치킨" data-delay="3"><div class="bh-mc-img"><img data-slot="bh-m3" src="https://www.chickenfarmers.kr/images/con02_04.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Steak</div><div class="bh-mc-name">파머스 스테이크치킨</div><div class="bh-mc-price">23,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="치킨" data-delay="4"><div class="bh-mc-img"><img data-slot="bh-m4" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Garlic</div><div class="bh-mc-name">파머스 갈릭치킨</div><div class="bh-mc-price">23,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="파스타" data-delay="1"><div class="bh-mc-img"><img data-slot="bh-m5" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Rose Pasta ★</div><div class="bh-mc-name">파머스 슈림프로제파스타</div><div class="bh-mc-price">10,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="파스타" data-delay="2"><div class="bh-mc-img"><img data-slot="bh-m6" src="https://www.chickenfarmers.kr/images/con02_07.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Oil Pasta</div><div class="bh-mc-name">슈림프 오일 파스타</div><div class="bh-mc-price">8,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="파스타" data-delay="3"><div class="bh-mc-img"><img data-slot="bh-m7" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Bacon Cream</div><div class="bh-mc-name">파머스 베이컨크림파스타</div><div class="bh-mc-price">10,900원</div></div></div>
+            <div class="bh-mc sf" data-cat="세트" data-delay="1"><div class="bh-mc-img"><img data-slot="bh-m8" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Best Set ★</div><div class="bh-mc-name">맵콘치파세트</div><div class="bh-mc-price">30,900원~</div></div></div>
+            <div class="bh-mc sf" data-cat="세트" data-delay="2"><div class="bh-mc-img"><img data-slot="bh-m9" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Original Set</div><div class="bh-mc-name">후라이드치파세트</div><div class="bh-mc-price">26,900원~</div></div></div>
+            <div class="bh-mc sf" data-cat="세트" data-delay="3"><div class="bh-mc-img"><img data-slot="bh-m10" src="https://www.chickenfarmers.kr/images/con02_04.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Garlic Set</div><div class="bh-mc-name">갈릭치파세트</div><div class="bh-mc-price">30,900원~</div></div></div>
+            <div class="bh-mc sf" data-cat="사이드" data-delay="1"><div class="bh-mc-img"><img data-slot="bh-m11" src="https://www.chickenfarmers.kr/images/con02_09.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Tteokbokki</div><div class="bh-mc-name">국물떡볶이</div><div class="bh-mc-price">사이드 메뉴</div></div></div>
+            <div class="bh-mc sf" data-cat="사이드" data-delay="2"><div class="bh-mc-img"><img data-slot="bh-m12" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='#ddd'"></div><div class="bh-mc-body"><div class="bh-mc-en">Cheese Ball</div><div class="bh-mc-name">모짜치즈볼</div><div class="bh-mc-price">사이드 메뉴</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery -->
+      <div style="background:var(--gray-light);padding:72px 0;">
+        <div class="bh-w">
+          <div class="bh-sec-hd" style="margin-bottom:28px;">
+            <div><div class="bh-en">Interior</div><h2 class="bh-title" style="word-break:keep-all;">공간이 브랜드를 말합니다</h2></div>
+            <span class="bh-more" onclick="goBrand('interior')">인테리어 더 보기</span>
+          </div>
+          <div class="bh-gallery">
+            <div class="bh-gi sf-scale"><img data-slot="bh-g1" src="https://www.chickenfarmers.kr/images/con01_05.png" alt="" onerror="this.style.display='none'"></div>
+            <div class="bh-gi sf-scale" data-delay="1"><img data-slot="bh-g2" src="https://www.chickenfarmers.kr/images/con01_03.png" alt="" onerror="this.style.display='none'"></div>
+            <div class="bh-gi sf-scale" data-delay="2"><img data-slot="bh-g3" src="https://www.chickenfarmers.kr/images/con01_04.png" alt="" onerror="this.style.display='none'"></div>
+            <div class="bh-gi sf-scale" data-delay="1"><img data-slot="bh-g4" src="https://www.chickenfarmers.kr/images/con01_02.png" alt="" onerror="this.style.display='none'"></div>
+            <div class="bh-gi sf-scale" data-delay="2"><img data-slot="bh-g5" src="https://www.chickenfarmers.kr/images/con01_06.png" alt="" onerror="this.style.display='none'"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notice -->
+      <div class="bh-sec" style="background:#fff;">
+        <div class="bh-w">
+          <div class="bh-sec-hd">
+            <div><div class="bh-en">Community</div><h2 class="bh-title">공지사항 · 이벤트</h2></div>
+            <span class="bh-more" onclick="goBrand('notice')">전체 보기</span>
+          </div>
+          <div class="bh-nlist" id="homeNoticeList"></div>
+        </div>
+      </div>
+
+      <!-- FR CTA -->
+      <div class="b-fr-band">
+        <div class="b-fr-inner">
+          <div><h2 class="b-fr-h2">치킨파머스와 함께<br>성공 창업을 시작하세요</h2><p class="b-fr-p">전담 MD가 1:1로 창업 전 과정을 함께합니다. 지금 무료 상담을 신청하세요.</p></div>
+          <button class="b-fr-btn" onclick="goFr()">창업 상담 신청 →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY PAGE -->
+    <div class="b-subpage" id="bsp-story">
+      <div class="bsp-hero"><img class="bsp-hero-img" data-slot="bh-story" src="https://www.chickenfarmers.kr/images/con01_05.png" alt="" onerror="this.style.display='none'"><div class="bsp-hero-txt"><div class="bsp-bc">브랜드소개 &gt; <span>브랜드 스토리</span></div><h1 class="bsp-h1">브랜드 스토리</h1></div></div>
+      <div class="bsp-body">
+        <div class="bs-layout">
+          <img class="bs-img sf-left" data-slot="bh-story" src="https://www.chickenfarmers.kr/images/con01_01.png" alt="" onerror="this.style.background='var(--bg)'">
+          <div>
+            <div class="bh-en">Our Story</div>
+            <h2 class="bs-h2">세상에 없던 바삭함,<br>국내 유일 152도 치킨!</h2>
+            <p class="bs-p">치킨파머스는 쌀가루와 옥수수가루로 만든 얇고 바삭한 튀김옷, 국내 유일 152도에서 튀겨지는 저염식 프리미엄 치킨 브랜드입니다. 100개 이상의 농가에서 전문적으로 사육된 국내산 냉장육만을 사용합니다.</p>
+            <div class="bs-quote">"우리 농장에서 우리 식탁까지 — Farm to Table"</div>
+            <p class="bs-p">여기에 셰프가 직접 연구한 수제 파스타를 더해, 치킨만 팔던 브랜드와는 다른 객단가를 만들어냈습니다. 맵콘치파세트 30,900원부터 시작하는 세트 메뉴로 테이블당 수익이 극대화됩니다.</p>
+            <div class="bs-nums">
+              <div><div class="bs-nv">152<small>도</small></div><div class="bs-nl">국내 유일 온도</div></div>
+              <div><div class="bs-nv">100<small>+</small></div><div class="bs-nl">전국 가맹점</div></div>
+              <div><div class="bs-nv">100<small>%</small></div><div class="bs-nl">국내산 냉장육</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU PAGE -->
+    <div class="b-subpage" id="bsp-menu">
+      <div class="bsp-hero"><img class="bsp-hero-img" data-slot="bh-m1" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.style.display='none'"><div class="bsp-hero-txt"><div class="bsp-bc">메뉴</div><h1 class="bsp-h1">메뉴 소개</h1></div></div>
+      <div class="bsp-body">
+        <div class="mp-cats">
+          <div class="mp-cat on" onclick="mpCat(this,'치킨')">치킨 단품</div>
+          <div class="mp-cat" onclick="mpCat(this,'세트')">치파세트</div>
+          <div class="mp-cat" onclick="mpCat(this,'파스타')">파스타</div>
+          <div class="mp-cat" onclick="mpCat(this,'사이드')">사이드</div>
+        </div>
+        <div class="mp-grid" id="mpGrid">
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c1" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Signature ★</div><div class="mp-name">맵콘치킨</div><div class="mp-price">23,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c2" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Honey Corn</div><div class="mp-name">파머스 허니콘치킨</div><div class="mp-price">23,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c3" src="https://www.chickenfarmers.kr/images/con02_04.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Steak</div><div class="mp-name">파머스 스테이크치킨</div><div class="mp-price">23,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c4" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Garlic</div><div class="mp-name">파머스 갈릭치킨</div><div class="mp-price">23,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c5" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Perilla Soy</div><div class="mp-name">파머스 깻잎간장치킨</div><div class="mp-price">22,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c6" src="https://www.chickenfarmers.kr/images/con02_07.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Hot Soy</div><div class="mp-name">파머스 깻잎핫간장치킨</div><div class="mp-price">22,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c7" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Corn Crunch</div><div class="mp-name">콘크런치 후라이드</div><div class="mp-price">19,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c8" src="https://www.chickenfarmers.kr/images/con02_09.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Seasoned</div><div class="mp-name">양념치킨 / 매운양념치킨</div><div class="mp-price">21,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c9" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Soy Garlic</div><div class="mp-name">간장치킨 / 핫간장치킨</div><div class="mp-price">21,900원</div></div></div>
+          <div class="mp-card sf" data-cat="치킨"><div class="mp-img"><img data-slot="mp-c10" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Half &amp; Half</div><div class="mp-name">후라이드+양념 반반 외</div><div class="mp-price">21,900원</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s1" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Best Set ★</div><div class="mp-name">맵콘치파세트</div><div class="mp-price">30,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s2" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Original Set</div><div class="mp-name">후라이드치파세트</div><div class="mp-price">26,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s3" src="https://www.chickenfarmers.kr/images/con02_04.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Steak Set</div><div class="mp-name">스테이크치파세트</div><div class="mp-price">30,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s4" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Garlic Set</div><div class="mp-name">갈릭치파세트</div><div class="mp-price">30,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s5" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Honey Set</div><div class="mp-name">허니콘치파세트</div><div class="mp-price">30,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s6" src="https://www.chickenfarmers.kr/images/con02_07.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Soy Sets</div><div class="mp-name">양념·간장·핫간장 치파세트</div><div class="mp-price">28,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="세트"><div class="mp-img"><img data-slot="mp-s7" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Perilla Sets</div><div class="mp-name">깻잎간장·깻잎핫간장 치파세트</div><div class="mp-price">29,900원~</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p1" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Rose Pasta ★</div><div class="mp-name">파머스 슈림프로제파스타</div><div class="mp-price">10,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p2" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Basil Cream</div><div class="mp-name">슈림프 바질 크림 파스타</div><div class="mp-price">11,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p3" src="https://www.chickenfarmers.kr/images/con02_07.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Bacon Basil</div><div class="mp-name">베이컨 바질 크림 파스타</div><div class="mp-price">11,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p4" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Bacon Tomato</div><div class="mp-name">파머스 베이컨토마토파스타</div><div class="mp-price">10,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p5" src="https://www.chickenfarmers.kr/images/con02_09.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Bacon Cream</div><div class="mp-name">파머스 베이컨크림파스타</div><div class="mp-price">10,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p6" src="https://www.chickenfarmers.kr/images/con02_02.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Basil Oil</div><div class="mp-name">슈림프 오일 바질 파스타</div><div class="mp-price">9,900원</div></div></div>
+          <div class="mp-card sf" data-cat="파스타"><div class="mp-img"><img data-slot="mp-p7" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Shrimp Oil</div><div class="mp-name">슈림프 오일 파스타</div><div class="mp-price">8,900원</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd1" src="https://www.chickenfarmers.kr/images/con02_04.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Tteokbokki</div><div class="mp-name">국물떡볶이 / 로제떡볶이</div><div class="mp-price">사이드</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd2" src="https://www.chickenfarmers.kr/images/con02_05.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Sweet Potato</div><div class="mp-name">고구마스틱</div><div class="mp-price">사이드</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd3" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Fries</div><div class="mp-name">감자튀김</div><div class="mp-price">사이드</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd4" src="https://www.chickenfarmers.kr/images/con02_07.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Cheese Ball</div><div class="mp-name">모짜치즈볼</div><div class="mp-price">사이드</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd5" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Eomuk</div><div class="mp-name">어묵깡</div><div class="mp-price">사이드</div></div></div>
+          <div class="mp-card sf" data-cat="사이드"><div class="mp-img"><img data-slot="mp-sd6" src="https://www.chickenfarmers.kr/images/con02_09.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Chicken Feet</div><div class="mp-name">매운국물닭발</div><div class="mp-price">사이드</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTERIOR PAGE -->
+    <div class="b-subpage" id="bsp-interior">
+      <div class="bsp-hero"><img class="bsp-hero-img" data-slot="bh-g1" src="https://www.chickenfarmers.kr/images/con01_05.png" alt="" onerror="this.style.display='none'"><div class="bsp-hero-txt"><div class="bsp-bc">인테리어</div><h1 class="bsp-h1">인테리어</h1></div></div>
+      <div class="bsp-body">
+        <div class="ip-grid">
+          <div class="ip-item" onclick="openIPLightbox(1)" style="cursor:zoom-in;"><img data-slot="ip-1" src="https://www.chickenfarmers.kr/images/con01_05.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="ip-item" onclick="openIPLightbox(2)" style="cursor:zoom-in;"><img data-slot="ip-2" src="https://www.chickenfarmers.kr/images/con01_02.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="ip-item" onclick="openIPLightbox(3)" style="cursor:zoom-in;"><img data-slot="ip-3" src="https://www.chickenfarmers.kr/images/con01_04.png" alt="" onerror="this.style.display='none'"></div>
+        </div>
+        <div class="ip-grid-more">
+          <div class="ip-item" onclick="openIPLightbox(4)" style="cursor:zoom-in;"><img data-slot="ip-4" src="https://www.chickenfarmers.kr/images/con01_01.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="ip-item" onclick="openIPLightbox(5)" style="cursor:zoom-in;"><img data-slot="ip-5" src="https://www.chickenfarmers.kr/images/con01_03.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="ip-item" onclick="openIPLightbox(6)" style="cursor:zoom-in;"><img data-slot="ip-6" src="https://www.chickenfarmers.kr/images/con01_06.png" alt="" onerror="this.style.display='none'"></div>
+          <div class="ip-item" onclick="openIPLightbox(7)" style="cursor:zoom-in;"><img data-slot="ip-7" src="https://www.chickenfarmers.kr/images/con01_05.png" alt="" onerror="this.style.display='none'"></div>
+        </div>
+        <div class="ip-caption"><h3>공간이 브랜드를 말합니다</h3><p>자연에서 영감받은 따뜻한 인테리어. 가족이 편안하게 머물 수 있는 공간을 설계합니다. 본사에서 직접 시공 및 관리를 지원합니다.</p></div>
+      </div>
+    </div>
+
+    <!-- NOTICE PAGE -->
+    <div class="b-subpage" id="bsp-notice">
+      <div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">커뮤니티 &gt; <span>공지사항</span></div><h1 class="bsp-h1">공지사항</h1></div></div>
+      <div class="bsp-body"><div class="np-list" id="noticePage"></div></div>
+    </div>
+
+    <!-- FAQ PAGE -->
+    <div class="b-subpage" id="bsp-faq"><div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">고객게시판 &gt; <span>FAQ</span></div><h1 class="bsp-h1">자주 묻는 질문</h1></div></div><div class="bsp-body"><div class="faq-list"><div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Q. 치킨파머스 창업 비용은 얼마인가요?</span><span class="faq-icon">+</span></div><div class="faq-a">가맹비, 교육비, 인테리어, 주방 설비 등을 포함하여 약 5,700만원~부터 시작합니다. 정확한 금액은 창업 상담을 통해 안내드립니다.</div></div><div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Q. 조리 경험이 없어도 창업할 수 있나요?</span><span class="faq-icon">+</span></div><div class="faq-a">네, 가능합니다. 본사에서 체계적인 조리 교육과 운영 교육을 제공합니다.</div></div><div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Q. 최소 필요 매장 면적은 어느 정도인가요?</span><span class="faq-icon">+</span></div><div class="faq-a">최소 25~30㎡(약 8~9평)부터 운영 가능합니다.</div></div><div class="faq-item"><div class="faq-q" onclick="faqToggle(this)"><span>Q. 본사에서 어떤 지원을 받을 수 있나요?</span><span class="faq-icon">+</span></div><div class="faq-a">상권 분석, 인테리어 시공, 오픈 교육, 마케팅 지원, 식자재 공급, 운영 컨설팅 등 전반적인 지원을 제공합니다.</div></div></div></div></div>
+
+    <!-- CEO -->
+    <div class="b-subpage" id="bsp-about">
+      <div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">브랜드소개 &gt; <span>CEO 인사말</span></div><h1 class="bsp-h1">CEO 인사말</h1></div></div>
+      <div class="bsp-body">
+        <div style="display:grid;grid-template-columns:300px 1fr;gap:72px;align-items:start;">
+          <div><div style="width:100%;aspect-ratio:3/4;background:var(--bg);overflow:hidden;"><img data-slot="bh-story" src="https://www.chickenfarmers.kr/images/con01_01.png" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'"></div><div style="margin-top:20px;padding:20px;background:var(--gray-light);border-left:3px solid var(--yellow);"><div style="font-size:11px;letter-spacing:2px;color:var(--yellow);margin-bottom:4px;">REPRESENTATIVE</div><div style="font-size:16px;font-weight:700;">대표이사</div><div style="font-size:13px;color:var(--text-sub);margin-top:4px;">치킨파머스 (주)</div></div></div>
+          <div><div class="bh-en">CEO Message</div><h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;line-height:1.5;color:#014A2A;margin-bottom:28px;">고객과 점주님 모두가<br>행복한 브랜드를 만들겠습니다</h2><div style="border-left:4px solid var(--yellow);padding:18px 24px;background:var(--yellow-pale);margin-bottom:32px;font-family:'Noto Serif KR',serif;font-size:18px;font-weight:600;color:#014A2A;line-height:1.7;">"우리 농장에서 우리 식탁까지"</div><p style="font-size:15px;line-height:2.1;color:var(--text-sub);margin-bottom:20px;">치킨파머스는 단순한 치킨 프랜차이즈가 아닙니다. 가족이 함께 앉아 치킨과 파스타를 나누는 따뜻한 외식 공간을 만들고, 그 안에서 점주님들이 안정적으로 수익을 올릴 수 있도록 지원하는 것이 저희의 사명입니다.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="b-subpage" id="bsp-history">
+      <div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">브랜드소개 &gt; <span>연혁</span></div><h1 class="bsp-h1">연혁</h1></div></div>
+      <div class="bsp-body">
+        <div class="bh-en">History</div>
+        <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(20px,2.5vw,30px);font-weight:700;line-height:1.4;color:#014A2A;margin-bottom:56px;">치킨파머스의 발자취</h2>
+        <div style="position:relative;padding-left:40px;"><div style="position:absolute;left:12px;top:0;bottom:0;width:2px;background:var(--border);"></div>
+          <div style="position:relative;margin-bottom:44px;"><div style="position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--yellow);border:3px solid #fff;box-shadow:0 0 0 2px var(--yellow);"></div><div style="font-size:11px;letter-spacing:3px;color:var(--yellow);font-weight:700;margin-bottom:6px;">2024</div><div style="font-size:18px;font-weight:700;color:#014A2A;margin-bottom:6px;">전국 100호점 달성</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;">전국 100개 가맹점 오픈. 대한민국 대표 치킨+파스타 브랜드로 자리매김</div></div>
+          <div style="position:relative;margin-bottom:44px;"><div style="position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--green-pale);border:3px solid #fff;box-shadow:0 0 0 2px #014A2A;"></div><div style="font-size:11px;letter-spacing:3px;color:#014A2A;font-weight:700;margin-bottom:6px;">2021</div><div style="font-size:18px;font-weight:700;color:#014A2A;margin-bottom:6px;">전국 50호점 달성</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;">수도권을 넘어 전국 주요 도시로 확장</div></div>
+          <div style="position:relative;margin-bottom:44px;"><div style="position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--green-pale);border:3px solid #fff;box-shadow:0 0 0 2px #014A2A;"></div><div style="font-size:11px;letter-spacing:3px;color:#014A2A;font-weight:700;margin-bottom:6px;">2019</div><div style="font-size:18px;font-weight:700;color:#014A2A;margin-bottom:6px;">치킨 + 파스타 듀얼 컨셉 론칭</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;">치파세트 도입으로 객단가 2배 이상 상승, 가족 고객 유입 급증</div></div>
+          <div style="position:relative;margin-bottom:44px;"><div style="position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--border);border:3px solid #fff;box-shadow:0 0 0 2px var(--border);"></div><div style="font-size:11px;letter-spacing:3px;color:var(--text-sub);font-weight:700;margin-bottom:6px;">2017</div><div style="font-size:18px;font-weight:700;color:#014A2A;margin-bottom:6px;">10호점 달성</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;">수도권 중심 가맹점 순차 오픈, 본사 시스템 구축</div></div>
+          <div style="position:relative;"><div style="position:absolute;left:-34px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--border);border:3px solid #fff;box-shadow:0 0 0 2px var(--border);"></div><div style="font-size:11px;letter-spacing:3px;color:var(--text-sub);font-weight:700;margin-bottom:6px;">2015</div><div style="font-size:18px;font-weight:700;color:#014A2A;margin-bottom:6px;">브랜드 창립</div><div style="font-size:14px;color:var(--text-sub);line-height:1.8;">치킨파머스 1호점 오픈. 국내 유일 152도 저염식 치킨으로 출발</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 기타 간단 페이지 -->
+    <div class="b-subpage" id="bsp-event">
+      <div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">커뮤니티 &gt; <span>이벤트·뉴스</span></div><h1 class="bsp-h1">이벤트·뉴스</h1></div></div>
+      <div class="bsp-body"><div class="np-list" id="eventPage"></div></div>
+    </div>
+    <div class="b-subpage" id="bsp-review"><div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">커뮤니티 &gt; <span>고객 리뷰</span></div><h1 class="bsp-h1">고객 리뷰</h1></div></div><div class="bsp-body"><p style="color:var(--text-sub);">고객 리뷰를 준비 중입니다.</p></div></div>
+    <div class="b-subpage" id="bsp-inquiry"><div class="bsp-hero"><div class="bsp-hero-txt"><div class="bsp-bc">고객게시판 &gt; <span>고객 문의</span></div><h1 class="bsp-h1">고객 문의</h1></div></div><div class="bsp-body"><p style="color:var(--text-sub);line-height:2;">대표전화 <strong>1670-6641</strong> 또는 카카오톡 채널 <strong>@치킨파머스</strong>로 문의주세요.</p></div></div>
+  </main>
+
+  <footer class="b-footer">
+    <div class="b-footer-inner">
+      <div class="b-footer-top">
+        <div class="b-fl"><img src="https://www.chickenfarmers.kr/images/header_01.png" alt="" id="bfl" onerror="this.style.display='none';document.getElementById('bfl-fb').style.display='block'"><span class="b-fl-fb" id="bfl-fb" style="display:none">CHICKEN FARMERS</span></div>
+        <div><div class="b-ftit">브랜드소개</div><a onclick="goBrand('story')">브랜드 스토리</a><a onclick="goBrand('about')">CEO 인사말</a><a onclick="goBrand('history')">연혁</a></div>
+        <div><div class="b-ftit">커뮤니티</div><a onclick="goBrand('notice')">공지사항</a><a onclick="goBrand('event')">이벤트·뉴스</a><a onclick="goBrand('review')">고객 리뷰</a></div>
+        <div><div class="b-ftit">가맹안내</div><a onclick="goFr()">창업 상담 신청</a><a onclick="goFr()">비용 및 절차</a><a onclick="goFr()">교육프로그램</a></div>
+      </div>
+      <div class="b-footer-bot" style="flex-direction:column;gap:6px;align-items:flex-start;">
+        <div style="line-height:2;color:rgba(255,255,255,.25);font-size:11px;">
+          주식회사 금화식품 &nbsp;|&nbsp; 대표자 이승훈 &nbsp;|&nbsp; 사업자번호 317-81-21940<br>
+          가맹사업본부 &nbsp;서울특별시 서초구 논현로 17길 19 (양재동, 덕산빌딩) 3층 전관<br>
+          대표전화 1670-6641 &nbsp;|&nbsp; 이메일 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="98f3f0b6feeaf9f6fbf0f1ebfdd8fff5f9f1f4b6fbf7f5">[email&#160;protected]</a><br>
+          본사 &nbsp;충청북도 청주시 청원구 내수읍 초정약수로 811
+        </div>
+        <div style="color:rgba(255,255,255,.15);font-size:10px;margin-top:4px;">Copyright ⓒ THISISPEARWAY Co,. Ltd all Rights Reserved.</div>
+      </div>
+    </div>
+  </footer>
+  
+<!-- 인테리어 라이트박스 -->
+<div id="ipLightbox" onclick="closeIPLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:800;align-items:center;justify-content:center;cursor:zoom-out;">
+  <img id="ipLightboxImg" src="" style="max-width:92vw;max-height:88vh;object-fit:contain;border-radius:4px;">
+  <button onclick="event.stopPropagation();closeIPLightbox()" style="position:absolute;top:18px;right:22px;background:none;border:none;color:rgba(255,255,255,.7);font-size:28px;cursor:pointer;line-height:1;">×</button>
+  <button id="ipPrev" onclick="event.stopPropagation();moveIPLightbox(-1)" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;padding:10px 16px;cursor:pointer;border-radius:4px;">‹</button>
+  <button id="ipNext" onclick="event.stopPropagation();moveIPLightbox(1)" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;padding:10px 16px;cursor:pointer;border-radius:4px;">›</button>
+</div>
+<button class="b-back" onclick="goEntry()">← 처음으로</button>
 </div>
 
-<!-- ═══ WORKS ═══ -->
-<section id="works">
-  <div class="works-top rv">
-    <div class="big-label">Selected<br>Works</div>
-    <div class="yr-tag">2020<br>—<br>2025</div>
-  </div>
-  <div class="frow rv">
-    <button class="ftab on" data-f="all">All</button>
-    <button class="ftab" data-f="brand">Brand</button>
-    <button class="ftab" data-f="graphic">Graphic</button>
-    <button class="ftab" data-f="spatial">Spatial</button>
-    <button class="ftab" data-f="web">Web</button>
-  </div>
-  <div class="wgrid rv" id="wgrid"></div>
-</section>
 
-<!-- ═══ CONTACT ═══ -->
-<!-- ═══ INQUIRY FORM ═══ -->
-<section id="contact">
+<!-- FRANCHISE LANDING -->
+<div id="franchise" class="screen">
+  <div class="fr-top"><div class="fr-top-inner"><span class="fr-top-msg">창업 상담 운영시간: 평일 09:00 ~ 18:00</span><span onclick="goBrand('home')" style="font-size:11px;color:rgba(255,255,255,.35);cursor:pointer;transition:color .2s;margin-left:20px;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">← 브랜드 사이트 보기</span><a href="tel:1670-6641" class="fr-top-tel">☎ 1670-6641</a></div></div>
+  <nav class="fr-nav">
+    <div class="fr-nav-inner">
+      <div class="fr-nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <img data-slot="site-logo" src="https://www.chickenfarmers.kr/images/header_01.png" alt="치킨파머스" id="frLogo" style="filter:brightness(0) saturate(1) invert(19%) sepia(88%) saturate(800%) hue-rotate(115deg) brightness(0.6);" onerror="this.style.display='none';document.getElementById('frLogoFb').style.display='flex'">
+        <span class="fr-nav-logo-fb" id="frLogoFb" style="display:none;align-items:center;">CHICKEN FARMERS</span>
+      </div>
+      <div class="fr-nav-links">
+        <a onclick="goBrand('home')" style="color:#014A2A;font-weight:700;border:1px solid #014A2A;padding:5px 12px;border-radius:3px;margin-right:6px;font-size:12px;">← 브랜드</a>
+        <a onclick="frScroll('fr-diff')">차별화</a><a onclick="frScroll('fr-152')">152도</a><a onclick="frScroll('fr-farm')">직영농장</a><a onclick="frScroll('fr-daytime')">낮과밤</a><a onclick="frScroll('fr-support')">본사지원</a><a onclick="frScroll('fr-cost')">창업비용</a><a onclick="frScroll('fr-stories')">성공사례</a>
+      </div>
+      <a onclick="frScroll('fr-consult')" class="fr-nav-cta">무료 창업 상담</a>
+    </div>
+  </nav>
 
-  <!-- CTA 헤더 -->
-  <div class="contact-top">
-    <div class="ctag">Let's work together</div>
-    <div class="c-cta rv">Let's Make<br>Great Things.</div>
-  </div>
+  <!-- Hero -->
+  <section class="fr-hero">
+    <div class="fr-hero-bg"></div>
+    <div class="fr-hero-in">
+      <div class="fr-badge">PREMIUM CHICKEN PASTA FRANCHISE</div>
+      <h1 class="fr-hero-h1">치킨 팔고,<br><em>파스타도</em> 팔아<br>매출 <em>2배</em></h1>
+      <p class="fr-hero-sub">일반 치킨집과 다릅니다.<br>세트메뉴 30,900원, 가족 손님이 몰리는<br>치킨파머스와 함께 창업하세요.</p>
+      <div class="fr-hero-btns">
+        <a onclick="frScroll('fr-consult')" class="fr-btn-a">무료 창업 상담 신청 →</a>
+        <a href="tel:1670-6641" class="fr-btn-b">☎ 1670-6641</a>
+      </div>
+    </div>
+    <div class="fr-hero-stats">
+      <div class="fr-stat"><div class="fr-stat-n">30,900<small>원~</small></div><div class="fr-stat-l">세트메뉴 객단가</div></div>
+      <div class="fr-stat"><div class="fr-stat-n">152<small>도</small></div><div class="fr-stat-l">국내 유일 튀김 온도</div></div>
+      <div class="fr-stat"><div class="fr-stat-n">100<small>%</small></div><div class="fr-stat-l">국내산 냉장육</div></div>
+    </div>
+  </section>
 
-  <!-- 의뢰 폼 -->
-  <div class="contact-form-wrap rv">
-
-    <div class="iform-success" id="iformSuccess">
-      <div class="iform-success-icon">✦</div>
-      <div class="iform-success-txt">Thank you.</div>
-      <div class="iform-success-sub">메시지가 전달되었습니다. 곧 연락드릴게요.</div>
+  <!-- Diff -->
+  <section class="fr-sec" id="fr-diff">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">Why Chicken Farmers</div><h2 class="fr-h2">왜 치킨파머스인가요?</h2><p class="fr-p">치킨만 파는 브랜드와 다릅니다. 치킨파머스만의 3가지 차별화.</p></div>
+      <div class="diff-cols">
+        <div class="diff-col sf-left"><div class="diff-top"><div class="diff-num">01</div></div><h3 class="diff-title">치킨 + 파스타 듀얼 컨셉</h3><p class="diff-desc">치킨 단품 19,900원에서 치파세트 30,900원으로. 같은 테이블 수로 더 높은 매출을 만드는 구조입니다.</p></div>
+        <div class="diff-col sf"><div class="diff-top"><div class="diff-num">02</div></div><h3 class="diff-title">가족 단위 고객 유입</h3><p class="diff-desc">어른은 치킨, 아이는 파스타. 가족 전체가 만족하는 구성으로 테이블 단가가 자연스럽게 높아집니다.</p></div>
+        <div class="diff-col sf-right"><div class="diff-top"><div class="diff-num">03</div></div><h3 class="diff-title">국내 유일 152도 저염식</h3><p class="diff-desc">쌀가루·옥수수가루 튀김옷, 152도 저염식 공법. 아이부터 어른까지 누구나 즐길 수 있어 집객력이 강합니다.</p></div>
+      </div>
     </div>
 
-    <form class="iform" id="iform" onsubmit="submitForm(event)">
-      <div class="iform-row">
-        <div class="ifield">
-          <div class="ifield-label">이름</div>
-          <input type="text" name="name" placeholder="홍길동" required>
-        </div>
-        <div class="ifield">
-          <div class="ifield-label">이메일</div>
-          <input type="email" name="email" placeholder="hello@email.com" required>
-        </div>
-      </div>
-      <div class="iform-row">
-        <div class="ifield">
-          <div class="ifield-label">연락처</div>
-          <input type="text" name="phone" placeholder="010-0000-0000">
-        </div>
-        <div class="ifield">
-          <div class="ifield-label">의뢰 분야</div>
-          <select name="category" required>
-            <option value="" disabled selected>선택하세요</option>
-            <option value="Brand Identity">Brand Identity</option>
-            <option value="Graphic Design">Graphic Design</option>
-            <option value="Spatial Design">Spatial Design</option>
-            <option value="기타">기타</option>
-          </select>
-        </div>
-      </div>
-      <div class="iform-row full">
-        <div class="ifield">
-          <div class="ifield-label">예산 (선택)</div>
-          <select name="budget">
-            <option value="" disabled selected>예산 범위 선택</option>
-            <option value="~100만원">100만원 이하</option>
-            <option value="100~300만원">100 — 300만원</option>
-            <option value="300~500만원">300 — 500만원</option>
-            <option value="500만원~">500만원 이상</option>
-            <option value="협의">협의 가능</option>
-          </select>
-        </div>
-      </div>
-      <div class="iform-row full">
-        <div class="ifield">
-          <div class="ifield-label">프로젝트 내용</div>
-          <textarea name="message" placeholder="어떤 작업이 필요하신지 간략히 설명해주세요." required></textarea>
-        </div>
-      </div>
-      <div class="iform-submit">
-        <div class="iform-notice">보내주신 내용은 검토 후 3영업일 이내 답변드립니다.</div>
-        <button type="submit" class="iform-btn" id="iformBtn">Send Inquiry ↗</button>
-      </div>
-    </form>
-  </div>
 
-  <!-- 하단 푸터 -->
-  <div class="c-bottom rv">
-    <a href="mailto:ppearwayy@gmail.com" class="c-email">
-      ppearwayy@gmail.com <span class="c-arr">↗</span>
-    </a>
-    <div class="c-foot">
-      <span>© 2026 THISISPEARWAY</span>
-      <span>Seoul, Korea</span>
-      <span>Graphic Designer</span>
+  <!-- ① 홀 중심 수익성 + 낮밤 매출 분할 드래그 -->
+  <section class="fr-sec" id="fr-daytime" style="padding:80px 0 0;background:#fff;">
+    <!-- 사진 — 마우스 X에 따라 왼쪽 어둡고 오른쪽 밝게 -->
+    <div id="dnWrap" style="position:relative;height:520px;overflow:hidden;cursor:crosshair;">
+      <!-- 배경 이미지 -->
+      <img data-slot="dn-day" src="https://www.chickenfarmers.kr/images/con01_01.png" alt="" id="dnImgColor" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <!-- 어두운 오버레이 — 마우스 위치에 따라 왼쪽 밝기 조절 -->
+      <div id="dnOverlay" style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.08) 0%,rgba(0,0,0,.40) 100%);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:0;left:0;width:48%;padding:40px 40px 44px;">
+        <div style="font-size:11px;letter-spacing:4px;color:var(--yellow);font-weight:700;margin-bottom:10px;">DAYTIME</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,2.5vw,34px);font-weight:700;color:#fff;line-height:1.3;margin-bottom:10px;">낮에는<br><em style="font-style:normal;color:var(--yellow);">파스타</em>로<br>점심 매출</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.8;">수제 파스타 8,900원~</div>
+      </div>
+      <!-- 우측 텍스트 -->
+      <div style="position:absolute;bottom:0;right:0;width:48%;padding:40px 40px 44px;text-align:right;">
+        <div style="font-size:11px;letter-spacing:4px;color:rgba(255,255,255,.6);font-weight:700;margin-bottom:10px;">NIGHTTIME</div>
+        <div style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,2.5vw,34px);font-weight:700;color:#fff;line-height:1.3;margin-bottom:10px;">밤에는<br><em style="font-style:normal;color:var(--yellow);">치킨·주류</em>로<br>저녁 매출</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;">치맥으로 테이블 단가 UP</div>
+      </div>
+      <!-- 힌트 -->
+      <div id="hoverHint" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);padding:10px 22px;font-size:12px;color:#fff;letter-spacing:1px;pointer-events:none;transition:opacity .4s;white-space:nowrap;">마우스를 올려보세요 →</div>
     </div>
-  </div>
-
-</section>
-
-<!-- ═══ TYPE PAGE OVERLAY ═══ -->
-<div id="type-ov">
-
-  <!-- Type page nav -->
-  <div class="tp-nav">
-    <span class="tp-logo">THISISPEARWAY</span>
-    <button class="tp-close" onclick="closeType()">← Back</button>
-  </div>
-
-  <!-- Hero: giant Korean character -->
-  <div class="tp-hero" id="tp-hero">
-    <div class="tp-stage">
-      <div class="tp-wrap" id="tp-wrap"><div id="tp-bigL">우</div></div>
+    <!-- 수치 바 (생맥주 제거) -->
+    <div style="background:#1F1F1F;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background-color:#333;">
+      <div style="background:#1F1F1F;padding:28px 24px;text-align:center;"><div style="font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;color:var(--yellow);">8,900<small style="font-size:14px;">원~</small></div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:6px;letter-spacing:.5px;">파스타 시작가</div></div>
+      <div style="background:#1F1F1F;padding:28px 24px;text-align:center;"><div style="font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;color:var(--yellow);">점심+저녁</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:6px;letter-spacing:.5px;">하루 종일 매출 발생</div></div>
+      <div style="background:#1F1F1F;padding:28px 24px;text-align:center;"><div style="font-family:'Noto Serif KR',serif;font-size:26px;font-weight:700;color:var(--yellow);">치맥</div><div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:6px;letter-spacing:.5px;">저녁 핵심 조합</div></div>
     </div>
-    <div class="tp-co tl">우아한 세리프<br>Typeface 2026</div>
-    <div class="tp-co tr">클래식 세리프에서 영감을 얻어<br>한글로 표현한 품격있는 서체</div>
-    <div class="tp-co bl">Light &amp; Bold<br>2 Weights</div>
-    <div class="tp-co br">아래 자모를<br>호버해 미리보기</div>
-    <div id="tp-astrip"></div>
-  </div>
+  </section>
 
-  <!-- Interactive preview -->
-  <div class="tp-preview">
-    <div class="tp-prev-hd">
-      <span class="tp-prev-tag">미리보기</span>
-      <div class="tp-ctrls">
-        <div class="tp-sw">
-          <label>크기</label>
-          <input type="range" id="tp-szR" min="24" max="180" value="80">
-          <span id="tp-szV">80px</span>
+  <!-- ② 152도 저염식 치킨 -->
+  <section class="fr-sec fr-sec-alt" id="fr-152">
+    <div class="fri">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+        <div class="sf-left">
+          <div class="fr-en">Premium Chicken</div>
+          <h2 class="fr-h2" style="margin-bottom:20px;">세상에 없던 바삭함<br><em style="font-style:normal;color:var(--green);">국내 유일 152도</em></h2>
+          <p class="fr-p" style="margin-bottom:28px;">강한 염지가 필요 없을 만큼 신선한 고기. 쌀가루+옥수수가루로 만든 얇고 바삭한 튀김옷을 152도에서 튀겨냅니다. 아이부터 어른까지 누구나 먹을 수 있는 저염식 치킨.</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;border-top:1px solid var(--border);padding-top:28px;">
+            <div style="text-align:center;"><div class="scramble-num" data-target="152" data-suffix="°" style="font-family:'Noto Serif KR',serif;font-size:28px;font-weight:700;color:var(--green);">152°</div><div style="font-size:11px;color:var(--text-sub);margin-top:4px;">국내 유일<br>튀김 온도</div></div>
+            <div style="text-align:center;"><div class="scramble-num" data-target="0" data-suffix="밀" style="font-family:'Noto Serif KR',serif;font-size:28px;font-weight:700;color:var(--green);">0밀</div><div style="font-size:11px;color:var(--text-sub);margin-top:4px;">밀가루 없는<br>튀김옷</div></div>
+            <div style="text-align:center;"><div class="scramble-num" data-target="100" data-suffix="%" style="font-family:'Noto Serif KR',serif;font-size:28px;font-weight:700;color:var(--green);">100%</div><div style="font-size:11px;color:var(--text-sub);margin-top:4px;">국내산<br>냉장육</div></div>
+          </div>
         </div>
-        <div class="tp-btns">
-          <button class="tp-xbtn" data-tw="uahan-light">Light</button>
-          <button class="tp-xbtn on" data-tw="uahan-bold">Bold</button>
+        <div class="sf-right" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:var(--green);color:#fff;padding:28px 20px;border-radius:4px;">
+            <div style="font-size:22px;margin-bottom:10px;">🌽</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px;">옥수수가루</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.7;">강원도 정선 찰옥수수. 바삭함과 고소함의 핵심</div>
+          </div>
+          <div style="background:var(--yellow);color:#014A2A;padding:28px 20px;border-radius:4px;">
+            <div style="font-size:22px;margin-bottom:10px;">🌾</div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:6px;">쌀가루</div>
+            <div style="font-size:12px;color:rgba(31,79,42,.7);line-height:1.7;">얇고 바삭한 튀김옷. 기름기 적어 가볍게</div>
+          </div>
+          <div style="background:#1F1F1F;color:#fff;padding:28px 20px;border-radius:4px;grid-column:span 2;">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--yellow);">홀 중심 영업의 높은 수익성</div>
+            <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.8;">배달 수수료 없는 홀 중심 운영. 치킨+파스타+주류 세트 주문으로 테이블당 수익이 극대화됩니다. 배달 의존도를 낮춰 실질 마진이 높습니다.</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="tp-pbox">
-      <div class="tp-pph" id="tp-pph">우아함이란</div>
-      <textarea id="tp-ptxt" rows="3" spellcheck="false" placeholder="텍스트를 입력하세요"></textarea>
-    </div>
-  </div>
+  </section>
 
-  <!-- Glyphs — 한글 자모 -->
-  <div class="tp-glyphs">
-    <span class="tp-glabel">글리프</span>
-    <div class="tp-alpha">
-      <span class="ta">가</span><span class="tb">나</span><span class="ty">다</span><span class="tb">라</span><span class="tr2">마</span><span class="tb">바</span><span class="ta">사</span><span class="tb">아</span><span class="ty">자</span><span class="tb">차</span><span class="tr2">카</span><span class="tb">타</span><span class="ta">파</span><span class="ty">하</span>
-    </div>
-    <div class="tp-alpha" style="margin-top:8px">
-      <span class="tb">갈</span><span class="ty">꽃</span><span class="tb">달</span><span class="ta">봄</span><span class="tb">숲</span><span class="tr2">얼</span><span class="tb">잎</span><span class="ty">품</span><span class="tb">흙</span>
-    </div>
-    <div class="tp-numrow">0123456789</div>
-  </div>
-
-  <!-- Weights -->
-  <div class="tp-wts">
-    <div class="tp-wlb">Weights</div>
-    <div class="tp-wr">
-      <div class="tp-wn">Light</div>
-      <div class="tp-ws uahan-light">우아함이란 형태의 절제에서 시작된다</div>
-    </div>
-    <div class="tp-wr">
-      <div class="tp-wn">Bold</div>
-      <div class="tp-ws uahan-bold">우아함이란 형태의 절제에서 시작된다</div>
-    </div>
-  </div>
-
-  <!-- Download -->
-  <div class="tp-dl">
-    <div class="tp-dl-bg">무료</div>
-    <div class="tp-dl-in">
-      <div>
-        <div class="tp-dl-hl">우아한<br>세리프를<br>무료로.</div>
-        <p class="tp-dl-desc">개인 프로젝트에 무료로 사용하실 수 있습니다. 상업적 사용은 별도 문의해 주세요.</p>
+  <!-- ③ 직영농장 + 자체공장 -->
+  <section class="fr-sec fr-sec-dk" id="fr-farm">
+    <div class="fri">
+      <div class="fr-hd">
+        <div class="fr-en" style="color:var(--yellow);">Farm to Table</div>
+        <h2 class="fr-h2">우리가 직접 키우고<br>가공하고 배송합니다</h2>
+        <p class="fr-p">중간 유통 없는 One-Stop 시스템으로 원가를 낮추고 신선도를 지킵니다.</p>
       </div>
-      <div>
-        <div class="tp-dl-row"><div class="tp-dk">파일 형식</div><div class="tp-dv">OTF / TTF</div></div>
-        <div class="tp-dl-row"><div class="tp-dk">언어</div><div class="tp-dv">한국어 완성형</div></div>
-        <div class="tp-dl-row"><div class="tp-dk">웨이트</div><div class="tp-dv">Light · Bold</div></div>
-        <div class="tp-dl-row"><div class="tp-dk">라이선스</div><div class="tp-dv">무료 — 개인용</div></div>
-        <!--
-          출시 후: 아래 두 줄 주석 해제, 그 아래 Coming Soon 블록 삭제
-          <a href="fonts/우아한세리프-Light.otf" download class="tp-dl-btn">Light 다운로드 ↓</a>
-          <a href="fonts/우아한세리프-Bold.otf" download class="tp-dl-btn" style="margin-top:8px">Bold 다운로드 ↓</a>
-        -->
-        <a href="#" class="tp-dl-btn" style="opacity:.35;pointer-events:none">다운로드 준비 중 ↓</a>
-        <div class="tp-soon"><div class="tp-sd"></div>출시 준비 중</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin-bottom:48px;">
+        <div style="background:#014A2A;padding:36px 24px;text-align:center;" class="sf">
+          <div style="font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--yellow);line-height:1;"><span class="scramble-num" data-target="100" data-suffix="개">100개</span></div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.6;">전국 협력<br>농가 수</div>
+        </div>
+        <div style="background:#014A2A;padding:36px 24px;text-align:center;" class="sf" data-delay="1">
+          <div style="font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--yellow);line-height:1;"><span class="scramble-num" data-target="650" data-suffix="만">650만</span></div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.6;">평균 계육<br>사육 수</div>
+        </div>
+        <div style="background:#014A2A;padding:36px 24px;text-align:center;" class="sf" data-delay="2">
+          <div style="font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--yellow);line-height:1;"><span class="scramble-num" data-target="4020" data-suffix="만">4,020만</span></div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.6;">연 평균 판매<br>계육 수</div>
+        </div>
+        <div style="background:#014A2A;padding:36px 24px;text-align:center;" class="sf" data-delay="3">
+          <div style="font-family:'Noto Serif KR',serif;font-size:40px;font-weight:700;color:var(--yellow);line-height:1;"><span class="scramble-num" data-target="4" data-suffix="곳">4곳</span></div>
+          <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.6;">전국 자체<br>가공 공장</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+        <div style="background:#fff;padding:36px 28px;" class="sf">
+          <div style="width:40px;height:3px;background:var(--yellow);margin-bottom:20px;"></div>
+          <div style="font-size:11px;letter-spacing:3px;color:#014A2A;font-weight:700;margin-bottom:14px;">01 FARM</div>
+          <div style="font-size:22px;font-weight:700;color:#014A2A;margin-bottom:12px;font-family:'Noto Serif KR',serif;">직접 사육</div>
+          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">전국 100개 농가에서 전문 사육.<br>항생제 없이 키운 동물복지 냉장육</div>
+        </div>
+        <div style="background:#fff;padding:36px 28px;" class="sf" data-delay="1">
+          <div style="width:40px;height:3px;background:var(--yellow);margin-bottom:20px;"></div>
+          <div style="font-size:11px;letter-spacing:3px;color:#014A2A;font-weight:700;margin-bottom:14px;">02 FACTORY</div>
+          <div style="font-size:22px;font-weight:700;color:#014A2A;margin-bottom:12px;font-family:'Noto Serif KR',serif;">자체 가공</div>
+          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">전국 4곳 자체 공장 운영.<br>도축부터 가공까지 직접 관리</div>
+        </div>
+        <div style="background:#fff;padding:36px 28px;" class="sf" data-delay="2">
+          <div style="width:40px;height:3px;background:var(--yellow);margin-bottom:20px;"></div>
+          <div style="font-size:11px;letter-spacing:3px;color:#014A2A;font-weight:700;margin-bottom:14px;">03 DELIVERY</div>
+          <div style="font-size:22px;font-weight:700;color:#014A2A;margin-bottom:12px;font-family:'Noto Serif KR',serif;">직접 배송</div>
+          <div style="font-size:13px;color:var(--text-sub);line-height:1.8;">중간 유통 없는 직배송.<br>낮은 원가율로 점주 수익 극대화</div>
+        </div>
+
       </div>
     </div>
-  </div>
+  </section>
 
+  <!-- ④ SNS 릴스 -->
+  <section class="fr-sec" id="fr-sns" style="background:#014A2A;">
+    <div class="fri">
+      <div class="fr-hd">
+        <div class="fr-en" style="color:var(--yellow);">SNS Reels</div>
+        <h2 class="fr-h2" style="color:#fff;">고객이 먼저<br>알아봅니다</h2>
+      </div>
+
+      <!-- 인스타그램 릴스 임베드 3개 -->
+      <div id="reelsGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;">
+        <!-- Reel 1 -->
+        <div class="reel-slot sf" id="reel-slot-1">
+          <div class="reel-placeholder" id="reel-ph-1" style="background:rgba(255,255,255,.08);border:1.5px dashed rgba(255,255,255,.25);border-radius:6px;aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.4);">
+            <div style="font-size:32px;">▶</div>
+            <div style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.5);">Reel 1</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;padding:0 20px;">어드민에서<br>URL을 등록하세요</div>
+          </div>
+        </div>
+        <!-- Reel 2 -->
+        <div class="reel-slot sf" data-delay="1" id="reel-slot-2">
+          <div class="reel-placeholder" id="reel-ph-2" style="background:rgba(255,255,255,.08);border:1.5px dashed rgba(255,255,255,.25);border-radius:6px;aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.4);">
+            <div style="font-size:32px;">▶</div>
+            <div style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.5);">Reel 2</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;padding:0 20px;">어드민에서<br>URL을 등록하세요</div>
+          </div>
+        </div>
+        <!-- Reel 3 -->
+        <div class="reel-slot sf" data-delay="2" id="reel-slot-3">
+          <div class="reel-placeholder" id="reel-ph-3" style="background:rgba(255,255,255,.08);border:1.5px dashed rgba(255,255,255,.25);border-radius:6px;aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.4);">
+            <div style="font-size:32px;">▶</div>
+            <div style="font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.5);">Reel 3</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;padding:0 20px;">어드민에서<br>URL을 등록하세요</div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- Revenue -->
+  <section class="fr-sec fr-sec-alt" id="fr-revenue">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">Revenue Proof</div><h2 class="fr-h2">객단가 비교,<br>숫자로 증명합니다</h2></div>
+      <div class="rev-grid">
+        <div class="rev-box sf-left"><div class="rev-label">일반 치킨 단품</div><div class="rev-amount">19,900<span class="rev-unit">원~</span></div><p class="rev-note-sm">콘크런치 후라이드 기준<br>치킨 단품 가격</p></div>
+        <div class="rev-vs">VS</div>
+        <div class="rev-box rev-box-hi sf-right"><div class="rev-label">치킨파머스 치파세트</div><div class="rev-amount">30,900<span class="rev-unit">원~</span></div><p class="rev-note-sm">맵콘치파세트 기준<br>치킨+파스타 세트 가격</p></div>
+      </div>
+      <p class="rev-caption">치파세트 하나로 객단가가 1.5배 이상 높아집니다.<br><strong>같은 손님 수로도 훨씬 높은 매출을 달성할 수 있어, 점주님의 수익을 극대화합니다.</strong></p>
+    </div>
+  </section>
+
+  <!-- Support -->
+  <section class="fr-sec" id="fr-support">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">HQ Support</div><h2 class="fr-h2">본사가 끝까지<br>함께합니다</h2><p class="fr-p">오픈 전부터 오픈 후까지. 체계적인 지원 시스템.</p></div>
+      <div class="sup-grid">
+        <div class="sup-card sf"><div class="sup-num">01</div><h3 class="sup-title">상권 분석</h3><p class="sup-desc">전문 MD가 상권을 직접 분석하여 최적의 입지를 추천해 드립니다.</p></div>
+        <div class="sup-card sf" data-delay="1"><div class="sup-num">02</div><h3 class="sup-title">교육 프로그램</h3><p class="sup-desc">조리 교육부터 매장 운영까지, 체계적인 교육으로 빠른 숙련을 도와드립니다.</p></div>
+        <div class="sup-card sf" data-delay="2"><div class="sup-num">03</div><h3 class="sup-title">인테리어 지원</h3><p class="sup-desc">브랜드 통일성을 유지하면서도 최적의 인테리어를 제공합니다.</p></div>
+        <div class="sup-card sf" data-delay="3"><div class="sup-num">04</div><h3 class="sup-title">마케팅 지원</h3><p class="sup-desc">SNS 마케팅, 배달앱 프로모션으로 집객을 지원합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="fr-sec" id="fr-menu" style="background:var(--yellow);">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">Menu</div><h2 class="fr-h2">팔릴 수밖에 없는<br>시그니처 메뉴</h2><p class="fr-p">치킨과 파스타, 두 카테고리로 폭넓은 고객층을 확보합니다.</p></div>
+      <div class="mp-grid">
+        <div class="mp-card sf" data-delay="1"><div class="mp-img"><img data-slot="fr-menu-1" src="https://www.chickenfarmers.kr/images/con02_08.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Corn Crunch</div><div class="mp-name">콘크런치 후라이드</div><div class="mp-price">옥수수 후레이크 겉바속촉 · 19,900원</div></div></div>
+        <div class="mp-card sf" data-delay="2"><div class="mp-img"><img data-slot="fr-menu-2" src="https://www.chickenfarmers.kr/images/con02_03.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Honey Corn ★</div><div class="mp-name">파머스 허니콘치킨</div><div class="mp-price">달달한 옥수수 폭탄 · 23,900원</div></div></div>
+        <div class="mp-card sf" data-delay="3"><div class="mp-img"><img data-slot="fr-menu-3" src="https://www.chickenfarmers.kr/images/con02_09.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Bacon Cream</div><div class="mp-name">파머스 베이컨크림파스타</div><div class="mp-price">진한 크림소스 수제파스타 · 10,900원</div></div></div>
+        <div class="mp-card sf" data-delay="4"><div class="mp-img"><img data-slot="fr-menu-4" src="https://www.chickenfarmers.kr/images/con02_06.png" alt="" onerror="this.parentElement.style.background='var(--bg)'"></div><div class="mp-body"><div class="mp-en">Rose Pasta ★</div><div class="mp-name">파머스 슈림프로제파스타</div><div class="mp-price">통통한 새우 수제파스타 · 10,900원</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost -->
+  <section class="fr-sec fr-sec-dk" id="fr-cost">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">Startup Cost</div><h2 class="fr-h2">창업 비용 안내</h2><p class="fr-p">합리적인 창업 비용으로 빠른 손익분기점을 달성하세요.</p></div>
+      <div class="cost-wrap">
+        <table class="cost-tbl">
+          <thead><tr><th>항목</th><th>내용</th><th>비용</th></tr></thead>
+          <tbody>
+            <tr><td>가맹비</td><td>브랜드 사용권 및 교육비 포함</td><td>500만원</td></tr>
+            <tr><td>교육비</td><td>본사 조리 및 운영 교육</td><td>200만원</td></tr>
+            <tr><td>인테리어</td><td>전용 인테리어 (26평 이상)</td><td>4,680만원~</td></tr>
+            <tr><td>주방 설비</td><td>조리기구, 냉장장비 일체</td><td>1,500만원~</td></tr>
+            <tr><td>간판 및 외장</td><td>외부 사인물 일체</td><td>700만원~</td></tr>
+            <tr><td>초도물품</td><td>오픈 준비 식자재·소모품</td><td>200만원~</td></tr>
+            <tr class="cost-total"><td><strong>합계 (보증금 제외)</strong></td><td>부지 임차비용 별도</td><td><strong>약 7,780만원~</strong></td></tr>
+          </tbody>
+        </table>
+        <p class="cost-note">※ 상기 비용은 매장 규모 및 위치에 따라 달라질 수 있습니다. ※ 부지 임차 보증금 및 권리금은 포함되지 않습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories -->
+  <section class="fr-sec fr-sec-alt" id="fr-stories">
+    <div class="fri">
+      <div class="fr-hd"><div class="fr-en">Success Stories</div><h2 class="fr-h2">먼저 시작한 점주님들의<br>생생한 이야기</h2></div>
+      <div class="stor-grid">
+        <div class="stor-card sf-scale" data-delay="1"><div class="stor-img"><img data-slot="fr-s1" src="https://www.chickenfarmers.kr/images/con03_08.png" alt="" onerror="this.style.display='none'"><div class="stor-loc">강동강일점</div></div><div class="stor-body"><h3 class="stor-title">"치파세트 덕에 객단가가 확실히 높아졌어요"</h3><p class="stor-txt">가족 손님이 늘면서 재방문율도 올라갔습니다.</p><div class="stor-rev"><div class="stor-rev-val">월 3,200만원</div><div class="stor-rev-lbl">월 평균 매출</div></div></div></div>
+        <div class="stor-card sf-scale" data-delay="2"><div class="stor-img"><img data-slot="fr-s2" src="https://www.chickenfarmers.kr/images/con03_09.png" alt="" onerror="this.style.display='none'"><div class="stor-loc">수원파장점</div></div><div class="stor-body"><h3 class="stor-title">"본사 지원이 탄탄해서 첫 창업도 불안함 없었어요"</h3><p class="stor-txt">상권 분석부터 오픈 마케팅까지 전부 도움받았습니다.</p><div class="stor-rev"><div class="stor-rev-val">월 2,800만원</div><div class="stor-rev-lbl">월 평균 매출</div></div></div></div>
+        <div class="stor-card sf-scale" data-delay="3"><div class="stor-img"><img data-slot="fr-s3" src="https://www.chickenfarmers.kr/images/con03_10.png" alt="" onerror="this.style.display='none'"><div class="stor-loc">오산원동점</div></div><div class="stor-body"><h3 class="stor-title">"점심에도 파스타 손님이 오니 매출이 달라요"</h3><p class="stor-txt">파스타 덕분에 점심 고객도 잡을 수 있게 됐습니다.</p><div class="stor-rev"><div class="stor-rev-val">월 2,500만원</div><div class="stor-rev-lbl">월 평균 매출</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consult -->
+  <section class="fr-sec" id="fr-consult" style="background:var(--green);">
+    <div class="fri">
+      <div class="consult-layout">
+        <div>
+          <div class="fr-en" style="color:var(--yellow);">Free Consultation</div>
+          <h2 class="fr-h2" style="text-align:left;color:#fff;">지금 바로<br>무료 창업 상담을<br>받아보세요</h2>
+          <p class="fr-p" style="text-align:left;color:rgba(255,255,255,.65);">창업을 결심하기 전, 궁금한 것들을 먼저 물어보세요. 전담 창업 MD가 1:1로 친절하게 안내해 드립니다.</p>
+          <div class="consult-info">
+            <div class="ci"><div class="ci-ico" style="background:var(--yellow-pale);color:#014A2A;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"></path></svg></div><div><div class="ci-lbl" style="color:rgba(255,255,255,.5);">대표 전화</div><div class="ci-val" style="color:#fff;">1670-6641</div></div></div>
+            <div class="ci"><div class="ci-ico" style="background:#FEE500;color:#3D1D1D;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.9 2 11.7c0 2.97 1.72 5.6 4.35 7.18L5.4 22l4.07-2.1c.83.16 1.67.24 2.53.24 5.52 0 10-3.9 10-8.7C22 6.9 17.52 3 12 3z"/></svg></div><div><div class="ci-lbl" style="color:rgba(255,255,255,.5);">카카오톡</div><div class="ci-val" style="color:#fff;">@치킨파머스</div></div></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <div class="form-ttl">창업 상담 신청서</div>
+          <div class="f-row"><label class="f-lbl">이름 *</label><input type="text" class="f-inp" id="fName" placeholder="성함을 입력해 주세요"></div>
+          <div class="f-row"><label class="f-lbl">연락처 *</label><input type="tel" class="f-inp" id="fPhone" placeholder="010-0000-0000"></div>
+          <div class="f-row"><label class="f-lbl">희망 창업 지역 *</label><input type="text" class="f-inp" id="fRegion" placeholder="예: 서울 강남구"></div>
+          <div class="f-row"><label class="f-lbl">상가 보유 여부 *</label><select class="f-sel" id="fBuilding"><option value="">선택해 주세요</option><option value="own">상가 보유 (직접 소유)</option><option value="lease">상가 임차 예정</option><option value="searching">상가 물색 중</option><option value="none">미정 / 없음</option></select></div>
+          <div class="f-row"><label class="f-lbl">창업 예정 시기</label><select class="f-sel"><option value="">선택해 주세요</option><option>3개월 이내</option><option>6개월 이내</option><option>1년 이내</option><option>아직 미정</option></select></div>
+          <div class="f-row"><label class="f-lbl">문의 내용</label><textarea class="f-txt" placeholder="궁금하신 점을 자유롭게 적어주세요"></textarea></div>
+          <button class="f-sub" id="fSub">상담 신청하기</button>
+          <p class="f-sub-note">개인정보는 창업 상담 목적으로만 사용됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fr-footer">
+    <div class="fr-footer-inner">
+      <div class="fr-fl"><img src="https://www.chickenfarmers.kr/images/header_01.png" alt="" id="frfl" onerror="this.style.display='none';document.getElementById('frfl-fb').style.display='block'"><span class="fr-fl-fb" id="frfl-fb" style="display:none">CHICKEN FARMERS</span></div>
+      <div class="fr-fi">
+        주식회사 금화식품 &nbsp;|&nbsp; 대표자 이승훈 &nbsp;|&nbsp; 사업자번호 317-81-21940<br>
+        가맹사업본부 &nbsp;서울특별시 서초구 논현로 17길 19 (양재동, 덕산빌딩) 3층 전관<br>
+        대표전화 1670-6641 &nbsp;|&nbsp; 이메일 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f343771392d3e313c37362c3a1f38323e3633713c3032">[email&#160;protected]</a> &nbsp;|&nbsp; 본사 충청북도 청주시 청원구 내수읍 초정약수로 811<br>
+        <span style="color:rgba(255,255,255,.15);font-size:10px;">Copyright ⓒ THISISPEARWAY Co,. Ltd all Rights Reserved.</span>
+      </div>
+    </div>
+  </footer>
+  <button class="fr-back" onclick="goEntry()">← 처음으로</button>
+  <div class="floats">
+    <a href="tel:1670-6641" class="fl fl-tel" style="font-size:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"></path></svg></a>
+    <a href="https://pf.kakao.com/_sRxeJG/chat" class="fl fl-kko" style="font-size:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#3D1D1D" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C6.48 3 2 6.9 2 11.7c0 2.97 1.72 5.6 4.35 7.18L5.4 22l4.07-2.1c.83.16 1.67.24 2.53.24 5.52 0 10-3.9 10-8.7C22 6.9 17.52 3 12 3z"/></svg></a>
+    <button class="fl fl-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+  </div>
 </div>
 
-<!-- ═══ DETAIL OVERLAY ═══ -->
-<div id="detail-ov">
-  <div class="d-topbar">
-    <span class="d-topbar-title" id="d-topbar-title">THISISPEARWAY</span>
-    <button id="detail-close">← Back</button>
+<!-- ADMIN -->
+<!-- 공지 상세 모달 -->
+<div id="noticeModal" onclick="if(event.target===this)closeNotice()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:900;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;position:relative;">
+    <div style="background:#1F1F1F;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-size:13px;font-weight:700;color:#fff;font-family:'Noto Sans KR',sans-serif;">공지사항</span>
+      <button onclick="closeNotice()" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:22px;cursor:pointer;line-height:1;">×</button>
+    </div>
+    <div id="noticeModalContent" style="padding:36px;"></div>
   </div>
-  <div id="d-body"></div>
 </div>
 
-<script>
-/* ═══════════════════════════════════════════════
-   ▼ 여기만 편집하면 작업이 추가됩니다 ▼
-   
-   각 항목:
-   - title: 프로젝트 이름
-   - cat: 'brand' | 'typography' | 'graphic' | 'spatial'
-   - color: 이미지 없을 때 배경색 (원하는 색으로 변경 가능)
-   - img: 이미지 URL (없으면 '' 빈칸)
-   
-   예시:
-   { title:'브랜드 프로젝트', cat:'brand', color:'#1B4AE8', img:'' }
-═══════════════════════════════════════════════ */
+<!-- Admin: Ctrl+Shift+A 로 열기 -->
+<div id="adminOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;overflow-y:auto;">
+<div style="max-width:900px;margin:40px auto;background:#fff;">
+  <div style="background:#1F1F1F;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;">
+    <div><div style="font-size:11px;letter-spacing:4px;color:#E4B331;margin-bottom:4px;">ADMIN</div><div style="font-size:18px;font-weight:700;color:#fff;font-family:'Noto Sans KR',sans-serif;">이미지 관리</div></div>
+    <button onclick="closeAdmin()" style="background:none;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);padding:8px 18px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">닫기</button>
+  </div>
+  <div id="adminLogin" style="padding:60px 32px;text-align:center;">
+    <div style="font-size:13px;color:#888;margin-bottom:20px;">관리자 비밀번호를 입력하세요</div>
+    <div style="display:flex;gap:8px;max-width:320px;margin:0 auto;">
+      <input id="adminPw" type="password" placeholder="비밀번호" style="flex:1;padding:12px 16px;border:1px solid #ddd;font-size:14px;outline:none;font-family:'Noto Sans KR',sans-serif;" onkeydown="if(event.key==='Enter')adminLogin()">
+      <button onclick="adminLogin()" style="background:#014A2A;color:#fff;border:none;padding:12px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">확인</button>
+    </div>
+    <div id="adminPwErr" style="color:#c00;font-size:12px;margin-top:10px;display:none;">비밀번호가 틀렸습니다.</div>
+  </div>
+  <div id="adminPanel" style="display:none;padding:32px;">
+    <div style="font-size:12px;color:#888;margin-bottom:24px;padding:12px 16px;background:#f9f9f9;border-left:3px solid #E4B331;">클릭하여 파일 선택 → 즉시 반영. 새로고침 후에도 유지됩니다.</div>
+    <div id="adminSections"></div>
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid #eee;display:flex;gap:10px;justify-content:flex-end;">
+      <button onclick="adminReset()" style="background:#fff;border:1px solid #ddd;padding:10px 20px;font-size:13px;cursor:pointer;color:#888;font-family:'Noto Sans KR',sans-serif;">초기화</button>
+      <button onclick="closeAdmin()" style="background:#014A2A;color:#fff;border:none;padding:10px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">완료</button>
+    </div>
+  </div>
+</div>
+</div>
 
-
-
-// ── 의뢰 폼 — Google Sheets 연동
-/*
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  구글 시트 연동 설정 방법:
-  1. 구글 시트 새로 만들기
-  2. 확장 프로그램 → Apps Script 열기
-  3. 아래 코드 붙여넣고 저장:
-
-  function doPost(e) {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    const data = JSON.parse(e.postData.contents);
-    sheet.appendRow([
-      new Date(),
-      data.name, data.email, data.phone,
-      data.category, data.budget, data.message
-    ]);
-    return ContentService.createTextOutput('ok');
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── Navigation ──
+const SN_CFG = {
+  story:{s:'브랜드소개',l:[['브랜드 스토리','story'],['CEO 인사말','about'],['연혁','history']]},
+  about:{s:'브랜드소개',l:[['브랜드 스토리','story'],['CEO 인사말','about'],['연혁','history']]},
+  history:{s:'브랜드소개',l:[['브랜드 스토리','story'],['CEO 인사말','about'],['연혁','history']]},
+  menu:{s:'메뉴',l:[]},interior:{s:'인테리어',l:[]},
+  notice:{s:'커뮤니티',l:[['공지사항','notice'],['이벤트·뉴스','event'],['고객 리뷰','review']]},
+  event:{s:'커뮤니티',l:[['공지사항','notice'],['이벤트·뉴스','event'],['고객 리뷰','review']]},
+  review:{s:'커뮤니티',l:[['공지사항','notice'],['이벤트·뉴스','event'],['고객 리뷰','review']]},
+  faq:{s:'고객게시판',l:[['FAQ','faq'],['고객 문의','inquiry']]},
+  inquiry:{s:'고객게시판',l:[['FAQ','faq'],['고객 문의','inquiry']]},
+};
+function showSc(id){document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('on');s.style.display='';});const el=document.getElementById(id);el.classList.add('on');if(id==='entry')el.style.display='flex';window.scrollTo({top:0,behavior:'instant'});requestAnimationFrame(function(){window.scrollTo({top:0,behavior:'instant'});});observeSF();}
+function goEntry(){showSc('entry');}
+function goFr(){
+  if(window.__cfTrack) window.__cfTrack('franchise');
+  if(window.__cfSetPage) window.__cfSetPage('franchise');showSc('franchise');}
+function goBrand(page){
+  if(window.__cfTrack) window.__cfTrack('brand-'+page);
+  if(window.__cfSetPage) window.__cfSetPage('brand-'+page);
+  showSc('brand');
+  document.querySelectorAll('.b-subpage').forEach(s=>s.classList.remove('on'));
+  (document.getElementById('bsp-'+page)||document.getElementById('bsp-home')).classList.add('on');
+  const sn=document.getElementById('bSN'),snr=document.getElementById('bSNR');
+  if(page==='home'){sn.classList.remove('show');snr.innerHTML='';}
+  else{const cfg=SN_CFG[page];if(cfg){sn.classList.add('show');let h=`<div class="b-sn-section">${cfg.s}</div>`;cfg.l.forEach(([lbl,pg])=>{h+=`<div class="b-sn-link${pg===page?' on':''}" onclick="goBrand('${pg}')">${lbl}</div>`;});snr.innerHTML=h;}else sn.classList.remove('show');}
+  // 메뉴 페이지 진입 시 첫 탭(치킨 단품)으로 초기화
+  if(page==='menu'){
+    document.querySelectorAll('.mp-cat').forEach((t,i)=>t.classList.toggle('on',i===0));
+    const grid=document.getElementById('mpGrid');
+    if(grid) grid.querySelectorAll('.mp-card').forEach(card=>{
+      card.style.display=(card.dataset.cat==='치킨')?'':'none';
+    });
   }
-
-  4. 배포 → 새 배포 → 웹 앱 → 액세스: 모든 사용자 → 배포
-  5. 생성된 URL을 아래 SHEET_URL에 붙여넣기
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-*/
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxpnM5PZK2SJxZNhd2KQBL4Mk14KKGMBaQ-OVTMrRCmCwfIBZRsGUwzN0zx9lkLxqogJA/exec';
-
-async function submitForm(e) {
-  e.preventDefault();
-  const form = document.getElementById('iform');
-  const btn  = document.getElementById('iformBtn');
-
-  // 폼 데이터 수집
-  const data = {
-    name:     form.querySelector('[name=name]').value,
-    email:    form.querySelector('[name=email]').value,
-    phone:    form.querySelector('[name=phone]').value,
-    category: form.querySelector('[name=category]').value,
-    budget:   form.querySelector('[name=budget]').value,
-    message:  form.querySelector('[name=message]').value,
-  };
-
-  btn.disabled = true;
-  btn.textContent = 'Sending...';
-
-  // Google Sheets URL이 설정된 경우 전송
-  if (SHEET_URL) {
-    try {
-      await fetch(SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors', // Apps Script CORS 우회
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data),
-      });
-    } catch(err) {
-      // no-cors 모드에서는 에러 무시 (실제로는 전송됨)
-    }
-  } else {
-    // URL 미설정 시 — 이메일로 fallback
-    const subject = encodeURIComponent(`[의뢰] ${data.category} - ${data.name}`);
-    const body = encodeURIComponent(
-      `이름: ${data.name}\n이메일: ${data.email}\n연락처: ${data.phone}\n분야: ${data.category}\n예산: ${data.budget}\n\n내용:\n${data.message}`
-    );
-    window.location.href = `mailto:ppearwayy@gmail.com?subject=${subject}&body=${body}`;
-    btn.disabled = false;
-    btn.textContent = 'Send Inquiry ↗';
-    return;
+  if(page==='home'){
+    const grid=document.getElementById('bhGrid');
+    if(grid) grid.querySelectorAll('.bh-mc').forEach(card=>{
+      card.style.display=(card.dataset.cat==='치킨')?'':'none';
+    });
+    document.querySelectorAll('.bh-tab').forEach((t,i)=>{t.classList.toggle('on',i===0);});
   }
-
-  // 성공 처리
-  form.style.display = 'none';
-  document.getElementById('iformSuccess').classList.add('show');
+  if(page==='notice'||page==='event'||page==='home') renderNotices();
+  observeSF();
 }
 
-// ── 어드민 실시간 연동 — 같은 브라우저에서 admin.html 저장 시 자동 갱신
-window.addEventListener('storage', e => {
-  if (e.key !== 'tip_projects') return;
-  try {
-    const parsed = JSON.parse(e.newValue);
-    if (!Array.isArray(parsed)) return;
-    PROJECTS.length = 0;
-    parsed.forEach(p => PROJECTS.push(p));
-    rebuildGrid();
-  } catch(e) {}
+// ── Slider ──
+let ci=0;
+const slides=document.querySelectorAll('.bh-slide'),dots=document.querySelectorAll('.bh-dot');
+function goSlide(n){slides[ci].classList.remove('on');dots[ci].classList.remove('on');ci=n;slides[ci].classList.add('on');dots[ci].classList.add('on');}
+setInterval(()=>goSlide((ci+1)%slides.length),5000);
+
+// ── Home menu tabs ──
+function bhTab(el,cat){
+  el.parentElement.querySelectorAll('.bh-tab').forEach(x=>x.classList.remove('on'));
+  el.classList.add('on');
+  const grid=document.getElementById('bhGrid');
+  if(!grid)return;
+  grid.querySelectorAll('.bh-mc').forEach(card=>{
+    if(card.dataset.cat===cat){card.style.display='';setTimeout(()=>card.classList.add('in'),10);}
+    else card.style.display='none';
+  });
+}
+
+// ── Menu page filter ──
+function mpCat(el,cat){
+  el.parentElement.querySelectorAll('.mp-cat').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  const grid=document.getElementById('mpGrid');
+  if(!grid)return;
+  grid.querySelectorAll('.mp-card').forEach(card=>{card.style.display=(card.dataset.cat===cat)?'':'none';});
+}
+
+// ── FR scroll ──
+function frScroll(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+
+// ── FAQ ──
+function faqToggle(el){el.parentElement.classList.toggle('open');}
+
+// ── Scroll fade ──
+function observeSF(){
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1});
+  ['.sf','.sf-left','.sf-right','.sf-scale'].forEach(sel=>document.querySelectorAll(sel+':not(.in)').forEach(el=>io.observe(el)));
+}
+observeSF();
+
+// ── Counter ──
+function animCount(el){
+  const target=parseFloat(el.dataset.target||el.textContent);
+  const suffix=el.dataset.suffix||'';
+  const dur=1400;const start=performance.now();
+  function step(now){const p=Math.min((now-start)/dur,1);const ease=1-Math.pow(1-p,3);el.textContent=Math.floor(ease*target).toLocaleString()+suffix;if(p<1)requestAnimationFrame(step);else el.textContent=target.toLocaleString()+suffix;}
+  requestAnimationFrame(step);
+}
+
+// ── Form ──
+document.getElementById('fSub').addEventListener('click',function(){
+  const n=document.getElementById('fName').value.trim(),p=document.getElementById('fPhone').value.trim();
+  const r=document.getElementById('fRegion')?.value.trim();
+  const b=document.getElementById('fBuilding')?.value;
+  if(!n||!p){alert('이름과 연락처를 입력해 주세요.');return;}
+  if(!r){alert('희망 창업 지역을 입력해 주세요.');return;}
+  if(!b){alert('상가 보유 여부를 선택해 주세요.');return;}
+  var region=document.getElementById('fRegion')?.value||'';
+  if(window.__cfConversion) window.__cfConversion(region);
+  this.textContent='신청 완료 ✓';this.style.background='var(--yellow)';this.style.color='#014A2A';
+  setTimeout(()=>{alert('상담 신청이 완료되었습니다!\n담당 MD가 빠른 시간 내에 연락드리겠습니다.');this.textContent='상담 신청하기';this.style.background='';this.style.color='';},700);
 });
 
-const PROJECTS = [];
-const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial', web:'Web'};
+// ── Admin ──
+const SLOT_DEFS=[
+  {group:'브랜드 홈 — 히어로 슬라이더',slots:['hero-1','hero-2','hero-3']},
+  {group:'브랜드 홈 — 스토리 이미지',slots:['bh-story']},
+  {group:'브랜드 홈 — 메뉴 (치킨)',slots:['bh-m1','bh-m2','bh-m3','bh-m4']},
+  {group:'브랜드 홈 — 메뉴 (파스타·세트·사이드)',slots:['bh-m5','bh-m6','bh-m7','bh-m8','bh-m9','bh-m10','bh-m11','bh-m12']},
+  {group:'브랜드 홈 — 인테리어 갤러리',slots:['bh-g1','bh-g2','bh-g3','bh-g4','bh-g5']},
+  {group:'메뉴 페이지 — 치킨 단품',slots:['mp-c1','mp-c2','mp-c3','mp-c4','mp-c5','mp-c6','mp-c7','mp-c8','mp-c9','mp-c10']},
+  {group:'메뉴 페이지 — 치파세트',slots:['mp-s1','mp-s2','mp-s3','mp-s4','mp-s5','mp-s6','mp-s7']},
+  {group:'메뉴 페이지 — 파스타',slots:['mp-p1','mp-p2','mp-p3','mp-p4','mp-p5','mp-p6','mp-p7']},
+  {group:'메뉴 페이지 — 사이드',slots:['mp-sd1','mp-sd2','mp-sd3','mp-sd4','mp-sd5','mp-sd6']},
+  {group:'인테리어 페이지',slots:['ip-1','ip-2','ip-3','ip-4','ip-5','ip-6','ip-7']},
+  {group:'창업 랜딩 — 낮밤 비교 사진',slots:['dn-day']},
+  {group:'창업 랜딩 — 메뉴 소개',slots:['fr-menu-1','fr-menu-2','fr-menu-3','fr-menu-4']},
+  {group:'창업 랜딩 — 성공사례',slots:['fr-s1','fr-s2','fr-s3']},
+];
+const SLOT_LABELS={'hero-1':'히어로1','hero-2':'히어로2','hero-3':'히어로3','bh-story':'스토리사진','bh-m1':'맵콘치킨','bh-m2':'허니콘치킨','bh-m3':'스테이크치킨','bh-m4':'갈릭치킨','bh-m5':'슈림프로제파스타','bh-m6':'슈림프오일파스타','bh-m7':'베이컨크림파스타','bh-m8':'맵콘치파세트','bh-m9':'후라이드치파세트','bh-m10':'갈릭치파세트','bh-m11':'국물떡볶이','bh-m12':'모짜치즈볼','bh-g1':'갤러리1(메인)','bh-g2':'갤러리2','bh-g3':'갤러리3','bh-g4':'갤러리4','bh-g5':'갤러리5','mp-c1':'맵콘','mp-c2':'허니콘','mp-c3':'스테이크','mp-c4':'갈릭','mp-c5':'깻잎간장','mp-c6':'깻잎핫간장','mp-c7':'콘크런치후라이드','mp-c8':'양념치킨','mp-c9':'간장치킨','mp-c10':'반반치킨','mp-s1':'맵콘치파세트','mp-s2':'후라이드치파세트','mp-s3':'스테이크치파세트','mp-s4':'갈릭치파세트','mp-s5':'허니콘치파세트','mp-s6':'양념·간장세트','mp-s7':'깻잎세트','mp-p1':'슈림프로제','mp-p2':'바질크림','mp-p3':'베이컨바질크림','mp-p4':'베이컨토마토','mp-p5':'베이컨크림','mp-p6':'오일바질','mp-p7':'슈림프오일','mp-sd1':'국물·로제떡볶이','mp-sd2':'고구마스틱','mp-sd3':'감자튀김','mp-sd4':'모짜치즈볼','mp-sd5':'어묵깡','mp-sd6':'매운국물닭발','ip-1':'인테리어1(메인)','ip-2':'인테리어2','ip-3':'인테리어3','ip-4':'인테리어4','ip-5':'인테리어5','ip-6':'인테리어6','ip-7':'인테리어7','dn-day':'낮밤 비교 사진','fr-menu-1':'콘크런치후라이드','fr-menu-2':'허니콘치킨','fr-menu-3':'베이컨크림파스타','fr-menu-4':'슈림프로제파스타','fr-s1':'성공사례1','fr-s2':'성공사례2','fr-s3':'성공사례3'};
 
-// ── 그리드 생성 함수
-function buildCell(p, i) {
-  const cell = document.createElement('div');
-  cell.className = 'wcell';
-  cell.dataset.cat = p.cat;
-  cell.dataset.idx = i;
-  const hasThumbnail = p.thumb && p.thumb.trim();
-  const bg = hasThumbnail
-    ? `background-image:url('${p.thumb}');background-color:${p.color}`
-    : `background-color:${p.color}`;
-  cell.innerHTML = `
-    <div class="wcell-bg ${hasThumbnail ? '' : 'no-img'}" style="${bg}">${hasThumbnail ? '' : LABELS[p.cat]?.slice(0,2)||''}</div>
-    <div class="wcell-ov">
-      <div class="wcell-name">${p.title}</div>
-      <div class="wcell-cat">${LABELS[p.cat]}</div>
-    </div>`;
-  cell.addEventListener('click', () => {
-    if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
-    else openDetail(i);
+function toggleAdmin(){document.getElementById('adminOverlay').style.display='block';}
+// 비밀 단축키: Ctrl + Shift + A
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey&&e.shiftKey&&e.key==='A'){e.preventDefault();toggleAdmin();}
+});
+function closeAdmin(){document.getElementById('adminOverlay').style.display='none';}
+function adminLogin(){
+  if(document.getElementById('adminPw').value==='1234'){
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
+    buildAdminPanel();
+  }else document.getElementById('adminPwErr').style.display='block';
+}
+function buildAdminPanel(){
+  const sec=document.getElementById('adminSections');sec.innerHTML='';
+  SLOT_DEFS.forEach(group=>{
+    const gEl=document.createElement('div');gEl.style.cssText='margin-bottom:36px;';
+    gEl.innerHTML=`<div style="font-size:12px;font-weight:700;letter-spacing:2px;color:#014A2A;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #E4B331;">${group.group}</div>`;
+    const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;';
+    group.slots.forEach(slot=>{
+      const saved=localStorage.getItem('img_'+slot);
+      const targets=document.querySelectorAll(`[data-slot="${slot}"]`);
+      const currentSrc=saved||(targets.length?targets[0].src:'');
+      const label=SLOT_LABELS[slot]||slot;
+      const card=document.createElement('div');
+      card.style.cssText='border:1px solid #eee;background:#fafafa;cursor:pointer;overflow:hidden;transition:border-color .2s;';
+      card.onmouseover=()=>card.style.borderColor='#E4B331';card.onmouseout=()=>card.style.borderColor='#eee';
+      card.innerHTML=`<div style="aspect-ratio:1;overflow:hidden;background:#e8e8e8;">${currentSrc?`<img src="${currentSrc}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<div style=\'display:flex;align-items:center;justify-content:center;height:100%;font-size:11px;color:#999;\'>없음</div>'">` : '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:11px;color:#999;">없음</div>'}</div><div style="padding:7px 9px;font-size:11px;font-weight:600;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${label}</div><input type="file" accept="image/*" style="display:none;" onchange="uploadImg(this,'${slot}')">`;
+      card.onclick=()=>card.querySelector('input').click();
+      grid.appendChild(card);
+    });
+    gEl.appendChild(grid);sec.appendChild(gEl);
   });
-  return cell;
+}
+function uploadImg(input,slot){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{const d=e.target.result;localStorage.setItem('img_'+slot,d);document.querySelectorAll(`[data-slot="${slot}"]`).forEach(img=>img.src=d);buildAdminPanel();};
+  reader.readAsDataURL(file);
 }
 
-function rebuildGrid() {
-  const grid = document.getElementById('wgrid');
-  grid.innerHTML = '';
-  PROJECTS.forEach((p, i) => grid.appendChild(buildCell(p, i)));
-  document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
-}
-
-// ── projects.json 로드 (배포 환경) → 실패 시 localStorage fallback
-async function loadProjects() {
-  // 1순위: localStorage (어드민과 같은 브라우저)
-  const saved = localStorage.getItem('tip_projects');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length) {
-        PROJECTS.push(...parsed);
-        rebuildGrid();
-        return;
-      }
-    } catch(e) {}
+// ── 인테리어 라이트박스 ──
+var ipCurrentIdx = 1;
+function openIPLightbox(idx){
+  var imgs = [];
+  document.querySelectorAll('[data-slot^="ip-"]').forEach(function(img){
+    if(img.src && img.style.display !== 'none') imgs.push(img.src);
+  });
+  // 슬롯 순서대로 정렬 (ip-1~ip-7)
+  var slotImgs = [];
+  for(var i=1;i<=7;i++){
+    var el = document.querySelector('[data-slot="ip-'+i+'"]');
+    if(el && el.src && el.style.display !== 'none') slotImgs.push({idx:i, src:el.src});
   }
-  // 2순위: projects.json (Vercel 배포 환경)
-  try {
-    const res = await fetch('projects.json?v=' + Date.now());
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length) {
-        PROJECTS.push(...data);
-        rebuildGrid();
-        return;
-      }
-    }
-  } catch(e) {}
-  rebuildGrid();
-}
-loadProjects();
-
-// ── 상세 페이지 렌더
-let currentIdx = 0;
-
-function renderBlock(b) {
-  if (b.type === 'img') {
-    return `<div class="d-block"><img src="${b.src}" alt="" loading="lazy"></div>`;
-  }
-  if (b.type === '2col') {
-    return `<div class="d-block d-block-2col">
-      <img src="${b.src[0]}" alt="" loading="lazy">
-      <img src="${b.src[1]}" alt="" loading="lazy">
-    </div>`;
-  }
-  if (b.type === '3col') {
-    return `<div class="d-block d-block-3col">
-      <img src="${b.src[0]}" alt="" loading="lazy">
-      <img src="${b.src[1]}" alt="" loading="lazy">
-      <img src="${b.src[2]}" alt="" loading="lazy">
-    </div>`;
-  }
-  if (b.type === 'text') {
-    return `<div class="d-block d-block-text">
-      ${b.heading ? `<h2>${b.heading}</h2>` : ''}
-      ${b.body ? `<p>${b.body}</p>` : ''}
-    </div>`;
-  }
-  if (b.type === 'split') {
-    return `<div class="d-block d-block-split">
-      <img src="${b.src}" alt="" loading="lazy">
-      <div class="d-block-split-txt"><p>${b.body || ''}</p></div>
-    </div>`;
-  }
-  return '';
-}
-
-function openDetail(idx) {
-  currentIdx = idx;
-  const p = PROJECTS[idx];
-  const label = LABELS[p.cat];
-  const ov = document.getElementById('detail-ov');
-  const body = document.getElementById('d-body');
-
-  // topbar 제목 업데이트
-  document.getElementById('d-topbar-title').textContent = p.title;
-
-  // 커버
-  const coverHtml = p.thumb
-    ? `<div class="d-cover"><img src="${p.thumb}" alt="${p.title}"></div>`
-    : `<div class="d-cover"><div class="d-placeholder" style="background:${p.color}">${p.title}</div></div>`;
-
-  // 태그
-  const tagsHtml = (p.tags || []).map(t => `<span class="d-tag">${t}</span>`).join('');
-
-  // 콘텐츠 블록
-  const blocksHtml = (p.blocks && p.blocks.length)
-    ? `<div class="d-body">${p.blocks.map(renderBlock).join('')}</div>`
-    : `<div class="d-body"><div class="d-placeholder" style="background:${p.color};aspect-ratio:16/9">이미지를 추가하세요</div></div>`;
-
-  // prev / next
-  const hasPrev = idx > 0;
-  const hasNext = idx < PROJECTS.length - 1;
-
-  body.innerHTML = `
-    ${coverHtml}
-    <div class="d-header">
-      <div class="d-header-left">
-        <div class="d-meta">
-          <span class="d-cat">${label}</span>
-          <span class="d-year">${p.year || ''}</span>
-        </div>
-        <h1 class="d-title">${p.title}</h1>
-      </div>
-      <div class="d-header-right">
-        <p class="d-desc">${p.desc || ''}</p>
-        <div class="d-tags">${tagsHtml}</div>
-      </div>
-    </div>
-    ${blocksHtml}
-    <div class="d-nav">
-      <button class="d-nav-btn" onclick="openDetail(${idx-1})" ${hasPrev?'':'disabled'}>← Prev</button>
-      <button class="d-nav-btn" onclick="openDetail(${idx+1})" ${hasNext?'':'disabled'}>Next →</button>
-    </div>
-  `;
-
-  ov.scrollTop = 0;
-  ov.classList.add('open');
+  if(!slotImgs.length) return;
+  ipCurrentIdx = idx;
+  var found = slotImgs.find(function(s){return s.idx===idx;});
+  if(!found) found = slotImgs[0];
+  document.getElementById('ipLightboxImg').src = found.src;
+  var lb = document.getElementById('ipLightbox');
+  lb.style.display = 'flex';
   document.body.style.overflow = 'hidden';
+  window._ipSlotImgs = slotImgs;
 }
-
-function closeDetail() {
-  document.getElementById('detail-ov').classList.remove('open');
+function closeIPLightbox(){
+  document.getElementById('ipLightbox').style.display = 'none';
   document.body.style.overflow = '';
 }
-
-document.getElementById('detail-close').addEventListener('click', closeDetail);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDetail(); closeType(); } });
-
-// ── Type overlay
-function openType(){
-  document.getElementById('type-ov').classList.add('open');
-  document.body.style.overflow='hidden';
-  initTypeIfNeeded();
+function moveIPLightbox(dir){
+  var imgs = window._ipSlotImgs || [];
+  if(!imgs.length) return;
+  var ci = imgs.findIndex(function(s){return s.idx===ipCurrentIdx;});
+  ci = (ci + dir + imgs.length) % imgs.length;
+  ipCurrentIdx = imgs[ci].idx;
+  document.getElementById('ipLightboxImg').src = imgs[ci].src;
 }
-function closeType(){
-  document.getElementById('type-ov').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeType(); closeDetail(); } });
-
-let typeInited=false;
-function initTypeIfNeeded(){
-  if(typeInited) return;
-  typeInited=true;
-
-  // 한글 자모 스트립
-  const bigL=document.getElementById('tp-bigL');
-  const wrap2=document.getElementById('tp-wrap');
-  ['가','나','다','라','마','바','사','아','자','차','카','타','파','하',
-   '갈','꽃','달','봄','숲','얼','잎','품','흙','빛','결','향'].forEach((l,i)=>{
-    const d=document.createElement('div');
-    d.className='tp-ak';d.textContent=l;
-    d.addEventListener('mouseenter',()=>{
-      bigL.textContent=l;
-      document.querySelectorAll('.tp-ak').forEach(b=>b.classList.remove('on'));
-      d.classList.add('on');
-      bigL.classList.add('fill');
-      setTimeout(()=>bigL.classList.remove('fill'),400);
-    });
-    document.getElementById('tp-astrip').appendChild(d);
-  });
-  document.querySelector('.tp-ak').classList.add('on');
-
-  // 3D tilt
-  const tpHero=document.getElementById('tp-hero');
-  tpHero.addEventListener('mousemove',e=>{
-    const nx=(e.clientX/innerWidth-.5)*2,ny=(e.clientY/innerHeight-.5)*2;
-    wrap2.style.transform=`rotateX(${-ny*7}deg) rotateY(${nx*7}deg)`;
-    wrap2.style.transition='transform .05s linear';
-  });
-  tpHero.addEventListener('mouseleave',()=>{
-    wrap2.style.transition='transform .8s cubic-bezier(.16,1,.3,1)';
-    wrap2.style.transform='rotateX(0) rotateY(0)';
-  });
-
-  // Preview controls
-  const ta=document.getElementById('tp-ptxt');
-  const ph=document.getElementById('tp-pph');
-  const szR=document.getElementById('tp-szR');
-  const szV=document.getElementById('tp-szV');
-
-  // 기본 폰트 적용
-  ta.classList.add('uahan-bold');
-  ph.classList.add('uahan-bold');
-
-  szR.addEventListener('input',()=>{
-    const s=szR.value+'px';
-    ta.style.fontSize=ph.style.fontSize=s;
-    szV.textContent=szR.value+'px';
-  });
-  ta.addEventListener('input',()=>{
-    ph.style.display=ta.value?'none':'';
-    ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';
-  });
-
-  // 웨이트 버튼 — 폰트 클래스 방식
-  document.querySelectorAll('[data-tw]').forEach(b=>{
-    b.addEventListener('click',()=>{
-      document.querySelectorAll('[data-tw]').forEach(x=>x.classList.remove('on'));
-      b.classList.add('on');
-      const w=b.dataset.tw;
-      ta.classList.remove('uahan-light','uahan-bold');
-      ph.classList.remove('uahan-light','uahan-bold');
-      ta.classList.add(w);
-      ph.classList.add(w);
-    });
-  });
-
-  // cursor hover for type elements
-  document.querySelectorAll('.tp-ak,.tp-close,.tp-xbtn').forEach(el=>{
-    el.addEventListener('mouseenter',()=>dot.classList.add('xl'));
-    el.addEventListener('mouseleave',()=>dot.classList.remove('xl'));
-  });
-}
-
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),1100));
-
-// ── Cursor
-const dot=document.getElementById('dot');
-let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function tick(){
-  cx+=(mx-cx)*.2;cy+=(my-cy)*.2;
-  dot.style.left=cx+'px';dot.style.top=cy+'px';
-  requestAnimationFrame(tick);
-})();
-document.querySelectorAll('a,button,.wcell,.svc,.mag-line').forEach(el=>{
-  el.addEventListener('mouseenter',()=>dot.classList.add('xl'));
-  el.addEventListener('mouseleave',()=>dot.classList.remove('xl'));
+document.addEventListener('keydown', function(e){
+  if(document.getElementById('ipLightbox').style.display==='flex'){
+    if(e.key==='Escape') closeIPLightbox();
+    if(e.key==='ArrowLeft') moveIPLightbox(-1);
+    if(e.key==='ArrowRight') moveIPLightbox(1);
+  }
 });
 
-// ── Nav 스크롤
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();
-    const target=document.querySelector(a.getAttribute('href'));
-    if(target) target.scrollIntoView({behavior:'smooth'});
-  });
-});
+function adminReset(){if(!confirm('모든 이미지를 초기화하시겠습니까?'))return;SLOT_DEFS.forEach(g=>g.slots.forEach(s=>localStorage.removeItem('img_'+s)));localStorage.removeItem('cf_notices');location.reload();}
 
-// ── Magnetic lines
-const lines=[
-  {el:document.getElementById('ml0'), str:0.028, ox:0,oy:0, tx:0,ty:0},
-  {el:document.getElementById('ml1'), str:0.045, ox:0,oy:0, tx:0,ty:0},
-  {el:document.getElementById('ml2'), str:0.034, ox:0,oy:0, tx:0,ty:0},
+// ── 공지사항 기본 데이터 ──
+const DEFAULT_NOTICES = [
+  {id:5, cat:'공지', title:'2025년 봄 신메뉴 출시 안내', date:'2025.03.15'},
+  {id:4, cat:'이벤트', title:'봄맞이 가족 방문 이벤트 — 치킨 + 파스타 세트 할인', date:'2025.03.01'},
+  {id:3, cat:'뉴스', title:'치킨파머스, 전국 100호점 오픈 기념 행사 진행', date:'2025.02.20'},
+  {id:2, cat:'공지', title:'2025년 가맹점 교육 일정 안내', date:'2025.02.05'},
+  {id:1, cat:'공지', title:'개인정보처리방침 개정 안내', date:'2025.01.10'},
 ];
-const hero=document.getElementById('hero');
-// ── 터치 기기에서 마그네틱 효과 비활성화
-const isTouch = window.matchMedia('(hover:none),(pointer:coarse)').matches;
 
-hero.addEventListener('mousemove',e=>{
-  if(isTouch) return;
-  const cx2=e.clientX-innerWidth/2;
-  const cy2=e.clientY-innerHeight/2;
-  lines.forEach((l,i)=>{
-    const dir=i%2===0?1:-1;
-    l.tx=cx2*l.str*dir;
-    l.ty=cy2*l.str*.5;
-  });
-});
-hero.addEventListener('mouseleave',()=>lines.forEach(l=>{l.tx=0;l.ty=0}));
-(function magTick(){
-  lines.forEach(l=>{
-    const dx=l.tx-l.ox,dy=l.ty-l.oy;
-    if(Math.abs(dx)<0.08) l.ox=l.tx; else l.ox+=dx*.1;
-    if(Math.abs(dy)<0.08) l.oy=l.ty; else l.oy+=dy*.1;
-    l.el.style.transform=`translate(${l.ox.toFixed(1)}px,${l.oy.toFixed(1)}px) translateZ(0)`;
-  });
-  requestAnimationFrame(magTick);
+function getNotices(){
+  try{return JSON.parse(localStorage.getItem('cf_notices'))||DEFAULT_NOTICES;}
+  catch{return DEFAULT_NOTICES;}
+}
+function saveNotices(arr){localStorage.setItem('cf_notices',JSON.stringify(arr));}
+
+// 공지 렌더링 함수
+function renderNotices(){
+  const notices = getNotices();
+  // 홈 리스트 (최신 4개)
+  const homeEl = document.getElementById('homeNoticeList');
+  if(homeEl){
+    homeEl.innerHTML = notices.slice(0,4).map((n,i)=>
+      `<div class="bh-nrow sf" data-delay="${i+1}" onclick="openNotice(${n.id})"><span class="bh-nc">${n.cat}</span><span class="bh-nt">${n.title}</span><span class="bh-nd">${n.date}</span></div>`
+    ).join('');
+  }
+  // 공지사항 페이지 (전체)
+  const noticeEl = document.getElementById('noticePage');
+  if(noticeEl){
+    noticeEl.innerHTML = notices.length
+      ? notices.map((n,i)=>
+          `<div class="np-row" onclick="openNotice(${n.id})"><span class="np-num">${n.id}</span><span class="np-cat">${n.cat}</span><span class="np-title">${n.title}</span><span class="np-date">${n.date}</span></div>`
+        ).join('')
+      : '<p style="color:var(--text-sub);padding:20px 0;">등록된 공지가 없습니다.</p>';
+  }
+  // 이벤트 페이지
+  const eventEl = document.getElementById('eventPage');
+  if(eventEl){
+    const evts = notices.filter(n=>n.cat==='이벤트'||n.cat==='뉴스');
+    eventEl.innerHTML = evts.length
+      ? evts.map(n=>`<div class="np-row" onclick="openNotice(${n.id})"><span class="np-cat">${n.cat}</span><span class="np-title">${n.title}</span><span class="np-date">${n.date}</span></div>`).join('')
+      : '<p style="color:var(--text-sub);padding:20px 0;">등록된 이벤트가 없습니다.</p>';
+  }
+}
+
+// 공지 상세 모달
+function openNotice(id){
+  const notices = getNotices();
+  const n = notices.find(x=>x.id===id);
+  if(!n) return;
+  const idx = notices.findIndex(x=>x.id===id);
+  const prev = idx < notices.length-1 ? notices[idx+1] : null;
+  const next = idx > 0 ? notices[idx-1] : null;
+  document.getElementById('noticeModal').style.display='flex';
+  document.getElementById('noticeModalContent').innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);">
+      <span style="background:var(--yellow);color:#014A2A;font-size:11px;font-weight:700;padding:4px 12px;">${n.cat}</span>
+      <span style="font-size:12px;color:var(--text-light);">${n.date}</span>
+    </div>
+    <h2 style="font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700;line-height:1.5;margin-bottom:32px;">${n.title}</h2>
+    <div style="font-size:15px;color:var(--text-sub);line-height:2;min-height:120px;">
+      ${n.content||'<span style="color:#bbb;">내용을 준비 중입니다.</span>'}
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid var(--border);">
+      <div>${prev?`<div style="font-size:12px;color:var(--text-light);margin-bottom:4px;">이전 글</div><div style="font-size:14px;cursor:pointer;color:#014A2A;" onclick="openNotice(${prev.id})">${prev.title}</div>`:'<span style="color:#ddd;font-size:13px;">이전 글 없음</span>'}</div>
+      <div style="text-align:right;">${next?`<div style="font-size:12px;color:var(--text-light);margin-bottom:4px;">다음 글</div><div style="font-size:14px;cursor:pointer;color:#014A2A;" onclick="openNotice(${next.id})">${next.title}</div>`:'<span style="color:#ddd;font-size:13px;">다음 글 없음</span>'}</div>
+    </div>
+  `;
+}
+function closeNotice(){document.getElementById('noticeModal').style.display='none';}
+
+// 어드민 패널에 공지 관리 섹션 추가
+function buildNoticeAdmin(){
+  const notices = getNotices();
+  return `
+  <div style="margin-top:40px;padding-top:32px;border-top:2px solid #eee;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:#014A2A;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid #E4B331;">공지사항 · 이벤트 관리</div>
+    
+    <!-- 새 공지 추가 -->
+    <div style="background:#f9f9f9;border:1px solid #eee;padding:20px;margin-bottom:20px;">
+      <div style="font-size:13px;font-weight:700;margin-bottom:14px;color:#333;">새 공지 추가</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 2fr 1fr auto;gap:8px;align-items:center;">
+        <select id="newCat" style="padding:9px 10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;">
+          <option>공지</option><option>이벤트</option><option>뉴스</option>
+        </select>
+        <input id="newDate" type="text" placeholder="2025.03.27" value="${new Date().toLocaleDateString('ko-KR',{year:'numeric',month:'2-digit',day:'2-digit'}).replace(/\.\s?/g,'.').replace(/\.$/,'')}" style="padding:9px 10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;">
+        <input id="newTitle" type="text" placeholder="공지 제목을 입력하세요" style="padding:9px 10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;">
+        <div></div>
+        <button onclick="addNotice()" style="background:#014A2A;color:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;font-family:'Noto Sans KR',sans-serif;">추가</button>
+      </div>
+      <textarea id="newContent" placeholder="공지 내용을 입력하세요 (선택)" style="width:100%;margin-top:8px;padding:10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;height:80px;resize:vertical;"></textarea>
+    </div>
+
+    <!-- 기존 공지 목록 -->
+    <div id="noticeAdminList">
+      ${notices.map(n=>`
+      <div id="nadmin-${n.id}" style="display:grid;grid-template-columns:60px 72px 1fr 90px auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+        <span style="font-size:12px;color:#aaa;text-align:center;">#${n.id}</span>
+        <select onchange="updateNotice(${n.id},'cat',this.value)" style="padding:6px 8px;border:1px solid #ddd;font-size:12px;outline:none;font-family:'Noto Sans KR',sans-serif;">
+          <option${n.cat==='공지'?' selected':''}>공지</option>
+          <option${n.cat==='이벤트'?' selected':''}>이벤트</option>
+          <option${n.cat==='뉴스'?' selected':''}>뉴스</option>
+        </select>
+        <input value="${n.title}" onchange="updateNotice(${n.id},'title',this.value)" style="padding:6px 10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;width:100%;">
+        <input value="${n.date}" onchange="updateNotice(${n.id},'date',this.value)" style="padding:6px 8px;border:1px solid #ddd;font-size:12px;outline:none;font-family:'Noto Sans KR',sans-serif;text-align:center;">
+        <button onclick="deleteNotice(${n.id})" style="background:#fff;border:1px solid #ddd;color:#c00;padding:6px 10px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">삭제</button>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function addNotice(){
+  const cat=document.getElementById('newCat').value;
+  const date=document.getElementById('newDate').value.trim();
+  const title=document.getElementById('newTitle').value.trim();
+  const content=document.getElementById('newContent').value.trim();
+  if(!title){alert('제목을 입력해 주세요.');return;}
+  const notices=getNotices();
+  const maxId=notices.reduce((m,n)=>Math.max(m,n.id),0);
+  notices.unshift({id:maxId+1,cat,title,date:date||new Date().toLocaleDateString('ko-KR'),content});
+  saveNotices(notices);
+  renderNotices();
+  document.getElementById('newTitle').value='';
+  // 목록 새로고침
+  const wrap=document.getElementById('noticeAdminList');
+  if(wrap) wrap.outerHTML='<div id="noticeAdminList">'+getNotices().map(n=>`
+    <div id="nadmin-${n.id}" style="display:grid;grid-template-columns:60px 72px 1fr 90px auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0;">
+      <span style="font-size:12px;color:#aaa;text-align:center;">#${n.id}</span>
+      <select onchange="updateNotice(${n.id},'cat',this.value)" style="padding:6px 8px;border:1px solid #ddd;font-size:12px;outline:none;font-family:'Noto Sans KR',sans-serif;">
+        <option${n.cat==='공지'?' selected':''}>공지</option><option${n.cat==='이벤트'?' selected':''}>이벤트</option><option${n.cat==='뉴스'?' selected':''}>뉴스</option>
+      </select>
+      <input value="${n.title}" onchange="updateNotice(${n.id},'title',this.value)" style="padding:6px 10px;border:1px solid #ddd;font-size:13px;outline:none;font-family:'Noto Sans KR',sans-serif;width:100%;">
+      <input value="${n.date}" onchange="updateNotice(${n.id},'date',this.value)" style="padding:6px 8px;border:1px solid #ddd;font-size:12px;outline:none;font-family:'Noto Sans KR',sans-serif;text-align:center;">
+      <button onclick="deleteNotice(${n.id})" style="background:#fff;border:1px solid #ddd;color:#c00;padding:6px 10px;font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;">삭제</button>
+    </div>`).join('')+'</div>';
+}
+
+function updateNotice(id,field,val){
+  const notices=getNotices();
+  const n=notices.find(x=>x.id===id);
+  if(n){n[field]=val;saveNotices(notices);renderNotices();}
+}
+
+function deleteNotice(id){
+  if(!confirm('이 공지를 삭제하시겠습니까?'))return;
+  const notices=getNotices().filter(n=>n.id!==id);
+  saveNotices(notices);renderNotices();
+  const el=document.getElementById('nadmin-'+id);
+  if(el)el.remove();
+}
+
+// buildAdminPanel 끝에 공지 관리 추가 (원래 함수 오버라이드)
+const _origBuildAdmin = buildAdminPanel;
+buildAdminPanel = function(){
+  _origBuildAdmin();
+  const panel=document.getElementById('adminPanel');
+  if(panel){
+    const existing=panel.querySelector('#noticeAdminWrap');
+    if(existing)existing.remove();
+    const wrap=document.createElement('div');
+    wrap.id='noticeAdminWrap';
+    wrap.innerHTML=buildNoticeAdmin();
+    // 완료 버튼 앞에 삽입
+    const btns=panel.querySelector('div[style*="justify-content:flex-end"]');
+    panel.insertBefore(wrap,btns);
+  }
+};
+
+// Restore images — images.json 우선, 없으면 localStorage fallback
+(function(){
+  function applySlot(slot, url){
+    if(!url) return;
+    document.querySelectorAll('[data-slot="'+slot+'"]').forEach(function(img){
+      img.src = url;
+      if(slot==='site-logo') img.style.filter='none';
+    });
+  }
+
+  // 1. images.json 로드 (Vercel 배포 환경 — 모든 기기 공유)
+  fetch('/images.json?_='+Date.now())
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .then(function(data){
+      Object.keys(data).forEach(function(slot){
+        if(data[slot]) applySlot(slot, data[slot]);
+      });
+      // 릴스 URL도 images.json에서 로드
+      if(data['reel1']||data['reel2']||data['reel3']){
+        var reels = {reel1:data['reel1']||'',reel2:data['reel2']||'',reel3:data['reel3']||''};
+        localStorage.setItem('cf_reels', JSON.stringify(reels));
+        if(window.__loadReels) window.__loadReels(reels);
+      }
+    })
+    .catch(function(){
+      // 2. fallback: localStorage (로컬 파일 테스트용)
+      SLOT_DEFS.forEach(function(g){
+        g.slots.forEach(function(slot){
+          var saved = localStorage.getItem('img_'+slot);
+          if(saved) applySlot(slot, saved);
+        });
+      });
+    });
 })();
 
-// ── Filter
-document.querySelectorAll('.ftab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
-    tab.classList.add('on');
-    const f=tab.dataset.f;
-    document.querySelectorAll('.wcell').forEach(c=>{
-      const show=f==='all'||c.dataset.cat===f;
-      c.style.visibility=show?'':'hidden';
-      c.style.opacity=show?'1':'0';
-      c.style.pointerEvents=show?'':'none';
-    });
-  });
-});
+// 공지 초기 렌더링
+renderNotices();
 
-// ── Scroll reveal
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting)e.target.classList.add('in');
-}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+// 홈 메뉴 초기 필터: 치킨만 표시
+(function(){
+  const grid=document.getElementById('bhGrid');
+  if(grid) grid.querySelectorAll('.bh-mc').forEach(card=>{
+    if(card.dataset.cat!=='치킨') card.style.display='none';
+  });
+})();
+
+// ── Day/Night brightness hover ──
+(function(){
+  var wrap = document.getElementById('dnWrap');
+  var overlay = document.getElementById('dnOverlay');
+  var hint = document.getElementById('hoverHint');
+  if(!wrap||!overlay) return;
+
+  function setX(pct){
+    // 오른쪽(pct=100) → 어둡, 왼쪽(pct=0) → 밝음
+    var darkLeft = 0.05 + pct/100 * 0.10;   // 0.05 → 0.15
+    var darkRight = 0.08 + pct/100 * 0.65;  // 0.08 → 0.73
+    overlay.style.background = 'linear-gradient(to right,rgba(0,0,0,'+darkLeft.toFixed(2)+') 0%,rgba(0,0,0,'+darkRight.toFixed(2)+') 100%)';
+  }
+
+  wrap.addEventListener('mousemove', function(e){
+    var rect = wrap.getBoundingClientRect();
+    var pct = Math.max(0, Math.min(100, (e.clientX - rect.left) / rect.width * 100));
+    setX(pct);
+    if(hint) hint.style.opacity='0';
+  });
+  wrap.addEventListener('mouseleave', function(){
+    setX(50);
+    if(hint) hint.style.opacity='1';
+  });
+  wrap.addEventListener('touchmove', function(e){
+    var rect = wrap.getBoundingClientRect();
+    var pct = Math.max(0, Math.min(100, (e.touches[0].clientX - rect.left) / rect.width * 100));
+    setX(pct);
+    if(hint) hint.style.opacity='0';
+  },{passive:true});
+  wrap.addEventListener('touchend', function(){
+    setTimeout(function(){setX(50);if(hint)hint.style.opacity='1';},1200);
+  });
+})();
+
+// ── 숫자 자릿수 롤링 효과 (각 자릿수 독립 위/아래) ──
+(function(){
+  function rollDigits(el){
+    var raw = String(el.dataset.target||'').replace(/,/g,'');
+    var suffix = el.dataset.suffix||'';
+    if(!raw) return;
+    var fs = parseFloat(window.getComputedStyle(el).fontSize);
+    var lineH = fs * 1.1;
+
+    el.innerHTML = '';
+    el.style.display = 'inline-flex';
+    el.style.alignItems = 'center';
+    el.style.overflow = 'hidden';
+
+    // 숫자 + suffix 를 글자별 분리
+    var chars = (raw + suffix).split('');
+
+    chars.forEach(function(ch, idx){
+      var isNum = /[0-9]/.test(ch);
+      var span = document.createElement('span');
+      span.style.display = 'inline-block';
+      span.style.overflow = 'hidden';
+      span.style.height = lineH + 'px';
+      span.style.lineHeight = lineH + 'px';
+      span.style.verticalAlign = 'top';
+
+      if(!isNum){
+        span.textContent = ch;
+        el.appendChild(span);
+        return;
+      }
+
+      var target = parseInt(ch, 10);
+      // 방향: 짝수 인덱스 → 위에서 아래, 홀수 → 아래에서 위
+      var fromTop = (idx % 2 === 0);
+      var inner = document.createElement('span');
+      inner.style.display = 'flex';
+      inner.style.flexDirection = 'column';
+      inner.style.transition = 'none';
+
+      // 숫자 스트립: 0~9 두 번 + target
+      var nums = [];
+      for(var n=0;n<=9;n++) nums.push(n);
+      for(var n=0;n<=9;n++) nums.push(n);
+      nums.push(target);
+
+      if(!fromTop) nums.reverse();
+
+      inner.innerHTML = nums.map(function(n){
+        return '<span style="display:block;height:'+lineH+'px;line-height:'+lineH+'px;text-align:center;min-width:.6em;">'+n+'</span>';
+      }).join('');
+
+      var startY = fromTop ? 0 : -((nums.length-1)*lineH);
+      var endY = fromTop ? -((nums.length-1)*lineH) : 0;
+
+      inner.style.transform = 'translateY('+startY+'px)';
+      span.appendChild(inner);
+      el.appendChild(span);
+
+      // 애니메이션 딜레이: 자릿수마다 살짝 다르게
+      var delay = idx * 60;
+      var duration = 520 + idx * 40;
+
+      setTimeout(function(){
+        inner.style.transition = 'transform '+duration+'ms cubic-bezier(.22,1,.36,1)';
+        inner.style.transform = 'translateY('+endY+'px)';
+      }, delay + 100);
+    });
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting) rollDigits(e.target);
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('.scramble-num').forEach(function(el){ io.observe(el); });
+})();
+
+// ── 릴스 로드 ──
+(function(){
+  function getReels(){ try{return JSON.parse(localStorage.getItem('cf_reels')||'{}');}catch{return {};} }
+
+  function buildYTEmbed(url){
+    var m = url.match(/shorts\/([^?/]+)/) || url.match(/v=([^&]+)/) || url.match(/youtu\.be\/([^?]+)/);
+    if(!m) return '';
+    return '<div style="position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:6px;">'
+      +'<iframe src="https://www.youtube.com/embed/'+m[1]+'" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allowfullscreen allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture"></iframe>'
+      +'</div>';
+  }
+
+  function buildIGCard(url){
+    var clean = url.trim().replace(/\?.*$/,'').replace(/\/$/,'');
+    return '<a href="'+clean+'" target="_blank" rel="noopener" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;aspect-ratio:9/16;background:rgba(255,255,255,.06);border-radius:6px;border:1px solid rgba(255,255,255,.15);text-decoration:none;">'
+      +'<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="rgba(255,255,255,.7)" stroke="none"/></svg>'
+      +'<span style="font-size:13px;color:rgba(255,255,255,.7);font-weight:500;">Instagram 릴스</span>'
+      +'<span style="font-size:11px;color:rgba(255,255,255,.4);">탭하여 열기 ↗</span>'
+      +'</a>';
+  }
+
+  function doLoadReels(saved){
+    // images.json에서 썸네일도 로드
+    var thumbs = {};
+    try{ var ij=JSON.parse(localStorage.getItem('cf_images')||'{}'); ['1','2','3'].forEach(function(i){ thumbs[i]=ij['reel-thumb-'+i]||localStorage.getItem('img_reel-thumb-'+i)||''; }); }catch(e){}
+    for(var i=1;i<=3;i++){
+      var url = (saved||{})['reel'+i];
+      if(!url) continue;
+      var ph = document.getElementById('reel-ph-'+i);
+      if(!ph) continue;
+      var html = '';
+      if(url.indexOf('youtube')>-1 || url.indexOf('youtu.be')>-1){
+        html = buildYTEmbed(url);
+      } else if(url.indexOf('instagram')>-1){
+        var thumb = thumbs[String(i)] || '';
+        html = thumb
+          ? '<div style="position:relative;aspect-ratio:9/16;border-radius:6px;overflow:hidden;"><img src="'+thumb+'" style="width:100%;height:100%;object-fit:cover;"><a href="'+url+'" target="_blank" rel="noopener" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);"><div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;"><span style="font-size:20px;margin-left:3px;">▶</span></div></a></div>'
+          : buildIGCard(url);
+      }
+      if(html) ph.outerHTML = html;
+    }
+  }
+
+  window.__loadReels = doLoadReels;
+  doLoadReels(getReels());
+})();
 </script>
-</body>
-</html>
+
+<!-- ── 치킨파머스 Analytics Tracker ── -->
+<script>
+(function(){
+  var AKEY = 'cf_analytics';
+  function getAnalytics(){ try{return JSON.parse(localStorage.getItem(AKEY)||'[]');}catch{return [];} }
+  function saveAnalytics(a){ 
+    // 최대 2000개 보관
+    if(a.length > 2000) a = a.slice(a.length - 2000);
+    try{ localStorage.setItem(AKEY, JSON.stringify(a)); }catch(e){}
+  }
+
+  // 유입 경로 분석
+  function getSource(){
+    var ref = document.referrer || '';
+    if(!ref) return '직접 방문';
+    if(ref.indexOf('google') > -1) return '구글 검색';
+    if(ref.indexOf('naver') > -1) return '네이버 검색';
+    if(ref.indexOf('kakao') > -1 || ref.indexOf('kakaotalk') > -1) return '카카오';
+    if(ref.indexOf('instagram') > -1) return '인스타그램';
+    if(ref.indexOf('youtube') > -1) return '유튜브';
+    if(ref.indexOf('facebook') > -1) return '페이스북';
+    if(ref.indexOf('blog.naver') > -1) return '네이버 블로그';
+    return '기타';
+  }
+
+  // 디바이스 분류
+  function getDevice(){
+    var ua = navigator.userAgent;
+    if(/tablet|ipad/i.test(ua)) return '태블릿';
+    if(/mobile|iphone|android/i.test(ua)) return '모바일';
+    return 'PC';
+  }
+
+  // 현재 날짜 (YYYY-MM-DD)
+  function getDate(){
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function getHour(){
+    return new Date().getHours();
+  }
+
+  // 초기 페이지뷰 기록
+  var log = getAnalytics();
+  log.push({
+    ts: Date.now(),
+    date: getDate(),
+    hour: getHour(),
+    page: 'entry',  // 첫 진입
+    source: getSource(),
+    device: getDevice()
+  });
+  saveAnalytics(log);
+
+  // 페이지 이동 추적
+  window.__cfTrack = function(page){
+    var a = getAnalytics();
+    a.push({
+      ts: Date.now(),
+      date: getDate(),
+      hour: getHour(),
+      page: page,
+      source: getSource(),
+      device: getDevice()
+    });
+    saveAnalytics(a);
+  };
+})();
+
+// ── 추가 추적 코드 ──
+(function(){
+  var EXTRA_KEY = 'cf_extra';
+  function getExtra(){ try{return JSON.parse(localStorage.getItem(EXTRA_KEY)||'{}');}catch{return {};} }
+  function saveExtra(o){ try{localStorage.setItem(EXTRA_KEY,JSON.stringify(o));}catch{} }
+
+  function getSource(){
+    var ref = document.referrer || '';
+    if(!ref) return '직접 방문';
+    if(ref.indexOf('google') > -1) return '구글 검색';
+    if(ref.indexOf('naver') > -1) return '네이버 검색';
+    if(ref.indexOf('kakao') > -1 || ref.indexOf('kakaotalk') > -1) return '카카오';
+    if(ref.indexOf('instagram') > -1) return '인스타그램';
+    if(ref.indexOf('youtube') > -1) return '유튜브';
+    if(ref.indexOf('facebook') > -1) return '페이스북';
+    if(ref.indexOf('blog.naver') > -1) return '네이버 블로그';
+    return '기타';
+  }
+  function getDevice(){
+    var ua = navigator.userAgent;
+    if(/tablet|ipad/i.test(ua)) return '태블릿';
+    if(/mobile|iphone|android/i.test(ua)) return '모바일';
+    return 'PC';
+  }
+  function getDate(){
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function getHour(){ return new Date().getHours(); }
+
+  // ① 재방문율 — 첫 방문 날짜 기록
+  var ex = getExtra();
+  if(!ex.firstVisit){ ex.firstVisit = Date.now(); ex.visitCount = 0; }
+  ex.visitCount = (ex.visitCount||0) + 1;
+  ex.lastVisit = Date.now();
+  saveExtra(ex);
+
+  // ② 스크롤 깊이 — 세션별 기록 (기기·유입 경로 포함)
+  var sessionMaxScroll = 0;
+  var sessionDevice = getDevice();
+  var sessionSource = getSource();
+
+  function trackScroll(){
+    var total = document.body.scrollHeight - window.innerHeight;
+    if(total <= 0) return;
+    var pct = Math.round((window.scrollY / total) * 100);
+    if(pct <= sessionMaxScroll) return;
+    sessionMaxScroll = pct;
+
+    var isFr = document.getElementById('franchise') && document.getElementById('franchise').classList.contains('on');
+    if(!isFr) return; // 창업 랜딩에서만 상세 추적
+
+    var ex2 = getExtra();
+
+    // 전체 최대값
+    if(pct > (ex2.maxScroll||0)) ex2.maxScroll = pct;
+
+    // 기기별 최대값
+    if(!ex2.scrollByDevice) ex2.scrollByDevice = {};
+    if(pct > (ex2.scrollByDevice[sessionDevice]||0)){
+      ex2.scrollByDevice[sessionDevice] = pct;
+    }
+
+    // 유입 경로별 최대값
+    if(!ex2.scrollBySource) ex2.scrollBySource = {};
+    if(pct > (ex2.scrollBySource[sessionSource]||0)){
+      ex2.scrollBySource[sessionSource] = pct;
+    }
+
+    // 세션별 로그 (최근 200개)
+    if(!ex2.scrollSessions) ex2.scrollSessions = [];
+    // 현재 세션 업데이트 (같은 ts 내)
+    var now = Date.now();
+    var today2 = getDate();
+    var last2 = ex2.scrollSessions[ex2.scrollSessions.length-1];
+    if(last2 && last2.date===today2 && last2.device===sessionDevice && last2.source===sessionSource){
+      last2.maxPct = pct;
+    } else {
+      ex2.scrollSessions.push({date:today2, device:sessionDevice, source:sessionSource, maxPct:pct});
+      if(ex2.scrollSessions.length > 200) ex2.scrollSessions.shift();
+    }
+
+    saveExtra(ex2);
+  }
+  window.addEventListener('scroll', trackScroll, {passive:true});
+
+  // ③ 페이지별 체류 시간 기록
+  var pageEnterTime = Date.now();
+  var currentPage = 'entry';
+  window.__cfSetPage = function(page){
+    var now = Date.now();
+    var dur = Math.round((now - pageEnterTime) / 1000);
+    if(dur > 1 && dur < 3600){
+      var ex3 = getExtra();
+      if(!ex3.dwell) ex3.dwell = {};
+      ex3.dwell[currentPage] = (ex3.dwell[currentPage]||0) + dur;
+      saveExtra(ex3);
+    }
+    currentPage = page;
+    pageEnterTime = now;
+  };
+
+  // ④ 상담 신청 전환 기록 (폼 제출 시 호출)
+  window.__cfConversion = function(region){
+    var
