@@ -376,8 +376,25 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function load() {
-  try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
-  renderList();
+  // 1순위: projects.json (GitHub에 올라간 데이터)
+  fetch('projects.json?v=' + Date.now())
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (Array.isArray(data) && data.length) {
+        projects = data;
+        // localStorage도 동기화
+        localStorage.setItem('tip_projects', JSON.stringify(projects));
+      } else {
+        // 2순위: localStorage
+        try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
+      }
+      renderList();
+    })
+    .catch(() => {
+      // fetch 실패 시 localStorage fallback
+      try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
+      renderList();
+    });
 }
 
 function persist() {
@@ -550,10 +567,14 @@ function buildBlockHTML(b, i) {
   }
 
   return `
-    <div class="block-card">
+    <div class="block-card" id="bc-${i}" draggable="true"
+      ondragstart="onBlockDS(event,${i})"
+      ondragover="onBlockDO(event,${i})"
+      ondrop="onBlockDrop(event,${i})"
+      ondragend="onBlockDE()">
       <div class="block-head" onclick="toggleBlock(${i})">
         <div style="display:flex;align-items:center;gap:8px">
-          <span class="block-drag">⠿</span>
+          <span class="block-drag" style="cursor:grab">⠿</span>
           <span class="block-badge">${BTYPES[b.type]}</span>
           <span style="font-size:11px;opacity:.25">#${i+1}</span>
         </div>
@@ -674,7 +695,37 @@ function deleteProject() {
   toast('삭제되었습니다');
 }
 
-// Drag reorder
+// Block drag reorder
+let blockDragSrc = null;
+function onBlockDS(e, i) {
+  blockDragSrc = i;
+  e.stopPropagation();
+  e.currentTarget.style.opacity = '.35';
+}
+function onBlockDO(e, i) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.querySelectorAll('.block-card').forEach(el => el.style.outline = '');
+  e.currentTarget.style.outline = '2px solid var(--blue)';
+}
+function onBlockDrop(e, i) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (blockDragSrc === null || blockDragSrc === i || cur === null) return;
+  const blocks = projects[cur].blocks;
+  const moved = blocks.splice(blockDragSrc, 1)[0];
+  blocks.splice(i, 0, moved);
+  renderBlocks(blocks);
+}
+function onBlockDE() {
+  blockDragSrc = null;
+  document.querySelectorAll('.block-card').forEach(el => {
+    el.style.opacity = '';
+    el.style.outline = '';
+  });
+}
+
+// Drag reorder (projects)
 function onDS(e, i) { dragSrc = i; e.currentTarget.classList.add('dragging'); }
 function onDO(e, i) {
   e.preventDefault();
