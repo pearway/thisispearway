@@ -70,7 +70,7 @@
       },
       {
         "type": "text",
-        "heading": "",
+        "heading": "Design Process",
         "body": "Jone\n3D 비주얼라이제이션과 프로토타이핑을 직접 수행하시는 것으로 알고 있습니다. 이번 프로젝트에서도 이러한 기술적 접근이 창의적인 결과물에 어떤 영향을 미쳤나요?\n\nPear\nSketchUp과 Twinmotion을 활용한 실시간 렌더링은 클라이언트와의 '대화'를 시각화하는 강력한 도구였습니다. 디자인 의도를 정교하게 확인하며, 시공 단계에서의 오차를 줄이는 동시에 브랜드의 무드를 일관되게 유지할 수 있었죠. 결과적으로 브랜드가 가진 유무형의 가치가 사이니지부터 가구의 배치까지 하나의 일관된 흐름으로 이어지게 되었습니다.\n\n\"디자인은 정답을 내놓는 과정이 아니라, 브랜드와 사용자 사이의 최적의 접점을 찾아가는 끝없는 대화입니다.\""
       },
       {
@@ -86,24 +86,18 @@
         "src": "images/brand/Frame14.png"
       },
       {
-        "type": "img",
-        "src": "images/brand/Frame16.png"
+        "type": "2col",
+        "src": [
+          "images/brand/Frame15-1.png",
+          "images/brand/Frame16-1.png"
+        ]
       },
       {
-        "type": "img",
-        "src": "images/brand/Frame4-1.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame15-1.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame16-1.png"
-      },
-      {
-        "type": "img",
-        "src": ""
+        "type": "2col",
+        "src": [
+          "images/brand/Frame4-1.png",
+          "images/brand/Frame16.png"
+        ]
       }
     ],
     "url": ""
