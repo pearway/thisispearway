@@ -17,16 +17,15 @@
         "src": "images/brand/Frame2.png"
       },
       {
+        "type": "2col",
+        "src": [
+          "images/brand/Frame4.png",
+          "images/brand/Frame5.png"
+        ]
+      },
+      {
         "type": "img",
         "src": "images/brand/Group 35119 (1).webp"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame4.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame5.png"
       },
       {
         "type": "img",
@@ -35,6 +34,13 @@
       {
         "type": "img",
         "src": "images/brand/Frame7.png"
+      },
+      {
+        "type": "2col",
+        "src": [
+          "images/brand/Frame13.png",
+          "images/brand/Frame15.png"
+        ]
       },
       {
         "type": "img",
@@ -66,10 +72,6 @@
       },
       {
         "type": "img",
-        "src": "images/brand/Frame15.png"
-      },
-      {
-        "type": "img",
         "src": "images/brand/Frame16.png"
       },
       {
@@ -86,7 +88,7 @@
       },
       {
         "type": "img",
-        "src": "images/brand/Frame13.png"
+        "src": ""
       }
     ],
     "url": ""
