@@ -376,8 +376,25 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function load() {
-  try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
-  renderList();
+  // 1순위: projects.json (GitHub에 올라간 데이터)
+  fetch('projects.json?v=' + Date.now())
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (Array.isArray(data) && data.length) {
+        projects = data;
+        // localStorage도 동기화
+        localStorage.setItem('tip_projects', JSON.stringify(projects));
+      } else {
+        // 2순위: localStorage
+        try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
+      }
+      renderList();
+    })
+    .catch(() => {
+      // fetch 실패 시 localStorage fallback
+      try { projects = JSON.parse(localStorage.getItem('tip_projects') || '[]'); } catch(e) { projects = []; }
+      renderList();
+    });
 }
 
 function persist() {
