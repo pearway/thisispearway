@@ -29,7 +29,7 @@
   --s3:#1A1410;   /* contact section — deep warm ink */
 }
 
-html{scroll-behavior:auto;font-size:16px}
+html{scroll-behavior:smooth;font-size:16px}
 body{
   background:var(--bg);
   color:var(--fg);
@@ -1257,9 +1257,9 @@ function rebuildGrid() {
   document.getElementById('works').style.display = PROJECTS.length ? '' : 'none';
 }
 
-// ── projects.json 로드 (배포 환경) → 실패 시 localStorage fallback
+// ── Firebase에서 프로젝트 로드 (실시간)
 async function loadProjects() {
-  // 1순위: localStorage (어드민과 같은 브라우저)
+  // localStorage fallback (어드민 같은 브라우저)
   const saved = localStorage.getItem('tip_projects');
   if (saved) {
     try {
@@ -1267,23 +1267,55 @@ async function loadProjects() {
       if (Array.isArray(parsed) && parsed.length) {
         PROJECTS.push(...parsed);
         rebuildGrid();
-        return;
       }
     } catch(e) {}
   }
-  // 2순위: projects.json (Vercel 배포 환경)
+
+  // Firebase에서 로드 (실시간 반영)
   try {
-    const res = await fetch('projects.json?v=' + Date.now());
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length) {
-        PROJECTS.push(...data);
-        rebuildGrid();
-        return;
-      }
+    const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const { getFirestore, collection, getDocs, orderBy, query } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+      authDomain: "thisispearway.firebaseapp.com",
+      projectId: "thisispearway",
+      storageBucket: "thisispearway.firebasestorage.app",
+      messagingSenderId: "657205333061",
+      appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    let snap;
+    try {
+      const q = query(collection(db, 'projects'), orderBy('order'));
+      snap = await getDocs(q);
+    } catch(e) {
+      snap = await getDocs(collection(db, 'projects'));
     }
-  } catch(e) {}
-  rebuildGrid();
+
+    const fbProjects = snap.docs.map(d => ({id: d.id, ...d.data()}));
+    if (fbProjects.length) {
+      PROJECTS.length = 0;
+      PROJECTS.push(...fbProjects);
+      rebuildGrid();
+    }
+  } catch(e) {
+    // Firebase 실패 시 projects.json fallback
+    try {
+      const res = await fetch('projects.json?v=' + Date.now());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) {
+          PROJECTS.length = 0;
+          PROJECTS.push(...data);
+          rebuildGrid();
+        }
+      }
+    } catch(e2) {}
+  }
 }
 loadProjects();
 
@@ -1537,17 +1569,29 @@ hero.addEventListener('mouseleave',()=>lines.forEach(l=>{l.tx=0;l.ty=0}));
   requestAnimationFrame(magTick);
 })();
 
-// ── Filter
+// ── 부드러운 스크롤
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// ── Filter — display:none 방식으로 재정렬
 document.querySelectorAll('.ftab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
     tab.classList.add('on');
     const f=tab.dataset.f;
-    document.querySelectorAll('.wcell').forEach(c=>{
-      const show=f==='all'||c.dataset.cat===f;
-      c.style.visibility=show?'':'hidden';
-      c.style.opacity=show?'1':'0';
-      c.style.pointerEvents=show?'':'none';
+    const grid=document.getElementById('wgrid');
+    // 필터링된 셀만 순서대로 grid에 다시 붙이기
+    const allCells=[...grid.querySelectorAll('.wcell')];
+    allCells.forEach(c=>grid.removeChild(c));
+    const matched=f==='all'?allCells:allCells.filter(c=>c.dataset.cat===f);
+    matched.forEach(c=>{
+      c.style.display='';
+      grid.appendChild(c);
     });
   });
 });
