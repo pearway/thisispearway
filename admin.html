@@ -710,10 +710,13 @@ async function saveProject() {
   const st = document.getElementById('saveSt');
   st.textContent = '저장 중...'; st.className = 'save-st saving';
   try {
-    const p = projects[cur];
-    if (!p.id) p.id = Date.now().toString();
-    p.order = cur;
-    await saveToFirestore(p);
+    // 현재 프로젝트 저장 + 전체 order 동기화
+    for (let i = 0; i < projects.length; i++) {
+      const p = projects[i];
+      if (!p.id) p.id = Date.now().toString() + i;
+      p.order = i;
+      await setDoc(doc(db, 'projects', p.id), p);
+    }
     st.textContent = '저장됨 ✓ 즉시 반영'; st.className = 'save-st saved';
     renderList();
     toast('저장 완료! 포트폴리오에 즉시 반영됐습니다 ✓');
