@@ -1445,12 +1445,25 @@ function openDetail(idx) {
   ov.scrollTop = 0;
   ov.classList.add('open');
   document.body.style.overflow = 'hidden';
+  if(typeof lenis !== 'undefined') lenis.stop();
+
+  // 오버레이 전용 Lenis 인스턴스
+  if(window.detailLenis) window.detailLenis.destroy();
+  window.detailLenis = new Lenis({
+    wrapper: ov,
+    content: ov.querySelector('.d-content') || ov,
+    duration: 1.4,
+    easing: t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+  });
+  function detailRaf(time){ window.detailLenis.raf(time); if(window.detailLenis) requestAnimationFrame(detailRaf); }
+  requestAnimationFrame(detailRaf);
 
   // 이미지 로드 완료 시 fade-in
   ov.querySelectorAll('img').forEach(img => {
-    if (img.complete) {
-      img.classList.add('loaded');
-    } else {
+    if (img.complete) img.classList.add('loaded');
+    else {
       img.addEventListener('load', () => img.classList.add('loaded'));
       img.addEventListener('error', () => img.classList.add('loaded'));
     }
@@ -1460,6 +1473,8 @@ function openDetail(idx) {
 function closeDetail() {
   document.getElementById('detail-ov').classList.remove('open');
   document.body.style.overflow = '';
+  if(typeof lenis !== 'undefined') lenis.start();
+  if(window.detailLenis){ window.detailLenis.destroy(); window.detailLenis = null; }
 }
 
 document.getElementById('detail-close').addEventListener('click', closeDetail);
@@ -1469,11 +1484,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDetai
 function openType(){
   document.getElementById('type-ov').classList.add('open');
   document.body.style.overflow='hidden';
+  if(typeof lenis !== 'undefined') lenis.stop();
   initTypeIfNeeded();
 }
 function closeType(){
   document.getElementById('type-ov').classList.remove('open');
   document.body.style.overflow='';
+  if(typeof lenis !== 'undefined') lenis.start();
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeType(); closeDetail(); } });
 
