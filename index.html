@@ -1046,7 +1046,7 @@ body::after{
 </section>
 
 <!-- ═══ TYPE PAGE OVERLAY ═══ -->
-<div id="type-ov">
+<div id="type-ov" data-lenis-prevent>
 
   <!-- Type page nav -->
   <div class="tp-nav">
@@ -1140,7 +1140,7 @@ body::after{
 </div>
 
 <!-- ═══ DETAIL OVERLAY ═══ -->
-<div id="detail-ov">
+<div id="detail-ov" data-lenis-prevent>
   <div class="d-topbar">
     <span class="d-topbar-title" id="d-topbar-title">THISISPEARWAY</span>
     <button id="detail-close">← Back</button>
@@ -1571,8 +1571,10 @@ document.querySelectorAll('a,button,.wcell,.svc,.mag-line').forEach(el=>{
 // ── Nav 스크롤
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
+    const href = a.getAttribute('href');
+    if(!href || href === '#') return;
     e.preventDefault();
-    const target=document.querySelector(a.getAttribute('href'));
+    const target = document.querySelector(href);
     if(target) target.scrollIntoView({behavior:'smooth'});
   });
 });
