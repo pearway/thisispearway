@@ -1396,7 +1396,7 @@ function buildCell(p, i) {
       <div class="wcell-cat">${LABELS[p.cat]}</div>
     </div>`;
   cell.addEventListener('click', () => {
-    if (p.cat === 'font' && p.fontId) { openFontDetail(p.fontId); }
+    if (p.cat === 'font') { openFontDetail(p.fontId || 'graceserif'); }
     else if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
     else openDetail(i);
   });
@@ -1693,7 +1693,8 @@ function openFontDetail(fontId, fromList){
   document.body.style.overflow = 'hidden';
   if(typeof lenis!=='undefined') lenis.stop();
   // 폰트 상세 전용 Lenis
-  if(window.fontDetailLenis){ window.fontDetailLenis.destroy(); window.fontDetailLenis=null; }
+  if(!isTouch){
+if(window.fontDetailLenis){ window.fontDetailLenis.destroy(); window.fontDetailLenis=null; }
   const fsc = document.getElementById('font-detail-scroll');
   if(fsc) fsc.scrollTop=0;
   window.fontDetailLenis = new Lenis({
@@ -1705,6 +1706,8 @@ function openFontDetail(fontId, fromList){
     wheelMultiplier: 1,
   });
   (function fontRaf(t){ if(!window.fontDetailLenis)return; window.fontDetailLenis.raf(t); requestAnimationFrame(fontRaf); })(0);
+}
+  initTypeIfNeeded();
   initTypeIfNeeded();
   try{history.pushState(null,'','/#type/'+fontId);}catch(e){}
 }
