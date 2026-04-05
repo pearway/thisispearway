@@ -4,272 +4,221 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THISISPEARWAY — Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F0EBE3;--ink:#0A0A0A;--blue:#1B4AE8;
-  --cream:#EDEAE3;--border:rgba(27,74,232,.15);
-  --danger:#FF1744;--success:#00C853;
+  --bg:#0A0A0A;--fg:#F0EBE3;--blue:#1B4AE8;--orange:#FF5C1A;
+  --card:#111;--border:rgba(27,74,232,.15);--input:#1a1a1a;
 }
-body{background:var(--bg);color:var(--ink);font-family:'Barlow',sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--fg);font-family:'Barlow',sans-serif;min-height:100vh}
+a{color:var(--blue);text-decoration:none}
 
-.topbar{position:sticky;top:0;z-index:100;background:var(--ink);padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:60px;}
-.topbar-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg)}
-.topbar-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);border:1px solid var(--blue);padding:4px 12px;border-radius:99px}
-.topbar-status{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,227,.4)}
-.topbar-status.connected{color:var(--success)}
+/* ── HEADER */
+header{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg);border-bottom:1px solid var(--border);
+  padding:18px 40px;display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.hbtns{display:flex;gap:10px}
+.hbtn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.hbtn.primary{background:var(--orange);color:#fff}
+.hbtn.secondary{background:transparent;color:var(--blue);border:1px solid var(--border)}
+.hbtn:hover{opacity:.75}
+.save-status{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.08em;color:var(--blue);opacity:.5;align-self:center}
 
-.guide{background:rgba(27,74,232,.07);border-bottom:1px solid var(--border);padding:12px 40px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink);opacity:.7}
-.guide strong{color:var(--blue);opacity:1}
+/* ── LAYOUT */
+main{max-width:1200px;margin:0 auto;padding:40px}
 
-.layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 60px)}
+/* ── PROJECT LIST */
+.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:.5;margin-bottom:16px}
+#project-list{display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
 
-/* Sidebar */
-.sidebar{background:var(--cream);border-right:1px solid var(--border);display:flex;flex-direction:column}
-.sidebar-head{padding:20px 20px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
-.project-list{flex:1;overflow-y:auto;padding:10px}
-.proj-item{padding:12px 14px;border-radius:8px;margin-bottom:4px;cursor:pointer;border:1.5px solid transparent;display:flex;align-items:center;gap:10px;transition:all .15s;}
-.proj-item:hover{background:white;border-color:var(--border)}
-.proj-item.active{background:white;border-color:var(--blue)}
-.proj-item.dragging{opacity:.35}
-.proj-item.drag-over{border-color:var(--blue);background:#eef1ff}
-.proj-thumb{width:40px;height:40px;border-radius:4px;flex-shrink:0;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.08em;color:rgba(0,0,0,.3);}
-.proj-info{flex:1;min-width:0}
-.proj-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.proj-cat{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);opacity:.6;margin-top:2px}
-.proj-drag{color:rgba(0,0,0,.18);font-size:14px;flex-shrink:0;cursor:grab}
-.sidebar-footer{padding:14px;border-top:1px solid var(--border)}
+.proj-row{
+  display:grid;grid-template-columns:32px 1fr auto auto auto;gap:12px;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:6px;
+  padding:12px 16px;cursor:grab;transition:border-color .2s;
+}
+.proj-row:active{cursor:grabbing}
+.proj-row.drag-over{border-color:var(--orange)}
+.drag-handle{color:var(--blue);opacity:.3;font-size:18px;user-select:none;text-align:center}
+.proj-info{}
+.proj-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.02em;color:var(--fg)}
+.proj-meta{font-size:12px;color:var(--blue);opacity:.5;margin-top:2px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.thumb-preview{width:48px;height:32px;border-radius:3px;object-fit:cover;border:1px solid var(--border)}
+.thumb-placeholder{width:48px;height:32px;border-radius:3px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);opacity:.3}
+.row-btns{display:flex;gap:6px}
+.row-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.row-btn.edit{background:rgba(27,74,232,.15);color:var(--blue)}
+.row-btn.del{background:rgba(255,92,26,.1);color:var(--orange)}
+.row-btn:hover{opacity:.7}
 
-/* Editor */
-.editor{padding:36px 40px 100px;overflow-y:auto;max-height:calc(100vh - 88px)}
-.editor-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:12px;opacity:.25}
-.editor-empty-icon{font-size:40px}
-.editor-empty-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.add-btn{
+  width:100%;padding:16px;background:transparent;border:1px dashed var(--border);
+  border-radius:6px;color:var(--blue);font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  cursor:pointer;transition:border-color .2s,color .2s;
+}
+.add-btn:hover{border-color:var(--blue);color:var(--fg)}
 
-/* Form */
-.sec{margin-bottom:36px}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:.65;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.row.full{grid-template-columns:1fr}
-.fg{display:flex;flex-direction:column;gap:5px}
-.lbl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);opacity:.4}
-input.fi,select.fi,textarea.fi{padding:9px 12px;border:1.5px solid var(--border);border-radius:6px;background:white;color:var(--ink);font-family:'Barlow',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
-input.fi:focus,select.fi:focus,textarea.fi:focus{border-color:var(--blue)}
-textarea.fi{resize:vertical;min-height:72px;line-height:1.6}
+/* ── MODAL */
+#modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+#modal-bg.open{display:flex}
+#modal{
+  background:#161616;border:1px solid var(--border);border-radius:10px;
+  width:100%;max-width:700px;max-height:90vh;overflow-y:auto;
+  padding:36px;
+}
+.modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:-.01em;text-transform:uppercase;color:var(--fg);margin-bottom:28px}
 
-/* Color */
-.color-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;border:1.5px solid var(--border);cursor:pointer}
-.cdot{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .15s;flex-shrink:0}
-.cdot:hover{transform:scale(1.18)}
-.cdot.sel{border-color:var(--ink)}
+.field{margin-bottom:20px}
+.field label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);opacity:.7;margin-bottom:8px}
+.field input,.field select,.field textarea{
+  width:100%;background:var(--input);border:1px solid var(--border);border-radius:6px;
+  padding:12px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--fg);
+  outline:none;transition:border-color .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
+.field textarea{min-height:80px;resize:vertical;line-height:1.6}
+.field select option{background:#161616}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field-hint{font-size:12px;color:var(--fg);opacity:.3;margin-top:6px;line-height:1.5}
 
-/* Tags */
-.tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
-.tag-chip{display:inline-flex;align-items:center;gap:5px;background:var(--blue);color:#fff;padding:3px 10px;border-radius:99px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
-.tag-x{cursor:pointer;opacity:.7;font-size:12px}
-.tag-x:hover{opacity:1}
-.tag-add{display:flex;gap:8px}
-
-/* Image upload */
-.upload-zone{border:2px dashed var(--border);border-radius:10px;background:white;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;text-align:center;}
-.upload-zone:hover,.upload-zone.over{border-color:var(--blue);background:#f0f3ff}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.upload-inner{padding:24px 20px;pointer-events:none}
-.upload-icon{font-size:24px;margin-bottom:6px;opacity:.4}
-.upload-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:.7}
-.upload-sub{font-size:11px;color:var(--ink);opacity:.3;margin-top:4px}
-.upload-preview{width:100%;border-radius:6px;display:none;aspect-ratio:16/9;object-fit:cover}
-.upload-preview.show{display:block}
-.upload-change{display:none;padding:8px;text-align:center}
-.upload-change.show{display:block}
-.upload-change-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--danger);background:none;border:none;cursor:pointer;opacity:.7}
-.upload-change-btn:hover{opacity:1}
-
-/* Progress bar */
-.upload-progress{display:none;padding:8px 16px}
-.upload-progress.show{display:block}
-.progress-bar{height:4px;background:var(--border);border-radius:99px;overflow:hidden}
-.progress-fill{height:100%;background:var(--blue);border-radius:99px;transition:width .3s;width:0%}
-.progress-txt{font-size:11px;opacity:.4;margin-top:4px;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-
-/* Blocks */
-.blocks-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.block-card{background:white;border:1.5px solid var(--border);border-radius:8px;overflow:hidden}
-.block-head{padding:11px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
-.block-badge{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);background:rgba(27,74,232,.08);padding:3px 10px;border-radius:99px}
-.block-head-r{display:flex;gap:8px;align-items:center}
-.block-drag{color:rgba(0,0,0,.18);cursor:grab;font-size:13px}
-.block-del{font-size:13px;color:var(--danger);opacity:.55;cursor:pointer;background:none;border:none}
+/* blocks editor */
+.blocks-wrap{display:flex;flex-direction:column;gap:8px}
+.block-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px}
+.block-type{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);opacity:.5;padding-top:3px;min-width:40px}
+.block-inputs{display:flex;flex-direction:column;gap:6px}
+.block-inputs input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px 10px;font-size:13px;color:var(--fg);outline:none}
+.block-inputs input:focus{border-color:var(--blue)}
+.block-del{background:none;border:none;color:var(--orange);cursor:pointer;font-size:18px;opacity:.5;padding:2px;line-height:1;transition:opacity .2s}
 .block-del:hover{opacity:1}
-.block-body{padding:14px;display:none;border-top:1px solid var(--border)}
-.block-body.open{display:block}
-.block-imgs{display:flex;flex-direction:column;gap:10px}
+.add-block-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.add-block-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--blue);cursor:pointer;transition:all .2s}
+.add-block-btn:hover{border-color:var(--blue);background:rgba(27,74,232,.1)}
 
-/* Slot upload */
-.block-img-slot{border:2px dashed var(--border);border-radius:8px;background:#fafafa;cursor:pointer;position:relative;overflow:hidden;transition:all .2s;}
-.block-img-slot:hover,.block-img-slot.over{border-color:var(--blue);background:#f0f3ff}
-.block-img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer}
-.slot-inner{padding:14px;text-align:center;pointer-events:none}
-.slot-icon{font-size:18px;opacity:.3;margin-bottom:4px}
-.slot-txt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:.6}
-.slot-preview{width:100%;border-radius:5px;display:none;max-height:180px;object-fit:cover}
-.slot-preview.show{display:block}
-.slot-del{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.5);color:white;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:11px;display:none;align-items:center;justify-content:center}
-.slot-del.show{display:flex}
-.slot-del:hover{background:var(--danger)}
-.slot-progress{display:none;padding:6px 14px}
-.slot-progress.show{display:block}
+.modal-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
+.modal-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:11px 24px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.modal-btn.save{background:var(--orange);color:#fff}
+.modal-btn.cancel{background:transparent;color:var(--blue);border:1px solid var(--border)}
+.modal-btn:hover{opacity:.75}
 
-/* Add block buttons */
-.btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 20px;border-radius:6px;border:none;cursor:pointer;transition:opacity .2s}
-.btn:hover{opacity:.8}
-.btn-primary{background:var(--blue);color:#fff}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-sm{padding:6px 14px;font-size:11px}
-.add-blocks{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.add-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:10px 4px;border-radius:6px;border:1.5px dashed var(--border);background:white;cursor:pointer;color:var(--ink);opacity:.45;transition:all .18s;text-align:center;line-height:1.4;}
-.add-btn:hover{opacity:1;border-color:var(--blue);color:var(--blue)}
+/* toast */
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:99px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+#toast.show{opacity:1}
 
-/* Actions */
-.actions-bar{position:sticky;bottom:0;background:white;border-top:1px solid var(--border);padding:14px 40px;display:flex;justify-content:space-between;align-items:center;margin:0 -40px;}
-.save-st{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.3}
-.save-st.saved{color:var(--success);opacity:1}
-.save-st.saving{color:var(--blue);opacity:1}
-
-/* Toast */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:11px 22px;border-radius:99px;opacity:0;transition:all .22s;pointer-events:none;z-index:500;white-space:nowrap;}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* conditional fields */
+.field.font-only,.field.web-only{display:none}
+.field.show{display:block}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div style="display:flex;align-items:center;gap:14px">
-    <span class="topbar-logo">THISISPEARWAY</span>
-    <span class="topbar-tag">Admin</span>
-  </div>
-  <button onclick="migrateFromJson()" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.1);color:rgba(240,235,227,.5);border:1px solid rgba(240,235,227,.2);padding:6px 14px;border-radius:6px;cursor:pointer" id="migrateBtn">기존 데이터 가져오기</button>
-</div>
-
-
-
-<div class="layout">
-  <div class="sidebar">
-    <div class="sidebar-head">
-      <span class="sidebar-title" id="projCount">프로젝트 (0)</span>
-    </div>
-    <div class="project-list" id="projList"></div>
-    <div class="sidebar-footer">
-      <button class="btn btn-primary" style="width:100%" onclick="newProject()">+ 새 프로젝트</button>
+<header>
+  <span class="logo">THISISPEARWAY — Admin</span>
+  <div style="display:flex;align-items:center;gap:16px">
+    <span class="save-status" id="save-status"></span>
+    <div class="hbtns">
+      <button class="hbtn secondary" onclick="window.open('index.html','_blank')">사이트 보기</button>
+      <button class="hbtn primary" onclick="saveAll()">Firebase 저장 ↑</button>
     </div>
   </div>
+</header>
 
-  <div class="editor" id="editor">
-    <div class="editor-empty" id="edEmpty">
-      <div class="editor-empty-icon">✦</div>
-      <div class="editor-empty-txt">왼쪽에서 프로젝트를<br>선택하거나 새로 추가하세요</div>
+<main>
+  <div class="section-label">작업 목록 <span id="proj-count" style="opacity:.4"></span></div>
+  <div id="project-list"></div>
+  <button class="add-btn" onclick="openModal()">+ 작업 추가</button>
+</main>
+
+<!-- MODAL -->
+<div id="modal-bg">
+  <div id="modal">
+    <div class="modal-title" id="modal-title">작업 추가</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>제목</label>
+        <input type="text" id="f-title" placeholder="프로젝트 이름">
+      </div>
+      <div class="field">
+        <label>카테고리</label>
+        <select id="f-cat" onchange="onCatChange()">
+          <option value="brand">Brand</option>
+          <option value="graphic">Graphic</option>
+          <option value="font">Font</option>
+          <option value="web">Web</option>
+        </select>
+      </div>
     </div>
 
-    <div id="edForm" style="display:none">
+    <div class="field-row">
+      <div class="field">
+        <label>연도</label>
+        <input type="text" id="f-year" placeholder="2025">
+      </div>
+      <div class="field">
+        <label>배경 색상</label>
+        <input type="text" id="f-color" placeholder="#1B4AE8">
+      </div>
+    </div>
 
-      <div class="sec">
-        <div class="sec-title">기본 정보</div>
-        <div class="row">
-          <div class="fg"><label class="lbl">프로젝트 이름 *</label><input class="fi" id="f-title" placeholder="프로젝트 이름"></div>
-          <div class="fg"><label class="lbl">연도</label><input class="fi" id="f-year" placeholder="2024" maxlength="4"></div>
-        </div>
-        <div class="row">
-          <div class="fg">
-            <label class="lbl">카테고리</label>
-            <select class="fi" id="f-cat" onchange="toggleUrlField()">
-              <option value="brand">Brand — 브랜드</option>
-              <option value="graphic">Graphic — 그래픽</option>
-              <option value="spatial">Spatial — 공간</option>
-              <option value="web">Web — 웹</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label class="lbl">배경색</label>
-            <div class="color-row">
-              <input type="color" id="f-color" value="#D0CCCA">
-              <div id="colorDots"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row full">
-          <div class="fg"><label class="lbl">프로젝트 설명</label><textarea class="fi" id="f-desc" placeholder="프로젝트 소개를 입력하세요."></textarea></div>
-        </div>
-        <div class="row full" id="url-field" style="display:none">
-          <div class="fg"><label class="lbl">웹사이트 URL</label><input class="fi" id="f-url" placeholder="https://example.com"></div>
+    <div class="field">
+      <label>썸네일 URL</label>
+      <input type="text" id="f-thumb" placeholder="https://...">
+      <div class="field-hint">썸네일 이미지 URL. 없으면 배경색으로 표시됩니다.</div>
+    </div>
+
+    <div class="field">
+      <label>설명</label>
+      <textarea id="f-desc" placeholder="프로젝트 간략 설명"></textarea>
+    </div>
+
+    <!-- Font 카테고리 전용 -->
+    <div class="field font-only" id="field-fontId">
+      <label>Font ID</label>
+      <input type="text" id="f-fontId" placeholder="graceserif">
+      <div class="field-hint">FONTS 배열의 id 값. 예: graceserif</div>
+    </div>
+
+    <!-- Web 카테고리 전용 -->
+    <div class="field web-only" id="field-url">
+      <label>외부 URL</label>
+      <input type="text" id="f-url" placeholder="https://...">
+    </div>
+
+    <!-- 상세 이미지 블록 (font/web 제외) -->
+    <div id="blocks-section">
+      <div class="field">
+        <label>상세 이미지 블록</label>
+        <div class="blocks-wrap" id="blocks-wrap"></div>
+        <div class="add-block-btns">
+          <button class="add-block-btn" onclick="addBlock('img')">+ 이미지</button>
+          <button class="add-block-btn" onclick="addBlock('2col')">+ 2열</button>
+          <button class="add-block-btn" onclick="addBlock('3col')">+ 3열</button>
+          <button class="add-block-btn" onclick="addBlock('text')">+ 텍스트</button>
+          <button class="add-block-btn" onclick="addBlock('video')">+ 영상</button>
         </div>
       </div>
+    </div>
 
-      <div class="sec">
-        <div class="sec-title">태그</div>
-        <div class="tags-wrap" id="tagsWrap"></div>
-        <div class="tag-add">
-          <input class="fi" id="tagIn" placeholder="태그 입력 후 Enter" style="flex:1">
-          <button class="btn btn-primary btn-sm" onclick="addTag()">추가</button>
-        </div>
-      </div>
-
-      <div class="sec">
-        <div class="sec-title">썸네일 이미지</div>
-        <div class="upload-zone" id="thumbZone">
-          <input type="file" accept="image/*" id="thumbFile" onchange="handleThumbUpload(this)">
-          <img class="upload-preview" id="thumbPreview">
-          <div class="upload-inner" id="thumbInner">
-            <div class="upload-icon">🖼</div>
-            <div class="upload-txt">클릭하거나 이미지를 드래그</div>
-            <div class="upload-sub">JPG, PNG, WebP</div>
-          </div>
-          <div class="upload-progress" id="thumbProgress">
-            <div class="progress-bar"><div class="progress-fill" id="thumbProgressFill"></div></div>
-            <div class="progress-txt" id="thumbProgressTxt">업로드 중...</div>
-          </div>
-          <div class="upload-change" id="thumbChange">
-            <button type="button" class="upload-change-btn" onclick="clearThumb(event)">✕ 이미지 제거</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="sec">
-        <div class="sec-title">상세 이미지 레이아웃</div>
-        <p style="font-size:12px;opacity:.4;margin-bottom:14px;line-height:1.6">블록을 추가하고 이미지를 직접 업로드하세요. 저장 시 Firebase에 자동 업로드됩니다.</p>
-        <div class="blocks-list" id="blocksList"></div>
-        <div style="margin-bottom:8px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.35">+ 블록 추가</div>
-        <div class="add-blocks">
-          <button class="add-btn" onclick="addBlock('img')">📷<br>풀와이드</button>
-          <button class="add-btn" onclick="addBlock('2col')">⬜⬜<br>2장 나란히</button>
-          <button class="add-btn" onclick="addBlock('3col')">⬜⬜⬜<br>3장 나란히</button>
-          <button class="add-btn" onclick="addBlock('text')">📝<br>텍스트</button>
-          <button class="add-btn" onclick="addBlock('split')">🖼📝<br>이미지+글</button>
-        </div>
-      </div>
-
-      <div class="actions-bar">
-        <span class="save-st" id="saveSt">저장되지 않음</span>
-        <div style="display:flex;gap:10px">
-          <button class="btn btn-danger" onclick="deleteProject()">삭제</button>
-          <button class="btn btn-primary" onclick="saveProject()">저장 → 즉시 반영</button>
-        </div>
-      </div>
+    <div class="modal-btns">
+      <button class="modal-btn cancel" onclick="closeModal()">취소</button>
+      <button class="modal-btn save" onclick="saveProject()">저장</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div id="toast"></div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, orderBy, query } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+import {
+  getFirestore, collection, getDocs, doc,
+  setDoc, deleteDoc, writeBatch, orderBy, query
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
-// ── Firebase 설정
 const firebaseConfig = {
   apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
   authDomain: "thisispearway.firebaseapp.com",
@@ -281,504 +230,248 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
-const storage = getStorage(app);
 
-// ── 전역 상태
 let projects = [];
-let cur = null;
-let dragSrc = null;
-let blockDragSrc = null;
+let editIdx  = null;
+let dragIdx  = null;
 
-const LABELS = {brand:'Brand', graphic:'Graphic', spatial:'Spatial', web:'Web'};
-const COLORS = ['#D0CCCA','#C8C4BC','#CECCCA','#C4C0B8','#1B4AE8','#0A0A0A','#E8E4DC','#B8B0A8'];
-const BTYPES = {img:'풀와이드 이미지','2col':'2장 나란히','3col':'3장 나란히',text:'텍스트 블록',split:'이미지 + 텍스트'};
-
-// ── Init
-document.addEventListener('DOMContentLoaded', async () => {
-  buildColorDots();
-  document.getElementById('tagIn').addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); addTag(); }
-  });
-  setupThumbDrop();
-  await loadProjects();
-});
-
-// ── 기존 projects.json → Firestore 마이그레이션
-async function migrateFromJson() {
-  if (!confirm('projects.json 데이터를 Firebase로 가져올까요?\n기존 Firebase 데이터가 있으면 덮어쓰입니다.')) return;
-  const btn = document.getElementById('migrateBtn');
-  btn.textContent = '가져오는 중...';
-  btn.style.pointerEvents = 'none';
-  try {
-    // projects.json fetch
-    const res = await fetch('projects.json?v=' + Date.now());
-    if (!res.ok) throw new Error('projects.json을 찾을 수 없어요');
-    const data = await res.json();
-    if (!Array.isArray(data) || !data.length) throw new Error('데이터가 비어있어요');
-
-    // Firestore에 순서대로 저장
-    for (let i = 0; i < data.length; i++) {
-      const p = {...data[i], order: i, id: data[i].id || Date.now().toString() + i};
-      await setDoc(doc(db, 'projects', p.id), p);
-    }
-
-    toast(`✓ ${data.length}개 프로젝트를 Firebase로 가져왔습니다!`);
-    btn.textContent = '가져오기 완료 ✓';
-    btn.style.color = 'var(--success)';
-    await loadProjects();
-  } catch(e) {
-    toast('실패: ' + e.message + ' ❌');
-    btn.textContent = '기존 데이터 가져오기';
-    btn.style.pointerEvents = '';
-  }
-}
-window.migrateFromJson = migrateFromJson;
-
-// ── Firestore CRUD
+// ── 로드
 async function loadProjects() {
+  setStatus('불러오는 중...');
   try {
-    const q = query(collection(db, 'projects'), orderBy('order'));
-    const snap = await getDocs(q);
-    projects = snap.docs.map(d => ({id: d.id, ...d.data()}));
-  } catch(e) {
-    // order 필드 없을 때 fallback
+    let snap;
     try {
-      const snap = await getDocs(collection(db, 'projects'));
-      projects = snap.docs.map(d => ({id: d.id, ...d.data()}));
-    } catch(e2) { projects = []; }
-  }
-  renderList();
-}
-
-async function saveToFirestore(p) {
-  const id = p.id || Date.now().toString();
-  const data = {...p, id, order: projects.findIndex(x => x.id === id)};
-  await setDoc(doc(db, 'projects', id), data);
-  return id;
-}
-
-async function deleteFromFirestore(id) {
-  await deleteDoc(doc(db, 'projects', id));
-}
-
-// ── Storage 업로드
-async function uploadImage(file, path, onProgress) {
-  const compressed = await compressImage(file);
-  const storageRef = ref(storage, path);
-  const snap = await uploadBytes(storageRef, compressed);
-  const url = await getDownloadURL(snap.ref);
-  return url;
-}
-
-async function compressImage(file) {
-  const isPng = file.type === 'image/png';
-  const MAX = file.size > 500*1024 ? 1200 : 9999;
-  return new Promise(resolve => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const img = new Image();
-      img.onload = () => {
-        const ratio = Math.min(MAX/img.width, MAX/img.height, 1);
-        const canvas = document.createElement('canvas');
-        canvas.width  = Math.round(img.width  * ratio);
-        canvas.height = Math.round(img.height * ratio);
-        const ctx = canvas.getContext('2d');
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        if (!isPng) { ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(blob => resolve(blob), isPng?'image/png':'image/jpeg', 0.88);
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-// ── Sidebar
-function renderList() {
-  document.getElementById('projCount').textContent = `프로젝트 (${projects.length})`;
-  document.getElementById('projList').innerHTML = projects.map((p, i) => `
-    <div class="proj-item ${i===cur?'active':''}" onclick="select(${i})"
-      draggable="true"
-      ondragstart="onDS(event,${i})" ondragover="onDO(event,${i})"
-      ondrop="onDrop(event,${i})" ondragend="onDE()">
-      <div class="proj-thumb" style="background:${p.thumb?`url('${p.thumb}') center/cover`:p.color}">
-        ${p.thumb?'':LABELS[p.cat]?.slice(0,2)||'??'}
-      </div>
-      <div class="proj-info">
-        <div class="proj-name">${p.title||'이름 없음'}</div>
-        <div class="proj-cat">${LABELS[p.cat]||''} · ${p.year||'-'}</div>
-      </div>
-      <span class="proj-drag">⠿</span>
-    </div>
-  `).join('');
-}
-
-// ── Select
-function select(idx) {
-  if (cur !== null) syncFormToState();
-  cur = idx;
-  renderList();
-  renderForm(projects[idx]);
-  document.getElementById('edEmpty').style.display = 'none';
-  document.getElementById('edForm').style.display = 'block';
-}
-window.select = select;
-
-function renderForm(p) {
-  document.getElementById('f-title').value = p.title||'';
-  document.getElementById('f-year').value  = p.year||'';
-  document.getElementById('f-cat').value   = p.cat||'brand';
-  document.getElementById('f-color').value = p.color||'#D0CCCA';
-  document.getElementById('f-desc').value  = p.desc||'';
-  document.getElementById('f-url').value   = p.url||'';
-  document.getElementById('saveSt').textContent = '저장되지 않음';
-  document.getElementById('saveSt').classList.remove('saved','saving');
-  toggleUrlField();
-  renderTags(p.tags||[]);
-  renderThumb(p.thumb||'');
-  renderBlocks(p.blocks||[]);
-  updateColorDots(p.color);
-}
-
-function syncFormToState() {
-  if (cur === null || !projects[cur]) return;
-  const p = projects[cur];
-  p.title = document.getElementById('f-title').value;
-  p.year  = document.getElementById('f-year').value;
-  p.cat   = document.getElementById('f-cat').value;
-  p.color = document.getElementById('f-color').value;
-  p.desc  = document.getElementById('f-desc').value;
-  p.url   = document.getElementById('f-url').value;
-}
-
-// ── URL field toggle
-function toggleUrlField() {
-  const cat = document.getElementById('f-cat').value;
-  document.getElementById('url-field').style.display = cat === 'web' ? '' : 'none';
-}
-window.toggleUrlField = toggleUrlField;
-
-// ── Tags
-function renderTags(tags) {
-  document.getElementById('tagsWrap').innerHTML = (tags||[]).map((t,i) =>
-    `<span class="tag-chip">${t}<span class="tag-x" onclick="removeTag(${i})">✕</span></span>`
-  ).join('');
-}
-function addTag() {
-  if (cur===null) return;
-  const v = document.getElementById('tagIn').value.trim();
-  if (!v) return;
-  if (!projects[cur].tags) projects[cur].tags = [];
-  projects[cur].tags.push(v);
-  document.getElementById('tagIn').value = '';
-  renderTags(projects[cur].tags);
-}
-function removeTag(i) {
-  if (cur===null) return;
-  projects[cur].tags.splice(i,1);
-  renderTags(projects[cur].tags);
-}
-window.addTag = addTag;
-window.removeTag = removeTag;
-
-// ── Color
-function buildColorDots() {
-  document.getElementById('colorDots').innerHTML = COLORS.map(c =>
-    `<div class="cdot" style="background:${c}" title="${c}" onclick="setColor('${c}')"></div>`
-  ).join('');
-}
-function setColor(c) {
-  document.getElementById('f-color').value = c;
-  if (cur !== null) projects[cur].color = c;
-  updateColorDots(c);
-}
-function updateColorDots(active) {
-  document.querySelectorAll('.cdot').forEach(d => d.classList.toggle('sel', d.title === active));
-}
-window.setColor = setColor;
-
-// ── Thumb upload
-function setupThumbDrop() {
-  const zone = document.getElementById('thumbZone');
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
-  zone.addEventListener('drop', e => {
-    e.preventDefault(); zone.classList.remove('over');
-    const f = e.dataTransfer.files[0];
-    if (f && f.type.startsWith('image/')) processThumbFile(f);
-  });
-}
-
-async function handleThumbUpload(input) {
-  if (input.files[0]) await processThumbFile(input.files[0]);
-}
-window.handleThumbUpload = handleThumbUpload;
-
-async function processThumbFile(file) {
-  if (cur === null) return;
-  const id = projects[cur].id || Date.now().toString();
-  showThumbProgress(true);
-  try {
-    const url = await uploadImage(file, `projects/${id}/thumb_${Date.now()}`);
-    projects[cur].thumb = url;
-    renderThumb(url);
+      const q = query(collection(db, 'projects'), orderBy('order'));
+      snap = await getDocs(q);
+    } catch {
+      snap = await getDocs(collection(db, 'projects'));
+    }
+    projects = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
+    projects.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
     renderList();
-    toast('썸네일 업로드 완료 ✓');
+    setStatus('');
   } catch(e) {
-    toast('업로드 실패 ❌');
-  }
-  showThumbProgress(false);
-}
-
-function showThumbProgress(show) {
-  document.getElementById('thumbProgress').classList.toggle('show', show);
-  document.getElementById('thumbInner').style.display = show ? 'none' : '';
-}
-
-function renderThumb(src) {
-  const preview = document.getElementById('thumbPreview');
-  const inner   = document.getElementById('thumbInner');
-  const change  = document.getElementById('thumbChange');
-  if (src) {
-    preview.src = src; preview.classList.add('show');
-    inner.style.display = 'none'; change.classList.add('show');
-  } else {
-    preview.classList.remove('show');
-    inner.style.display = ''; change.classList.remove('show');
+    setStatus('Firebase 연결 실패');
+    console.error(e);
   }
 }
 
-function clearThumb(e) {
-  e.stopPropagation();
-  if (cur !== null) projects[cur].thumb = '';
-  renderThumb(''); renderList();
-}
-window.clearThumb = clearThumb;
-
-// ── Blocks
-function renderBlocks(blocks) {
-  const list = document.getElementById('blocksList');
-  if (!blocks.length) {
-    list.innerHTML = `<div style="text-align:center;padding:20px;border:2px dashed var(--border);border-radius:8px;background:white;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.3">아직 블록이 없어요</div>`;
-    return;
-  }
-  list.innerHTML = blocks.map((b, i) => buildBlockHTML(b, i)).join('');
-  // Setup block drag
-  list.querySelectorAll('.block-img-slot').forEach(slot => {
-    slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('over'); });
-    slot.addEventListener('dragleave', () => slot.classList.remove('over'));
-    slot.addEventListener('drop', e => {
-      e.preventDefault(); slot.classList.remove('over');
-      const f = e.dataTransfer.files[0];
-      if (f && f.type.startsWith('image/')) {
-        processSlotFile(f, +slot.dataset.bi, +slot.dataset.si);
-      }
+// ── 저장
+window.saveAll = async function() {
+  setStatus('저장 중...');
+  try {
+    const batch = writeBatch(db);
+    projects.forEach((p, i) => {
+      const id = p._id || `proj_${Date.now()}_${i}`;
+      const data = { ...p, order: i };
+      delete data._id;
+      batch.set(doc(db, 'projects', id), data);
     });
+    await batch.commit();
+    // localStorage 동기화
+    const clean = projects.map(p => { const d={...p}; delete d._id; return d; });
+    localStorage.setItem('tip_projects', JSON.stringify(clean));
+    setStatus('✓ 저장됨');
+    toast('Firebase에 저장됐습니다');
+    setTimeout(() => setStatus(''), 3000);
+  } catch(e) {
+    setStatus('저장 실패');
+    toast('저장 실패: ' + e.message);
+  }
+};
+
+// ── 렌더
+function renderList() {
+  const list = document.getElementById('project-list');
+  document.getElementById('proj-count').textContent = `(${projects.length})`;
+  list.innerHTML = '';
+  projects.forEach((p, i) => {
+    const row = document.createElement('div');
+    row.className = 'proj-row';
+    row.draggable = true;
+    row.dataset.idx = i;
+
+    const thumb = p.thumb
+      ? `<img class="thumb-preview" src="${p.thumb}" onerror="this.style.display='none'">`
+      : `<div class="thumb-placeholder">${(p.cat||'').slice(0,2).toUpperCase()}</div>`;
+
+    row.innerHTML = `
+      <div class="drag-handle">⠿</div>
+      <div class="proj-info">
+        <div class="proj-title">${p.title || '(제목 없음)'}</div>
+        <div class="proj-meta">${p.cat?.toUpperCase() || ''}${p.year ? ' · ' + p.year : ''}</div>
+      </div>
+      ${thumb}
+      <div class="row-btns">
+        <button class="row-btn edit" onclick="openModal(${i})">편집</button>
+        <button class="row-btn del" onclick="deleteProject(${i})">삭제</button>
+      </div>`;
+
+    // Drag
+    row.addEventListener('dragstart', () => { dragIdx = i; row.style.opacity='.4'; });
+    row.addEventListener('dragend', () => { row.style.opacity=''; });
+    row.addEventListener('dragover', e => { e.preventDefault(); row.classList.add('drag-over'); });
+    row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
+    row.addEventListener('drop', e => {
+      e.preventDefault();
+      row.classList.remove('drag-over');
+      if (dragIdx === null || dragIdx === i) return;
+      const moved = projects.splice(dragIdx, 1)[0];
+      projects.splice(i, 0, moved);
+      renderList();
+    });
+
+    list.appendChild(row);
   });
 }
 
-function buildBlockHTML(b, i) {
-  let body = '';
-  if (b.type === 'img') {
-    body = slotHTML(b.src||'', i, 0, '이미지 업로드');
-  } else if (b.type === '2col') {
-    body = `<div class="block-imgs">${slotHTML((b.src&&b.src[0])||'',i,0,'왼쪽')}${slotHTML((b.src&&b.src[1])||'',i,1,'오른쪽')}</div>`;
-  } else if (b.type === '3col') {
-    body = `<div class="block-imgs">${slotHTML((b.src&&b.src[0])||'',i,0,'1')}${slotHTML((b.src&&b.src[1])||'',i,1,'2')}${slotHTML((b.src&&b.src[2])||'',i,2,'3')}</div>`;
-  } else if (b.type === 'text') {
-    body = `<div class="fg" style="margin-bottom:10px"><label class="lbl">제목</label><input class="fi" value="${escHtml(b.heading||'')}" placeholder="Design Process" oninput="bUpd(${i},'heading',this.value)"></div>
-            <div class="fg"><label class="lbl">내용</label><textarea class="fi" oninput="bUpd(${i},'body',this.value)">${escHtml(b.body||'')}</textarea></div>`;
-  } else if (b.type === 'split') {
-    body = `${slotHTML(b.src||'',i,0,'이미지')}<div class="fg" style="margin-top:10px"><label class="lbl">옆 텍스트</label><textarea class="fi" oninput="bUpd(${i},'body',this.value)">${escHtml(b.body||'')}</textarea></div>`;
+// ── 모달
+window.openModal = function(idx = null) {
+  editIdx = idx;
+  document.getElementById('modal-title').textContent = idx === null ? '작업 추가' : '작업 편집';
+  document.getElementById('blocks-wrap').innerHTML = '';
+
+  if (idx !== null) {
+    const p = projects[idx];
+    document.getElementById('f-title').value = p.title || '';
+    document.getElementById('f-cat').value   = p.cat || 'brand';
+    document.getElementById('f-year').value  = p.year || '';
+    document.getElementById('f-color').value = p.color || '#1B4AE8';
+    document.getElementById('f-thumb').value = p.thumb || '';
+    document.getElementById('f-desc').value  = p.desc || '';
+    document.getElementById('f-fontId').value = p.fontId || '';
+    document.getElementById('f-url').value   = p.url || '';
+    (p.blocks || []).forEach(b => addBlockData(b));
+  } else {
+    document.getElementById('f-title').value = '';
+    document.getElementById('f-cat').value   = 'brand';
+    document.getElementById('f-year').value  = new Date().getFullYear();
+    document.getElementById('f-color').value = '#1B4AE8';
+    document.getElementById('f-thumb').value = '';
+    document.getElementById('f-desc').value  = '';
+    document.getElementById('f-fontId').value = '';
+    document.getElementById('f-url').value   = '';
   }
-  return `<div class="block-card" id="bc-${i}" draggable="true"
-    ondragstart="onBlockDS(event,${i})" ondragover="onBlockDO(event,${i})"
-    ondrop="onBlockDrop(event,${i})" ondragend="onBlockDE()">
-    <div class="block-head" onclick="toggleBlock(${i})">
-      <div style="display:flex;align-items:center;gap:8px">
-        <span class="block-drag">⠿</span>
-        <span class="block-badge">${BTYPES[b.type]}</span>
-        <span style="font-size:11px;opacity:.25">#${i+1}</span>
-      </div>
-      <div class="block-head-r">
-        <button class="block-del" onclick="event.stopPropagation();delBlock(${i})">✕</button>
-      </div>
-    </div>
-    <div class="block-body open" id="bb-${i}">${body}</div>
-  </div>`;
-}
 
-function slotHTML(src, bi, si, label) {
-  return `<div class="block-img-slot" data-bi="${bi}" data-si="${si}">
-    <input type="file" accept="image/*" onchange="handleSlotFile(this,${bi},${si})">
-    <img class="slot-preview ${src?'show':''}" src="${src||''}" alt="">
-    <div class="slot-inner" style="${src?'display:none':''}">
-      <div class="slot-icon">📷</div>
-      <div class="slot-txt">${label} 업로드</div>
-    </div>
-    <div class="slot-progress" id="sp-${bi}-${si}">
-      <div class="progress-bar"><div class="progress-fill" id="spf-${bi}-${si}"></div></div>
-    </div>
-    <button class="slot-del ${src?'show':''}" onclick="clearSlot(event,${bi},${si})">✕</button>
-  </div>`;
-}
+  onCatChange();
+  document.getElementById('modal-bg').classList.add('open');
+  document.getElementById('f-title').focus();
+};
 
-async function handleSlotFile(input, bi, si) {
-  if (input.files[0]) await processSlotFile(input.files[0], bi, si);
-}
-window.handleSlotFile = handleSlotFile;
+window.closeModal = function() {
+  document.getElementById('modal-bg').classList.remove('open');
+};
 
-async function processSlotFile(file, bi, si) {
-  if (cur === null) return;
-  const id = projects[cur].id || Date.now().toString();
-  document.getElementById(`sp-${bi}-${si}`)?.classList.add('show');
-  try {
-    const url = await uploadImage(file, `projects/${id}/block_${bi}_${si}_${Date.now()}`);
-    const block = projects[cur].blocks[bi];
-    if (!block) return;
-    if (block.type === 'img' || block.type === 'split') {
-      block.src = url;
-    } else {
-      if (!Array.isArray(block.src)) block.src = ['','',''];
-      block.src[si] = url;
-    }
-    renderBlocks(projects[cur].blocks);
-    toast('이미지 업로드 완료 ✓');
-  } catch(e) {
-    toast('업로드 실패 ❌');
-  }
-  document.getElementById(`sp-${bi}-${si}`)?.classList.remove('show');
-}
+window.onCatChange = function() {
+  const cat = document.getElementById('f-cat').value;
+  document.querySelectorAll('.font-only').forEach(el => el.classList.toggle('show', cat === 'font'));
+  document.querySelectorAll('.web-only').forEach(el =>  el.classList.toggle('show', cat === 'web'));
+  document.getElementById('blocks-section').style.display = (cat === 'font' || cat === 'web') ? 'none' : '';
+};
 
-function clearSlot(e, bi, si) {
-  e.stopPropagation();
-  if (cur === null) return;
-  const block = projects[cur].blocks[bi];
-  if (!block) return;
-  if (block.type === 'img' || block.type === 'split') block.src = '';
-  else if (Array.isArray(block.src)) block.src[si] = '';
-  renderBlocks(projects[cur].blocks);
-}
-window.clearSlot = clearSlot;
+window.saveProject = function() {
+  const title = document.getElementById('f-title').value.trim();
+  if (!title) { toast('제목을 입력하세요'); return; }
+  const cat = document.getElementById('f-cat').value;
 
-function bUpd(bi, field, val) {
-  if (cur === null) return;
-  const b = projects[cur].blocks[bi];
-  if (b) b[field] = val;
-}
-window.bUpd = bUpd;
-
-function toggleBlock(i) { document.getElementById(`bb-${i}`).classList.toggle('open'); }
-window.toggleBlock = toggleBlock;
-
-function addBlock(type) {
-  if (cur === null) return;
-  syncFormToState();
-  const defs = {img:{type:'img',src:''},'2col':{type:'2col',src:['','']},'3col':{type:'3col',src:['','','']} ,text:{type:'text',heading:'',body:''},split:{type:'split',src:'',body:''}};
-  projects[cur].blocks.push({...defs[type]});
-  renderBlocks(projects[cur].blocks);
-}
-window.addBlock = addBlock;
-
-function delBlock(i) {
-  if (cur === null) return;
-  projects[cur].blocks.splice(i, 1);
-  renderBlocks(projects[cur].blocks);
-}
-window.delBlock = delBlock;
-
-// ── Block drag
-function onBlockDS(e, i) { blockDragSrc = i; e.stopPropagation(); e.currentTarget.style.opacity='.35'; }
-function onBlockDO(e, i) { e.preventDefault(); e.stopPropagation(); document.querySelectorAll('.block-card').forEach(el=>el.style.outline=''); e.currentTarget.style.outline='2px solid var(--blue)'; }
-function onBlockDrop(e, i) {
-  e.preventDefault(); e.stopPropagation();
-  if (blockDragSrc===null||blockDragSrc===i||cur===null) return;
-  const blocks=projects[cur].blocks;
-  const moved=blocks.splice(blockDragSrc,1)[0];
-  blocks.splice(i,0,moved);
-  renderBlocks(blocks);
-}
-function onBlockDE() { blockDragSrc=null; document.querySelectorAll('.block-card').forEach(el=>{el.style.opacity='';el.style.outline='';}); }
-window.onBlockDS=onBlockDS; window.onBlockDO=onBlockDO; window.onBlockDrop=onBlockDrop; window.onBlockDE=onBlockDE;
-
-// ── Save
-async function saveProject() {
-  if (cur === null) return;
-  syncFormToState();
-  const st = document.getElementById('saveSt');
-  st.textContent = '저장 중...'; st.className = 'save-st saving';
-  try {
-    // 현재 프로젝트 저장 + 전체 order 동기화
-    for (let i = 0; i < projects.length; i++) {
-      const p = projects[i];
-      if (!p.id) p.id = Date.now().toString() + i;
-      p.order = i;
-      await setDoc(doc(db, 'projects', p.id), p);
-    }
-    st.textContent = '저장됨 ✓ 즉시 반영'; st.className = 'save-st saved';
-    renderList();
-    toast('저장 완료! 포트폴리오에 즉시 반영됐습니다 ✓');
-  } catch(e) {
-    st.textContent = '저장 실패 ❌'; st.className = 'save-st';
-    toast('저장 실패: ' + e.message + ' ❌');
-  }
-}
-window.saveProject = saveProject;
-
-// ── New / Delete
-async function newProject() {
-  if (cur !== null) syncFormToState();
-  const newP = {
-    id: Date.now().toString(),
-    title:'새 프로젝트', cat:'brand',
-    year: new Date().getFullYear().toString(),
-    color:'#D0CCCA', thumb:'', desc:'', url:'', tags:[], blocks:[],
-    order: projects.length
+  const p = {
+    title,
+    cat,
+    year: document.getElementById('f-year').value.trim(),
+    color: document.getElementById('f-color').value.trim() || '#1B4AE8',
+    thumb: document.getElementById('f-thumb').value.trim(),
+    desc:  document.getElementById('f-desc').value.trim(),
   };
-  projects.push(newP);
-  select(projects.length - 1);
-}
-window.newProject = newProject;
+  if (cat === 'font') p.fontId = document.getElementById('f-fontId').value.trim();
+  if (cat === 'web')  p.url    = document.getElementById('f-url').value.trim();
+  if (cat !== 'font' && cat !== 'web') p.blocks = collectBlocks();
 
-async function deleteProject() {
-  if (cur === null) return;
-  if (!confirm(`"${projects[cur].title}" 삭제할까요?`)) return;
-  const id = projects[cur].id;
-  try {
-    if (id) await deleteFromFirestore(id);
-    projects.splice(cur, 1);
-    cur = null;
-    renderList();
-    document.getElementById('edEmpty').style.display = 'flex';
-    document.getElementById('edForm').style.display = 'none';
-    toast('삭제되었습니다');
-  } catch(e) { toast('삭제 실패 ❌'); }
-}
-window.deleteProject = deleteProject;
+  if (editIdx !== null) {
+    p._id = projects[editIdx]._id;
+    projects[editIdx] = p;
+  } else {
+    projects.push(p);
+  }
 
-// ── Project drag reorder
-function onDS(e, i) { dragSrc = i; e.currentTarget.classList.add('dragging'); }
-function onDO(e, i) { e.preventDefault(); document.querySelectorAll('.proj-item').forEach(el=>el.classList.remove('drag-over')); e.currentTarget.classList.add('drag-over'); }
-function onDrop(e, i) {
-  e.preventDefault();
-  if (dragSrc===null||dragSrc===i) return;
-  const item = projects.splice(dragSrc,1)[0];
-  projects.splice(i,0,item);
-  cur = i; renderList();
+  renderList();
+  closeModal();
+  toast(editIdx !== null ? '수정됐습니다' : '추가됐습니다. Firebase 저장을 눌러 반영하세요.');
+};
+
+window.deleteProject = function(idx) {
+  if (!confirm(`"${projects[idx].title}" 삭제하시겠습니까?`)) return;
+  const id = projects[idx]._id;
+  projects.splice(idx, 1);
+  renderList();
+  if (id) deleteDoc(doc(db, 'projects', id)).catch(console.error);
+  toast('삭제됐습니다');
+};
+
+// ── 블록 에디터
+window.addBlock = function(type) {
+  addBlockData({ type });
+};
+
+function addBlockData(b) {
+  const wrap = document.getElementById('blocks-wrap');
+  const item = document.createElement('div');
+  item.className = 'block-item';
+  item.dataset.type = b.type;
+
+  let inputs = '';
+  if (b.type === 'img') {
+    inputs = `<input placeholder="이미지 URL" data-key="src" value="${b.src||''}">`;
+  } else if (b.type === '2col' || b.type === '3col') {
+    const count = b.type === '2col' ? 2 : 3;
+    const srcs = b.src || [];
+    for (let i = 0; i < count; i++) {
+      inputs += `<input placeholder="이미지 URL ${i+1}" data-key="src${i}" value="${srcs[i]||''}">`;
+    }
+  } else if (b.type === 'text') {
+    inputs = `
+      <input placeholder="제목 (선택)" data-key="heading" value="${b.heading||''}">
+      <input placeholder="본문" data-key="body" value="${b.body||''}">`;
+  } else if (b.type === 'video') {
+    inputs = `<input placeholder="YouTube / Vimeo URL" data-key="url" value="${b.url||''}">`;
+  }
+
+  item.innerHTML = `
+    <span class="block-type">${b.type}</span>
+    <div class="block-inputs">${inputs}</div>
+    <button class="block-del" onclick="this.closest('.block-item').remove()">×</button>`;
+  wrap.appendChild(item);
 }
-function onDE() { dragSrc=null; document.querySelectorAll('.proj-item').forEach(el=>el.classList.remove('dragging','drag-over')); }
-window.onDS=onDS; window.onDO=onDO; window.onDrop=onDrop; window.onDE=onDE;
+
+function collectBlocks() {
+  return [...document.querySelectorAll('.block-item')].map(item => {
+    const type = item.dataset.type;
+    const get = k => item.querySelector(`[data-key="${k}"]`)?.value.trim() || '';
+    if (type === 'img')  return { type, src: get('src') };
+    if (type === '2col') return { type, src: [get('src0'), get('src1')] };
+    if (type === '3col') return { type, src: [get('src0'), get('src1'), get('src2')] };
+    if (type === 'text') return { type, heading: get('heading'), body: get('body') };
+    if (type === 'video') return { type, url: get('url') };
+    return { type };
+  });
+}
 
 // ── Utils
-function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function setStatus(msg) { document.getElementById('save-status').textContent = msg; }
+
 function toast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
+  t.textContent = msg;
+  t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
-window.toast = toast;
+
+// ESC로 모달 닫기
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.getElementById('modal-bg').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal-bg')) closeModal();
+});
+
+loadProjects();
 </script>
 </body>
 </html>
