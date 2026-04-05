@@ -567,7 +567,8 @@ body::after{
 #type-list-ov{
   position:fixed;inset:0;z-index:3000;
   background:#0A0A0A;
-  overflow:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   opacity:0;pointer-events:none;
   transition:opacity .35s ease;
 }
@@ -576,7 +577,8 @@ body::after{
 #font-detail-ov{
   position:fixed;inset:0;z-index:3000;
   background:#0A0A0A;
-  overflow:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   opacity:0;pointer-events:none;
   transition:opacity .4s cubic-bezier(.16,1,.3,1);
 }
@@ -750,7 +752,8 @@ body::after{
 #detail-ov{
   position:fixed;inset:0;z-index:4000;
   background:#0A0A0A;
-  overflow:hidden;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
   opacity:0;pointer-events:none;
   transition:opacity .4s cubic-bezier(.16,1,.3,1);
 }
