@@ -104,15 +104,7 @@ nav *{pointer-events:auto}
   opacity:.85;transition:opacity .2s;
 }
 .nav-center a:hover{opacity:1}
-.nav-type{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--orange);text-decoration:none;
-  border:1px solid var(--orange);
-  padding:5px 14px;border-radius:99px;
-  opacity:1;transition:opacity .2s;
-}
-.nav-type:hover{opacity:.6}
+
 
 /* ─────── HERO ─────── */
 #hero{
@@ -572,230 +564,52 @@ body::after{
 
 
 /* ─────── FONT LIST OVERLAY ─────── */
-#type-list-ov{
+#type-list-ov,#font-detail-ov{
   position:fixed;inset:0;z-index:3000;
   background:#0A0A0A;
-  overflow-y:scroll;
+  overflow-y:auto;
   -webkit-overflow-scrolling:touch;
-  overscroll-behavior-y:contain;
   opacity:0;pointer-events:none;
-  transform:translateY(40px);
-  transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);
+  transition:opacity .35s ease;
 }
-#type-list-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-#type-list-scroll{width:100%;min-height:100%}
+#type-list-ov.open,#font-detail-ov.open{
+  opacity:1;pointer-events:auto;
+}
 
-.tl-nav{
+.tl-nav,.tp-nav{
   position:sticky;top:0;z-index:10;
   padding:22px 44px;
   display:flex;justify-content:space-between;align-items:center;
   background:#0A0A0A;
   border-bottom:1px solid rgba(27,74,232,.12);
 }
-.tl-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8}
-.tl-close{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8;background:none;border:none;cursor:none;opacity:1;transition:opacity .2s}
-.tl-close:hover{opacity:.6}
+.tl-logo,.tp-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8}
+.tl-close,.tp-close{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8;background:none;border:none;cursor:pointer;opacity:1;transition:opacity .2s}
+.tl-close:hover,.tp-close:hover{opacity:.6}
 
 .tl-header{padding:64px 44px 48px;border-bottom:1px solid rgba(27,74,232,.08)}
 .tl-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(40px,6vw,88px);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;color:#F0EBE3}
 .tl-sub{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#1B4AE8;opacity:.7;margin-top:16px}
 
-.tl-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:2px;
-  padding:2px;
-}
-.tl-card{
-  background:#111;
-  padding:52px 44px 36px;
-  cursor:none;
-  position:relative;
-  overflow:hidden;
-  transition:background .25s;
-  border:1px solid transparent;
-  transition:background .25s, border-color .25s;
-}
+.tl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;padding:2px}
+.tl-card{background:#111;padding:52px 44px 36px;cursor:pointer;position:relative;overflow:hidden;border:1px solid transparent;transition:background .25s,border-color .25s}
 .tl-card:hover{background:#161616;border-color:rgba(27,74,232,.2)}
-.tl-card-preview{
-  font-size:clamp(28px,3vw,44px);
-  line-height:1.1;
-  letter-spacing:0;
-  color:#F0EBE3;
-  margin-bottom:40px;
-  display:block;
-  min-height:auto;
-}
+.tl-card-preview{font-size:clamp(20px,2.5vw,36px);line-height:1.2;letter-spacing:0;color:#F0EBE3;margin-bottom:40px;display:block}
 .tl-card-bottom{display:flex;justify-content:space-between;align-items:flex-end}
 .tl-card-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(18px,2.2vw,28px);letter-spacing:-.01em;text-transform:uppercase;color:#F0EBE3}
 .tl-card-name-ko{display:block;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.1em;color:#1B4AE8;opacity:.8;margin-top:4px;text-transform:none}
-.tl-card-meta{text-align:right}
 .tl-card-wt{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#1B4AE8;opacity:.7;display:block}
 .tl-card-yr{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#F0EBE3;opacity:.2;display:block;margin-top:3px}
-.tl-card-arrow{position:absolute;top:36px;right:44px;font-size:20px;color:var(--orange);opacity:1;transition:opacity .2s,transform .2s}
-.tl-card:hover .tl-card-arrow{opacity:1;transform:translate(5px,-5px)}
-
-.tl-empty{grid-column:1/-1;padding:80px 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1B4AE8;opacity:.3}
+.tl-card-arrow{position:absolute;top:36px;right:44px;font-size:20px;color:var(--orange);opacity:1;transition:transform .2s}
+.tl-card:hover .tl-card-arrow{transform:translate(5px,-5px)}
 
 @media(max-width:768px){
-  .tl-nav{padding:14px 20px}
+  .tl-nav,.tp-nav{padding:14px 20px}
   .tl-header{padding:40px 20px 32px}
   .tl-grid{grid-template-columns:1fr}
   .tl-card{padding:36px 20px 24px}
   .tl-card-arrow{top:24px;right:20px}
 }
-
-/* ─────── TYPE PAGE OVERLAY (font detail) ─────── */
-#font-detail-ov{
-  position:fixed;inset:0;z-index:3000;
-  background:#0A0A0A;
-  overflow-y:scroll;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-y:contain;
-  opacity:0;pointer-events:none;
-  transform:translateY(40px);
-  transition:opacity .45s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1);
-}
-#font-detail-scroll{
-  width:100%;
-  height:auto;
-}
-#font-detail-ov.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-
-/* Type nav */
-.tp-nav{
-  position:sticky;top:0;z-index:10;
-  padding:22px 44px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:#0A0A0A;
-  border-bottom:1px solid rgba(27,74,232,.12);
-}
-.tp-logo{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;
-}
-.tp-close{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:16px;letter-spacing:.12em;text-transform:uppercase;
-  color:#1B4AE8;background:none;border:none;cursor:none;
-  opacity:1;transition:opacity .2s;
-}
-.tp-close:hover{opacity:1}
-
-/* Hero */
-.tp-hero{
-  position:relative;width:100%;height:90vh;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
-.tp-stage{perspective:800px;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-.tp-wrap{transform-style:preserve-3d;will-change:transform}
-#tp-bigL{
-  font-family:'GraceSerif','Barlow Condensed',sans-serif;font-weight:700;
-  font-size:clamp(200px,38vw,580px);
-  line-height:.85;letter-spacing:0;text-transform:none;
-  color:transparent;-webkit-text-stroke:1.5px #1B4AE8;
-  user-select:none;pointer-events:none;display:block;
-  transition:color .35s,-webkit-text-stroke .35s;
-}
-#tp-bigL.fill{color:#1B4AE8;-webkit-text-stroke:0px transparent}
-.tp-co{position:absolute;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#1B4AE8;opacity:1;pointer-events:none;font-family:'Barlow Condensed',sans-serif;font-weight:900}
-.tp-co.tl{top:28px;left:44px}
-.tp-co.tr{top:28px;right:44px;text-align:right}
-.tp-co.bl{bottom:56px;left:44px}
-.tp-co.br{bottom:56px;right:44px;text-align:right}
-
-#tp-astrip{position:absolute;bottom:0;left:0;right:0;display:flex;border-top:1px solid rgba(27,74,232,.1)}
-.tp-ak{
-  flex:1;padding:16px 0;text-align:center;
-  font-family:'GraceSerif','Barlow Condensed',sans-serif;font-weight:700;
-  font-size:clamp(13px,1.6vw,20px);letter-spacing:0;text-transform:none;
-  color:#1B4AE8;opacity:.7;cursor:none;
-  transition:opacity .15s;
-  border-right:1px solid rgba(27,74,232,.08);
-}
-.tp-ak:last-child{border-right:none}
-.tp-ak:hover{opacity:1}
-.tp-ak.on{opacity:1}
-
-/* Preview */
-.tp-preview{background:#F0EBE3;color:#0A0A0A;padding:80px 44px}
-.tp-prev-hd{max-width:1200px;margin:0 auto 36px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.tp-prev-tag{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:1;color:#1B4AE8}
-.tp-ctrls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.tp-sw{display:flex;align-items:center;gap:8px}
-.tp-sw label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
-#tp-szR{width:100px;accent-color:#0A0A0A;cursor:none}
-#tp-szV{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;min-width:40px}
-.tp-btns{display:flex;gap:3px}
-.tp-xbtn{
-  font-family:'Barlow Condensed',sans-serif;font-weight:900;
-  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  padding:7px 14px;border-radius:99px;
-  border:1.5px solid rgba(10,10,10,.2);
-  color:#0A0A0A;background:transparent;cursor:none;opacity:.35;transition:all .2s;
-}
-.tp-xbtn:hover{opacity:.7}
-.tp-xbtn.on{background:#0A0A0A;color:#F0EBE3;border-color:#0A0A0A;opacity:1}
-.tp-pbox{max-width:1200px;margin:0 auto;border:1px solid rgba(10,10,10,.1);border-radius:6px;padding:72px 44px 48px;min-height:180px;position:relative;background:#fff;overflow:visible}
-#tp-ptxt{width:100%;border:none;background:transparent;outline:none;font-family:'GraceSerif','Barlow Condensed',sans-serif;font-size:72px;line-height:1.3;letter-spacing:0;text-transform:none;color:#0A0A0A;resize:none;cursor:none;overflow:visible;padding-top:12px}
-.tp-pph{position:absolute;top:76px;left:44px;font-family:'GraceSerif','Barlow Condensed',sans-serif;font-size:72px;line-height:1.3;letter-spacing:0;text-transform:none;color:rgba(10,10,10,.1);pointer-events:none}
-
-/* Glyphs */
-.tp-glyphs{background:#111;padding:80px 44px}
-.tp-glabel{display:block;max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:1;font-size:13px}
-.tp-alpha{max-width:1200px;margin:0 auto;font-family:'GraceSerif','Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(44px,7.5vw,108px);line-height:.9;letter-spacing:0;text-transform:none;word-break:break-all}
-.tp-alpha .ta{color:#F0EBE3}
-.tp-alpha .tb{color:rgba(240,235,227,.12)}
-.tp-alpha .ty{color:#1B4AE8}
-.tp-alpha .tr2{color:#1B4AE8;opacity:.5}
-.tp-numrow{max-width:1200px;margin:16px auto 0;font-family:'GraceSerif','Barlow Condensed',sans-serif;font-weight:400;font-size:clamp(32px,5.5vw,80px);letter-spacing:0;color:rgba(240,235,227,.2);line-height:1}
-
-/* Weights */
-.tp-wts{background:#0A0A0A;padding:80px 44px}
-.tp-wlb{max-width:1200px;margin:0 auto 44px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:1;font-size:13px}
-.tp-wr{max-width:1200px;margin:0 auto;display:flex;align-items:baseline;gap:24px;padding:24px 0;border-bottom:1px solid rgba(27,74,232,.1)}
-.tp-wr:last-child{border:none}
-.tp-wn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1B4AE8;opacity:1;font-size:13px;min-width:110px}
-.tp-ws{font-family:'GraceSerif','Barlow Condensed',sans-serif;font-size:clamp(16px,2vw,28px);line-height:1;letter-spacing:0;text-transform:none;color:#F0EBE3;white-space:nowrap}
-
-
-/* Font description section */
-.tp-desc{background:#0A0A0A;padding:80px 44px;border-top:1px solid rgba(27,74,232,.1)}
-.tp-desc-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:80px;align-items:start}
-.tp-desc-left{}
-.tp-desc-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:1;margin-bottom:16px}
-.tp-desc-hl{font-family:'GraceSerif','Barlow Condensed',sans-serif;font-weight:700;font-size:clamp(18px,2vw,28px);line-height:1;letter-spacing:0;color:#F0EBE3;white-space:nowrap}
-.tp-desc-right{padding-top:8px}
-.tp-desc-body{font-size:16px;line-height:1.9;font-weight:300;color:#F0EBE3;opacity:.65;margin-bottom:20px}
-.tp-desc-body:last-of-type{margin-bottom:32px}
-.tp-desc-tags{display:flex;flex-wrap:wrap;gap:8px}
-.tp-desc-tags span{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#1B4AE8;border:1px solid rgba(107,147,255,.5);padding:5px 14px;border-radius:99px}
-@media(max-width:768px){
-  .tp-desc-in{grid-template-columns:1fr;gap:32px}
-}
-
-/* Download */
-.tp-dl{background:#1B4AE8;padding:90px 44px}
-.tp-dl-in-new{max-width:1200px;margin:0 auto}
-.tp-dl-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;padding-bottom:48px;border-bottom:1px solid rgba(240,235,227,.15);margin-bottom:48px}
-.tp-dl-meta{display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline}
-.tp-dk{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#F0EBE3;opacity:.5}
-.tp-dv{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:#F0EBE3}
-.tp-dl-btns{display:flex;gap:8px;flex-shrink:0}
-.tp-dl-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;background:#F0EBE3;color:#1B4AE8;padding:16px 32px;border-radius:99px;text-decoration:none;border:none;cursor:none;transition:opacity .2s}
-.tp-dl-btn:hover{opacity:.8}
-.tp-lic-wrap{}
-.tp-lic-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#F0EBE3;opacity:.85;margin-bottom:20px}
-.tp-lic-table{width:100%;border-collapse:collapse;font-family:'Barlow Condensed',sans-serif;font-weight:900}
-.tp-lic-table th{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F0EBE3;opacity:.4;text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid rgba(240,235,227,.15)}
-.tp-lic-table td{font-size:14px;letter-spacing:.02em;color:#F0EBE3;padding:16px 16px 16px 0;border-bottom:1px solid rgba(240,235,227,.08);vertical-align:top;line-height:1.4}
-.tp-lic-table td:first-child{text-transform:uppercase;letter-spacing:.1em;font-size:12px;opacity:.7;white-space:nowrap;min-width:80px}
-.tp-lic-table td:nth-child(2){opacity:.6}
-.tp-lic-table td.ok{color:#F0EBE3;opacity:1;white-space:nowrap}
-.tp-lic-table td.cond{color:#FF5C1A;opacity:1;white-space:nowrap}
-.tp-soon{display:none}
-.tp-sd{display:none}
 
 /* ─────── DETAIL OVERLAY — Behance Style ─────── */
 #detail-ov{
@@ -1028,7 +842,6 @@ body::after{
     <li><a href="#works">Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#" class="nav-type" onclick="openType();return false;">Type ↗︎</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1055,7 +868,7 @@ body::after{
     <button class="ftab on" data-f="all">All</button>
     <button class="ftab" data-f="brand">Brand</button>
     <button class="ftab" data-f="graphic">Graphic</button>
-    <button class="ftab" data-f="spatial">Spatial</button>
+    <button class="ftab" data-f="font">Font</button>
     <button class="ftab" data-f="web">Web</button>
   </div>
   <div class="wgrid rv" id="wgrid"></div>
@@ -1102,7 +915,6 @@ body::after{
             <option value="" disabled selected>선택하세요</option>
             <option value="Brand Identity">Brand Identity</option>
             <option value="Graphic Design">Graphic Design</option>
-            <option value="Spatial Design">Spatial Design</option>
             <option value="기타">기타</option>
           </select>
         </div>
@@ -1152,34 +964,25 @@ body::after{
 
 <!-- ═══ TYPE — FONT LIST OVERLAY ═══ -->
 <div id="type-list-ov">
-<div id="type-list-scroll">
-
   <div class="tl-nav">
     <span class="tl-logo">THISISPEARWAY</span>
     <button class="tl-close" onclick="closeTypeList()">← Back</button>
   </div>
-
   <div class="tl-header">
     <div class="tl-title">Type</div>
     <div class="tl-sub">THISISPEARWAY Typefaces</div>
   </div>
-
   <div class="tl-grid" id="tl-grid"></div>
-
-</div>
-</div>
+</div><!-- /type-list-ov -->
 
 <!-- ═══ TYPE — FONT DETAIL OVERLAY ═══ -->
 <div id="font-detail-ov">
-<div id="font-detail-scroll">
 
-  <!-- Type page nav -->
   <div class="tp-nav">
     <span class="tp-logo">THISISPEARWAY</span>
     <button class="tp-close" onclick="closeFontDetail()">← Back</button>
   </div>
 
-  <!-- Hero: giant Korean character -->
   <div class="tp-hero" id="tp-hero">
     <div class="tp-stage">
       <div class="tp-wrap" id="tp-wrap"><div id="tp-bigL">우</div></div>
@@ -1191,7 +994,6 @@ body::after{
     <div id="tp-astrip"></div>
   </div>
 
-  <!-- Interactive preview -->
   <div class="tp-preview">
     <div class="tp-prev-hd">
       <span class="tp-prev-tag">미리보기</span>
@@ -1213,7 +1015,6 @@ body::after{
     </div>
   </div>
 
-  <!-- Glyphs — 한글 자모 -->
   <div class="tp-glyphs">
     <span class="tp-glabel">글리프</span>
     <div class="tp-alpha">
@@ -1225,7 +1026,6 @@ body::after{
     <div class="tp-numrow">0123456789</div>
   </div>
 
-  <!-- Weights -->
   <div class="tp-wts">
     <div class="tp-wlb">Weights</div>
     <div class="tp-wr">
@@ -1238,8 +1038,6 @@ body::after{
     </div>
   </div>
 
-
-  <!-- Font Description -->
   <div class="tp-desc">
     <div class="tp-desc-in">
       <div class="tp-desc-left">
@@ -1250,19 +1048,14 @@ body::after{
         <p class="tp-desc-body">우아한세리프는 클래식 명조 서체의 구조에서 영감을 얻어 현대적인 감각으로 재해석한 한글 세리프 서체입니다. 획의 시작과 끝에 섬세한 세리프를 더해 인쇄물과 화면 모두에서 품격 있는 가독성을 제공합니다.</p>
         <p class="tp-desc-body">한국어 완성형 자모를 전수 설계하였으며, Regular · Bold 두 가지 굵기로 구성되어 본문부터 헤드라인까지 폭넓게 활용할 수 있습니다.</p>
         <div class="tp-desc-tags">
-          <span>Korean 완성형</span>
-          <span>Regular · Bold</span>
-          <span>Print &amp; Screen</span>
-          <span>OFL</span>
+          <span>Korean 완성형</span><span>Regular · Bold</span><span>Print &amp; Screen</span><span>OFL</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Download -->
   <div class="tp-dl">
     <div class="tp-dl-in-new">
-
       <div class="tp-dl-top">
         <div class="tp-dl-meta">
           <span class="tp-dk">언어</span><span class="tp-dv">한국어 완성형</span>
@@ -1274,17 +1067,10 @@ body::after{
           <a href="#" class="tp-dl-btn" onclick="downloadFont('bold');return false;">Bold 다운로드 ↓</a>
         </div>
       </div>
-
       <div class="tp-lic-wrap">
         <div class="tp-lic-title">라이선스</div>
         <table class="tp-lic-table">
-          <thead>
-            <tr>
-              <th>카테고리</th>
-              <th>사용 범위</th>
-              <th>허용 여부</th>
-            </tr>
-          </thead>
+          <thead><tr><th>카테고리</th><th>사용 범위</th><th>허용 여부</th></tr></thead>
           <tbody>
             <tr><td>인쇄</td><td>브로슈어, 포스터, 책, 잡지 및 출판용 인쇄물 등</td><td class="ok">사용 가능</td></tr>
             <tr><td>웹사이트</td><td>웹페이지, 광고 배너, 메일, E-브로슈어 등</td><td class="ok">사용 가능</td></tr>
@@ -1296,12 +1082,9 @@ body::after{
           </tbody>
         </table>
       </div>
-
     </div>
   </div>
 
-</div><!-- /tp-dl -->
-</div><!-- /font-detail-scroll -->
 </div><!-- /font-detail-ov -->
 
 <!-- ═══ DETAIL OVERLAY ═══ -->
@@ -1321,7 +1104,8 @@ body::after{
    
    각 항목:
    - title: 프로젝트 이름
-   - cat: 'brand' | 'typography' | 'graphic' | 'spatial'
+   - cat: 'brand' | 'graphic' | 'font' | 'web'
+   - fontId: 'graceserif' (cat이 font일 때 — 폰트 상세페이지로 연결)
    - color: 이미지 없을 때 배경색 (원하는 색으로 변경 가능)
    - img: 이미지 URL (없으면 '' 빈칸)
    
@@ -1415,7 +1199,8 @@ window.addEventListener('storage', e => {
   } catch(e) {}
 });
 
-// ═══ FONT DATA ═══
+
+// ── Font data
 const FONTS = [
   {
     id: 'graceserif',
@@ -1427,17 +1212,16 @@ const FONTS = [
     previewText: '우아한세리프',
     desc: '클래식 명조에서 영감을 얻어 현대적으로 재해석한 한글 세리프 서체',
   },
-  // 새 폰트 추가 예시:
-  // { id:'font2', nameEn:'FontName', nameKo:'한글이름', weights:['Regular'], year:'2027', fontFamily:"'FontName','serif'", previewText:'가나다', desc:'설명' },
+  // 새 폰트 추가: { id:'font2', nameEn:'FontName', nameKo:'한글이름', weights:['Regular'], year:'2027', fontFamily:"'FontName','serif'", previewText:'가나다', desc:'설명' },
 ];
 
 function buildFontList(){
-  if(document.getElementById('tl-grid').children.length) return; // 이미 빌드됨
-  const grid=document.getElementById('tl-grid');
-  FONTS.forEach(font=>{
-    const card=document.createElement('div');
-    card.className='tl-card';
-    card.innerHTML=`
+  const grid = document.getElementById('tl-grid');
+  if(!grid || grid.children.length) return;
+  FONTS.forEach(font => {
+    const card = document.createElement('div');
+    card.className = 'tl-card';
+    card.innerHTML = `
       <span class="tl-card-arrow">↗︎</span>
       <span class="tl-card-preview" style="font-family:${font.fontFamily}">${font.previewText}</span>
       <div class="tl-card-bottom">
@@ -1449,24 +1233,15 @@ function buildFontList(){
           <span class="tl-card-yr">${font.year}</span>
         </div>
       </div>`;
-    card.addEventListener('click',()=>openFontDetail(font.id));
-    card.addEventListener('mouseenter',()=>dot.classList.add('xl'));
-    card.addEventListener('mouseleave',()=>dot.classList.remove('xl'));
+    card.addEventListener('click', () => openFontDetail(font.id));
+    card.addEventListener('mouseenter', () => dot.classList.add('xl'));
+    card.addEventListener('mouseleave', () => dot.classList.remove('xl'));
     grid.appendChild(card);
   });
 }
 
-let fontDetailInited=false;
-function initFontDetail(font){
-  if(!fontDetailInited){
-    fontDetailInited=true;
-    initTypeIfNeeded();
-  }
-}
-
-
 const PROJECTS = [];
-const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', spatial:'Spatial', web:'Web'};
+const LABELS = {brand:'Brand', typography:'Typography', graphic:'Graphic', font:'Font', web:'Web'};
 
 // ── 그리드 생성 함수
 function buildCell(p, i) {
@@ -1485,7 +1260,8 @@ function buildCell(p, i) {
       <div class="wcell-cat">${LABELS[p.cat]}</div>
     </div>`;
   cell.addEventListener('click', () => {
-    if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
+    if (p.cat === 'font' && p.fontId) { openFontDetail(p.fontId); }
+    else if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
     else openDetail(i);
   });
   return cell;
@@ -1661,7 +1437,6 @@ function openDetail(idx) {
 
   ov.scrollTop = 0;
   ov.classList.add('open');
-  lockBodyScroll();
   if(typeof lenis !== 'undefined') lenis.stop();
 
   // 오버레이는 네이티브 스크롤
@@ -1697,7 +1472,6 @@ function openDetail(idx) {
 
 function closeDetail() {
   document.getElementById('detail-ov').classList.remove('open');
-  unlockBodyScroll();
   if(typeof lenis !== 'undefined') lenis.start();
   if(window.detailLenis){ window.detailLenis.destroy(); window.detailLenis = null; }
 }
@@ -1707,24 +1481,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(
 
 // ── Type overlay
 
-// ── Body Scroll Lock (iOS/Android 인앱브라우저 호환)
-let _bslScrollY = 0;
-function lockBodyScroll(){
-  _bslScrollY = window.scrollY;
-  document.body.style.position = 'fixed';
-  document.body.style.top = -_bslScrollY + 'px';
-  document.body.style.left = '0';
-  document.body.style.right = '0';
-  document.body.style.overflow = 'hidden';
-}
-function unlockBodyScroll(){
-  document.body.style.position = '';
-  document.body.style.top = '';
-  document.body.style.left = '';
-  document.body.style.right = '';
-  document.body.style.overflow = '';
-  window.scrollTo(0, _bslScrollY);
-}
+
 
 // ── 공통 Lenis 헬퍼
 function _startOverlayLenis(wrapperId, contentId, storeKey){
@@ -1747,14 +1504,12 @@ function _stopOverlayLenis(storeKey){
 // ── 폰트 목록
 function openType(){
   document.getElementById('type-list-ov').classList.add('open');
-  lockBodyScroll();
   if(typeof lenis!=='undefined') lenis.stop();
   buildFontList();
   try{history.pushState(null,'','#type');}catch(e){}
 }
 function closeTypeList(){
   document.getElementById('type-list-ov').classList.remove('open');
-  unlockBodyScroll();
   if(typeof lenis!=='undefined') lenis.start();
   try{history.pushState(null,'',location.pathname);}catch(e){}
 }
@@ -1770,9 +1525,10 @@ function openFontDetail(fontId){
   listOv.classList.remove('open');
   listOv.style.visibility='hidden';
   const ov=document.getElementById('font-detail-ov');
-  ov.scrollTop=0;
+  const sc=document.getElementById('font-detail-scroll');
+  if(sc) sc.scrollTop=0;
   ov.classList.add('open');
-  initFontDetail(font);
+  initTypeIfNeeded();
   try{history.pushState(null,'','#type/'+fontId);}catch(e){}
 }
 function closeFontDetail(){
@@ -1870,8 +1626,6 @@ function handleHash(){
     // 목록 먼저 열고 상세 진입
     document.getElementById('type-list-ov').classList.add('open');
     buildFontList();
-    _startOverlayLenis('type-list-ov','type-list-scroll','_listLenis');
-    document.body.style.overflow='hidden';
     if(typeof lenis!=='undefined') lenis.stop();
     openFontDetail(fontId);
   } else if(hash==='#type'){
