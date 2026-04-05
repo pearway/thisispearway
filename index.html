@@ -1736,12 +1736,14 @@ function openType(){
   if(typeof lenis!=='undefined') lenis.stop();
   _startOverlayLenis('type-list-ov','type-list-scroll','_listLenis');
   buildFontList();
+  history.pushState(null,'','#type');
 }
 function closeTypeList(){
   document.getElementById('type-list-ov').classList.remove('open');
   document.body.style.overflow='';
   if(typeof lenis!=='undefined') lenis.start();
   _stopOverlayLenis('_listLenis');
+  history.pushState(null,'',location.pathname);
 }
 // 구버전 호환
 function closeType(){ closeTypeList(); }
@@ -1753,11 +1755,12 @@ function openFontDetail(fontId){
   document.getElementById('font-detail-ov').classList.add('open');
   _startOverlayLenis('font-detail-ov','font-detail-scroll','_fontDetailLenis');
   initFontDetail(font);
+  history.pushState(null,'','#type/'+fontId);
 }
 function closeFontDetail(){
   document.getElementById('font-detail-ov').classList.remove('open');
   _stopOverlayLenis('_fontDetailLenis');
-  // 목록은 유지
+  history.pushState(null,'','#type');
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.getElementById('font-detail-ov').classList.contains('open')) closeFontDetail(); else if(document.getElementById('type-list-ov').classList.contains('open')) closeTypeList(); else closeDetail(); } });
 
@@ -1837,6 +1840,26 @@ function initTypeIfNeeded(){
 }
 
 window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('gone'),1100));
+
+// ── URL 해시 라우터
+function handleHash(){
+  const hash = location.hash;
+  if(hash.startsWith('#type/')){
+    const fontId = hash.slice(6);
+    // 목록 먼저 열고 상세 진입
+    document.getElementById('type-list-ov').classList.add('open');
+    buildFontList();
+    _startOverlayLenis('type-list-ov','type-list-scroll','_listLenis');
+    document.body.style.overflow='hidden';
+    if(typeof lenis!=='undefined') lenis.stop();
+    openFontDetail(fontId);
+  } else if(hash==='#type'){
+    openType();
+  }
+}
+window.addEventListener('popstate', handleHash);
+window.addEventListener('load', handleHash);
+
 
 // ── Cursor
 const dot=document.getElementById('dot');
