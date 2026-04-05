@@ -461,6 +461,8 @@ section{
 
 /* ── Mobile ≤ 480px ── */
 @media(max-width:480px){
+  html,body{overflow-x:hidden}        /* ← 추가 */
+  .d-content{overflow-x:hidden;word-break:keep-all}  /* ← 추가 */
   nav{padding:16px 20px}
   .logo{font-size:9px;letter-spacing:.1em}
   .nav-center{gap:14px}
@@ -943,13 +945,19 @@ body::after{
 @media(max-width:768px){
   .d-topbar{padding:16px 20px}
   .d-header{grid-template-columns:1fr;gap:28px;padding:40px 20px 36px}
-  /* 커버 이미지 모바일에서 세로로 꽉 */
-  .d-cover{aspect-ratio:3/4}
-  /* 풀와이드 이미지도 세로형 */
-  .d-block img{aspect-ratio:3/4;object-fit:cover}
-  /* 2열→1열, 세로형 */
+  
+  /* 커버 이미지 — 원본 비율 유지 */
+  .d-cover{aspect-ratio:unset}
+  .d-cover img{height:auto;object-fit:contain}
+
+  /* 풀와이드 이미지 — 원본 비율 유지 */
+  .d-block img{aspect-ratio:unset;object-fit:contain}
+
+  /* 2열→1열 (이건 유지) */
   .d-block-2col,.d-block-3col,.d-block-split{grid-template-columns:1fr}
-  .d-block-2col img,.d-block-3col img{aspect-ratio:3/4}
+  /* 2열 이미지도 비율 유지 */
+  .d-block-2col img,.d-block-3col img{aspect-ratio:unset}
+
   .d-block-split-txt{padding:28px 20px}
   .d-block-text{padding:0 20px;margin:48px 0}
   .d-nav{padding:32px 20px}
