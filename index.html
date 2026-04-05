@@ -1658,22 +1658,28 @@ function openDetail(idx) {
   document.body.style.overflow = 'hidden';
   if(typeof lenis !== 'undefined') lenis.stop();
 
-  // 오버레이 전용 Lenis 인스턴스
+  // 오버레이 전용 Lenis 인스턴스 (터치 기기는 네이티브 스크롤)
   if(window.detailLenis) { window.detailLenis.destroy(); window.detailLenis = null; }
   const scrollContent = document.getElementById('detail-scroll-content');
-  window.detailLenis = new Lenis({
-    wrapper: ov,
-    content: scrollContent,
-    duration: 1.4,
-    easing: t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    wheelMultiplier: 1,
-  });
-  (function detailRaf(time){
-    if(!window.detailLenis) return;
-    window.detailLenis.raf(time);
-    requestAnimationFrame(detailRaf);
-  })(0);
+  if(isTouch){
+    ov.style.overflowY='auto';
+    ov.style.webkitOverflowScrolling='touch';
+  } else {
+    ov.style.overflowY='hidden';
+    window.detailLenis = new Lenis({
+      wrapper: ov,
+      content: scrollContent,
+      duration: 1.4,
+      easing: t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+    });
+    (function detailRaf(time){
+      if(!window.detailLenis) return;
+      window.detailLenis.raf(time);
+      requestAnimationFrame(detailRaf);
+    })(0);
+  }
 
   // 이미지 fade-in + scroll reveal
   setTimeout(() => {
@@ -1718,6 +1724,13 @@ function _startOverlayLenis(wrapperId, contentId, storeKey){
   const ov=document.getElementById(wrapperId);
   const ct=document.getElementById(contentId);
   if(window[storeKey]){ window[storeKey].destroy(); window[storeKey]=null; }
+  // 터치 기기는 네이티브 스크롤 사용
+  if(isTouch){
+    ov.style.overflowY='auto';
+    ov.style.webkitOverflowScrolling='touch';
+    return;
+  }
+  ov.style.overflowY='hidden';
   window[storeKey]=new Lenis({
     wrapper:ov, content:ct,
     duration:1.4, easing:t=>(t===1?1:1-Math.pow(2,-10*t)),
@@ -1736,14 +1749,14 @@ function openType(){
   if(typeof lenis!=='undefined') lenis.stop();
   _startOverlayLenis('type-list-ov','type-list-scroll','_listLenis');
   buildFontList();
-  history.pushState(null,'','#type');
+  try{history.pushState(null,'','#type');}catch(e){}
 }
 function closeTypeList(){
   document.getElementById('type-list-ov').classList.remove('open');
   document.body.style.overflow='';
   if(typeof lenis!=='undefined') lenis.start();
   _stopOverlayLenis('_listLenis');
-  history.pushState(null,'',location.pathname);
+  try{history.pushState(null,'',location.pathname);}catch(e){}
 }
 // 구버전 호환
 function closeType(){ closeTypeList(); }
@@ -1755,12 +1768,12 @@ function openFontDetail(fontId){
   document.getElementById('font-detail-ov').classList.add('open');
   _startOverlayLenis('font-detail-ov','font-detail-scroll','_fontDetailLenis');
   initFontDetail(font);
-  history.pushState(null,'','#type/'+fontId);
+  try{history.pushState(null,'','#type/'+fontId);}catch(e){}
 }
 function closeFontDetail(){
   document.getElementById('font-detail-ov').classList.remove('open');
   _stopOverlayLenis('_fontDetailLenis');
-  history.pushState(null,'','#type');
+  try{history.pushState(null,'','#type');}catch(e){}
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.getElementById('font-detail-ov').classList.contains('open')) closeFontDetail(); else if(document.getElementById('type-list-ov').classList.contains('open')) closeTypeList(); else closeDetail(); } });
 
