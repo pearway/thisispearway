@@ -7,469 +7,343 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0A0A0A;--fg:#F0EBE3;--blue:#1B4AE8;--orange:#FF5C1A;
-  --card:#111;--border:rgba(27,74,232,.15);--input:#1a1a1a;
-}
-body{background:var(--bg);color:var(--fg);font-family:'Barlow',sans-serif;min-height:100vh}
-a{color:var(--blue);text-decoration:none}
-
-/* ── HEADER */
-header{
-  position:sticky;top:0;z-index:100;
-  background:var(--bg);border-bottom:1px solid var(--border);
-  padding:18px 40px;display:flex;justify-content:space-between;align-items:center;
-}
-.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
-.hbtns{display:flex;gap:10px}
-.hbtn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:9px 20px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
-.hbtn.primary{background:var(--orange);color:#fff}
-.hbtn.secondary{background:transparent;color:var(--blue);border:1px solid var(--border)}
+:root{--bg:#0A0A0A;--fg:#F0EBE3;--blue:#1B4AE8;--orange:#FF5C1A;--card:#111;--border:rgba(27,74,232,.15);--input:#1a1a1a}
+body{background:var(--bg);color:var(--fg);font-family:"Barlow",sans-serif;min-height:100vh}
+header{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.hright{display:flex;align-items:center;gap:14px}
+.status{font-family:"Barlow Condensed",sans-serif;font-size:12px;color:var(--blue);opacity:.5}
+.hbtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:9px 22px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.hbtn.p{background:var(--orange);color:#fff}
+.hbtn.s{background:transparent;color:var(--blue);border:1px solid var(--border)}
 .hbtn:hover{opacity:.75}
-.save-status{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:.08em;color:var(--blue);opacity:.5;align-self:center}
-
-/* ── LAYOUT */
 main{max-width:1200px;margin:0 auto;padding:40px}
-
-/* ── PROJECT LIST */
-.section-label{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:.5;margin-bottom:16px}
-#project-list{display:flex;flex-direction:column;gap:4px;margin-bottom:32px}
-
-.proj-row{
-  display:grid;grid-template-columns:32px 1fr auto auto auto;gap:12px;align-items:center;
-  background:var(--card);border:1px solid var(--border);border-radius:6px;
-  padding:12px 16px;cursor:grab;transition:border-color .2s;
-}
-.proj-row:active{cursor:grabbing}
-.proj-row.drag-over{border-color:var(--orange)}
-.drag-handle{color:var(--blue);opacity:.3;font-size:18px;user-select:none;text-align:center}
-.proj-info{}
-.proj-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.02em;color:var(--fg)}
-.proj-meta{font-size:12px;color:var(--blue);opacity:.5;margin-top:2px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.thumb-preview{width:48px;height:32px;border-radius:3px;object-fit:cover;border:1px solid var(--border)}
-.thumb-placeholder{width:48px;height:32px;border-radius:3px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);opacity:.3}
-.row-btns{display:flex;gap:6px}
-.row-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
-.row-btn.edit{background:rgba(27,74,232,.15);color:var(--blue)}
-.row-btn.del{background:rgba(255,92,26,.1);color:var(--orange)}
-.row-btn:hover{opacity:.7}
-
-.add-btn{
-  width:100%;padding:16px;background:transparent;border:1px dashed var(--border);
-  border-radius:6px;color:var(--blue);font-family:'Barlow Condensed',sans-serif;
-  font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
-  cursor:pointer;transition:border-color .2s,color .2s;
-}
-.add-btn:hover{border-color:var(--blue);color:var(--fg)}
-
-/* ── MODAL */
-#modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
-#modal-bg.open{display:flex}
-#modal{
-  background:#161616;border:1px solid var(--border);border-radius:10px;
-  width:100%;max-width:700px;max-height:90vh;overflow-y:auto;
-  padding:36px;
-}
-.modal-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:-.01em;text-transform:uppercase;color:var(--fg);margin-bottom:28px}
-
-.field{margin-bottom:20px}
-.field label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);opacity:.7;margin-bottom:8px}
-.field input,.field select,.field textarea{
-  width:100%;background:var(--input);border:1px solid var(--border);border-radius:6px;
-  padding:12px 14px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--fg);
-  outline:none;transition:border-color .2s;
-}
+.slabel{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:.5;margin-bottom:16px}
+#plist{display:flex;flex-direction:column;gap:3px;margin-bottom:24px}
+.prow{display:grid;grid-template-columns:28px 56px 1fr 120px;gap:12px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;cursor:grab;transition:border-color .15s}
+.prow.drag-over{border-color:var(--orange)}
+.dhandle{color:var(--blue);opacity:.25;font-size:16px;text-align:center;user-select:none}
+.twrap{width:56px;height:36px;border-radius:4px;overflow:hidden;border:1px solid var(--border);background:#222}
+.twrap img{width:100%;height:100%;object-fit:cover}
+.tph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:"Barlow Condensed",sans-serif;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);opacity:.3}
+.ptitle{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:15px;color:var(--fg)}
+.pmeta{font-family:"Barlow Condensed",sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);opacity:.45;margin-top:2px}
+.rbtns{display:flex;gap:6px;justify-content:flex-end}
+.rbtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.rbtn.e{background:rgba(27,74,232,.15);color:var(--blue)}
+.rbtn.d{background:rgba(255,92,26,.1);color:var(--orange)}
+.rbtn:hover{opacity:.7}
+.addbtn{width:100%;padding:14px;background:transparent;border:1px dashed rgba(27,74,232,.25);border-radius:6px;color:var(--blue);font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.addbtn:hover{border-color:var(--blue)}
+#mbg{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+#mbg.open{display:flex}
+#modal{background:#161616;border:1px solid var(--border);border-radius:10px;width:100%;max-width:780px;padding:36px;margin:auto}
+.mtitle{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;color:var(--fg);margin-bottom:28px}
+.field{margin-bottom:18px}
+.field>label{display:block;font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);opacity:.7;margin-bottom:7px}
+.field input[type=text],.field select,.field textarea{width:100%;background:var(--input);border:1px solid var(--border);border-radius:6px;padding:11px 13px;font-family:"Barlow",sans-serif;font-size:14px;color:var(--fg);outline:none;transition:border-color .2s}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
 .field textarea{min-height:80px;resize:vertical;line-height:1.6}
-.field select option{background:#161616}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.field-hint{font-size:12px;color:var(--fg);opacity:.3;margin-top:6px;line-height:1.5}
-
-/* blocks editor */
-.blocks-wrap{display:flex;flex-direction:column;gap:8px}
-.block-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px}
-.block-type{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);opacity:.5;padding-top:3px;min-width:40px}
-.block-inputs{display:flex;flex-direction:column;gap:6px}
-.block-inputs input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:8px 10px;font-size:13px;color:var(--fg);outline:none}
-.block-inputs input:focus{border-color:var(--blue)}
-.block-del{background:none;border:none;color:var(--orange);cursor:pointer;font-size:18px;opacity:.5;padding:2px;line-height:1;transition:opacity .2s}
-.block-del:hover{opacity:1}
-.add-block-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.add-block-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--blue);cursor:pointer;transition:all .2s}
-.add-block-btn:hover{border-color:var(--blue);background:rgba(27,74,232,.1)}
-
-.modal-btns{display:flex;justify-content:flex-end;gap:10px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
-.modal-btn{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:11px 24px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
-.modal-btn.save{background:var(--orange);color:#fff}
-.modal-btn.cancel{background:transparent;color:var(--blue);border:1px solid var(--border)}
-.modal-btn:hover{opacity:.75}
-
-/* toast */
-#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:99px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
-#toast.show{opacity:1}
-
-/* conditional fields */
-.field.font-only,.field.web-only{display:none}
+.field select option{background:#1a1a1a}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fhint{font-size:12px;color:var(--fg);opacity:.3;margin-top:5px}
+.uwrap{display:flex;gap:10px;align-items:center}
+.uwrap input{flex:1}
+.ubtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;background:rgba(27,74,232,.12);color:var(--blue);border:1px solid rgba(27,74,232,.25);border-radius:6px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .2s}
+.ubtn:hover{background:rgba(27,74,232,.2)}
+.uinput{display:none}
+.ipreview{width:100%;max-height:160px;object-fit:cover;border-radius:6px;margin-top:8px;border:1px solid var(--border);display:none}
+.field.fo,.field.wo,.field.bs{display:none}
 .field.show{display:block}
+.blist{display:flex;flex-direction:column;gap:6px}
+.bitem{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px}
+.bhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.btlabel{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);opacity:.6}
+.bdel{background:none;border:none;color:var(--orange);cursor:pointer;font-size:18px;opacity:.5;line-height:1;padding:2px;transition:opacity .2s}
+.bdel:hover{opacity:1}
+.binputs{display:flex;flex-direction:column;gap:8px}
+.binputs input,.binputs textarea{width:100%;background:var(--input);border:1px solid var(--border);border-radius:5px;padding:9px 11px;font-size:13px;color:var(--fg);outline:none;font-family:"Barlow",sans-serif;line-height:1.5}
+.binputs input:focus,.binputs textarea:focus{border-color:var(--blue)}
+.binputs textarea{min-height:70px;resize:vertical}
+.birow{display:flex;gap:8px;align-items:center}
+.birow input{flex:1}
+.biubtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;background:rgba(27,74,232,.12);color:var(--blue);border:1px solid rgba(27,74,232,.2);border-radius:5px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .2s}
+.biubtn:hover{background:rgba(27,74,232,.2)}
+.abbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.abbtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:transparent;color:var(--blue);cursor:pointer;transition:all .2s}
+.abbtn:hover{border-color:var(--blue);background:rgba(27,74,232,.1)}
+.mfoot{display:flex;justify-content:flex-end;gap:10px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
+.mbtn{font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:11px 26px;border-radius:99px;border:none;cursor:pointer;transition:opacity .2s}
+.mbtn.sv{background:var(--orange);color:#fff}
+.mbtn.ca{background:transparent;color:var(--blue);border:1px solid var(--border)}
+.mbtn:hover{opacity:.75}
+#toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;font-family:"Barlow Condensed",sans-serif;font-weight:900;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;white-space:nowrap}
+#toast.show{opacity:1}
 </style>
 </head>
 <body>
-
 <header>
   <span class="logo">THISISPEARWAY — Admin</span>
-  <div style="display:flex;align-items:center;gap:16px">
-    <span class="save-status" id="save-status"></span>
-    <div class="hbtns">
-      <button class="hbtn secondary" onclick="window.open('index.html','_blank')">사이트 보기</button>
-      <button class="hbtn primary" onclick="saveAll()">Firebase 저장 ↑</button>
-    </div>
+  <div class="hright">
+    <span class="status" id="status"></span>
+    <button class="hbtn s" onclick="window.open('index.html','_blank')">사이트 보기</button>
+    <button class="hbtn p" onclick="saveAll()">Firebase 저장 ↑</button>
   </div>
 </header>
-
 <main>
-  <div class="section-label">작업 목록 <span id="proj-count" style="opacity:.4"></span></div>
-  <div id="project-list"></div>
-  <button class="add-btn" onclick="openModal()">+ 작업 추가</button>
+  <div class="slabel">작업 목록 <span id="pcount" style="opacity:.4"></span></div>
+  <div id="plist"></div>
+  <button class="addbtn" onclick="openModal()">+ 작업 추가</button>
 </main>
 
-<!-- MODAL -->
-<div id="modal-bg">
-  <div id="modal">
-    <div class="modal-title" id="modal-title">작업 추가</div>
-
-    <div class="field-row">
-      <div class="field">
-        <label>제목</label>
-        <input type="text" id="f-title" placeholder="프로젝트 이름">
-      </div>
-      <div class="field">
-        <label>카테고리</label>
-        <select id="f-cat" onchange="onCatChange()">
-          <option value="brand">Brand</option>
-          <option value="graphic">Graphic</option>
-          <option value="font">Font</option>
-          <option value="web">Web</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="field-row">
-      <div class="field">
-        <label>연도</label>
-        <input type="text" id="f-year" placeholder="2025">
-      </div>
-      <div class="field">
-        <label>배경 색상</label>
-        <input type="text" id="f-color" placeholder="#1B4AE8">
-      </div>
-    </div>
-
-    <div class="field">
-      <label>썸네일 URL</label>
-      <input type="text" id="f-thumb" placeholder="https://...">
-      <div class="field-hint">썸네일 이미지 URL. 없으면 배경색으로 표시됩니다.</div>
-    </div>
-
-    <div class="field">
-      <label>설명</label>
-      <textarea id="f-desc" placeholder="프로젝트 간략 설명"></textarea>
-    </div>
-
-    <!-- Font 카테고리 전용 -->
-    <div class="field font-only" id="field-fontId">
-      <label>Font ID</label>
-      <input type="text" id="f-fontId" placeholder="graceserif">
-      <div class="field-hint">FONTS 배열의 id 값. 예: graceserif</div>
-    </div>
-
-    <!-- Web 카테고리 전용 -->
-    <div class="field web-only" id="field-url">
-      <label>외부 URL</label>
-      <input type="text" id="f-url" placeholder="https://...">
-    </div>
-
-    <!-- 상세 이미지 블록 (font/web 제외) -->
-    <div id="blocks-section">
-      <div class="field">
-        <label>상세 이미지 블록</label>
-        <div class="blocks-wrap" id="blocks-wrap"></div>
-        <div class="add-block-btns">
-          <button class="add-block-btn" onclick="addBlock('img')">+ 이미지</button>
-          <button class="add-block-btn" onclick="addBlock('2col')">+ 2열</button>
-          <button class="add-block-btn" onclick="addBlock('3col')">+ 3열</button>
-          <button class="add-block-btn" onclick="addBlock('text')">+ 텍스트</button>
-          <button class="add-block-btn" onclick="addBlock('video')">+ 영상</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-btns">
-      <button class="modal-btn cancel" onclick="closeModal()">취소</button>
-      <button class="modal-btn save" onclick="saveProject()">저장</button>
+<div id="mbg">
+<div id="modal">
+  <div class="mtitle" id="mtitle">작업 추가</div>
+  <div class="frow">
+    <div class="field"><label>제목 *</label><input type="text" id="f-title" placeholder="프로젝트 이름"></div>
+    <div class="field"><label>카테고리 *</label>
+      <select id="f-cat" onchange="onCatChange()">
+        <option value="brand">Brand</option>
+        <option value="graphic">Graphic</option>
+        <option value="font">Font</option>
+        <option value="web">Web</option>
+      </select>
     </div>
   </div>
+  <div class="frow">
+    <div class="field"><label>연도</label><input type="text" id="f-year" placeholder="2025"></div>
+    <div class="field"><label>배경 색상</label><input type="text" id="f-color" placeholder="#1B4AE8"></div>
+  </div>
+  <div class="field">
+    <label>썸네일 이미지</label>
+    <div class="uwrap">
+      <input type="text" id="f-thumb" placeholder="이미지 URL 또는 파일 업로드">
+      <label class="ubtn" for="thumb-file">↑ 파일 업로드</label>
+      <input type="file" id="thumb-file" class="uinput" accept="image/*">
+    </div>
+    <img id="thumb-preview" class="ipreview">
+  </div>
+  <div class="field"><label>프로젝트 설명</label><textarea id="f-desc" placeholder="프로젝트 간략 설명"></textarea></div>
+  <div class="field fo" id="ff-fontId"><label>Font ID</label><input type="text" id="f-fontId" placeholder="graceserif"><div class="fhint">FONTS 배열의 id 값 (예: graceserif)</div></div>
+  <div class="field wo" id="ff-url"><label>외부 URL</label><input type="text" id="f-url" placeholder="https://..."></div>
+  <div class="field bs" id="ff-blocks">
+    <label>콘텐츠 블록</label>
+    <div class="blist" id="blist"></div>
+    <div class="abbtns">
+      <button class="abbtn" onclick="addBlock('img')">+ 이미지</button>
+      <button class="abbtn" onclick="addBlock('2col')">+ 2열 이미지</button>
+      <button class="abbtn" onclick="addBlock('3col')">+ 3열 이미지</button>
+      <button class="abbtn" onclick="addBlock('text')">+ 텍스트</button>
+      <button class="abbtn" onclick="addBlock('video')">+ 영상</button>
+    </div>
+  </div>
+  <div class="mfoot">
+    <button class="mbtn ca" onclick="closeModal()">취소</button>
+    <button class="mbtn sv" onclick="saveProject()">저장</button>
+  </div>
 </div>
-
+</div>
 <div id="toast"></div>
 
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import {
-  getFirestore, collection, getDocs, doc,
-  setDoc, deleteDoc, writeBatch, orderBy, query
-} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, writeBatch, orderBy, query } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
-  authDomain: "thisispearway.firebaseapp.com",
-  projectId: "thisispearway",
-  storageBucket: "thisispearway.firebasestorage.app",
-  messagingSenderId: "657205333061",
-  appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
-};
+const cfg = {apiKey:"AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",authDomain:"thisispearway.firebaseapp.com",projectId:"thisispearway",storageBucket:"thisispearway.firebasestorage.app",messagingSenderId:"657205333061",appId:"1:657205333061:web:bb6e2daebcc51b2e2e272c"};
+const app = initializeApp(cfg);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+let projects=[], editIdx=null, dragIdx=null;
 
-let projects = [];
-let editIdx  = null;
-let dragIdx  = null;
+// ── 업로드 헬퍼
+async function uploadImg(file, path) {
+  const r = ref(storage, path);
+  const s = await uploadBytes(r, file);
+  return getDownloadURL(s.ref);
+}
+
+// ── 썸네일 업로드
+document.getElementById("thumb-file").addEventListener("change", async function(){
+  const file = this.files[0]; if(!file) return;
+  setSt("업로드 중...");
+  try {
+    const url = await uploadImg(file, "projects/thumb_"+Date.now()+"_"+file.name);
+    document.getElementById("f-thumb").value = url;
+    showPreview(url);
+    setSt(""); toast("썸네일 업로드 완료");
+  } catch(e){ setSt(""); toast("업로드 실패: "+e.message); }
+});
+
+document.getElementById("f-thumb").addEventListener("input", function(){ showPreview(this.value); });
+function showPreview(url){
+  const p = document.getElementById("thumb-preview");
+  if(url){ p.src=url; p.style.display="block"; } else p.style.display="none";
+}
 
 // ── 로드
-async function loadProjects() {
-  setStatus('불러오는 중...');
+async function loadProjects(){
+  setSt("불러오는 중...");
   try {
     let snap;
-    try {
-      const q = query(collection(db, 'projects'), orderBy('order'));
-      snap = await getDocs(q);
-    } catch {
-      snap = await getDocs(collection(db, 'projects'));
-    }
-    projects = snap.docs.map(d => ({ _id: d.id, ...d.data() }));
-    projects.sort((a, b) => (a.order ?? 999) - (b.order ?? 999));
-    renderList();
-    setStatus('');
-  } catch(e) {
-    setStatus('Firebase 연결 실패');
-    console.error(e);
-  }
+    try{ const q=query(collection(db,"projects"),orderBy("order")); snap=await getDocs(q); }
+    catch{ snap=await getDocs(collection(db,"projects")); }
+    projects = snap.docs.map(d=>({_id:d.id,...d.data()}));
+    projects.sort((a,b)=>(a.order??999)-(b.order??999));
+    renderList(); setSt("");
+  } catch(e){ setSt("Firebase 연결 실패"); }
 }
 
 // ── 저장
-window.saveAll = async function() {
-  setStatus('저장 중...');
+window.saveAll = async function(){
+  setSt("저장 중...");
   try {
     const batch = writeBatch(db);
-    projects.forEach((p, i) => {
-      const id = p._id || `proj_${Date.now()}_${i}`;
-      const data = { ...p, order: i };
-      delete data._id;
-      batch.set(doc(db, 'projects', id), data);
+    projects.forEach((p,i)=>{
+      const id=p._id||"proj_"+Date.now()+"_"+i;
+      const data={...p,order:i}; delete data._id;
+      batch.set(doc(db,"projects",id),data);
     });
     await batch.commit();
-    // localStorage 동기화
-    const clean = projects.map(p => { const d={...p}; delete d._id; return d; });
-    localStorage.setItem('tip_projects', JSON.stringify(clean));
-    setStatus('✓ 저장됨');
-    toast('Firebase에 저장됐습니다');
-    setTimeout(() => setStatus(''), 3000);
-  } catch(e) {
-    setStatus('저장 실패');
-    toast('저장 실패: ' + e.message);
-  }
+    localStorage.setItem("tip_projects", JSON.stringify(projects.map(p=>{const d={...p};delete d._id;return d;})));
+    setSt("✓ 저장됨"); toast("Firebase에 저장됐습니다");
+    setTimeout(()=>setSt(""),3000);
+  } catch(e){ setSt("저장 실패"); toast("저장 실패: "+e.message); }
 };
 
 // ── 렌더
-function renderList() {
-  const list = document.getElementById('project-list');
-  document.getElementById('proj-count').textContent = `(${projects.length})`;
-  list.innerHTML = '';
-  projects.forEach((p, i) => {
-    const row = document.createElement('div');
-    row.className = 'proj-row';
-    row.draggable = true;
-    row.dataset.idx = i;
-
-    const thumb = p.thumb
-      ? `<img class="thumb-preview" src="${p.thumb}" onerror="this.style.display='none'">`
-      : `<div class="thumb-placeholder">${(p.cat||'').slice(0,2).toUpperCase()}</div>`;
-
-    row.innerHTML = `
-      <div class="drag-handle">⠿</div>
-      <div class="proj-info">
-        <div class="proj-title">${p.title || '(제목 없음)'}</div>
-        <div class="proj-meta">${p.cat?.toUpperCase() || ''}${p.year ? ' · ' + p.year : ''}</div>
-      </div>
-      ${thumb}
-      <div class="row-btns">
-        <button class="row-btn edit" onclick="openModal(${i})">편집</button>
-        <button class="row-btn del" onclick="deleteProject(${i})">삭제</button>
-      </div>`;
-
-    // Drag
-    row.addEventListener('dragstart', () => { dragIdx = i; row.style.opacity='.4'; });
-    row.addEventListener('dragend', () => { row.style.opacity=''; });
-    row.addEventListener('dragover', e => { e.preventDefault(); row.classList.add('drag-over'); });
-    row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
-    row.addEventListener('drop', e => {
-      e.preventDefault();
-      row.classList.remove('drag-over');
-      if (dragIdx === null || dragIdx === i) return;
-      const moved = projects.splice(dragIdx, 1)[0];
-      projects.splice(i, 0, moved);
-      renderList();
-    });
-
+function renderList(){
+  const list=document.getElementById("plist");
+  document.getElementById("pcount").textContent="("+projects.length+")";
+  list.innerHTML="";
+  projects.forEach((p,i)=>{
+    const row=document.createElement("div");
+    row.className="prow"; row.draggable=true;
+    const th=p.thumb
+      ? `<div class="twrap"><img src="${p.thumb}" onerror="this.parentElement.innerHTML='<div class=tph>${(p.cat||"").toUpperCase().slice(0,2)}</div>'"></div>`
+      : `<div class="twrap"><div class="tph">${(p.cat||"").toUpperCase().slice(0,2)}</div></div>`;
+    row.innerHTML=`<div class="dhandle">⠿</div>${th}<div><div class="ptitle">${p.title||"(제목 없음)"}</div><div class="pmeta">${(p.cat||"").toUpperCase()}${p.year?" · "+p.year:""}</div></div><div class="rbtns"><button class="rbtn e" onclick="openModal(${i})">편집</button><button class="rbtn d" onclick="delProj(${i})">삭제</button></div>`;
+    row.addEventListener("dragstart",()=>{dragIdx=i;row.style.opacity=".4"});
+    row.addEventListener("dragend",()=>row.style.opacity="");
+    row.addEventListener("dragover",e=>{e.preventDefault();row.classList.add("drag-over")});
+    row.addEventListener("dragleave",()=>row.classList.remove("drag-over"));
+    row.addEventListener("drop",e=>{e.preventDefault();row.classList.remove("drag-over");if(dragIdx===null||dragIdx===i)return;const m=projects.splice(dragIdx,1)[0];projects.splice(i,0,m);renderList();});
     list.appendChild(row);
   });
 }
 
 // ── 모달
-window.openModal = function(idx = null) {
-  editIdx = idx;
-  document.getElementById('modal-title').textContent = idx === null ? '작업 추가' : '작업 편집';
-  document.getElementById('blocks-wrap').innerHTML = '';
-
-  if (idx !== null) {
-    const p = projects[idx];
-    document.getElementById('f-title').value = p.title || '';
-    document.getElementById('f-cat').value   = p.cat || 'brand';
-    document.getElementById('f-year').value  = p.year || '';
-    document.getElementById('f-color').value = p.color || '#1B4AE8';
-    document.getElementById('f-thumb').value = p.thumb || '';
-    document.getElementById('f-desc').value  = p.desc || '';
-    document.getElementById('f-fontId').value = p.fontId || '';
-    document.getElementById('f-url').value   = p.url || '';
-    (p.blocks || []).forEach(b => addBlockData(b));
+window.openModal = function(idx=null){
+  editIdx=idx;
+  document.getElementById("mtitle").textContent=idx===null?"작업 추가":"작업 편집";
+  document.getElementById("blist").innerHTML="";
+  document.getElementById("thumb-preview").style.display="none";
+  if(idx!==null){
+    const p=projects[idx];
+    document.getElementById("f-title").value=p.title||"";
+    document.getElementById("f-cat").value=p.cat||"brand";
+    document.getElementById("f-year").value=p.year||"";
+    document.getElementById("f-color").value=p.color||"#1B4AE8";
+    document.getElementById("f-thumb").value=p.thumb||"";
+    document.getElementById("f-desc").value=p.desc||"";
+    document.getElementById("f-fontId").value=p.fontId||"";
+    document.getElementById("f-url").value=p.url||"";
+    if(p.thumb) showPreview(p.thumb);
+    (p.blocks||[]).forEach(b=>addBlock(b.type,b));
   } else {
-    document.getElementById('f-title').value = '';
-    document.getElementById('f-cat').value   = 'brand';
-    document.getElementById('f-year').value  = new Date().getFullYear();
-    document.getElementById('f-color').value = '#1B4AE8';
-    document.getElementById('f-thumb').value = '';
-    document.getElementById('f-desc').value  = '';
-    document.getElementById('f-fontId').value = '';
-    document.getElementById('f-url').value   = '';
+    ["f-title","f-thumb","f-desc","f-fontId","f-url"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("f-cat").value="brand";
+    document.getElementById("f-year").value=new Date().getFullYear();
+    document.getElementById("f-color").value="#1B4AE8";
   }
-
   onCatChange();
-  document.getElementById('modal-bg').classList.add('open');
-  document.getElementById('f-title').focus();
+  document.getElementById("mbg").classList.add("open");
+  document.getElementById("f-title").focus();
+};
+window.closeModal=function(){ document.getElementById("mbg").classList.remove("open"); };
+window.onCatChange=function(){
+  const cat=document.getElementById("f-cat").value;
+  document.querySelectorAll(".fo").forEach(el=>el.classList.toggle("show",cat==="font"));
+  document.querySelectorAll(".wo").forEach(el=>el.classList.toggle("show",cat==="web"));
+  document.getElementById("ff-blocks").classList.toggle("show",cat!=="font"&&cat!=="web");
 };
 
-window.closeModal = function() {
-  document.getElementById('modal-bg').classList.remove('open');
+window.saveProject=function(){
+  const title=document.getElementById("f-title").value.trim();
+  if(!title){toast("제목을 입력하세요");return;}
+  const cat=document.getElementById("f-cat").value;
+  const p={title,cat,year:document.getElementById("f-year").value.trim(),color:document.getElementById("f-color").value.trim()||"#1B4AE8",thumb:document.getElementById("f-thumb").value.trim(),desc:document.getElementById("f-desc").value.trim()};
+  if(cat==="font") p.fontId=document.getElementById("f-fontId").value.trim();
+  if(cat==="web")  p.url=document.getElementById("f-url").value.trim();
+  if(cat!=="font"&&cat!=="web") p.blocks=collectBlocks();
+  if(editIdx!==null){p._id=projects[editIdx]._id;projects[editIdx]=p;}
+  else projects.push(p);
+  renderList(); closeModal();
+  toast(editIdx!==null?"수정됐습니다 — Firebase 저장 버튼으로 반영":"추가됐습니다 — Firebase 저장 버튼으로 반영");
 };
 
-window.onCatChange = function() {
-  const cat = document.getElementById('f-cat').value;
-  document.querySelectorAll('.font-only').forEach(el => el.classList.toggle('show', cat === 'font'));
-  document.querySelectorAll('.web-only').forEach(el =>  el.classList.toggle('show', cat === 'web'));
-  document.getElementById('blocks-section').style.display = (cat === 'font' || cat === 'web') ? 'none' : '';
-};
-
-window.saveProject = function() {
-  const title = document.getElementById('f-title').value.trim();
-  if (!title) { toast('제목을 입력하세요'); return; }
-  const cat = document.getElementById('f-cat').value;
-
-  const p = {
-    title,
-    cat,
-    year: document.getElementById('f-year').value.trim(),
-    color: document.getElementById('f-color').value.trim() || '#1B4AE8',
-    thumb: document.getElementById('f-thumb').value.trim(),
-    desc:  document.getElementById('f-desc').value.trim(),
-  };
-  if (cat === 'font') p.fontId = document.getElementById('f-fontId').value.trim();
-  if (cat === 'web')  p.url    = document.getElementById('f-url').value.trim();
-  if (cat !== 'font' && cat !== 'web') p.blocks = collectBlocks();
-
-  if (editIdx !== null) {
-    p._id = projects[editIdx]._id;
-    projects[editIdx] = p;
-  } else {
-    projects.push(p);
-  }
-
-  renderList();
-  closeModal();
-  toast(editIdx !== null ? '수정됐습니다' : '추가됐습니다. Firebase 저장을 눌러 반영하세요.');
-};
-
-window.deleteProject = function(idx) {
-  if (!confirm(`"${projects[idx].title}" 삭제하시겠습니까?`)) return;
-  const id = projects[idx]._id;
-  projects.splice(idx, 1);
-  renderList();
-  if (id) deleteDoc(doc(db, 'projects', id)).catch(console.error);
-  toast('삭제됐습니다');
+window.delProj=async function(idx){
+  if(!confirm(`"${projects[idx].title}" 삭제하시겠습니까?`)) return;
+  const id=projects[idx]._id; projects.splice(idx,1); renderList();
+  if(id) try{await deleteDoc(doc(db,"projects",id));}catch(e){}
+  toast("삭제됐습니다");
 };
 
 // ── 블록 에디터
-window.addBlock = function(type) {
-  addBlockData({ type });
+const BL={img:"이미지",text:"텍스트","2col":"2열 이미지","3col":"3열 이미지",video:"영상"};
+window.addBlock=function(type,data={}){
+  const list=document.getElementById("blist");
+  const item=document.createElement("div");
+  item.className="bitem"; item.dataset.type=type;
+  let inp="";
+  if(type==="img") inp=irow("src",data.src||"");
+  else if(type==="2col") inp=irow("src0",(data.src||[])[0]||"")+irow("src1",(data.src||[])[1]||"");
+  else if(type==="3col") inp=irow("src0",(data.src||[])[0]||"")+irow("src1",(data.src||[])[1]||"")+irow("src2",(data.src||[])[2]||"");
+  else if(type==="text") inp=`<input placeholder="제목 (선택)" data-key="heading" value="${esc(data.heading||"")}"><textarea placeholder="본문 내용을 입력하세요" data-key="body">${esc(data.body||"")}</textarea>`;
+  else if(type==="video") inp=`<input placeholder="YouTube 또는 Vimeo URL" data-key="url" value="${esc(data.url||"")}">`;
+  item.innerHTML=`<div class="bhead"><span class="btlabel">${BL[type]||type}</span><button class="bdel" onclick="this.closest('.bitem').remove()">×</button></div><div class="binputs">${inp}</div>`;
+  // 파일 업로드 버튼 이벤트
+  item.querySelectorAll(".biubtn").forEach(btn=>{
+    const inputEl=btn.previousElementSibling;
+    btn.addEventListener("click",()=>doBlockUpload(btn,inputEl));
+  });
+  list.appendChild(item);
 };
 
-function addBlockData(b) {
-  const wrap = document.getElementById('blocks-wrap');
-  const item = document.createElement('div');
-  item.className = 'block-item';
-  item.dataset.type = b.type;
-
-  let inputs = '';
-  if (b.type === 'img') {
-    inputs = `<input placeholder="이미지 URL" data-key="src" value="${b.src||''}">`;
-  } else if (b.type === '2col' || b.type === '3col') {
-    const count = b.type === '2col' ? 2 : 3;
-    const srcs = b.src || [];
-    for (let i = 0; i < count; i++) {
-      inputs += `<input placeholder="이미지 URL ${i+1}" data-key="src${i}" value="${srcs[i]||''}">`;
-    }
-  } else if (b.type === 'text') {
-    inputs = `
-      <input placeholder="제목 (선택)" data-key="heading" value="${b.heading||''}">
-      <input placeholder="본문" data-key="body" value="${b.body||''}">`;
-  } else if (b.type === 'video') {
-    inputs = `<input placeholder="YouTube / Vimeo URL" data-key="url" value="${b.url||''}">`;
-  }
-
-  item.innerHTML = `
-    <span class="block-type">${b.type}</span>
-    <div class="block-inputs">${inputs}</div>
-    <button class="block-del" onclick="this.closest('.block-item').remove()">×</button>`;
-  wrap.appendChild(item);
+function irow(key,val){
+  return `<div class="birow"><input placeholder="이미지 URL" data-key="${key}" value="${esc(val)}"><button type="button" class="biubtn">↑ 업로드</button></div>`;
 }
-
-function collectBlocks() {
-  return [...document.querySelectorAll('.block-item')].map(item => {
-    const type = item.dataset.type;
-    const get = k => item.querySelector(`[data-key="${k}"]`)?.value.trim() || '';
-    if (type === 'img')  return { type, src: get('src') };
-    if (type === '2col') return { type, src: [get('src0'), get('src1')] };
-    if (type === '3col') return { type, src: [get('src0'), get('src1'), get('src2')] };
-    if (type === 'text') return { type, heading: get('heading'), body: get('body') };
-    if (type === 'video') return { type, url: get('url') };
-    return { type };
+async function doBlockUpload(btn,inputEl){
+  const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*";
+  fi.onchange=async()=>{
+    const file=fi.files[0]; if(!file) return;
+    btn.textContent="업로드 중...";
+    try{
+      const url=await uploadImg(file,"projects/block_"+Date.now()+"_"+file.name);
+      inputEl.value=url; btn.textContent="↑ 업로드"; toast("이미지 업로드 완료");
+    }catch(e){btn.textContent="↑ 업로드";toast("업로드 실패: "+e.message);}
+  };
+  fi.click();
+}
+function collectBlocks(){
+  return [...document.querySelectorAll(".bitem")].map(item=>{
+    const type=item.dataset.type;
+    const get=k=>item.querySelector(`[data-key="${k}"]`)?.value.trim()||"";
+    if(type==="img") return{type,src:get("src")};
+    if(type==="2col") return{type,src:[get("src0"),get("src1")]};
+    if(type==="3col") return{type,src:[get("src0"),get("src1"),get("src2")]};
+    if(type==="text") return{type,heading:get("heading"),body:get("body")};
+    if(type==="video") return{type,url:get("url")};
+    return{type};
   });
 }
+function esc(s){return String(s).replace(/"/g,"&quot;").replace(/</g,"&lt;");}
+function setSt(m){document.getElementById("status").textContent=m;}
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),3000);}
 
-// ── Utils
-function setStatus(msg) { document.getElementById('save-status').textContent = msg; }
-
-function toast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ESC로 모달 닫기
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-document.getElementById('modal-bg').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal-bg')) closeModal();
-});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+document.getElementById("mbg").addEventListener("click",e=>{if(e.target===document.getElementById("mbg"))closeModal();});
 
 loadProjects();
 </script>
