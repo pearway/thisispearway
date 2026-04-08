@@ -1953,5 +1953,27 @@ const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 </script>
+<!-- 카카오톡 채널 상담 버튼 -->
+<a href="http://pf.kakao.com/_JdBdX/chat" target="_blank" id="kakao-btn" title="카카오톡 상담">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 5.82 2 10.5c0 2.94 1.73 5.53 4.36 7.1L5.25 21l4.07-2.07C10.1 19.3 11.03 19.5 12 19.5c5.52 0 10-3.82 10-8.5S17.52 2 12 2z" fill="#1A1410"/>
+  </svg>
+</a>
+<style>
+#kakao-btn{
+  position:fixed;bottom:32px;right:32px;z-index:500;
+  width:56px;height:56px;border-radius:50%;
+  background:#FEE500;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+  transition:transform .2s, box-shadow .2s;
+  cursor:pointer;
+}
+#kakao-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,0,0,.35)}
+#kakao-btn svg{width:28px;height:28px}
+@media(max-width:480px){
+  #kakao-btn{bottom:20px;right:20px;width:48px;height:48px}
+}
+</style>
 </body>
 </html>
