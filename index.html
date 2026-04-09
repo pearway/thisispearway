@@ -1334,6 +1334,7 @@ async function submitForm(e) {
   // 성공 처리
   form.style.display = 'none';
   document.getElementById('iformSuccess').classList.add('show');
+  if(typeof trackFormSubmit === 'function') trackFormSubmit();
 }
 
 // ── 어드민 실시간 연동 — 같은 브라우저에서 admin.html 저장 시 자동 갱신
@@ -1411,7 +1412,7 @@ function buildCell(p, i) {
   cell.addEventListener('click', () => {
     if (p.cat === 'font') { openFontDetail(p.fontId || 'graceserif'); }
     else if (p.cat === 'web' && p.url) window.open(p.url, '_blank');
-    else openDetail(i);
+    else { if(typeof trackProjectClick==='function') trackProjectClick(p.title); openDetail(i); }
   });
   return cell;
 }
@@ -1953,27 +1954,170 @@ const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 
 </script>
-<!-- 카카오톡 채널 상담 버튼 -->
-<a href="http://pf.kakao.com/_JdBdX/chat" target="_blank" id="kakao-btn" title="카카오톡 상담">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C6.48 2 2 5.82 2 10.5c0 2.94 1.73 5.53 4.36 7.1L5.25 21l4.07-2.07C10.1 19.3 11.03 19.5 12 19.5c5.52 0 10-3.82 10-8.5S17.52 2 12 2z" fill="#1A1410"/>
-  </svg>
-</a>
-<style>
-#kakao-btn{
-  position:fixed;bottom:32px;right:32px;z-index:500;
-  width:56px;height:56px;border-radius:50%;
-  background:#FEE500;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(0,0,0,.25);
-  transition:transform .2s, box-shadow .2s;
-  cursor:pointer;
+<!-- ═══ ANALYTICS TRACKING ═══ -->
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, doc, setDoc, getDoc, increment, updateDoc, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey:"AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+  authDomain:"thisispearway.firebaseapp.com",
+  projectId:"thisispearway",
+  storageBucket:"thisispearway.firebasestorage.app",
+  messagingSenderId:"657205333061",
+  appId:"1:657205333061:web:bb6e2daebcc51b2e2e272c"
+};
+
+const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ── 유틸
+function getToday() {
+  return new Date().toISOString().slice(0,10); // YYYY-MM-DD
 }
-#kakao-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,0,0,.35)}
-#kakao-btn svg{width:28px;height:28px}
-@media(max-width:480px){
-  #kakao-btn{bottom:20px;right:20px;width:48px;height:48px}
+function getDeviceType() {
+  const ua = navigator.userAgent;
+  if (/tablet|ipad/i.test(ua)) return 'tablet';
+  if (/mobile|android|iphone/i.test(ua)) return 'mobile';
+  return 'desktop';
 }
-</style>
+function getReferrer() {
+  const ref = document.referrer;
+  if (!ref) return 'direct';
+  try {
+    const host = new URL(ref).hostname.replace('www.','');
+    if (host.includes('google')) return 'google';
+    if (host.includes('naver')) return 'naver';
+    if (host.includes('instagram')) return 'instagram';
+    if (host.includes('kakao') || host.includes('kakaotalk')) return 'kakao';
+    if (host.includes('facebook')) return 'facebook';
+    if (host.includes('twitter') || host.includes('x.com')) return 'twitter';
+    if (host.includes('youtube')) return 'youtube';
+    return host;
+  } catch(e) { return 'unknown'; }
+}
+function getBrowser() {
+  const ua = navigator.userAgent;
+  if (ua.includes('Chrome') && !ua.includes('Edg')) return 'Chrome';
+  if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Safari';
+  if (ua.includes('Firefox')) return 'Firefox';
+  if (ua.includes('Edg')) return 'Edge';
+  return 'Other';
+}
+async function getCountry() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    return { country: data.country_name || 'Unknown', city: data.city || '' };
+  } catch(e) { return { country: 'Unknown', city: '' }; }
+}
+function isNewVisitor() {
+  const key = 'tip_visitor';
+  const visited = localStorage.getItem(key);
+  if (!visited) { localStorage.setItem(key, Date.now()); return true; }
+  return false;
+}
+
+// ── 방문 기록
+async function trackVisit() {
+  const today = getToday();
+  const referrer = getReferrer();
+  const device = getDeviceType();
+  const browser = getBrowser();
+  const isNew = isNewVisitor();
+  const { country, city } = await getCountry();
+  const sessionStart = Date.now();
+  window._sessionStart = sessionStart;
+
+  // 일별 통계 업데이트
+  const dayRef = doc(db, 'analytics_daily', today);
+  const daySnap = await getDoc(dayRef);
+
+  if (!daySnap.exists()) {
+    await setDoc(dayRef, {
+      date: today,
+      visits: 1,
+      newVisitors: isNew ? 1 : 0,
+      returningVisitors: isNew ? 0 : 1,
+      devices: { [device]: 1 },
+      browsers: { [browser]: 1 },
+      referrers: { [referrer]: 1 },
+      countries: { [country]: 1 },
+      sections: {},
+      projects: {},
+      formSubmits: 0,
+    });
+  } else {
+    const d = daySnap.data();
+    await updateDoc(dayRef, {
+      visits: increment(1),
+      newVisitors: increment(isNew ? 1 : 0),
+      returningVisitors: increment(isNew ? 0 : 1),
+      [`devices.${device}`]: increment(1),
+      [`browsers.${browser}`]: increment(1),
+      [`referrers.${referrer}`]: increment(1),
+      [`countries.${country}`]: increment(1),
+    });
+  }
+
+  // 페이지 이탈 시 체류시간 기록
+  window.addEventListener('beforeunload', async () => {
+    const duration = Math.round((Date.now() - sessionStart) / 1000);
+    try {
+      await updateDoc(dayRef, {
+        totalDuration: increment(duration),
+        durationCount: increment(1),
+      });
+    } catch(e) {}
+  });
+
+  // 전역 노출
+  window._analyticsDb = db;
+  window._analyticsToday = today;
+  window._analyticsDayRef = dayRef;
+}
+
+// ── 섹션 트래킹
+function trackSections() {
+  const sections = ['hero','works','contact'];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(async e => {
+      if (!e.isIntersecting || !window._analyticsDayRef) return;
+      const id = e.target.id;
+      try {
+        await updateDoc(window._analyticsDayRef, {
+          [`sections.${id}`]: increment(1)
+        });
+      } catch(err) {}
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+// ── 프로젝트 클릭 트래킹 (전역 함수로 노출)
+window.trackProjectClick = async function(title) {
+  if (!window._analyticsDayRef) return;
+  try {
+    const key = title.replace(/[^a-zA-Z0-9가-힣]/g,'_').slice(0,40);
+    await updateDoc(window._analyticsDayRef, {
+      [`projects.${key}`]: increment(1)
+    });
+  } catch(e) {}
+};
+
+// ── 폼 제출 트래킹 (전역 함수로 노출)
+window.trackFormSubmit = async function() {
+  if (!window._analyticsDayRef) return;
+  try {
+    await updateDoc(window._analyticsDayRef, { formSubmits: increment(1) });
+  } catch(e) {}
+};
+
+// 실행
+trackVisit().then(() => trackSections());
+</script>
 </body>
 </html>
