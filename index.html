@@ -2119,5 +2119,93 @@ window.trackFormSubmit = async function() {
 // 실행
 trackVisit().then(() => trackSections());
 </script>
+<!-- ═══ POPUP ═══ -->
+<div id="popup-ov" style="position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.75);opacity:0;pointer-events:none;transition:opacity .4s ease">
+  <div id="popup-box" style="position:relative;background:#1A1410;border:1px solid rgba(27,74,232,.2);border-radius:14px;max-width:480px;width:90vw;max-height:90vh;overflow-y:auto;transform:translateY(28px);transition:transform .45s cubic-bezier(.16,1,.3,1)">
+    <button onclick="closePopup()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:rgba(240,235,227,.35);font-size:22px;cursor:pointer;line-height:1;z-index:1;padding:4px">✕</button>
+    <img id="popup-img" src="" alt="" style="width:100%;border-radius:14px 14px 0 0;display:none;object-fit:cover;max-height:260px">
+    <div style="padding:32px 28px 28px">
+      <div id="popup-title-el" style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:26px;letter-spacing:-.02em;text-transform:uppercase;color:#F0EBE3;margin-bottom:12px;line-height:1.1"></div>
+      <div id="popup-body-el" style="font-size:14px;line-height:1.85;color:rgba(240,235,227,.55);margin-bottom:24px;white-space:pre-wrap"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,235,227,.3)">
+          <input type="checkbox" id="popup-no-show" style="accent-color:#FF5C1A"> 오늘 하루 보지 않기
+        </label>
+        <a id="popup-btn-el" href="#" target="_blank" style="display:none;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:#FF5C1A;color:#fff;padding:10px 24px;border-radius:99px;text-decoration:none;transition:opacity .2s">자세히 보기 ↗︎</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+async function initPopup() {
+  try {
+    const firebaseConfig = {
+      apiKey:"AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+      authDomain:"thisispearway.firebaseapp.com",
+      projectId:"thisispearway",
+      storageBucket:"thisispearway.firebasestorage.app",
+      messagingSenderId:"657205333061",
+      appId:"1:657205333061:web:bb6e2daebcc51b2e2e272c"
+    };
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const snap = await getDoc(doc(db, 'settings', 'popup'));
+    if (!snap.exists()) return;
+    const d = snap.data();
+    if (!d.active) return;
+
+    // 재노출 체크
+    const hideUntil = localStorage.getItem('popup_hide_until');
+    if (hideUntil && Date.now() < Number(hideUntil)) return;
+
+    // 내용 세팅
+    if (d.img) {
+      const img = document.getElementById('popup-img');
+      img.src = d.img; img.style.display = 'block';
+    }
+    document.getElementById('popup-title-el').textContent = d.title || '';
+    document.getElementById('popup-body-el').textContent  = d.body  || '';
+    if (d.btnText && d.btnUrl) {
+      const btn = document.getElementById('popup-btn-el');
+      btn.textContent = d.btnText + ' ↗︎';
+      btn.href = d.btnUrl;
+      btn.style.display = 'inline-block';
+    }
+
+    window._popupHideDays = d.hideDays ?? 1;
+
+    // 노출
+    const ov  = document.getElementById('popup-ov');
+    const box = document.getElementById('popup-box');
+    ov.style.pointerEvents = 'auto';
+    ov.style.opacity = '1';
+    box.style.transform = 'translateY(0)';
+  } catch(e) { console.log('팝업 로드 실패', e); }
+}
+
+window.closePopup = function() {
+  const ov  = document.getElementById('popup-ov');
+  const box = document.getElementById('popup-box');
+  ov.style.opacity = '0';
+  ov.style.pointerEvents = 'none';
+  box.style.transform = 'translateY(28px)';
+  const noShow = document.getElementById('popup-no-show')?.checked;
+  const days = window._popupHideDays ?? 1;
+  if (noShow && days > 0) {
+    localStorage.setItem('popup_hide_until', String(Date.now() + days*24*60*60*1000));
+  }
+};
+
+document.getElementById('popup-ov').addEventListener('click', e => {
+  if (e.target === document.getElementById('popup-ov')) window.closePopup();
+});
+
+// 로더 끝나고 1.8초 후 팝업 표시
+setTimeout(initPopup, 1800);
+</script>
 </body>
 </html>
