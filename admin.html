@@ -383,6 +383,7 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px">
     <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;letter-spacing:-.01em;text-transform:uppercase">Analytics</div>
     <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="setRange(1)" class="range-btn" id="range-1">1일</button>
       <button onclick="setRange(7)" class="range-btn on" id="range-7">7일</button>
       <button onclick="setRange(30)" class="range-btn" id="range-30">30일</button>
       <button onclick="setRange(90)" class="range-btn" id="range-90">90일</button>
@@ -1090,7 +1091,7 @@ window.showTab = showTab;
 let currentRange = 7;
 function setRange(days) {
   currentRange = days;
-  [7,30,90].forEach(d => {
+  [1,7,30,90].forEach(d => {
     document.getElementById(`range-${d}`).classList.toggle('on', d === days);
   });
   loadAnalytics();
