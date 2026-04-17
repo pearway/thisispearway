@@ -1460,9 +1460,6 @@ async function loadProjects() {
     const app = initializeApp(firebaseConfig);
     const db  = getFirestore(app);
 
-    const app = initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
-
     async function trackVisit() {
       const today = new Date().toISOString().slice(0, 10);
       const isNew = !localStorage.getItem('visited');
