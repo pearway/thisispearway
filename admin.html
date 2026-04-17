@@ -145,9 +145,34 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
 /* Toast */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--bg);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:11px 22px;border-radius:99px;opacity:0;transition:all .22s;pointer-events:none;z-index:500;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Login */
+#login-screen{position:fixed;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;z-index:9999}
+#login-screen.hide{display:none}
+.login-box{display:flex;flex-direction:column;align-items:center;gap:24px;width:320px}
+.login-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);opacity:.4}
+.login-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:28px;letter-spacing:-.01em;text-transform:uppercase;color:var(--bg);text-align:center}
+.login-input{width:100%;padding:13px 16px;border:1.5px solid rgba(240,235,227,.15);border-radius:8px;background:rgba(240,235,227,.06);color:var(--bg);font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;text-align:center;letter-spacing:.1em}
+.login-input:focus{border-color:var(--blue)}
+.login-input::placeholder{opacity:.3;letter-spacing:.04em}
+.login-btn{width:100%;padding:13px;background:var(--blue);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.14em;text-transform:uppercase;border:none;border-radius:8px;cursor:pointer;transition:opacity .2s}
+.login-btn:hover{opacity:.85}
+.login-error{font-size:12px;color:var(--danger);font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.08em;text-transform:uppercase;opacity:0;transition:opacity .2s}
+.login-error.show{opacity:1}
 </style>
 </head>
 <body>
+
+<!-- ══ 로그인 화면 -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">THISISPEARWAY</div>
+    <div class="login-title">Admin</div>
+    <input class="login-input" type="password" id="login-pw" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')checkLogin()">
+    <button class="login-btn" onclick="checkLogin()">로그인 →</button>
+    <div class="login-error" id="login-error">비밀번호가 틀렸습니다</div>
+  </div>
+</div>
 
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:14px">
@@ -432,6 +457,14 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
     <div id="an-chart" style="padding:16px 0"></div>
   </div>
 
+  <!-- 폰트 다운로드 -->
+  <div class="an-block" style="margin-top:20px">
+    <div class="an-block-title">폰트 다운로드</div>
+    <div id="an-font-downloads" class="an-list">
+      <div style="opacity:.3;font-size:13px">로딩 중...</div>
+    </div>
+  </div>
+
   <div id="an-loading" style="text-align:center;padding:60px;opacity:.3;font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:.1em;text-transform:uppercase">데이터 로딩 중...</div>
 </div>
 
@@ -488,6 +521,27 @@ let blockDragSrc = null;
 const LABELS = {brand:'Brand', graphic:'Graphic', spatial:'Spatial', web:'Web'};
 const COLORS = ['#D0CCCA','#C8C4BC','#CECCCA','#C4C0B8','#1B4AE8','#0A0A0A','#E8E4DC','#B8B0A8'];
 const BTYPES = {img:'풀와이드 이미지','2col':'2장 나란히','3col':'3장 나란히',text:'텍스트 블록',split:'이미지 + 텍스트',video:'영상'};
+
+// ── 로그인
+const ADMIN_PW = 'pearway2026'; // ← 여기서 비밀번호 변경
+function checkLogin() {
+  const pw = document.getElementById('login-pw').value;
+  if (pw === ADMIN_PW) {
+    sessionStorage.setItem('admin_auth', '1');
+    document.getElementById('login-screen').classList.add('hide');
+  } else {
+    const err = document.getElementById('login-error');
+    err.classList.add('show');
+    document.getElementById('login-pw').value = '';
+    setTimeout(() => err.classList.remove('show'), 2000);
+  }
+}
+window.checkLogin = checkLogin;
+
+// 이미 로그인된 경우
+if (sessionStorage.getItem('admin_auth') === '1') {
+  document.getElementById('login-screen').classList.add('hide');
+}
 
 // ── Init
 document.addEventListener('DOMContentLoaded', async () => {
@@ -1099,6 +1153,38 @@ async function loadAnalytics() {
   } catch(e) {
     document.getElementById('an-loading').textContent = '데이터 없음';
     console.error(e);
+  }
+  // 폰트 다운로드 통계
+  loadFontDownloads();
+}
+
+async function loadFontDownloads() {
+  const el = document.getElementById('an-font-downloads');
+  if (!el) return;
+  try {
+    const fonts = [
+      'GraceSerif-Regular-OTF',
+      'GraceSerif-Regular-TTF',
+      'GraceSerif-Bold-OTF',
+      'GraceSerif-Bold-TTF',
+    ];
+    const results = await Promise.all(
+      fonts.map(f => getDoc(doc(db, 'fontDownloads', f)))
+    );
+    const data = {};
+    results.forEach((snap, i) => {
+      data[fonts[i]] = snap.exists() ? (snap.data().count || 0) : 0;
+    });
+    const max = Math.max(...Object.values(data), 1);
+    el.innerHTML = Object.entries(data).map(([k, v]) => `
+      <div class="an-row">
+        <div class="an-row-label">${k.replace('GraceSerif-','').replace('-',' · ')}</div>
+        <div class="an-row-bar-wrap"><div class="an-row-bar" style="width:${Math.round(v/max*100)}%"></div></div>
+        <div class="an-row-count">${v}</div>
+      </div>
+    `).join('');
+  } catch(e) {
+    el.innerHTML = '<div style="opacity:.3;font-size:13px">데이터 없음</div>';
   }
 }
 
