@@ -1443,7 +1443,7 @@ async function loadProjects() {
     } catch(e) {}
   }
 
-  // Firebase에서 로드 (실시간 반영)
+ // Firebase에서 로드 (실시간 반영)
   try {
     const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
     const { getFirestore, collection, getDocs, orderBy, query, doc, setDoc, increment } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
@@ -1460,7 +1460,7 @@ async function loadProjects() {
     const app = initializeApp(firebaseConfig);
     const db  = getFirestore(app);
 
-    async function trackVisit() {
+    window.trackVisit = async function() {
       const today = new Date().toISOString().slice(0, 10);
       const isNew = !localStorage.getItem('visited');
       if (isNew) localStorage.setItem('visited', '1');
@@ -1471,13 +1471,8 @@ async function loadProjects() {
         newVisitors: isNew ? increment(1) : increment(0),
         returningVisitors: isNew ? increment(0) : increment(1),
       }, { merge: true });
-    }
-    trackVisit();
-
-    window.logFontDownload = async function(fontName) {
-      const ref = doc(db, 'fontDownloads', fontName);
-      await setDoc(ref, { count: increment(1) }, { merge: true });
     };
+    window.trackVisit();
 
     window.logFontDownload = async function(fontName) {
       const ref = doc(db, 'fontDownloads', fontName);
