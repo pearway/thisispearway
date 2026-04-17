@@ -1460,6 +1460,28 @@ async function loadProjects() {
     const app = initializeApp(firebaseConfig);
     const db  = getFirestore(app);
 
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    async function trackVisit() {
+      const today = new Date().toISOString().slice(0, 10);
+      const isNew = !localStorage.getItem('visited');
+      if (isNew) localStorage.setItem('visited', '1');
+      const ref = doc(db, 'analytics', today);
+      await setDoc(ref, {
+        date: today,
+        visits: increment(1),
+        newVisitors: isNew ? increment(1) : increment(0),
+        returningVisitors: isNew ? increment(0) : increment(1),
+      }, { merge: true });
+    }
+    trackVisit();
+
+    window.logFontDownload = async function(fontName) {
+      const ref = doc(db, 'fontDownloads', fontName);
+      await setDoc(ref, { count: increment(1) }, { merge: true });
+    };
+
     window.logFontDownload = async function(fontName) {
       const ref = doc(db, 'fontDownloads', fontName);
       await setDoc(ref, { count: increment(1) }, { merge: true });
