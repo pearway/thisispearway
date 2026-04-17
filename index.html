@@ -1464,7 +1464,7 @@ async function loadProjects() {
       const today = new Date().toISOString().slice(0, 10);
       const isNew = !localStorage.getItem('visited');
       if (isNew) localStorage.setItem('visited', '1');
-      const ref = doc(db, 'analytics', today);
+      const ref = doc(db, 'analytics_daily', today);
       await setDoc(ref, {
         date: today,
         visits: increment(1),
