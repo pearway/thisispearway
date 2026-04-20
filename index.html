@@ -1258,22 +1258,8 @@ body::after{
 }
 </style>
 
-<script>
-function buildFontDetailProjects() {
-  const section = document.getElementById('tp-projects-grid');
-  if (!section || !PROJECTS.length) return;
-  const preview = PROJECTS.filter(p => p.cat !== 'font').slice(0, 6);
-  section.innerHTML = preview.map((p, i) => {
-    const bg = p.thumb ? `background-image:url('${p.thumb}');background-color:${p.color}` : `background-color:${p.color}`;
-    return `<div class="tp-proj-card" onclick="closeFontDetail();setTimeout(()=>openDetail(${PROJECTS.indexOf(p)}),400)">
-      <div class="tp-proj-card-bg" style="${bg}"></div>
-      <div class="tp-proj-card-ov"><div class="tp-proj-card-name">${p.title}</div></div>
-    </div>`;
-  }).join('');
-}
 
 
-</script>
 
 </div><!-- /font-detail-ov -->
 
@@ -1801,6 +1787,20 @@ function closeFontDetail(){
     try{history.pushState(null,'','/');}catch(e){}
   }
 }
+function buildFontDetailProjects() {
+  const section = document.getElementById('tp-projects-grid');
+  if (!section) return;
+  if (!PROJECTS.length) return;
+  const preview = PROJECTS.filter(p => p.cat !== 'font').slice(0, 6);
+  section.innerHTML = preview.map((p) => {
+    const bg = p.thumb ? `background-image:url('${p.thumb}');background-color:${p.color}` : `background-color:${p.color}`;
+    return `<div class="tp-proj-card" onclick="closeFontDetail();setTimeout(()=>openDetail(${PROJECTS.indexOf(p)}),400)">
+      <div class="tp-proj-card-bg" style="${bg}"></div>
+      <div class="tp-proj-card-ov"><div class="tp-proj-card-name">${p.title}</div></div>
+    </div>`;
+  }).join('');
+}
+
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.getElementById('font-detail-ov').classList.contains('open')) closeFontDetail(); else if(document.getElementById('type-list-ov').classList.contains('open')) closeTypeList(); else closeDetail(); } });
 
 let typeInited=false;
