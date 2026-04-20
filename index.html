@@ -1237,24 +1237,29 @@ body::after{
   <!-- 프로젝트 미리보기 -->
   <div class="tp-projects-section">
     <div class="tp-projects-title">Selected Works</div>
-    <div class="tp-projects-grid" id="tp-projects-grid"></div>
+    <div class="tp-marquee-wrap" id="tp-marquee-wrap">
+      <div class="tp-marquee-track" id="tp-marquee-track"></div>
+    </div>
   </div>
 
 </div><!-- /font-detail-scroll -->
 
 <style>
-.tp-projects-section{padding:80px 44px;border-top:1px solid rgba(27,74,232,.1)}
-.tp-projects-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.6;margin-bottom:32px}
-.tp-projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.tp-proj-card{aspect-ratio:4/3;position:relative;cursor:pointer;overflow:hidden;background:#111}
+.tp-projects-section{padding:60px 0 80px;border-top:1px solid rgba(27,74,232,.1)}
+.tp-projects-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.6;margin-bottom:24px;padding:0 44px}
+.tp-marquee-wrap{overflow:hidden;width:100%;cursor:pointer}
+.tp-marquee-track{display:flex;gap:12px;width:max-content;animation:tp-scroll 30s linear infinite}
+.tp-marquee-wrap:hover .tp-marquee-track{animation-play-state:paused}
+@keyframes tp-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tp-proj-card{width:260px;height:180px;flex-shrink:0;position:relative;cursor:pointer;overflow:hidden;background:#111;border-radius:4px}
 .tp-proj-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s cubic-bezier(.16,1,.3,1)}
 .tp-proj-card:hover .tp-proj-card-bg{transform:scale(1.05)}
-.tp-proj-card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:20px}
+.tp-proj-card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:14px}
 .tp-proj-card:hover .tp-proj-card-ov{opacity:1}
-.tp-proj-card-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#F0EBE3}
+.tp-proj-card-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#F0EBE3}
 @media(max-width:768px){
-  .tp-projects-section{padding:48px 20px}
-  .tp-projects-grid{grid-template-columns:repeat(2,1fr)}
+  .tp-projects-title{padding:0 20px}
+  .tp-proj-card{width:200px;height:140px}
 }
 </style>
 
@@ -1788,17 +1793,20 @@ function closeFontDetail(){
   }
 }
 function buildFontDetailProjects() {
-  const section = document.getElementById('tp-projects-grid');
-  if (!section) return;
+  const track = document.getElementById('tp-marquee-track');
+  if (!track) return;
   if (!PROJECTS.length) return;
-  const preview = PROJECTS.filter(p => p.cat !== 'font').slice(0, 6);
-  section.innerHTML = preview.map((p) => {
+  const items = PROJECTS.filter(p => p.cat !== 'font');
+  if (!items.length) return;
+  // 무한 롤링을 위해 2배로 복제
+  const makeCard = (p) => {
     const bg = p.thumb ? `background-image:url('${p.thumb}');background-color:${p.color}` : `background-color:${p.color}`;
     return `<div class="tp-proj-card" onclick="closeFontDetail();setTimeout(()=>openDetail(${PROJECTS.indexOf(p)}),400)">
       <div class="tp-proj-card-bg" style="${bg}"></div>
       <div class="tp-proj-card-ov"><div class="tp-proj-card-name">${p.title}</div></div>
     </div>`;
-  }).join('');
+  };
+  track.innerHTML = [...items, ...items].map(makeCard).join('');
 }
 
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.getElementById('font-detail-ov').classList.contains('open')) closeFontDetail(); else if(document.getElementById('type-list-ov').classList.contains('open')) closeTypeList(); else closeDetail(); } });
