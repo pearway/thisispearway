@@ -594,7 +594,7 @@ body::after{
   background:#0A0A0A;
   border-bottom:1px solid rgba(27,74,232,.12);
 }
-.tl-logo,.tp-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8}
+.tl-logo,.tp-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8;text-decoration:none;cursor:pointer}
 .tl-close,.tp-close{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#1B4AE8;background:none;border:none;cursor:pointer;opacity:1;transition:opacity .2s}
 .tl-close:hover,.tp-close:hover{opacity:.6}
 
@@ -1127,7 +1127,7 @@ body::after{
 <div id="font-detail-scroll">
 
   <div class="tp-nav">
-    <span class="tp-logo">THISISPEARWAY</span>
+    <a href="/" class="tp-logo">THISISPEARWAY</a>
     <button class="tp-close" onclick="closeFontDetail()">← Back</button>
   </div>
 
@@ -1234,8 +1234,50 @@ body::after{
       </div>
     </div>
   </div>
+  <!-- 프로젝트 미리보기 -->
+  <div class="tp-projects-section">
+    <div class="tp-projects-title">Selected Works</div>
+    <div class="tp-projects-grid" id="tp-projects-grid"></div>
+  </div>
 
 </div><!-- /font-detail-scroll -->
+
+<style>
+.tp-projects-section{padding:80px 44px;border-top:1px solid rgba(27,74,232,.1)}
+.tp-projects-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#1B4AE8;opacity:.6;margin-bottom:32px}
+.tp-projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.tp-proj-card{aspect-ratio:4/3;position:relative;cursor:pointer;overflow:hidden;background:#111}
+.tp-proj-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.tp-proj-card:hover .tp-proj-card-bg{transform:scale(1.05)}
+.tp-proj-card-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:20px}
+.tp-proj-card:hover .tp-proj-card-ov{opacity:1}
+.tp-proj-card-name{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:#F0EBE3}
+@media(max-width:768px){
+  .tp-projects-section{padding:48px 20px}
+  .tp-projects-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<script>
+function buildFontDetailProjects() {
+  const section = document.getElementById('tp-projects-grid');
+  if (!section || !PROJECTS.length) return;
+  const preview = PROJECTS.filter(p => p.cat !== 'font').slice(0, 6);
+  section.innerHTML = preview.map((p, i) => {
+    const bg = p.thumb ? `background-image:url('${p.thumb}');background-color:${p.color}` : `background-color:${p.color}`;
+    return `<div class="tp-proj-card" onclick="closeFontDetail();setTimeout(()=>openDetail(${PROJECTS.indexOf(p)}),400)">
+      <div class="tp-proj-card-bg" style="${bg}"></div>
+      <div class="tp-proj-card-ov"><div class="tp-proj-card-name">${p.title}</div></div>
+    </div>`;
+  }).join('');
+}
+const _origOpenFontDetail = window.openFontDetail;
+window.openFontDetail = function(...args) {
+  if (_origOpenFontDetail) _origOpenFontDetail(...args);
+  setTimeout(buildFontDetailProjects, 300);
+};
+</script>
+
 </div><!-- /font-detail-ov -->
 
 <!-- ═══ DETAIL OVERLAY ═══ -->
