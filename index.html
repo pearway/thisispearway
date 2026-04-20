@@ -1271,11 +1271,8 @@ function buildFontDetailProjects() {
     </div>`;
   }).join('');
 }
-const _origOpenFontDetail = window.openFontDetail;
-window.openFontDetail = function(...args) {
-  if (_origOpenFontDetail) _origOpenFontDetail(...args);
-  setTimeout(buildFontDetailProjects, 300);
-};
+
+
 </script>
 
 </div><!-- /font-detail-ov -->
@@ -1786,6 +1783,7 @@ if(window.fontDetailLenis){ window.fontDetailLenis.destroy(); window.fontDetailL
   initTypeIfNeeded();
   initTypeIfNeeded();
   try{history.pushState(null,'','/#type/'+fontId);}catch(e){}
+  setTimeout(buildFontDetailProjects, 400);
 }
 function closeFontDetail(){
   document.getElementById('font-detail-ov').classList.remove('open');
