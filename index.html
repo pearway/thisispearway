@@ -1431,7 +1431,7 @@ function buildCell(p, i) {
     ? `background-image:url('${p.thumb}');background-color:${p.color}`
     : `background-color:${p.color}`;
   cell.innerHTML = `
-    <div class="wcell-bg ${hasThumbnail ? '' : 'no-img'}" style="${bg}">${hasThumbnail ? '' : LABELS[p.cat]?.slice(0,2)||''}</div>
+    <div class="wcell-bg ${hasThumbnail ? '' : 'no-img'}" style="${bg}" loading="lazy">${hasThumbnail ? '' : LABELS[p.cat]?.slice(0,2)||''}</div>
     <div class="wcell-ov">
       <div class="wcell-name">${p.title}</div>
       <div class="wcell-cat">${LABELS[p.cat]}</div>
@@ -1541,19 +1541,19 @@ let currentIdx = 0;
 
 function renderBlock(b) {
   if (b.type === 'img') {
-    return `<div class="d-block"><img src="${b.src}" alt="" loading="eager" decoding="async"></div>`;
+    return `<div class="d-block"><img src="${b.src}" alt="" loading="lazy" decoding="async"></div>`;
   }
   if (b.type === '2col') {
     return `<div class="d-block d-block-2col">
-      <img src="${b.src[0]}" alt="" loading="eager" decoding="async">
-      <img src="${b.src[1]}" alt="" loading="eager" decoding="async">
+      <img src="${b.src[0]}" alt="" loading="lazy" decoding="async">
+      <img src="${b.src[1]}" alt="" loading="lazy" decoding="async">
     </div>`;
   }
   if (b.type === '3col') {
     return `<div class="d-block d-block-3col">
-      <img src="${b.src[0]}" alt="" loading="eager" decoding="async">
-      <img src="${b.src[1]}" alt="" loading="eager" decoding="async">
-      <img src="${b.src[2]}" alt="" loading="eager" decoding="async">
+      <img src="${b.src[0]}" alt="" loading="lazy" decoding="async">
+      <img src="${b.src[1]}" alt="" loading="lazy" decoding="async">
+      <img src="${b.src[2]}" alt="" loading="lazy" decoding="async">
     </div>`;
   }
   if (b.type === 'text') {
@@ -1564,7 +1564,7 @@ function renderBlock(b) {
   }
   if (b.type === 'split') {
     return `<div class="d-block d-block-split">
-      <img src="${b.src}" alt="" loading="eager" decoding="async">
+      <img src="${b.src}" alt="" loading="lazy" decoding="async">
       <div class="d-block-split-txt"><p>${b.body || ''}</p></div>
     </div>`;
   }
@@ -1577,7 +1577,7 @@ function renderBlock(b) {
       : yt
       ? `https://www.youtube.com/embed/${yt[1]}`
       : '';
-    return src ? `<div class="d-block d-block-video"><iframe src="${src}" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe></div>` : '';
+    return src ? `<div class="d-block d-block-video"><iframe src="${src}" loading="lazy" frameborder="0" allowfullscreen allow="autoplay; fullscreen"></iframe></div>` : '';
   }
   return '';
 }

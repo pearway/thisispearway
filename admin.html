@@ -633,7 +633,10 @@ async function deleteFromFirestore(id) {
 async function uploadImage(file, path, onProgress) {
   const compressed = await compressImage(file);
   const storageRef = ref(storage, path);
-  const snap = await uploadBytes(storageRef, compressed);
+  const metadata = {
+    cacheControl: 'public, max-age=31536000, immutable',
+  };
+  const snap = await uploadBytes(storageRef, compressed, metadata);
   const url = await getDownloadURL(snap.ref);
   return url;
 }
@@ -1260,7 +1263,9 @@ async function handlePopupImg(input) {
   if (!input.files[0]) return;
   const compressed = await compressImage(input.files[0]);
   const storageRef = ref(storage, `popup/img_${Date.now()}`);
-  await uploadBytes(storageRef, compressed);
+  await uploadBytes(storageRef, compressed, {
+  cacheControl: 'public, max-age=31536000, immutable',
+});
   const url = await getDownloadURL(storageRef);
   document.getElementById('popupImgPreview').src = url;
   document.getElementById('popupImgPreview').classList.add('show');
