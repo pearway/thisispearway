@@ -240,6 +240,23 @@ input[type=color]{width:44px;height:36px;padding:2px 3px;border-radius:5px;borde
       </div>
 
       <div class="sec">
+        <div class="sec-title">프로젝트 상세 정보</div>
+        <div class="row">
+          <div class="fg"><label class="lbl">Client — 클라이언트</label><input class="fi" id="f-client" placeholder="예: Fluffle"></div>
+          <div class="fg"><label class="lbl">Industry — 업종</label><input class="fi" id="f-industry" placeholder="예: Pet Goods, F&B, Healthcare"></div>
+        </div>
+        <div class="row full">
+          <div class="fg">
+            <label class="lbl">Scope — 작업 범위 (쉼표로 구분)</label>
+            <input class="fi" id="f-scope" placeholder="예: Brand Identity, Web Design, Print">
+          </div>
+        </div>
+        <div class="row full">
+          <div class="fg"><label class="lbl">Typefaces — 사용 서체</label><input class="fi" id="f-typefaces" placeholder="예: GraceSerif, Pretendard"></div>
+        </div>
+      </div>
+
+      <div class="sec">
         <div class="sec-title">태그</div>
         <div class="tags-wrap" id="tagsWrap"></div>
         <div class="tag-add">
@@ -684,6 +701,10 @@ function renderForm(p) {
   document.getElementById('f-color').value = p.color||'#D0CCCA';
   document.getElementById('f-desc').value  = p.desc||'';
   document.getElementById('f-url').value   = p.url||'';
+  document.getElementById('f-client').value    = p.client||'';
+  document.getElementById('f-industry').value  = p.industry||'';
+  document.getElementById('f-scope').value     = Array.isArray(p.scope) ? p.scope.join(', ') : (p.scope||'');
+  document.getElementById('f-typefaces').value = p.typefaces||'';
   document.getElementById('saveSt').textContent = '저장되지 않음';
   document.getElementById('saveSt').classList.remove('saved','saving');
   toggleUrlField();
@@ -702,6 +723,11 @@ function syncFormToState() {
   p.color = document.getElementById('f-color').value;
   p.desc  = document.getElementById('f-desc').value;
   p.url   = document.getElementById('f-url').value;
+  p.client    = document.getElementById('f-client').value;
+  p.industry  = document.getElementById('f-industry').value;
+  const scopeRaw = document.getElementById('f-scope').value;
+  p.scope     = scopeRaw ? scopeRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+  p.typefaces = document.getElementById('f-typefaces').value;
 }
 
 // ── URL field toggle
@@ -1029,6 +1055,7 @@ async function newProject() {
     title:'새 프로젝트', cat:'brand',
     year: new Date().getFullYear().toString(),
     color:'#D0CCCA', thumb:'', desc:'', url:'', tags:[], blocks:[],
+    client:'', industry:'', scope:[], typefaces:'',
     order: projects.length
   };
   projects.push(newP);

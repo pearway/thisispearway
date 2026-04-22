@@ -1609,6 +1609,11 @@ function openDetail(idx) {
   const hasPrev = idx > 0;
   const hasNext = idx < PROJECTS.length - 1;
 
+    const infoRow = (label, value) => value
+    ? `<div class="d-info-row"><span class="d-info-label">${label}</span><span class="d-info-value">${value}</span></div>`
+    : '';
+  const scopeValue = Array.isArray(p.scope) ? p.scope.join('<br>') : p.scope;
+
   body.innerHTML = `
     ${coverHtml}
     <div class="d-header">
@@ -1622,6 +1627,13 @@ function openDetail(idx) {
       <div class="d-header-right">
         <p class="d-desc">${p.desc || ''}</p>
         <div class="d-tags">${tagsHtml}</div>
+        <div class="d-info">
+          ${infoRow('Client', p.client)}
+          ${infoRow('Year', p.year)}
+          ${infoRow('Industry', p.industry)}
+          ${infoRow('Scope', scopeValue)}
+          ${infoRow('Typefaces', p.typefaces)}
+        </div>
       </div>
     </div>
     ${blocksHtml}
@@ -2044,6 +2056,30 @@ window.logFontDownload = logFontDownload;
 #kakao-btn svg{width:28px;height:28px}
 @media(max-width:480px){
   #kakao-btn{bottom:20px;right:20px;width:48px;height:48px}
+}
+
+.d-info {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+.d-info-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.d-info-label {
+  color: rgba(0,0,0,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 12px;
+}
+.d-info-value {
+  color: #000;
 }
 </style>
 </body>
