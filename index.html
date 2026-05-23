@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THISISPEARWAY — Graphic Designer Seoul</title>
+<title>THISISPEARWAY — Designer Seoul</title>
 
-<meta name="description" content="서울 기반 그래픽 디자이너 THISISPEARWAY의 포트폴리오. Brand Identity, Graphic Design, Spatial Design, Type Design.">
-<meta name="keywords" content="디스이즈페어웨이, thisispearway, 그래픽 디자이너, 브랜드 디자인, 로고 디자인, 서울 디자이너, 브랜드 아이덴티티">
+<meta name="description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오. Brand, Graphic, Spatial, Type.">
+<meta name="keywords" content="디스이즈페어웨이, thisispearway, 브랜드 디자이너, 로고 디자인, 서울 디자이너">
 <meta name="author" content="THISISPEARWAY">
 <meta name="google-site-verification" content="v6Rr_eNrXPQ4uCe9w3zBydVGey0wrflSztb3m6UqTh0">
 <meta name="naver-site-verification" content="4e4c9c72ee42dd8ae6e03cc188e34dc50e64ec45">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.pearway.kr">
-<meta property="og:title" content="THISISPEARWAY — Graphic Designer">
-<meta property="og:description" content="서울 기반 그래픽 디자이너 THISISPEARWAY의 포트폴리오.">
+<meta property="og:title" content="THISISPEARWAY — Designer">
+<meta property="og:description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오.">
 <meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -29,13 +29,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================
-   Pearway — Refined Editorial
-   Sibling brand to Pear Type Foundry
-   ========================================= */
-
 :root {
-  /* Palette — Light counterpart of Peartype */
   --bg: #FAFAF7;
   --bg-alt: #F2F2ED;
   --ink: #0C0C0B;
@@ -44,27 +38,77 @@
   --line: #DEDED8;
   --line-soft: #ECECE6;
 
-  /* Type */
   --font-display: 'Geist', 'Pretendard Variable', sans-serif;
   --font-sans: 'Pretendard Variable', 'Geist', 'Pretendard', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
 
-  /* Layout */
   --max: 1440px;
   --gutter: clamp(1.25rem, 3.5vw, 2.75rem);
   --section-y: clamp(5rem, 10vw, 9rem);
 
-  /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --t-fast: 0.2s;
   --t-med: 0.4s;
   --t-slow: 0.8s;
 }
 
+/* ---------- LOADER ---------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--gutter);
+  transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+}
+#loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+#loader .top, #loader .bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+#loader .middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  position: relative;
+}
+
+#loader .counter {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: var(--ink);
+}
+
+#loader .progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--ink);
+  width: 0%;
+  transition: width 0.3s var(--ease);
+}
+#loader .bottom { border-top: 1px solid var(--line); padding-top: 1rem; position: relative; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-
 body {
   background: var(--bg);
   color: var(--ink);
@@ -75,15 +119,12 @@ body {
   letter-spacing: -0.01em;
   overflow-x: hidden;
 }
-
+body.modal-open { overflow: hidden; }
 ::selection { background: var(--ink); color: var(--bg); }
-
 a { color: inherit; text-decoration: none; }
-
 img { display: block; max-width: 100%; }
 
-/* ---------- TYPOGRAPHY UTILITIES ---------- */
-
+/* ---------- TYPE ---------- */
 .mono {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -92,7 +133,6 @@ img { display: block; max-width: 100%; }
   color: var(--ink-2);
   font-weight: 400;
 }
-
 .section-marker {
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -103,35 +143,15 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 0.6rem;
 }
+.section-marker::before { content: "—"; font-family: var(--font-sans); font-weight: 300; }
 
-.section-marker::before {
-  content: "—";
-  font-family: var(--font-sans);
-  font-weight: 300;
-}
-
-.display {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  line-height: 0.98;
-}
-
-/* ---------- LAYOUT CONTAINERS ---------- */
-
-.wrap {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-}
-
+/* ---------- LAYOUT ---------- */
+.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 .section {
   padding-top: var(--section-y);
   padding-bottom: var(--section-y);
   border-top: 1px solid var(--line);
 }
-
 .section-head {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -139,26 +159,9 @@ img { display: block; max-width: 100%; }
   margin-bottom: clamp(2.5rem, 6vw, 5rem);
   align-items: start;
 }
-
-.section-head .lead {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.75rem, 3.4vw, 2.6rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  max-width: 28ch;
-}
-
-.section-head .lead em {
-}
-
-@media (max-width: 720px) {
-  .section-head { grid-template-columns: 1fr; gap: 1.25rem; }
-}
+@media (max-width: 720px) { .section-head { grid-template-columns: 1fr; gap: 1.25rem; } }
 
 /* ---------- HEADER ---------- */
-
 header.site {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -170,9 +173,7 @@ header.site {
   border-bottom: 1px solid transparent;
   transition: border-color var(--t-med) var(--ease);
 }
-
 header.site.scrolled { border-bottom-color: var(--line); }
-
 header.site .inner {
   max-width: var(--max);
   margin: 0 auto;
@@ -181,7 +182,6 @@ header.site .inner {
   justify-content: space-between;
   gap: 1rem;
 }
-
 header.site .brand {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -189,36 +189,23 @@ header.site .brand {
   font-weight: 500;
   text-transform: uppercase;
 }
-
 header.site nav { display: flex; gap: clamp(1rem, 2.5vw, 2.25rem); align-items: center; }
-
 header.site nav a {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-2);
-  position: relative;
-  padding-bottom: 2px;
   transition: color var(--t-fast) var(--ease);
 }
-
 header.site nav a:hover { color: var(--ink); }
-
-header.site nav a.ext::after {
-  content: " ↗";
-  display: inline-block;
-  transition: transform var(--t-fast) var(--ease);
-}
-
+header.site nav a.ext::after { content: " ↗"; transition: transform var(--t-fast) var(--ease); display: inline-block; }
 header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
-
 @media (max-width: 720px) {
   header.site nav a:not(.primary) { display: none; }
 }
 
 /* ---------- HERO ---------- */
-
 .hero {
   min-height: 100svh;
   padding-top: clamp(7rem, 14vh, 11rem);
@@ -227,7 +214,6 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   flex-direction: column;
   justify-content: space-between;
 }
-
 .hero-meta {
   display: flex;
   justify-content: space-between;
@@ -236,7 +222,6 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   gap: 1rem;
   margin-bottom: clamp(3rem, 8vh, 5rem);
 }
-
 .hero-title {
   font-family: var(--font-display);
   font-weight: 500;
@@ -245,32 +230,12 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   letter-spacing: -0.04em;
   color: var(--ink);
 }
-
-.hero-title .row {
-  display: block;
-  overflow: hidden;
-}
-
-.hero-title .row span {
-  display: inline-block;
-  animation: rise 1.1s var(--ease) both;
-}
-
+.hero-title .row { display: block; overflow: hidden; }
+.hero-title .row span { display: inline-block; animation: rise 1.1s var(--ease) both; }
 .hero-title .row:nth-child(2) span { animation-delay: 0.08s; }
-.hero-title .row:nth-child(3) span { animation-delay: 0.16s; font-weight: 300; color: var(--ink-2); }
+@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
 
-@keyframes rise {
-  from { transform: translateY(110%); }
-  to { transform: translateY(0); }
-}
-
-.hero-bottom {
-  display: flex;
-  justify-content: flex-end;
-  align-items: end;
-  margin-top: clamp(3rem, 6vh, 5rem);
-}
-
+.hero-bottom { display: flex; justify-content: flex-end; align-items: end; margin-top: clamp(3rem, 6vh, 5rem); }
 .hero-bottom .scroll {
   display: inline-flex;
   align-items: center;
@@ -281,23 +246,10 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   text-transform: uppercase;
   color: var(--ink-2);
 }
-
-.hero-bottom .scroll .arrow {
-  display: inline-block;
-  animation: scrollHint 1.8s ease-in-out infinite;
-}
-
-@keyframes scrollHint {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
-  50% { transform: translateY(4px); opacity: 1; }
-}
-
-@media (max-width: 720px) {
-  .hero-bottom .scroll { justify-self: start; }
-}
+.hero-bottom .scroll .arrow { display: inline-block; animation: scrollHint 1.8s ease-in-out infinite; }
+@keyframes scrollHint { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(4px); opacity: 1; } }
 
 /* ---------- WORKS ---------- */
-
 .filters {
   display: flex;
   gap: clamp(1rem, 2.5vw, 2.25rem);
@@ -306,7 +258,6 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--line);
 }
-
 .filters button {
   background: none;
   border: none;
@@ -320,11 +271,8 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   position: relative;
   transition: color var(--t-fast) var(--ease);
 }
-
 .filters button:hover { color: var(--ink-2); }
-
 .filters button.active { color: var(--ink); }
-
 .filters button.active::after {
   content: "";
   position: absolute;
@@ -338,19 +286,14 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   grid-template-columns: 1fr 1fr;
   gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
 }
+@media (max-width: 720px) { .works-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
 
 .work-card {
   cursor: pointer;
   display: block;
   transition: opacity var(--t-med) var(--ease);
 }
-
 .work-card.hidden { display: none; }
-
-@media (max-width: 720px) {
-  .works-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-}
-
 .work-card .cover {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -359,18 +302,14 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   overflow: hidden;
   margin-bottom: 1rem;
 }
-
 .work-card .cover img {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: transform var(--t-slow) var(--ease);
 }
-
 .work-card:hover .cover img { transform: scale(1.03); }
-
 .work-card .cover .fallback {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -378,10 +317,8 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   font-weight: 300;
   font-size: clamp(2rem, 5vw, 4rem);
   color: var(--ink-3);
-  background:
-    linear-gradient(135deg, var(--bg-alt) 0%, var(--line-soft) 100%);
+  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--line-soft) 100%);
 }
-
 .work-card .meta-row {
   display: flex;
   justify-content: space-between;
@@ -389,47 +326,30 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   margin-bottom: 0.35rem;
   gap: 1rem;
 }
-
-.work-card .num {
+.work-card .num, .work-card .year {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.05em;
   color: var(--ink-3);
 }
-
-.work-card .year {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  color: var(--ink-3);
-}
-
 .work-card .title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
 }
-
-.work-card .title-en {
-  font-family: var(--font-display);
-  font-weight: 300;
-  color: var(--ink-3);
-  font-size: 0.7em;
-}
-
 .work-card .summary {
   margin-top: 0.5rem;
   font-size: 0.92rem;
   color: var(--ink-2);
   line-height: 1.55;
   max-width: 44ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
 .work-card .tags {
   margin-top: 0.85rem;
   display: flex;
@@ -442,153 +362,18 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   color: var(--ink-3);
 }
 
-/* ---------- TYPE SECTION ---------- */
-
-#type .section-head .lead em {
-}
-
-.type-note {
-  background: var(--bg-alt);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: clamp(1rem, 3vw, 2.5rem);
-  align-items: center;
-  border: 1px solid var(--line);
-}
-
-.type-note .label {
+/* ---------- LOADING ---------- */
+.loading-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--ink-3);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-.type-note .text {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  line-height: 1.4;
-  color: var(--ink);
-}
-
-.type-note .link {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-  transition: gap var(--t-fast) var(--ease);
-  display: inline-flex;
-  gap: 0.3rem;
-}
-
-.type-note .link:hover { gap: 0.55rem; }
-
-@media (max-width: 720px) {
-  .type-note { grid-template-columns: 1fr; }
-}
-
-.type-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.type-card {
-  border: 1px solid var(--line);
-  padding: clamp(1.5rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
-  cursor: pointer;
-}
-
-.type-card:hover { border-color: var(--ink); background: var(--bg-alt); }
-
-.type-card .specimen {
-  font-family: var(--font-sans);
-  font-weight: 400;
-  font-size: clamp(4rem, 9vw, 7rem);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  text-align: center;
-  padding: clamp(1.5rem, 4vw, 3rem) 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.type-card .specimen.serif {
-  font-weight: 200;
-  letter-spacing: -0.04em;
-}
-
-.type-card .specimen.korean {
-  font-weight: 700;
-}
-
-.type-card .name-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.type-card .name {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
-  letter-spacing: -0.02em;
-}
-
-.type-card .name-en {
-  font-family: var(--font-display);
-  font-weight: 300;
-  color: var(--ink-3);
-  font-size: 0.95rem;
-}
-
-.type-card .role {
-  font-size: 0.88rem;
-  color: var(--ink-2);
-  line-height: 1.55;
-}
-
-.type-card .external-link {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin-top: 0.25rem;
-}
-
-@media (max-width: 720px) {
-  .type-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- CONTACT ---------- */
-
-#contact { border-top: 1px solid var(--line); }
-
-.contact-statement {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2.5rem, 7vw, 6rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  max-width: 16ch;
-  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-}
-
-.contact-statement em {
-}
-
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -596,7 +381,6 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   padding-top: 2rem;
   border-top: 1px solid var(--line);
 }
-
 .contact-block .label {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -605,14 +389,13 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   color: var(--ink-3);
   margin-bottom: 0.85rem;
 }
-
+.contact-block .label::before { content: "— "; }
 .contact-block .value {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   letter-spacing: -0.015em;
 }
-
 .contact-block a.value {
   border-bottom: 1px solid transparent;
   transition: border-color var(--t-fast) var(--ease);
@@ -620,28 +403,16 @@ header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
   align-items: baseline;
   gap: 0.3rem;
 }
-
 .contact-block a.value:hover { border-bottom-color: var(--ink); }
-
-.contact-block a.value .arrow {
-  font-family: var(--font-sans);
-  font-size: 0.85em;
-  transition: transform var(--t-fast) var(--ease);
-}
-
+.contact-block a.value .arrow { font-family: var(--font-sans); font-size: 0.85em; transition: transform var(--t-fast) var(--ease); }
 .contact-block a.value:hover .arrow { transform: translate(2px, -2px); }
-
-@media (max-width: 720px) {
-  .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-}
+@media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
 
 /* ---------- FOOTER ---------- */
-
 footer.site {
   padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) clamp(1.5rem, 3vw, 2rem);
   border-top: 1px solid var(--line);
 }
-
 footer.site .inner {
   max-width: var(--max);
   margin: 0 auto;
@@ -650,21 +421,6 @@ footer.site .inner {
   gap: clamp(1.5rem, 4vw, 3rem);
   align-items: end;
 }
-
-footer.site .signature {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-footer.site .signature::after {
-  content: ".";
-  font-style: normal;
-}
-
 footer.site .left .meta {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -675,15 +431,8 @@ footer.site .left .meta {
   flex-direction: column;
   gap: 0.4rem;
 }
-
-footer.site .left .meta a {
-  border-bottom: 1px dotted var(--ink-3);
-  display: inline-block;
-  width: fit-content;
-}
-
+footer.site .left .meta a { border-bottom: 1px dotted var(--ink-3); display: inline-block; width: fit-content; }
 footer.site .left .meta a:hover { border-bottom-style: solid; border-bottom-color: var(--ink); }
-
 footer.site .right {
   font-family: var(--font-mono);
   font-size: 0.68rem;
@@ -693,7 +442,6 @@ footer.site .right {
   text-align: right;
   line-height: 1.7;
 }
-
 footer.site .copyright {
   margin-top: clamp(2rem, 4vw, 3rem);
   padding-top: 1.5rem;
@@ -708,26 +456,136 @@ footer.site .copyright {
   flex-wrap: wrap;
   gap: 1rem;
 }
-
 @media (max-width: 720px) {
   footer.site .inner { grid-template-columns: 1fr; align-items: start; }
   footer.site .right { text-align: left; }
 }
 
-/* ---------- LOADING / REVEAL ---------- */
-
-.reveal {
+/* ---------- PROJECT DETAIL OVERLAY ---------- */
+.detail-overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 200;
+  overflow-y: auto;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease);
+}
+.detail-overlay.open { opacity: 1; pointer-events: auto; }
+
+.detail-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  padding: 1rem var(--gutter);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.detail-header .title-row {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+.detail-header .title-row .name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.detail-header .close {
+  background: none;
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.95rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+  white-space: nowrap;
+}
+.detail-header .close:hover { border-color: var(--ink); color: var(--ink); }
+
+.detail-body { max-width: 1100px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) var(--gutter) 5rem; }
+.detail-hero { margin-bottom: clamp(3rem, 6vw, 5rem); }
+.detail-hero .meta {
+  display: flex;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.detail-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+.detail-hero .desc {
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 65ch;
+  white-space: pre-line;
 }
 
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
+.detail-blocks { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem); }
 
-/* ---------- ACCESSIBILITY ---------- */
+.block-text {
+  max-width: 65ch;
+  margin: 0 auto;
+  padding: clamp(1rem, 2vw, 2rem) 0;
+}
+.block-text h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+.block-text p {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.7;
+  color: var(--ink-2);
+  white-space: pre-line;
+}
+.block-img img { width: 100%; height: auto; display: block; }
+.block-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+.block-2col img { width: 100%; height: auto; display: block; }
+@media (max-width: 640px) { .block-2col { grid-template-columns: 1fr; } }
+
+/* ---------- REVEAL ---------- */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.reveal.in { opacity: 1; transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -736,36 +594,48 @@ footer.site .copyright {
     transition-duration: 0.01ms !important;
   }
 }
-
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
+<!-- LOADER -->
+<div id="loader">
+  <div class="top">
+    <span>— Loading</span>
+    <span>THISISPEARWAY · 2026</span>
+  </div>
+  <div class="middle">
+    <div class="counter">Pearway.</div>
+    <div class="progress-bar" id="loader-bar"></div>
+  </div>
+  <div class="bottom">
+    <span>Seoul, KR</span>
+    <span id="loader-status">Initializing…</span>
+  </div>
+</div>
+
+<!-- HEADER -->
 <header class="site">
   <div class="inner">
     <a href="#top" class="brand">THISISPEARWAY</a>
     <nav>
       <a href="#works">Work</a>
-      <a href="#type">Type</a>
       <a href="#contact">Contact</a>
       <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
+<!-- HERO -->
 <section class="hero wrap" id="top">
   <div class="hero-meta">
     <span class="mono">— Portfolio · 2026</span>
     <span class="mono">Seoul, KR</span>
   </div>
-
   <h1 class="hero-title">
     <span class="row"><span>This is</span></span>
     <span class="row"><span>Pearway.</span></span>
   </h1>
-
   <div class="hero-bottom">
     <a href="#works" class="scroll">
       <span>Scroll</span>
@@ -774,89 +644,51 @@ footer.site .copyright {
   </div>
 </section>
 
-<!-- ============ WORKS ============ -->
+<!-- WORKS -->
 <section class="section" id="works">
   <div class="wrap">
     <div class="section-head">
       <span class="section-marker">Selected Works</span>
     </div>
 
-    <div class="filters" role="tablist">
+    <div class="filters" role="tablist" id="filters">
       <button class="active" data-filter="all">All</button>
-      <button data-filter="brand">Brand</button>
-      <button data-filter="graphic">Graphic</button>
-      <button data-filter="spatial">Spatial</button>
+      <!-- 다른 필터는 데이터 로드 후 자동 생성 -->
     </div>
 
-    <div class="works-grid" id="works-grid">
-      <!-- populated from projects.json -->
-    </div>
+    <div id="works-loading" class="loading-state">— loading works…</div>
+    <div class="works-grid" id="works-grid" style="display:none"></div>
   </div>
 </section>
 
-<!-- ============ TYPE ============ -->
-<section class="section" id="type">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">Type Design</span>
-      <h2 class="lead">
-        Pear Type Foundry.
-      </h2>
-    </div>
-
-    <div class="type-grid">
-      <a href="https://www.peartype.kr" target="_blank" rel="noopener" class="type-card">
-        <div class="specimen serif">우</div>
-        <div class="name-row">
-          <span class="name">우아한 세리프</span>
-          <span class="name-en">Grace Serif</span>
-        </div>
-        <p class="role">한글 디스플레이 세리프. 클래식 명조의 구조를 현대적으로 재해석.</p>
-        <span class="external-link">정식 배포 · peartype.kr ↗</span>
-      </a>
-
-      <a href="https://www.peartype.kr" target="_blank" rel="noopener" class="type-card">
-        <div class="specimen korean">큰</div>
-        <div class="name-row">
-          <span class="name">큰부리새</span>
-          <span class="name-en">Toucan</span>
-        </div>
-        <p class="role">한글 디스플레이. 두툼한 부리에서 자음의 굵은 가로획으로.</p>
-        <span class="external-link">정식 배포 · peartype.kr ↗</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
+<!-- CONTACT -->
 <section class="section" id="contact">
   <div class="wrap">
     <div class="section-head">
       <span class="section-marker">Contact</span>
     </div>
-
     <div class="contact-grid">
       <div class="contact-block">
-        <div class="label">— Direct</div>
+        <div class="label">Direct</div>
         <a href="http://pf.kakao.com/_JdBdX/chat" class="value" target="_blank" rel="noopener">
           KakaoTalk <span class="arrow">↗</span>
         </a>
       </div>
       <div class="contact-block">
-        <div class="label">— Type Work</div>
+        <div class="label">Type Work</div>
         <a href="https://www.peartype.kr" class="value" target="_blank" rel="noopener">
           Pear Type Foundry <span class="arrow">↗</span>
         </a>
       </div>
       <div class="contact-block">
-        <div class="label">— Based In</div>
+        <div class="label">Based In</div>
         <span class="value">Seoul, KR</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- FOOTER -->
 <footer class="site">
   <div class="inner">
     <div class="left">
@@ -876,90 +708,321 @@ footer.site .copyright {
   </div>
 </footer>
 
-<!-- ============ SCRIPTS ============ -->
-<script>
-/* ---------- Header scroll state ---------- */
+<!-- PROJECT DETAIL OVERLAY -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-header">
+    <div class="title-row">
+      <span>— Project</span>
+      <span class="name" id="detail-name"></span>
+    </div>
+    <button class="close" id="detail-close">Close ×</button>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
+
+<!-- ============ FIREBASE + RENDER ============ -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
+
+/* ===== Firebase config (read-only public access via Firestore Rules) ===== */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "thisispearway.firebaseapp.com",
+  projectId: "thisispearway",
+  storageBucket: "thisispearway.firebasestorage.app",
+  messagingSenderId: "657205333061",
+  appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
+};
+const COLLECTION = "projects";
+/* ====================================================================== */
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const grid = $('works-grid');
+const loadingEl = $('works-loading');
+const filtersEl = $('filters');
+const overlay = $('detail-overlay');
+const detailName = $('detail-name');
+const detailBody = $('detail-body');
+const detailClose = $('detail-close');
+
+let allProjects = [];
+let currentFilter = 'all';
+
+const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* ---------- SMOOTH SCROLL (Lenis) ---------- */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let lenis = null;
+let lenisOverlay = null;
+
+if (!reduceMotion) {
+  // 메인 페이지용
+  lenis = new Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 1.5,
+    // 오버레이 안에서 발생한 wheel/touch는 메인 Lenis가 무시
+    prevent: (node) => node.closest && node.closest('#detail-overlay') !== null
+  });
+
+  // 상세 오버레이용 — 오버레이 자체가 overflow:auto 컨테이너
+  lenisOverlay = new Lenis({
+    wrapper: document.getElementById('detail-overlay'),
+    content: document.getElementById('detail-overlay'),
+    duration: 1.1,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 1.5
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    lenisOverlay.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // anchor 링크는 Lenis로 부드럽게 스크롤
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      lenis.scrollTo(target, { offset: -20 });
+    });
+  });
+}
+
+/* ---------- LOADER ---------- */
+const loader = $('loader');
+const loaderBar = $('loader-bar');
+const loaderStatus = $('loader-status');
+let loaderProgress = 0;
+let dataReady = false;
+
+function runLoader() {
+  return new Promise(resolve => {
+    const start = performance.now();
+    let lastTick = start;
+    const tick = (now) => {
+      const elapsed = now - start;
+      let target;
+      if (!dataReady) {
+        // 0 → 90 over ~3000ms with ease-out
+        const t = Math.min(1, elapsed / 3000);
+        target = (1 - Math.pow(1 - t, 2)) * 90;
+      } else {
+        // 데이터 준비됨 → 100까지 빠르게
+        const dt = now - lastTick;
+        target = Math.min(100, loaderProgress + dt * 0.4);
+      }
+      lastTick = now;
+      loaderProgress = Math.min(100, target);
+      loaderBar.style.width = loaderProgress + '%';
+      if (loaderProgress < 100) {
+        requestAnimationFrame(tick);
+      } else {
+        loaderStatus.textContent = 'Ready.';
+        setTimeout(() => {
+          loader.classList.add('done');
+          // 로더 끝나면 Lenis 스크롤 시작 위치 보장
+          if (lenis) lenis.start();
+          resolve();
+        }, 450);
+      }
+    };
+    // 로딩 중엔 Lenis 일시정지 (스크롤 막기)
+    if (lenis) lenis.stop();
+    requestAnimationFrame(tick);
+  });
+}
+
+/* ---------- Header scroll ---------- */
 const header = document.querySelector('header.site');
 const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
 /* ---------- Load projects ---------- */
-const grid = document.getElementById('works-grid');
-const filterButtons = document.querySelectorAll('.filters button');
-let allProjects = [];
-let currentFilter = 'all';
+async function loadProjects() {
+  try {
+    let snap;
+    try { snap = await getDocs(query(collection(db, COLLECTION), orderBy('order', 'asc'))); }
+    catch { snap = await getDocs(collection(db, COLLECTION)); }
+    allProjects = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+    allProjects.sort((a, b) =>
+      (typeof a.order === 'number' ? a.order : 9999) - (typeof b.order === 'number' ? b.order : 9999)
+    );
+    buildFilters();
+    renderGrid();
+  } catch (e) {
+    console.error(e);
+    loadingEl.textContent = '— failed to load projects';
+  }
+}
 
-const fallbackProjects = [
-  { id: 'woosundam', title: '우선담', title_en: 'Woosundam', year: '2023', category: ['brand','graphic','spatial'], primary: 'brand', summary: '논현동 골목의 새로운 랜드마크. 강렬한 민트색 파사드로 정형화된 고기 전문점의 문법을 탈피.', tags: ['Brand Identity','F&B'] },
-  { id: 'chicken-farmers', title: '치킨파머스', title_en: 'Chicken Farmers', year: '2024', category: ['brand','graphic','spatial'], primary: 'brand', summary: 'Farm To Table. 자극 경쟁의 시장에서 안전과 신뢰라는 독자적 USP로 정의한 리브랜딩.', tags: ['Rebranding','F&B'] },
-  { id: 'duomo-pizza', title: '듀오모피자', title_en: 'Duomo Pizza', year: '2025', category: ['spatial'], primary: 'spatial', summary: '이탈리아 모티브를 베네수엘라 현지의 산업·네온·스트릿 감성으로 재해석한 공간.', tags: ['Spatial','Collaboration'] },
-  { id: 'mini-warehouse-darak', title: '미니창고 다락', title_en: 'Mini Warehouse Darak', year: '2025', category: ['brand','graphic'], primary: 'brand', summary: '급격히 확장하는 브랜드의 시각적 파편화를 정제하는 사이니지 시스템 재정립.', tags: ['Signage','Guidelines'] },
-  { id: 'jindaegam', title: '진대감', title_en: 'Jindaegam', year: '2022', category: ['brand','graphic','spatial'], primary: 'spatial', summary: "한국 고유의 '합' 문화를 미식의 영역에서 재해석. 전통의 물성으로 현대적 미감을 설계.", tags: ['Brand','Spatial'] },
-  { id: 'grace-serif', title: '우아한 세리프', title_en: 'Grace Serif', year: '2026', category: ['type'], primary: 'type', summary: '클래식 명조의 구조에서 영감을 얻어 현대적으로 재해석한 한글 세리프 서체.', tags: ['Type Design','Korean'], external: 'https://www.peartype.kr' },
-  { id: 'toucan', title: '큰부리새', title_en: 'Toucan', year: '2026', category: ['type'], primary: 'type', summary: '두툼한 부리에서 자음의 굵은 가로획으로. 무게감과 유머가 공존하는 디스플레이.', tags: ['Type Design','Display'], external: 'https://www.peartype.kr' }
-];
+function buildFilters() {
+  // 데이터에 있는 cat 들 모두 수집해서 필터 자동 생성
+  const cats = [...new Set(allProjects.map(p => p.cat).filter(Boolean))];
+  // 표시 순서: brand → graphic → spatial → web → font → type → 기타
+  const orderHint = ['brand', 'graphic', 'spatial', 'web', 'font', 'type'];
+  cats.sort((a, b) => {
+    const ai = orderHint.indexOf(a); const bi = orderHint.indexOf(b);
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
+  // 기존 All 버튼 빼고 다 지우고 다시 생성
+  filtersEl.querySelectorAll('button:not([data-filter="all"])').forEach(b => b.remove());
+  cats.forEach(cat => {
+    const b = document.createElement('button');
+    b.dataset.filter = cat;
+    b.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+    filtersEl.appendChild(b);
+  });
+  // 클릭 핸들러 (위임)
+  filtersEl.addEventListener('click', e => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    filtersEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderGrid();
+  }, { once: false });
+}
 
-const renderProjects = () => {
-  // Type 카테고리는 항상 Works grid에서 제외 (별도 Type Design 섹션에 표시)
-  const baseList = allProjects.filter(p => !(p.category || []).includes('type'));
+function renderGrid() {
+  loadingEl.style.display = 'none';
+  grid.style.display = 'grid';
   const filtered = currentFilter === 'all'
-    ? baseList
-    : baseList.filter(p => (p.category || []).includes(currentFilter));
+    ? allProjects
+    : allProjects.filter(p => p.cat === currentFilter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="loading-state" style="grid-column:1/-1">— no works in this category</div>`;
+    return;
+  }
 
   grid.innerHTML = filtered.map((p, i) => {
     const num = String(i + 1).padStart(2, '0');
-    const tags = (p.tags || []).map(t => `<span>${t}</span>`).join('');
-    const hasCover = p.cover && !p.cover.includes('undefined');
-    const cover = hasCover
-      ? `<img src="${p.cover}" alt="${p.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="fallback" style="display:none">${p.title.charAt(0)}</div>`
-      : `<div class="fallback">${p.title.charAt(0)}</div>`;
-    const href = p.external || `#work-${p.id}`;
-    const target = p.external ? 'target="_blank" rel="noopener"' : '';
+    const cat = (p.cat || 'work').toUpperCase();
+    const thumb = p.thumb
+      ? `<img src="${esc(p.thumb)}" alt="${esc(p.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         <div class="fallback" style="display:none">${esc((p.title || '?').charAt(0))}</div>`
+      : `<div class="fallback">${esc((p.title || '?').charAt(0))}</div>`;
+    const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
 
     return `
-      <a class="work-card" href="${href}" ${target} data-cat="${(p.category||[]).join(' ')}">
-        <div class="cover">${cover}</div>
+      <a class="work-card" data-doc-id="${esc(p._docId)}" href="#${esc(p._docId)}">
+        <div class="cover">${thumb}</div>
         <div class="meta-row">
-          <span class="num">${num} / ${p.primary || 'work'}</span>
-          <span class="year">${p.year}</span>
+          <span class="num">${num} / ${esc(cat.toLowerCase())}</span>
+          <span class="year">${esc(p.year || '')}</span>
         </div>
-        <div class="title">
-          ${p.title}
-          <span class="title-en">${p.title_en || ''}</span>
-        </div>
-        <p class="summary">${p.summary || ''}</p>
+        <div class="title">${esc(p.title || '(untitled)')}</div>
+        <p class="summary">${esc(p.desc || '')}</p>
         <div class="tags">${tags}</div>
-      </a>
-    `;
+      </a>`;
   }).join('');
-};
 
-const init = (projects) => {
-  allProjects = projects;
-  renderProjects();
-};
-
-fetch('projects.json')
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(init)
-  .catch(() => init(fallbackProjects));
-
-filterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderProjects();
+  // bind card click → open detail
+  grid.querySelectorAll('.work-card').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      openDetail(card.dataset.docId);
+    });
   });
+}
+
+/* ---------- Project detail ---------- */
+function openDetail(docId) {
+  const p = allProjects.find(x => x._docId === docId);
+  if (!p) return;
+
+  detailName.textContent = p.title || '';
+
+  const meta = [
+    p.year && `Year — ${esc(p.year)}`,
+    p.cat && `Category — ${esc(p.cat.toUpperCase())}`,
+    p.client && `Client — ${esc(p.client)}`
+  ].filter(Boolean).map(s => `<span>${s}</span>`).join('');
+
+  const blocksHtml = renderBlocks(p.blocks || []);
+  const externalLink = p.url
+    ? `<p style="margin-top:1.5rem"><a href="${esc(p.url)}" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--ink-2);padding-bottom:2px">Visit ↗</a></p>`
+    : '';
+
+  detailBody.innerHTML = `
+    <div class="detail-hero">
+      <div class="meta">${meta}</div>
+      <h1>${esc(p.title || '')}</h1>
+      ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ''}
+      ${externalLink}
+    </div>
+    <div class="detail-blocks">${blocksHtml}</div>
+  `;
+
+  overlay.classList.add('open');
+  document.body.classList.add('modal-open');
+  overlay.scrollTop = 0;
+  if (lenisOverlay) lenisOverlay.scrollTo(0, { immediate: true });
+  history.pushState({ detail: docId }, '', `#${docId}`);
+}
+
+function renderBlocks(blocks) {
+  if (!Array.isArray(blocks) || blocks.length === 0) return '';
+  return blocks.map(b => {
+    if (!b || !b.type) return '';
+    if (b.type === 'text') {
+      if (!b.heading && !b.body) return '';
+      return `<div class="block-text">
+        ${b.heading ? `<h3>${esc(b.heading)}</h3>` : ''}
+        ${b.body ? `<p>${esc(b.body)}</p>` : ''}
+      </div>`;
+    }
+    if (b.type === 'img') {
+      if (!b.src) return '';
+      return `<div class="block-img"><img src="${esc(b.src)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+    }
+    if (b.type === '2col') {
+      const src = Array.isArray(b.src) ? b.src.filter(Boolean) : [];
+      if (src.length === 0) return '';
+      return `<div class="block-2col">
+        ${src.map(s => `<img src="${esc(s)}" alt="" loading="lazy" onerror="this.style.display='none'">`).join('')}
+      </div>`;
+    }
+    return '';
+  }).join('');
+}
+
+function closeDetail() {
+  overlay.classList.remove('open');
+  document.body.classList.remove('modal-open');
+  if (location.hash) history.pushState({}, '', location.pathname);
+}
+
+detailClose.addEventListener('click', closeDetail);
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && overlay.classList.contains('open')) closeDetail();
+});
+window.addEventListener('popstate', e => {
+  if (overlay.classList.contains('open')) {
+    overlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
 });
 
-/* ---------- Reveal on scroll ---------- */
-const revealEls = document.querySelectorAll('.section-head, .type-note, .contact-statement, .contact-grid');
-revealEls.forEach(el => el.classList.add('reveal'));
-
-const io = new IntersectionObserver((entries) => {
+/* ---------- Reveal animation ---------- */
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('in');
@@ -968,7 +1031,21 @@ const io = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '0px 0px -10% 0px' });
 
-revealEls.forEach(el => io.observe(el));
+document.querySelectorAll('.section-head, .contact-grid').forEach(el => {
+  el.classList.add('reveal');
+  io.observe(el);
+});
+
+/* ---------- Init ---------- */
+Promise.all([
+  loadProjects().then(() => { dataReady = true; }),
+  runLoader()
+]).then(() => {
+  if (location.hash && location.hash.length > 1) {
+    const id = location.hash.slice(1);
+    if (allProjects.find(p => p._docId === id)) openDetail(id);
+  }
+});
 </script>
 
 </body>
