@@ -282,13 +282,13 @@ const firebaseConfig = {
   messagingSenderId: "657205333061",
   appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
 };
-const ALLOWED_EMAILS = [ "ppearwayy-email@gmail.com" ];
+const ALLOWED_EMAILS = [ "ppearwayy@gmail.com" ];
 
 const COLLECTION = "projects";
 const STORAGE_PATH = "projects";
 /* ============================================================ */
 
-const isConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY" && !ALLOWED_EMAILS.includes("your-email@gmail.com");
+const isConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY" && !ALLOWED_EMAILS.includes("ppearwayy@gmail.com");
 
 let app, auth, db, storage;
 if (isConfigured) {
