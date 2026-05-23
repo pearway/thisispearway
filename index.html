@@ -781,6 +781,15 @@ if (!reduceMotion) {
     touchMultiplier: 1.5
   });
 
+  // 이미지 onload 등에서 호출할 수 있게 전역 helper
+  window.lenisOverlayResize = () => lenisOverlay.resize();
+
+  // 상세 콘텐츠 높이 변화(이미지 늦게 로드, DOM 변경 등) → Lenis 재계산
+  const overlayResize = new ResizeObserver(() => {
+    lenisOverlay.resize();
+  });
+  overlayResize.observe(document.getElementById('detail-body'));
+
   function raf(time) {
     lenis.raf(time);
     lenisOverlay.raf(time);
@@ -991,13 +1000,13 @@ function renderBlocks(blocks) {
     }
     if (b.type === 'img') {
       if (!b.src) return '';
-      return `<div class="block-img"><img src="${esc(b.src)}" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>`;
+      return `<div class="block-img"><img src="${esc(b.src)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
     }
     if (b.type === '2col') {
       const src = Array.isArray(b.src) ? b.src.filter(Boolean) : [];
       if (src.length === 0) return '';
       return `<div class="block-2col">
-        ${src.map(s => `<img src="${esc(s)}" alt="" loading="lazy" onerror="this.style.display='none'">`).join('')}
+        ${src.map(s => `<img src="${esc(s)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.style.display='none'">`).join('')}
       </div>`;
     }
     return '';
