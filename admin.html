@@ -5,313 +5,77 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin — THISISPEARWAY</title>
 <meta name="robots" content="noindex, nofollow">
-
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-
-<link rel="stylesheet" as="style" crossorigin
-  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <style>
 :root {
-  --bg: #FAFAF7;
-  --bg-alt: #F2F2ED;
-  --ink: #0C0C0B;
-  --ink-2: #4A4A47;
-  --ink-3: #8A8A85;
-  --line: #DEDED8;
-  --line-soft: #ECECE6;
-  --danger: #B73B3B;
-  --success: #2E7D55;
-
+  --bg: #FAFAF7; --bg-alt: #F2F2ED; --ink: #0C0C0B; --ink-2: #4A4A47; --ink-3: #8A8A85;
+  --line: #DEDED8; --line-soft: #ECECE6; --danger: #B73B3B; --success: #2E7D55;
   --font-display: 'Geist', 'Pretendard Variable', sans-serif;
   --font-sans: 'Pretendard Variable', 'Geist', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
-
-  --max: 1280px;
-  --gutter: clamp(1.25rem, 3vw, 2rem);
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --max: 1280px; --gutter: clamp(1.25rem, 3vw, 2rem); --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-font-smoothing: antialiased; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.55;
-  letter-spacing: -0.01em;
-}
+body { background: var(--bg); color: var(--ink); font-family: var(--font-sans); font-size: 15px; line-height: 1.55; letter-spacing: -0.01em; }
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
 input, textarea, select { font-family: inherit; }
 ::selection { background: var(--ink); color: var(--bg); }
 
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-
-/* ---------- HEADER ---------- */
-header.admin {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-  padding: 1rem var(--gutter);
-}
-header.admin .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-header.admin .brand {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-header.admin .brand .sub {
-  color: var(--ink-3);
-  margin-left: 0.5rem;
-}
-header.admin .user {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-}
+header.admin { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); padding: 1rem var(--gutter); }
+header.admin .inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+header.admin .brand { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; font-weight: 500; text-transform: uppercase; }
+header.admin .brand .sub { color: var(--ink-3); margin-left: 0.5rem; }
+header.admin .user { display: flex; align-items: center; gap: 1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; }
 header.admin .user .email { color: var(--ink-2); }
+main { max-width: var(--max); margin: 0 auto; padding: clamp(2rem, 4vw, 3.5rem) var(--gutter); }
 
-/* ---------- WRAP ---------- */
-main {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: clamp(2rem, 4vw, 3.5rem) var(--gutter);
-}
-
-/* ---------- LOGIN ---------- */
-#login {
-  min-height: 70vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 2rem;
-}
-#login h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1;
-}
-#login .note {
-  color: var(--ink-2);
-  max-width: 32ch;
-}
-#login button {
-  background: var(--ink);
-  color: var(--bg);
-  border: none;
-  padding: 0.95rem 1.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: opacity 0.2s var(--ease);
-}
+#login { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2rem; }
+#login .marker { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+#login h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 500; letter-spacing: -0.035em; line-height: 1; }
+#login .note { color: var(--ink-2); max-width: 32ch; }
+#login button { background: var(--ink); color: var(--bg); border: none; padding: 0.95rem 1.6rem; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; transition: opacity 0.2s var(--ease); }
 #login button:hover { opacity: 0.85; }
-#login .denied {
-  color: var(--danger);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-}
+#login .denied { color: var(--danger); font-family: var(--font-mono); font-size: 0.78rem; }
 
-/* ---------- TOOLBAR ---------- */
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 2rem;
-}
-.toolbar .left {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.toolbar .marker {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.toolbar .marker::before {
-  content: "— ";
-}
-.toolbar h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
-.toolbar .actions {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.btn {
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 0.6rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  transition: all 0.2s var(--ease);
-}
+.btn { background: transparent; border: 1px solid var(--line); padding: 0.55rem 0.95rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); transition: all 0.15s var(--ease); white-space: nowrap; }
 .btn:hover { border-color: var(--ink); color: var(--ink); }
-.btn.primary {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn.primary:hover { opacity: 0.85; }
 .btn.danger { color: var(--danger); border-color: var(--danger); }
 .btn.danger:hover { background: var(--danger); color: var(--bg); }
+.btn.small { padding: 0.4rem 0.7rem; font-size: 0.64rem; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ---------- PROJECT LIST ---------- */
-.project-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.project-row {
-  display: grid;
-  grid-template-columns: 56px 80px 1fr auto auto;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  transition: border-color 0.2s var(--ease);
-}
+.toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+.toolbar .left { display: flex; flex-direction: column; gap: 0.4rem; }
+.toolbar .marker { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.toolbar .marker::before { content: "— "; }
+.toolbar h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.2vw, 2.4rem); font-weight: 500; letter-spacing: -0.025em; }
+.toolbar .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.project-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.project-row { display: grid; grid-template-columns: 50px 90px 1fr auto auto; align-items: center; gap: 1rem; padding: 0.85rem 1rem; border: 1px solid var(--line); background: var(--bg); transition: border-color 0.2s var(--ease); }
 .project-row:hover { border-color: var(--ink-2); }
-.project-row .index {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-3);
-}
-.project-row .thumb {
-  width: 80px; height: 56px;
-  background: var(--bg-alt);
-  position: relative;
-  overflow: hidden;
-}
-.project-row .thumb img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.project-row .thumb .fallback {
-  position: absolute; inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.3rem;
-  color: var(--ink-3);
-}
-.project-row .info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  min-width: 0;
-}
-.project-row .info .title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.05rem;
-  letter-spacing: -0.015em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.project-row .info .meta {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: flex;
-  gap: 0.85rem;
-  flex-wrap: wrap;
-}
-.project-row .order-ctrl {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.project-row .order-ctrl button {
-  background: var(--bg-alt);
-  border: none;
-  width: 28px; height: 22px;
-  font-size: 0.65rem;
-  color: var(--ink-2);
-  transition: background 0.15s var(--ease);
-}
+.project-row .index { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-3); }
+.project-row .thumb { width: 90px; height: 60px; background: var(--bg-alt); position: relative; overflow: hidden; }
+.project-row .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.project-row .thumb .fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 500; font-size: 1.3rem; color: var(--ink-3); }
+.project-row .info { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+.project-row .info .title { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; letter-spacing: -0.015em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.project-row .info .meta { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); display: flex; gap: 0.85rem; flex-wrap: wrap; }
+.project-row .order-ctrl { display: flex; flex-direction: column; gap: 2px; }
+.project-row .order-ctrl button { background: var(--bg-alt); border: none; width: 28px; height: 22px; font-size: 0.65rem; color: var(--ink-2); }
 .project-row .order-ctrl button:hover { background: var(--ink); color: var(--bg); }
-.project-row .actions {
-  display: flex;
-  gap: 0.4rem;
-}
-.project-row .actions button {
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 0.4rem 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  transition: all 0.15s var(--ease);
-}
-.project-row .actions button:hover { border-color: var(--ink); color: var(--ink); }
-.project-row .actions button.del:hover { background: var(--danger); border-color: var(--danger); color: var(--bg); }
-
+.project-row .actions { display: flex; gap: 0.4rem; }
 @media (max-width: 720px) {
-  .project-row {
-    grid-template-columns: 50px 1fr;
-    grid-template-areas:
-      "thumb info"
-      "thumb order"
-      "actions actions";
-  }
+  .project-row { grid-template-columns: 60px 1fr; grid-template-areas: "thumb info" "thumb order" "actions actions"; }
   .project-row .index { display: none; }
   .project-row .thumb { grid-area: thumb; }
   .project-row .info { grid-area: info; }
@@ -319,267 +83,84 @@ main {
   .project-row .actions { grid-area: actions; }
 }
 
-/* ---------- EMPTY STATE ---------- */
-.empty {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--ink-3);
-  border: 1px dashed var(--line);
-}
-.empty .icon {
-  font-family: var(--font-display);
-  font-size: 3rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  color: var(--ink-3);
-}
+.empty { text-align: center; padding: 4rem 1rem; color: var(--ink-3); border: 1px dashed var(--line); }
+.empty .icon { font-family: var(--font-display); font-size: 3rem; font-weight: 300; margin-bottom: 1rem; color: var(--ink-3); }
 
-/* ---------- MODAL ---------- */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: color-mix(in srgb, var(--ink) 35%, transparent);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s var(--ease);
-}
+.modal-overlay { position: fixed; inset: 0; background: color-mix(in srgb, var(--ink) 35%, transparent); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease); }
 .modal-overlay.open { opacity: 1; pointer-events: auto; }
-.modal {
-  background: var(--bg);
-  width: 100%;
-  max-width: 720px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border: 1px solid var(--line);
-  transform: translateY(20px);
-  opacity: 0;
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
-}
+.modal { background: var(--bg); width: 100%; max-width: 880px; max-height: 92vh; overflow-y: auto; border: 1px solid var(--line); transform: translateY(20px); opacity: 0; transition: transform 0.3s var(--ease), opacity 0.3s var(--ease); }
 .modal-overlay.open .modal { transform: translateY(0); opacity: 1; }
-.modal header {
-  position: sticky;
-  top: 0;
-  background: var(--bg);
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.modal header h3 {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-.modal header .close {
-  background: none;
-  border: none;
-  font-size: 1.4rem;
-  color: var(--ink-2);
-  padding: 0 0.4rem;
-}
-.modal .body {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-.modal footer {
-  position: sticky;
-  bottom: 0;
-  background: var(--bg);
-  padding: 1rem 1.5rem;
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-.modal footer .right { display: flex; gap: 0.5rem; }
+.modal header.m { position: sticky; top: 0; background: var(--bg); padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; z-index: 2; }
+.modal header.m h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 500; letter-spacing: -0.02em; }
+.modal header.m h3 .id-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-3); margin-left: 0.6rem; letter-spacing: 0.05em; }
+.modal header.m .close { background: none; border: none; font-size: 1.4rem; color: var(--ink-2); padding: 0 0.4rem; }
+.modal .body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
 
-/* ---------- FORM ---------- */
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.field .label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
+.subsection { border: 1px solid var(--line-soft); padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+.subsection-title { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.subsection-title::before { content: "— "; color: var(--ink-3); }
+.subsection-title .count { background: var(--bg-alt); padding: 0.15rem 0.5rem; font-size: 0.62rem; }
+
+.modal footer.m { position: sticky; bottom: 0; background: var(--bg); padding: 1rem 1.5rem; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 0.75rem; z-index: 2; }
+.modal footer.m .right { display: flex; gap: 0.5rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field .label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
 .field .label::before { content: "— "; }
 .field .label .req { color: var(--danger); margin-left: 0.2rem; }
-.field input[type="text"],
-.field input[type="url"],
-.field textarea,
-.field select {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  padding: 0.7rem 0.85rem;
-  font-size: 0.95rem;
-  color: var(--ink);
-  font-family: var(--font-sans);
-  letter-spacing: -0.01em;
-  transition: border-color 0.15s var(--ease);
-  width: 100%;
-}
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--ink);
-}
+.field input[type="text"], .field input[type="url"], .field input[type="color"], .field textarea, .field select { background: var(--bg); border: 1px solid var(--line); padding: 0.7rem 0.85rem; font-size: 0.95rem; color: var(--ink); font-family: var(--font-sans); letter-spacing: -0.01em; transition: border-color 0.15s var(--ease); width: 100%; }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--ink); }
 .field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
-.field .hint {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  color: var(--ink-3);
-  letter-spacing: 0.03em;
-}
+.field input[type="color"] { height: 44px; padding: 0.2rem; cursor: pointer; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+@media (max-width: 540px) { .field-row, .field-row-3 { grid-template-columns: 1fr; } }
 
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-@media (max-width: 540px) {
-  .field-row { grid-template-columns: 1fr; }
-}
-
-/* Category checkbox group */
-.checkbox-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.checkbox-group label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.85rem;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.15s var(--ease);
-}
-.checkbox-group label:has(input:checked) {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
-.checkbox-group input { display: none; }
-
-/* Image uploader */
-.image-uploader {
-  border: 1px dashed var(--line);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-.image-uploader .preview {
-  width: 120px; height: 88px;
-  background: var(--bg-alt);
-  position: relative;
-  flex-shrink: 0;
-}
-.image-uploader .preview img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.image-uploader .controls {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.image-uploader .controls .filename {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ink-3);
-  word-break: break-all;
-}
+.image-uploader { border: 1px dashed var(--line); padding: 1rem; display: flex; align-items: center; gap: 1rem; }
+.image-uploader .preview { width: 130px; height: 90px; background: var(--bg-alt); position: relative; flex-shrink: 0; overflow: hidden; }
+.image-uploader .preview img { width: 100%; height: 100%; object-fit: cover; }
+.image-uploader .controls { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.image-uploader .controls .filename { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); word-break: break-all; }
 .image-uploader input[type="file"] { display: none; }
-.image-uploader .upload-btn {
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 0.5rem 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  align-self: flex-start;
-  transition: all 0.15s var(--ease);
-}
+.image-uploader .upload-btn { background: transparent; border: 1px solid var(--line); padding: 0.5rem 0.85rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); align-self: flex-start; transition: all 0.15s var(--ease); }
 .image-uploader .upload-btn:hover { border-color: var(--ink); color: var(--ink); }
-.image-uploader .progress {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ink-2);
-}
+.image-uploader .progress { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-2); }
 
-/* ---------- TOAST ---------- */
-.toast {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--ink);
-  color: var(--bg);
-  padding: 0.75rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  z-index: 200;
-  opacity: 0;
-  transition: all 0.3s var(--ease);
-  pointer-events: none;
-}
+.blocks-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.block-item { border: 1px solid var(--line); background: var(--bg); padding: 0.85rem; display: flex; flex-direction: column; gap: 0.65rem; }
+.block-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line-soft); }
+.block-type { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); padding: 0.15rem 0.5rem; background: var(--bg-alt); }
+.block-index { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-3); }
+.block-controls { display: flex; gap: 0.3rem; }
+.block-controls button { background: transparent; border: 1px solid var(--line); padding: 0.3rem 0.55rem; font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-2); transition: all 0.15s var(--ease); }
+.block-controls button:hover { border-color: var(--ink); color: var(--ink); }
+.block-controls button.del:hover { background: var(--danger); border-color: var(--danger); color: var(--bg); }
+.block-controls button:disabled { opacity: 0.3; cursor: not-allowed; }
+.block-item.text-block textarea.body-input { min-height: 100px; }
+.image-row { display: flex; gap: 0.75rem; }
+.image-row .image-uploader { flex: 1; padding: 0.6rem; }
+.image-row .image-uploader .preview { width: 90px; height: 64px; }
+@media (max-width: 600px) { .image-row { flex-direction: column; } }
+
+.add-block-bar { display: flex; gap: 0.4rem; flex-wrap: wrap; padding: 0.75rem; background: var(--bg-alt); border: 1px dashed var(--line); align-items: center; }
+.add-block-bar .label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin-right: 0.5rem; }
+
+.toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--bg); padding: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; z-index: 200; opacity: 0; transition: all 0.3s var(--ease); pointer-events: none; max-width: 90vw; text-align: center; }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .toast.danger { background: var(--danger); }
 .toast.success { background: var(--success); }
 
-/* ---------- CONFIG NOTICE ---------- */
-.config-notice {
-  background: #FFF6E0;
-  border: 1px solid #E5C97A;
-  padding: 1rem 1.25rem;
-  margin-bottom: 2rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: #6B5012;
-}
+.config-notice { background: #FFF6E0; border: 1px solid #E5C97A; padding: 1rem 1.25rem; margin-bottom: 2rem; font-size: 0.88rem; line-height: 1.55; color: #6B5012; }
 .config-notice strong { font-weight: 600; }
-.config-notice code {
-  background: rgba(0,0,0,0.06);
-  padding: 0.1rem 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-}
-
+.config-notice code { background: rgba(0,0,0,0.06); padding: 0.1rem 0.4rem; font-family: var(--font-mono); font-size: 0.85em; }
+.loading { display: flex; align-items: center; justify-content: center; padding: 3rem; color: var(--ink-3); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; }
 </style>
 </head>
 <body>
 
 <header class="admin">
   <div class="inner">
-    <div class="brand">
-      THISISPEARWAY <span class="sub">/ Admin</span>
-    </div>
+    <div class="brand">THISISPEARWAY <span class="sub">/ Admin</span></div>
     <div class="user" id="user-info" style="display:none">
       <span class="email" id="user-email"></span>
       <button class="btn" id="logout-btn">Logout</button>
@@ -588,23 +169,18 @@ main {
 </header>
 
 <main>
-
-  <!-- ============ LOGIN ============ -->
   <section id="login">
-    <span class="mono">— Restricted Area</span>
+    <span class="marker">— Restricted Area</span>
     <h1>Admin.</h1>
-    <p class="note">Authorized accounts only. Sign in with the Google account on the allow-list.</p>
+    <p class="note">Authorized accounts only.</p>
     <button id="login-btn">Sign in with Google</button>
-    <p class="denied" id="login-denied" style="display:none">Access denied. This account is not on the allow-list.</p>
+    <p class="denied" id="login-denied" style="display:none">Access denied.</p>
   </section>
 
-  <!-- ============ DASHBOARD ============ -->
   <section id="dashboard" style="display:none">
-
     <div class="config-notice" id="config-notice" style="display:none">
-      <strong>⚠ Firebase config 미설정</strong>: 이 admin이 동작하려면 아래 스크립트 안 <code>firebaseConfig</code>와 <code>ALLOWED_EMAILS</code>를 본인 값으로 교체해야 합니다. 자세한 설정은 페이지 하단의 안내 참고.
+      <strong>⚠ Firebase config 미설정</strong>: 스크립트 안 <code>firebaseConfig</code>와 <code>ALLOWED_EMAILS</code>를 본인 값으로 교체하세요.
     </div>
-
     <div class="toolbar">
       <div class="left">
         <span class="marker">Projects</span>
@@ -612,113 +188,72 @@ main {
       </div>
       <div class="actions">
         <button class="btn" id="refresh-btn">Refresh</button>
-        <button class="btn" id="export-btn">Export JSON ↓</button>
         <button class="btn primary" id="new-btn">+ New Project</button>
       </div>
     </div>
-
-    <div class="project-list" id="project-list">
-      <!-- populated -->
-    </div>
+    <div id="loading" class="loading">— loading projects…</div>
+    <div class="project-list" id="project-list" style="display:none"></div>
   </section>
-
 </main>
 
-<!-- ============ EDIT MODAL ============ -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
-    <header>
-      <h3 id="modal-title">New Project</h3>
+    <header class="m">
+      <h3 id="modal-title">New Project <span class="id-tag" id="modal-id-tag"></span></h3>
       <button class="close" id="modal-close">×</button>
     </header>
     <div class="body">
-      <div class="field">
-        <label class="label">ID <span class="req">*</span></label>
-        <input type="text" id="f-id" placeholder="kebab-case-id">
-        <span class="hint">예: woosundam, chicken-farmers. 한 번 정한 후 변경하면 URL이 깨집니다.</span>
-      </div>
-
-      <div class="field-row">
+      <div class="subsection">
+        <div class="subsection-title"><span>Meta</span></div>
         <div class="field">
-          <label class="label">제목 (한글) <span class="req">*</span></label>
-          <input type="text" id="f-title" placeholder="우선담">
+          <label class="label">Title <span class="req">*</span></label>
+          <input type="text" id="f-title" placeholder="WOOSUNDAM - KOREAN BBQ">
         </div>
-        <div class="field">
-          <label class="label">Title (EN)</label>
-          <input type="text" id="f-title-en" placeholder="Woosundam">
+        <div class="field-row-3">
+          <div class="field"><label class="label">Year</label><input type="text" id="f-year" placeholder="2026"></div>
+          <div class="field"><label class="label">Category</label>
+            <select id="f-cat">
+              <option value="brand">Brand</option>
+              <option value="graphic">Graphic</option>
+              <option value="spatial">Spatial</option>
+              <option value="type">Type</option>
+            </select>
+          </div>
+          <div class="field"><label class="label">Brand Color</label><input type="color" id="f-color" value="#d0ccca"></div>
         </div>
-      </div>
-
-      <div class="field-row">
-        <div class="field">
-          <label class="label">연도 <span class="req">*</span></label>
-          <input type="text" id="f-year" placeholder="2023">
+        <div class="field"><label class="label">Description</label><textarea id="f-desc" placeholder="프로젝트 한 두 문단 설명."></textarea></div>
+        <div class="field-row">
+          <div class="field"><label class="label">Client</label><input type="text" id="f-client" placeholder="WOOSUNDAM"></div>
+          <div class="field"><label class="label">External URL</label><input type="url" id="f-url" placeholder="https://..."></div>
         </div>
-        <div class="field">
-          <label class="label">기간</label>
-          <input type="text" id="f-period" placeholder="2023.03 — 2023.06">
-        </div>
+        <div class="field"><label class="label">Tags</label><input type="text" id="f-tags" placeholder="Brand Identity, F&B (쉼표)"></div>
       </div>
 
-      <div class="field">
-        <label class="label">카테고리 <span class="req">*</span></label>
-        <div class="checkbox-group" id="f-category">
-          <label><input type="checkbox" value="brand"><span>Brand</span></label>
-          <label><input type="checkbox" value="graphic"><span>Graphic</span></label>
-          <label><input type="checkbox" value="spatial"><span>Spatial</span></label>
-          <label><input type="checkbox" value="type"><span>Type</span></label>
-        </div>
-        <span class="hint">'Type' 체크 시 Selected Works 그리드에서 자동 제외되고 Type Design 섹션에 노출됩니다.</span>
-      </div>
-
-      <div class="field">
-        <label class="label">Primary 카테고리</label>
-        <select id="f-primary">
-          <option value="brand">Brand</option>
-          <option value="graphic">Graphic</option>
-          <option value="spatial">Spatial</option>
-          <option value="type">Type</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label class="label">Role</label>
-        <input type="text" id="f-role" placeholder="브랜딩 · 그래픽 · 공간 디자인">
-      </div>
-
-      <div class="field">
-        <label class="label">Summary</label>
-        <textarea id="f-summary" placeholder="짧은 한 두 문장 요약."></textarea>
-      </div>
-
-      <div class="field">
-        <label class="label">Tags</label>
-        <input type="text" id="f-tags" placeholder="Brand Identity, F&B (쉼표로 구분)">
-      </div>
-
-      <div class="field">
-        <label class="label">External URL (선택)</label>
-        <input type="url" id="f-external" placeholder="https://...">
-        <span class="hint">Type 작업이면 보통 https://www.peartype.kr</span>
-      </div>
-
-      <div class="field">
-        <label class="label">Cover Image</label>
+      <div class="subsection">
+        <div class="subsection-title"><span>Thumbnail</span></div>
         <div class="image-uploader">
-          <div class="preview">
-            <img id="f-cover-preview" src="" alt="" style="display:none">
-          </div>
+          <div class="preview"><img id="f-thumb-preview" src="" alt="" style="display:none"></div>
           <div class="controls">
-            <span class="filename" id="f-cover-filename">선택된 파일 없음</span>
-            <button class="upload-btn" id="f-cover-btn">Upload Image</button>
-            <input type="file" id="f-cover-input" accept="image/*">
-            <span class="progress" id="f-cover-progress"></span>
+            <span class="filename" id="f-thumb-filename">선택된 파일 없음</span>
+            <button class="upload-btn" id="f-thumb-btn">Upload Thumbnail</button>
+            <input type="file" id="f-thumb-input" accept="image/*">
+            <span class="progress" id="f-thumb-progress"></span>
           </div>
         </div>
       </div>
 
+      <div class="subsection">
+        <div class="subsection-title"><span>Content Blocks <span class="count" id="blocks-count">0</span></span></div>
+        <div class="blocks-list" id="blocks-list"></div>
+        <div class="add-block-bar">
+          <span class="label">+ Add block</span>
+          <button class="btn small" data-add="text">Text</button>
+          <button class="btn small" data-add="img">Image</button>
+          <button class="btn small" data-add="2col">2 Columns</button>
+        </div>
+      </div>
     </div>
-    <footer>
+    <footer class="m">
       <button class="btn danger" id="modal-delete" style="display:none">Delete</button>
       <div class="right">
         <button class="btn" id="modal-cancel">Cancel</button>
@@ -730,47 +265,32 @@ main {
 
 <div class="toast" id="toast"></div>
 
-<!-- ============ FIREBASE SCRIPT ============ -->
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-import {
-  getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
-import {
-  getFirestore, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy
-} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
-import {
-  getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL
-} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js';
 
 /* ============================================================
-   ⚠️  CONFIG — 본인 Firebase 값으로 교체
+   ⚠️  CONFIG — 본인 값으로 교체
    ============================================================ */
 const firebaseConfig = {
-  apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+  apiKey: "YOUR_API_KEY",
   authDomain: "thisispearway.firebaseapp.com",
   projectId: "thisispearway",
   storageBucket: "thisispearway.firebasestorage.app",
   messagingSenderId: "657205333061",
   appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
 };
+const ALLOWED_EMAILS = [ "your-email@gmail.com" ];
 
-// 어드민 접근 허용할 Google 이메일 (배열, 본인 이메일로 교체)
-const ALLOWED_EMAILS = [
-  "ppearwayy@gmail.com"
-];
-
-const COLLECTION = "projects";  // Firestore collection name
-const STORAGE_PATH = "covers";  // Storage path prefix
+const COLLECTION = "projects";
+const STORAGE_PATH = "projects";
 /* ============================================================ */
 
-// Config 미설정 감지
-const isConfigured =
-  firebaseConfig.apiKey !== "YOUR_API_KEY" &&
-  !ALLOWED_EMAILS.includes("your-email@gmail.com");
+const isConfigured = firebaseConfig.apiKey !== "YOUR_API_KEY" && !ALLOWED_EMAILS.includes("your-email@gmail.com");
 
 let app, auth, db, storage;
-
 if (isConfigured) {
   app = initializeApp(firebaseConfig);
   auth = getAuth(app);
@@ -780,59 +300,33 @@ if (isConfigured) {
   document.getElementById('config-notice').style.display = 'block';
 }
 
-/* ---------- DOM refs ---------- */
 const $ = id => document.getElementById(id);
-const loginSection = $('login');
-const dashboard = $('dashboard');
-const userInfo = $('user-info');
-const userEmail = $('user-email');
-const loginBtn = $('login-btn');
-const logoutBtn = $('logout-btn');
-const loginDenied = $('login-denied');
-const projectList = $('project-list');
-const projectCount = $('project-count');
-const refreshBtn = $('refresh-btn');
-const exportBtn = $('export-btn');
-const newBtn = $('new-btn');
+const loginSection = $('login'), dashboard = $('dashboard'), userInfo = $('user-info');
+const userEmail = $('user-email'), loginBtn = $('login-btn'), logoutBtn = $('logout-btn'), loginDenied = $('login-denied');
+const projectList = $('project-list'), loadingEl = $('loading'), projectCount = $('project-count');
+const refreshBtn = $('refresh-btn'), newBtn = $('new-btn');
+const modalOverlay = $('modal-overlay'), modalTitle = $('modal-title'), modalIdTag = $('modal-id-tag');
+const modalClose = $('modal-close'), modalCancel = $('modal-cancel'), modalSave = $('modal-save'), modalDelete = $('modal-delete');
+const fTitle = $('f-title'), fYear = $('f-year'), fCat = $('f-cat'), fColor = $('f-color');
+const fDesc = $('f-desc'), fClient = $('f-client'), fUrl = $('f-url'), fTags = $('f-tags');
+const fThumbPreview = $('f-thumb-preview'), fThumbFilename = $('f-thumb-filename');
+const fThumbBtn = $('f-thumb-btn'), fThumbInput = $('f-thumb-input'), fThumbProgress = $('f-thumb-progress');
+const blocksList = $('blocks-list'), blocksCount = $('blocks-count');
 
-/* Modal */
-const modalOverlay = $('modal-overlay');
-const modalTitle = $('modal-title');
-const modalClose = $('modal-close');
-const modalCancel = $('modal-cancel');
-const modalSave = $('modal-save');
-const modalDelete = $('modal-delete');
-const fId = $('f-id');
-const fTitle = $('f-title');
-const fTitleEn = $('f-title-en');
-const fYear = $('f-year');
-const fPeriod = $('f-period');
-const fCategory = $('f-category');
-const fPrimary = $('f-primary');
-const fRole = $('f-role');
-const fSummary = $('f-summary');
-const fTags = $('f-tags');
-const fExternal = $('f-external');
-const fCoverPreview = $('f-cover-preview');
-const fCoverFilename = $('f-cover-filename');
-const fCoverBtn = $('f-cover-btn');
-const fCoverInput = $('f-cover-input');
-const fCoverProgress = $('f-cover-progress');
-
-/* ---------- State ---------- */
 let allProjects = [];
-let editingId = null;
-let pendingCover = null; // {url, name} after upload
+let editingDocId = null;
+let pendingThumb = null;
+let blocks = [];
 
-/* ---------- Toast ---------- */
 const toast = (msg, type = '') => {
   const el = $('toast');
   el.textContent = msg;
   el.className = 'toast show ' + type;
-  setTimeout(() => el.classList.remove('show'), 2400);
+  setTimeout(() => el.classList.remove('show'), 2800);
 };
+const genId = () => String(Date.now()) + Math.floor(Math.random() * 100);
+const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-/* ---------- Auth ---------- */
 if (isConfigured) {
   onAuthStateChanged(auth, user => {
     if (user && ALLOWED_EMAILS.includes(user.email)) {
@@ -842,7 +336,6 @@ if (isConfigured) {
       userEmail.textContent = user.email;
       loadProjects();
     } else if (user) {
-      // signed in but not allowed
       loginDenied.style.display = 'block';
       signOut(auth);
     } else {
@@ -854,61 +347,53 @@ if (isConfigured) {
 }
 
 loginBtn.addEventListener('click', async () => {
-  if (!isConfigured) {
-    toast('Firebase config가 설정되지 않았습니다', 'danger');
-    return;
-  }
-  try {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
-  } catch (e) {
-    console.error(e);
-    toast('로그인 실패: ' + (e.message || e.code), 'danger');
-  }
+  if (!isConfigured) { toast('Firebase config 미설정', 'danger'); return; }
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch (e) { console.error(e); toast('로그인 실패: ' + (e.message || e.code), 'danger'); }
 });
-
 logoutBtn.addEventListener('click', () => signOut(auth));
 
-/* ---------- Load projects ---------- */
 async function loadProjects() {
+  loadingEl.style.display = 'flex';
+  projectList.style.display = 'none';
   try {
-    const q = query(collection(db, COLLECTION), orderBy('order', 'asc'));
-    const snap = await getDocs(q);
-    allProjects = snap.docs.map(d => ({ ...d.data(), _docId: d.id }));
+    let snap;
+    try { snap = await getDocs(query(collection(db, COLLECTION), orderBy('order', 'asc'))); }
+    catch { snap = await getDocs(collection(db, COLLECTION)); }
+    allProjects = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+    allProjects.sort((a, b) => (typeof a.order === 'number' ? a.order : 9999) - (typeof b.order === 'number' ? b.order : 9999));
     renderList();
   } catch (e) {
     console.error(e);
-    toast('프로젝트 로드 실패: ' + (e.message || e.code), 'danger');
+    toast('로드 실패: ' + (e.message || e.code), 'danger');
+    loadingEl.textContent = '— failed to load';
   }
 }
 
 function renderList() {
+  loadingEl.style.display = 'none';
+  projectList.style.display = 'flex';
   projectCount.textContent = allProjects.length;
   if (allProjects.length === 0) {
-    projectList.innerHTML = `
-      <div class="empty">
-        <div class="icon">∅</div>
-        <p>아직 등록된 프로젝트가 없습니다.</p>
-        <p class="mono" style="margin-top:0.5rem">— Click "+ New Project" to start</p>
-      </div>`;
+    projectList.innerHTML = `<div class="empty"><div class="icon">∅</div><p>등록된 프로젝트가 없습니다.</p></div>`;
     return;
   }
   projectList.innerHTML = allProjects.map((p, i) => {
     const num = String(i + 1).padStart(2, '0');
-    const hasCover = p.cover && !p.cover.includes('undefined');
-    const cover = hasCover
-      ? `<img src="${p.cover}" alt="" onerror="this.style.display='none'">`
-      : `<div class="fallback">${(p.title || '?').charAt(0)}</div>`;
-    const cats = (p.category || []).join(' · ').toUpperCase();
+    const thumb = p.thumb
+      ? `<img src="${esc(p.thumb)}" alt="" onerror="this.style.display='none'">`
+      : `<div class="fallback">${esc((p.title || '?').charAt(0))}</div>`;
+    const cat = (p.cat || '—').toUpperCase();
+    const blockCount = Array.isArray(p.blocks) ? p.blocks.length : 0;
     return `
-      <div class="project-row" data-id="${p.id}">
+      <div class="project-row" data-doc-id="${esc(p._docId)}">
         <div class="index">${num}</div>
-        <div class="thumb">${cover}</div>
+        <div class="thumb">${thumb}</div>
         <div class="info">
-          <div class="title">${p.title || '(no title)'} <span style="color:var(--ink-3);font-weight:400;font-size:0.85em">${p.title_en || ''}</span></div>
+          <div class="title">${esc(p.title || '(untitled)')}</div>
           <div class="meta">
-            <span>${p.year || '—'}</span>
-            <span>${cats}</span>
+            <span>${esc(p.year || '—')}</span><span>${esc(cat)}</span>
+            <span>${blockCount} blocks</span><span>order: ${p.order ?? '—'}</span>
           </div>
         </div>
         <div class="order-ctrl">
@@ -916,220 +401,315 @@ function renderList() {
           <button data-act="down" ${i === allProjects.length - 1 ? 'disabled' : ''}>↓</button>
         </div>
         <div class="actions">
-          <button data-act="edit">Edit</button>
-          <button data-act="delete" class="del">Del</button>
+          <button class="btn small" data-act="edit">Edit</button>
+          <button class="btn small danger" data-act="delete">Del</button>
         </div>
       </div>`;
   }).join('');
-
-  // Bind row actions
   projectList.querySelectorAll('.project-row').forEach(row => {
-    const id = row.dataset.id;
-    row.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', () => handleRowAction(id, btn.dataset.act));
+    const docId = row.dataset.docId;
+    row.querySelectorAll('button[data-act]').forEach(btn => {
+      btn.addEventListener('click', () => handleRowAction(docId, btn.dataset.act));
     });
   });
 }
 
-async function handleRowAction(id, action) {
-  const idx = allProjects.findIndex(p => p.id === id);
+async function handleRowAction(docId, action) {
+  const idx = allProjects.findIndex(p => p._docId === docId);
   if (idx < 0) return;
-  if (action === 'edit') return openModal(allProjects[idx]);
+  const p = allProjects[idx];
+  if (action === 'edit') return openModal(p);
   if (action === 'delete') {
-    if (!confirm(`"${allProjects[idx].title}" 삭제하시겠습니까?`)) return;
-    try {
-      await deleteDoc(doc(db, COLLECTION, id));
-      toast('삭제됨', 'success');
-      loadProjects();
-    } catch (e) { toast('삭제 실패: ' + e.message, 'danger'); }
+    if (!confirm(`"${p.title || p._docId}" 삭제? (Storage 이미지는 남을 수 있음)`)) return;
+    try { await deleteDoc(doc(db, COLLECTION, docId)); toast('삭제됨', 'success'); loadProjects(); }
+    catch (e) { toast('삭제 실패: ' + e.message, 'danger'); }
     return;
   }
   if (action === 'up' || action === 'down') {
     const target = action === 'up' ? idx - 1 : idx + 1;
     if (target < 0 || target >= allProjects.length) return;
-    const a = allProjects[idx];
-    const b = allProjects[target];
-    // swap order
+    const a = allProjects[idx], b = allProjects[target];
+    const aOrder = typeof a.order === 'number' ? a.order : idx;
+    const bOrder = typeof b.order === 'number' ? b.order : target;
     try {
       await Promise.all([
-        setDoc(doc(db, COLLECTION, a.id), { ...a, order: target, _docId: undefined }, { merge: true }),
-        setDoc(doc(db, COLLECTION, b.id), { ...b, order: idx, _docId: undefined }, { merge: true })
+        setDoc(doc(db, COLLECTION, a._docId), { order: bOrder }, { merge: true }),
+        setDoc(doc(db, COLLECTION, b._docId), { order: aOrder }, { merge: true })
       ]);
       loadProjects();
     } catch (e) { toast('순서 변경 실패: ' + e.message, 'danger'); }
   }
 }
 
-/* ---------- Modal ---------- */
 function openModal(project = null) {
-  editingId = project ? project.id : null;
-  modalTitle.textContent = project ? `Edit · ${project.title}` : 'New Project';
+  editingDocId = project ? project._docId : null;
+  modalTitle.firstChild.textContent = project ? 'Edit Project ' : 'New Project ';
+  modalIdTag.textContent = project ? '#' + project._docId : '';
   modalDelete.style.display = project ? 'block' : 'none';
 
-  fId.value = project?.id || '';
-  fId.disabled = !!project;
   fTitle.value = project?.title || '';
-  fTitleEn.value = project?.title_en || '';
   fYear.value = project?.year || '';
-  fPeriod.value = project?.period || '';
-  fRole.value = project?.role || '';
-  fSummary.value = project?.summary || '';
+  fCat.value = project?.cat || 'brand';
+  fColor.value = project?.color || '#d0ccca';
+  fDesc.value = project?.desc || '';
+  fClient.value = project?.client || '';
+  fUrl.value = project?.url || '';
   fTags.value = (project?.tags || []).join(', ');
-  fExternal.value = project?.external || '';
-  fPrimary.value = project?.primary || 'brand';
 
-  fCategory.querySelectorAll('input').forEach(cb => {
-    cb.checked = (project?.category || []).includes(cb.value);
-  });
-
-  pendingCover = project?.cover ? { url: project.cover, name: '기존 이미지' } : null;
-  if (pendingCover) {
-    fCoverPreview.src = pendingCover.url;
-    fCoverPreview.style.display = 'block';
-    fCoverFilename.textContent = pendingCover.name;
+  pendingThumb = project?.thumb ? { url: project.thumb, name: '기존 이미지' } : null;
+  if (pendingThumb) {
+    fThumbPreview.src = pendingThumb.url;
+    fThumbPreview.style.display = 'block';
+    fThumbFilename.textContent = pendingThumb.name;
   } else {
-    fCoverPreview.src = '';
-    fCoverPreview.style.display = 'none';
-    fCoverFilename.textContent = '선택된 파일 없음';
+    fThumbPreview.src = '';
+    fThumbPreview.style.display = 'none';
+    fThumbFilename.textContent = '선택된 파일 없음';
   }
-  fCoverProgress.textContent = '';
+  fThumbProgress.textContent = '';
 
+  blocks = project?.blocks ? JSON.parse(JSON.stringify(project.blocks)) : [];
+  renderBlocks();
   modalOverlay.classList.add('open');
 }
 
 function closeModal() {
   modalOverlay.classList.remove('open');
-  editingId = null;
-  pendingCover = null;
+  editingDocId = null;
+  pendingThumb = null;
+  blocks = [];
 }
 
 modalClose.addEventListener('click', closeModal);
 modalCancel.addEventListener('click', closeModal);
-modalOverlay.addEventListener('click', e => {
-  if (e.target === modalOverlay) closeModal();
-});
-
+modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) closeModal(); });
 newBtn.addEventListener('click', () => openModal(null));
 refreshBtn.addEventListener('click', loadProjects);
 
-/* ---------- Cover upload ---------- */
-fCoverBtn.addEventListener('click', () => fCoverInput.click());
-
-fCoverInput.addEventListener('change', async (e) => {
+fThumbBtn.addEventListener('click', () => fThumbInput.click());
+fThumbInput.addEventListener('change', async e => {
   const file = e.target.files[0];
   if (!file) return;
-  const id = fId.value.trim();
-  if (!id) {
-    toast('먼저 ID를 입력하세요', 'danger');
-    return;
-  }
-  const ext = file.name.split('.').pop().toLowerCase();
-  const path = `${STORAGE_PATH}/${id}/cover.${ext}`;
-  const ref = storageRef(storage, path);
-
-  try {
-    const task = uploadBytesResumable(ref, file);
-    task.on('state_changed',
-      (snap) => {
-        const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-        fCoverProgress.textContent = `Uploading… ${pct}%`;
-      },
-      (err) => {
-        console.error(err);
-        toast('업로드 실패: ' + err.message, 'danger');
-        fCoverProgress.textContent = '';
-      },
-      async () => {
-        const url = await getDownloadURL(task.snapshot.ref);
-        pendingCover = { url, name: file.name };
-        fCoverPreview.src = url;
-        fCoverPreview.style.display = 'block';
-        fCoverFilename.textContent = file.name;
-        fCoverProgress.textContent = '✓ Uploaded';
-      }
-    );
-  } catch (e) {
-    toast('업로드 실패: ' + e.message, 'danger');
-  }
+  const docId = editingDocId || genId();
+  const path = `${STORAGE_PATH}/${docId}/thumb_${Date.now()}`;
+  await uploadFile(file, path, (url, name) => {
+    pendingThumb = { url, name };
+    fThumbPreview.src = url;
+    fThumbPreview.style.display = 'block';
+    fThumbFilename.textContent = name;
+  }, fThumbProgress);
 });
 
-/* ---------- Save / Delete ---------- */
+function uploadFile(file, path, onSuccess, progressEl) {
+  return new Promise((resolve, reject) => {
+    const task = uploadBytesResumable(storageRef(storage, path), file);
+    task.on('state_changed',
+      snap => { if (progressEl) progressEl.textContent = `Uploading… ${Math.round((snap.bytesTransferred / snap.totalBytes) * 100)}%`; },
+      err => { console.error(err); if (progressEl) progressEl.textContent = ''; toast('업로드 실패: ' + err.message, 'danger'); reject(err); },
+      async () => {
+        const url = await getDownloadURL(task.snapshot.ref);
+        if (progressEl) progressEl.textContent = '✓ Uploaded';
+        onSuccess(url, file.name);
+        resolve(url);
+      }
+    );
+  });
+}
+
+function renderBlocks() {
+  blocksCount.textContent = blocks.length;
+  if (blocks.length === 0) {
+    blocksList.innerHTML = `<div style="text-align:center;padding:1.5rem;color:var(--ink-3);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.05em">— No blocks yet. Add one below.</div>`;
+    return;
+  }
+  blocksList.innerHTML = blocks.map((b, i) => renderBlock(b, i)).join('');
+  blocks.forEach((b, i) => {
+    const root = blocksList.children[i];
+    if (root) bindBlock(root, b, i);
+  });
+}
+
+function renderBlock(b, i) {
+  const header = `
+    <div class="block-header">
+      <div style="display:flex;gap:0.5rem;align-items:center">
+        <span class="block-index">${String(i + 1).padStart(2, '0')}</span>
+        <span class="block-type">${b.type}</span>
+      </div>
+      <div class="block-controls">
+        <button data-bact="up" ${i === 0 ? 'disabled' : ''}>↑</button>
+        <button data-bact="down" ${i === blocks.length - 1 ? 'disabled' : ''}>↓</button>
+        <button data-bact="del" class="del">Del</button>
+      </div>
+    </div>`;
+
+  if (b.type === 'text') {
+    return `<div class="block-item text-block">${header}
+      <div class="field"><label class="label">Heading</label>
+        <input type="text" data-field="heading" value="${esc(b.heading || '')}" placeholder="Brand Identity"></div>
+      <div class="field"><label class="label">Body</label>
+        <textarea data-field="body" class="body-input" placeholder="본문 텍스트">${esc(b.body || '')}</textarea></div>
+    </div>`;
+  }
+
+  if (b.type === 'img') {
+    return `<div class="block-item img-block">${header}
+      <div class="image-uploader">
+        <div class="preview">${b.src ? `<img src="${esc(b.src)}" alt="">` : ''}</div>
+        <div class="controls">
+          <span class="filename">${b.src ? '기존 이미지' : '선택된 파일 없음'}</span>
+          <button type="button" class="upload-btn" data-bact="upload-img">Upload Image</button>
+          <input type="file" accept="image/*" style="display:none" data-fileinput="img">
+          <span class="progress"></span>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  if (b.type === '2col') {
+    const s0 = (b.src || [])[0] || '';
+    const s1 = (b.src || [])[1] || '';
+    return `<div class="block-item 2col-block">${header}
+      <div class="image-row">
+        <div class="image-uploader">
+          <div class="preview">${s0 ? `<img src="${esc(s0)}" alt="">` : ''}</div>
+          <div class="controls">
+            <span class="filename">${s0 ? 'Left' : 'Left empty'}</span>
+            <button type="button" class="upload-btn" data-bact="upload-2col-0">Upload Left</button>
+            <input type="file" accept="image/*" style="display:none" data-fileinput="2col-0">
+            <span class="progress"></span>
+          </div>
+        </div>
+        <div class="image-uploader">
+          <div class="preview">${s1 ? `<img src="${esc(s1)}" alt="">` : ''}</div>
+          <div class="controls">
+            <span class="filename">${s1 ? 'Right' : 'Right empty'}</span>
+            <button type="button" class="upload-btn" data-bact="upload-2col-1">Upload Right</button>
+            <input type="file" accept="image/*" style="display:none" data-fileinput="2col-1">
+            <span class="progress"></span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  return `<div class="block-item">${header}<p style="color:var(--ink-3)">unknown: ${esc(b.type)}</p></div>`;
+}
+
+function bindBlock(root, b, i) {
+  root.querySelectorAll('.block-controls button[data-bact]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const act = btn.dataset.bact;
+      if (act === 'up' && i > 0) { [blocks[i-1], blocks[i]] = [blocks[i], blocks[i-1]]; renderBlocks(); }
+      else if (act === 'down' && i < blocks.length - 1) { [blocks[i+1], blocks[i]] = [blocks[i], blocks[i+1]]; renderBlocks(); }
+      else if (act === 'del') {
+        if (!confirm('이 블록을 삭제할까요?')) return;
+        blocks.splice(i, 1); renderBlocks();
+      }
+    });
+  });
+
+  if (b.type === 'text') {
+    root.querySelector('[data-field="heading"]').addEventListener('input', e => { b.heading = e.target.value; });
+    root.querySelector('[data-field="body"]').addEventListener('input', e => { b.body = e.target.value; });
+  }
+
+  if (b.type === 'img') {
+    const fileInput = root.querySelector('[data-fileinput="img"]');
+    const uploadBtn = root.querySelector('[data-bact="upload-img"]');
+    const progEl = root.querySelector('.progress');
+    const previewImg = root.querySelector('.preview');
+    const filenameEl = root.querySelector('.filename');
+    uploadBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', async e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const docId = editingDocId || genId();
+      const path = `${STORAGE_PATH}/${docId}/block_${i}_0_${Date.now()}`;
+      await uploadFile(file, path, (url, name) => {
+        b.src = url;
+        previewImg.innerHTML = `<img src="${url}" alt="">`;
+        filenameEl.textContent = name;
+      }, progEl);
+    });
+  }
+
+  if (b.type === '2col') {
+    if (!Array.isArray(b.src)) b.src = ['', ''];
+    const uploaders = root.querySelectorAll('.image-uploader');
+    [0, 1].forEach(slot => {
+      const fileInput = root.querySelector(`[data-fileinput="2col-${slot}"]`);
+      const uploadBtn = root.querySelector(`[data-bact="upload-2col-${slot}"]`);
+      const uploader = uploaders[slot];
+      const previewImg = uploader.querySelector('.preview');
+      const filenameEl = uploader.querySelector('.filename');
+      const progEl = uploader.querySelector('.progress');
+      uploadBtn.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', async e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const docId = editingDocId || genId();
+        const path = `${STORAGE_PATH}/${docId}/block_${i}_${slot}_${Date.now()}`;
+        await uploadFile(file, path, (url, name) => {
+          b.src[slot] = url;
+          previewImg.innerHTML = `<img src="${url}" alt="">`;
+          filenameEl.textContent = name;
+        }, progEl);
+      });
+    });
+  }
+}
+
+document.querySelectorAll('.add-block-bar button[data-add]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const type = btn.dataset.add;
+    if (type === 'text') blocks.push({ type: 'text', heading: '', body: '' });
+    if (type === 'img') blocks.push({ type: 'img', src: '' });
+    if (type === '2col') blocks.push({ type: '2col', src: ['', ''] });
+    renderBlocks();
+  });
+});
+
 modalSave.addEventListener('click', async () => {
-  const id = fId.value.trim();
-  if (!id) { toast('ID 필수', 'danger'); return; }
-  if (!fTitle.value.trim()) { toast('제목 필수', 'danger'); return; }
-  if (!fYear.value.trim()) { toast('연도 필수', 'danger'); return; }
-
-  const categories = Array.from(fCategory.querySelectorAll('input:checked')).map(cb => cb.value);
-  if (categories.length === 0) { toast('카테고리 하나 이상 선택', 'danger'); return; }
-
+  if (!fTitle.value.trim()) { toast('Title 필수', 'danger'); return; }
   const tags = fTags.value.split(',').map(s => s.trim()).filter(Boolean);
-
-  // determine order (new = end)
-  let order;
-  if (editingId) {
-    const existing = allProjects.find(p => p.id === id);
-    order = existing?.order ?? allProjects.length;
+  let docId, order;
+  if (editingDocId) {
+    docId = editingDocId;
+    const existing = allProjects.find(p => p._docId === editingDocId);
+    order = typeof existing?.order === 'number' ? existing.order : allProjects.length;
   } else {
+    docId = genId();
     order = allProjects.length;
   }
-
   const data = {
-    id,
+    id: docId,
     title: fTitle.value.trim(),
-    title_en: fTitleEn.value.trim(),
     year: fYear.value.trim(),
-    period: fPeriod.value.trim(),
-    category: categories,
-    primary: fPrimary.value,
-    role: fRole.value.trim(),
-    summary: fSummary.value.trim(),
+    cat: fCat.value,
+    color: fColor.value,
+    desc: fDesc.value.trim(),
+    client: fClient.value.trim(),
+    url: fUrl.value.trim(),
     tags,
-    cover: pendingCover?.url || '',
-    external: fExternal.value.trim(),
+    thumb: pendingThumb?.url || '',
     order,
-    updatedAt: new Date().toISOString()
+    blocks
   };
-
   try {
-    await setDoc(doc(db, COLLECTION, id), data);
-    toast(editingId ? '수정됨' : '추가됨', 'success');
+    await setDoc(doc(db, COLLECTION, docId), data);
+    toast(editingDocId ? '수정됨' : '추가됨', 'success');
     closeModal();
     loadProjects();
-  } catch (e) {
-    toast('저장 실패: ' + e.message, 'danger');
-  }
+  } catch (e) { console.error(e); toast('저장 실패: ' + e.message, 'danger'); }
 });
 
 modalDelete.addEventListener('click', async () => {
-  if (!editingId) return;
-  if (!confirm(`정말 삭제하시겠습니까?`)) return;
-  try {
-    await deleteDoc(doc(db, COLLECTION, editingId));
-    toast('삭제됨', 'success');
-    closeModal();
-    loadProjects();
-  } catch (e) {
-    toast('삭제 실패: ' + e.message, 'danger');
-  }
+  if (!editingDocId) return;
+  if (!confirm('정말 삭제하시겠습니까?')) return;
+  try { await deleteDoc(doc(db, COLLECTION, editingDocId)); toast('삭제됨', 'success'); closeModal(); loadProjects(); }
+  catch (e) { toast('삭제 실패: ' + e.message, 'danger'); }
 });
-
-/* ---------- Export JSON ---------- */
-exportBtn.addEventListener('click', () => {
-  // strip internal fields
-  const exported = allProjects.map(({ _docId, order, updatedAt, ...rest }) => rest);
-  const json = JSON.stringify(exported, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'projects.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  toast('Exported · GitHub에 push 후 자동 배포됩니다', 'success');
-});
-
 </script>
-
 </body>
 </html>
