@@ -1,214 +1,95 @@
 [
   {
-    "title": "WOOSUNDAM - KOREAN BBQ",
-    "cat": "brand",
-    "year": "2026",
-    "color": "#d0ccca",
-    "thumb": "images/brand/Frame17.jpg",
-    "desc": "논현동의 좁은 골목, 감각적인 민트색 외관으로 시선을 멈추게 하는 곳. '우선담'은 그 이름처럼 변함없는 진심을 담아내는 공간입니다. 언제나 변치 않는 질 좋은 고기를 저렴하게 선보이겠다는 창업자의 고집스러운 철학으로 이 명확한 본질을 시각화하기 위해, 자칫 무거울 수 있는 소고기 전문점의 이미지를 탈피하고 경쾌하면서도 신뢰감 있는 민트 컬러를 브랜드의 페르소나로 설정했습니다. 최고 등급 미국산 소고기가 주는 미식의 즐거움을 누구나 부담 없이 즐길 수 있도록, 우선담은 합리적인 가성비와 프리미엄한 경험 사이의 완벽한 밸런스를 제안합니다. 공간과 맛, 그리고 철학이 하나로 어우러진 우선담의 브랜드 디자인 프로젝트를 소개합니다.",
-    "tags": [],
-    "blocks": [
-      {
-        "type": "img",
-        "src": "images/brand/Frame1.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame2.png"
-      },
-      {
-        "type": "text",
-        "heading": "Brand Identity",
-        "body": "Jone : 브랜드와 공간의 접점을 설계하는 일은 언제나 흥미롭습니다. 이번 '우선담' 프로젝트는 특히 시각적 언어와 물리적 공간이 긴밀하게 연결된 느낌을 주는데요. 이 프로젝트의 시작점은 무엇이었나요?\nPear : 우선담 프로젝트의 핵심은 '본질에 집중하는 경험'이었습니다. 단순히 고기를 먹는 장소를 넘어, 브랜드가 고객에게 전달하고자 하는 신뢰와 정갈함을 시각적, 공간적 언어로 번역하는 과정이 필요했죠.\n우리는 브랜드의 원형을 직관적으로 포착하고 이를 정교한 공간 논리로 구축해 나가는 데 집중했습니다. 화려한 수식어보다는 정제된 직선과 공간의 여백을 통해, 우선담이 가진 진정성이 고객의 시선이 머무는 곳곳에 스며들도록 설계했습니다."
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame4.png",
-          "images/brand/Frame4-1.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame6.png"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame13.png",
-          "images/brand/Frame5.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame7.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame8.png"
-      },
-      {
-        "type": "text",
-        "heading": "Brand Narrative",
-        "body": "Jone : \n우선담의 BI와 공간 디자인에서 가장 중점을 둔 '대화의 주제'는 무엇이었나요?\n\nPear : \n정갈함과 온기의 균형이었습니다. 자칫 차갑게 느껴질 수 있는 현대적인 상업 공간에, 브랜드 특유의 따뜻한 접객 문화를 어떻게 녹여낼지가 관건이었죠.\n서체는 브랜드의 목소리입니다. 세리프의 우아함과 직선의 정직함을 조합해 신뢰감을 주고자 했습니다. 공간에서는 소재의 질감을 살리는 데 집중했습니다. 조명과 마감재가 어우러져 고객이 문을 열고 들어오는 순간부터 브랜드의 서사가 시작되도록 유도했습니다."
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame9.png"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame13-1.png",
-          "images/brand/Frame15.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame11.png"
-      },
-      {
-        "type": "text",
-        "heading": "Design Process",
-        "body": "Jone : \n3D 비주얼라이제이션과 프로토타이핑을 직접 수행하시는 것으로 알고 있습니다. 이번 프로젝트에서도 이러한 기술적 접근이 창의적인 결과물에 어떤 영향을 미쳤나요?\n\nPear : \nSketchUp과 Twinmotion을 활용한 실시간 렌더링은 클라이언트와의 '대화'를 시각화하는 강력한 도구였습니다. 디자인 의도를 정교하게 확인하며, 시공 단계에서의 오차를 줄이는 동시에 브랜드의 무드(Mood)를 일관되게 유지할 수 있었죠. 결과적으로 브랜드가 가진 유무형의 가치가 사이니지부터 가구의 배치까지 하나의 일관된 흐름으로 이어지게 되었습니다"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame12.png"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame15-1.png",
-          "images/brand/Frame16.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Group 35119 (1).webp"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame14.png",
-          "images/brand/Frame16-1.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame10.png"
-      }
-    ],
-    "url": ""
+    "id": "woosundam",
+    "title": "우선담",
+    "title_en": "Woosundam",
+    "year": "2023",
+    "period": "2023.03 — 2023.06",
+    "category": ["brand", "graphic", "spatial"],
+    "primary": "brand",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "summary": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점 문법을 탈피한 강렬한 민트색 파사드.",
+    "cover": "images/works/woosundam/cover.jpg",
+    "tags": ["Brand Identity", "F&B"]
   },
   {
-    "title": "DUOMO - PIZZA",
-    "cat": "brand",
-    "year": "2026",
-    "color": "#d0ccca",
-    "thumb": "/images/brand/DUOMO/0.jpeg",
-    "desc": "베네수엘라 Burgo 디자인 에이전시의 브랜딩 프로젝트에 공간 디자이너로 외부 협업 참여하여, 브랜드의 시각적 정체성을 공간으로 구현했습니다. 이탈리아적 모티브를 베네수엘라 현지의 산업적 디테일과 네온, 스트릿 감성으로 재해석한 독창적 가이드를 제안했습니다. 단기 프로젝트임에도 불구하고, 즉시 시공이 가능한 수준의 정교한 프로토타입을 설계하여 실질적인 브랜드 확장 기반을 마련했습니다",
-    "tags": [],
-    "blocks": [
-      {
-        "type": "img",
-        "src": "images/brand/Frame1.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame2.png"
-      },
-      {
-        "type": "text",
-        "heading": "Brand Identity",
-        "body": "Jone\n브랜드와 공간의 접점을 설계하는 일은 언제나 흥미롭습니다. 이번 '우선담' 프로젝트는 특히 시각적 언어와 물리적 공간이 긴밀하게 연결된 느낌을 주는데요. 이 프로젝트의 시작점은 무엇이었나요?\n\nPear\n우선담 프로젝트의 핵심은 '본질에 집중하는 경험'이었습니다. 단순히 고기를 먹는 장소를 넘어, 브랜드가 고객에게 전달하고자 하는 신뢰와 정갈함을 시각적, 공간적 언어로 번역하는 과정이 필요했죠.우리는 브랜드의 원형(Archetype)을 직관적으로 포착하고 이를 정교한 공간 논리로 구축해 나가는 데 집중했습니다. 화려한 수식어보다는 정제된 직선과 공간의 여백을 통해, 우선담이 가진 진정성이 고객의 시선이 머무는 곳곳에 스며들도록 설계했습니다."
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame4.png",
-          "images/brand/Frame5.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Group 35119 (1).webp"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame6.png"
-      },
-      {
-        "type": "text",
-        "heading": "Brand Identity",
-        "body": "Jone\n우선담의 BI(Brand Identity)와 공간 디자인에서 가장 중점을 둔 '대화의 주제'는 무엇이었나요?\n\nPear\n'정갈함'과 '온기'의 균형이었습니다. 자칫 차갑게 느껴질 수 있는 현대적인 상업 공간에, 브랜드 특유의 따뜻한 접객 문화를 어떻게 녹여낼지가 관건이었죠.\n서체는 브랜드의 목소리입니다. 산세리프의 직선의 정직함을 조합해 신뢰감을 주고자 했고 공간에서는 소재의 질감을 살리는 데 집중했습니다. 조명과 마감재가 어우러져 고객이 문을 열고 들어오는 순간부터 브랜드의 서사가 시작되도록 유도했습니다."
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame7.png"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame13.png",
-          "images/brand/Frame15.png"
-        ]
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame8.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame9.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame10.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame11.png"
-      },
-      {
-        "type": "text",
-        "heading": "Design Process",
-        "body": "Jone\n3D 비주얼라이제이션과 프로토타이핑을 직접 수행하시는 것으로 알고 있습니다. 이번 프로젝트에서도 이러한 기술적 접근이 창의적인 결과물에 어떤 영향을 미쳤나요?\n\nPear\nSketchUp과 Twinmotion을 활용한 실시간 렌더링은 클라이언트와의 '대화'를 시각화하는 강력한 도구였습니다. 디자인 의도를 정교하게 확인하며, 시공 단계에서의 오차를 줄이는 동시에 브랜드의 무드를 일관되게 유지할 수 있었죠. 결과적으로 브랜드가 가진 유무형의 가치가 사이니지부터 가구의 배치까지 하나의 일관된 흐름으로 이어지게 되었습니다.\n\n\"디자인은 정답을 내놓는 과정이 아니라, 브랜드와 사용자 사이의 최적의 접점을 찾아가는 끝없는 대화입니다.\""
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame12.png"
-      },
-      {
-        "type": "img",
-        "src": "images/brand/Frame14.png"
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame15-1.png",
-          "images/brand/Frame16-1.png"
-        ]
-      },
-      {
-        "type": "2col",
-        "src": [
-          "images/brand/Frame4-1.png",
-          "images/brand/Frame16.png"
-        ]
-      }
-    ],
-    "url": ""
+    "id": "chicken-farmers",
+    "title": "치킨파머스",
+    "title_en": "Chicken Farmers",
+    "year": "2024",
+    "period": "2023.06 — 2025.05",
+    "category": ["brand", "graphic", "spatial"],
+    "primary": "brand",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "summary": "Farm To Table. 자극 경쟁의 시장에서 '신선함은 곧 안전과 신뢰'라는 독자적 USP를 정의한 리브랜딩.",
+    "cover": "images/works/chicken-farmers/cover.jpg",
+    "tags": ["Rebranding", "F&B", "Spatial"]
   },
   {
-    "title": "서울연세21세기의원",
-    "cat": "web",
+    "id": "duomo-pizza",
+    "title": "듀오모피자",
+    "title_en": "Duomo Pizza",
+    "year": "2025",
+    "period": "2025.04 — 2025.06",
+    "category": ["spatial"],
+    "primary": "spatial",
+    "role": "공간 디자인",
+    "summary": "베네수엘라 Burgo 에이전시와의 협업. 이탈리아 모티브를 산업적 디테일·네온·스트릿 감성으로 재해석.",
+    "cover": "images/works/duomo-pizza/cover.jpg",
+    "tags": ["Spatial", "Collaboration"]
+  },
+  {
+    "id": "mini-warehouse-darak",
+    "title": "미니창고 다락",
+    "title_en": "Mini Warehouse Darak",
+    "year": "2025",
+    "period": "2025.06 — 진행중",
+    "category": ["brand", "graphic"],
+    "primary": "brand",
+    "role": "브랜드 · 사이니지 디자인",
+    "summary": "급격히 확장하는 브랜드의 시각적 파편화를 정제하는 사이니지 시스템 재정립.",
+    "cover": "images/works/mini-warehouse-darak/cover.jpg",
+    "tags": ["Signage System", "Guidelines"]
+  },
+  {
+    "id": "jindaegam",
+    "title": "진대감",
+    "title_en": "Jindaegam",
+    "year": "2022",
+    "period": "2022.05 — 2022.08",
+    "category": ["brand", "graphic", "spatial"],
+    "primary": "spatial",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "summary": "한국 고유의 '합' 문화를 미식의 영역에서 재해석. 전통의 물성으로 현대적 미감을 설계한 모던 한식.",
+    "cover": "images/works/jindaegam/cover.jpg",
+    "tags": ["Brand Identity", "Spatial", "F&B"]
+  },
+  {
+    "id": "grace-serif",
+    "title": "우아한 세리프",
+    "title_en": "Grace Serif",
     "year": "2026",
-    "color": "#d0ccca",
-    "thumb": "images/web/og_thumbnail.jpg",
-    "desc": "병원 홈페이지",
-    "tags": [],
-    "blocks": [],
-    "url": "https://www.xn--21-j52i383d9dc665fyrbmgj4c.com/"
+    "period": "2026 —",
+    "category": ["type"],
+    "primary": "type",
+    "role": "한글 디스플레이 서체 설계",
+    "summary": "클래식 명조의 구조에서 영감을 얻어 현대적 감각으로 재해석한 한글 세리프 서체. Pear Type Foundry에서 정식 배포.",
+    "cover": "images/works/grace-serif/cover.jpg",
+    "tags": ["Type Design", "Korean"],
+    "external": "https://www.peartype.kr"
+  },
+  {
+    "id": "toucan",
+    "title": "큰부리새",
+    "title_en": "Toucan",
+    "year": "2026",
+    "period": "2026 —",
+    "category": ["type"],
+    "primary": "type",
+    "role": "한글 디스플레이 서체 설계",
+    "summary": "큰부리새의 두툼한 부리에서 자음의 굵은 가로획으로. 무게감과 유머가 공존하는 디스플레이 서체.",
+    "cover": "images/works/toucan/cover.jpg",
+    "tags": ["Type Design", "Display"],
+    "external": "https://www.peartype.kr"
   }
 ]
