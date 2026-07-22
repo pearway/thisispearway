@@ -36,7 +36,7 @@
 }
 :root{
   --brand-bg:#FAFAF7; --brand-ink:#0C0C0B; --brand-ink2:#4A4A47; --brand-ink3:#8A8A85;
-  --type-bg:#0C0C0B; --type-ink:#FAFAF7; --type-ink2:#B9B9B4; --type-ink3:#6E6E69;
+  --type-bg:#17121A; --type-ink:#FBF6EC; --type-ink2:#B9A6B2; --type-ink3:#6E5E68; --type-accent:#FA9DCD;
   --line:#DEDED8;
   --font-sans:'Google Sans','Roboto','Pretendard Variable',system-ui,sans-serif;
   --font-mono:'Roboto Mono',ui-monospace,monospace;
@@ -74,7 +74,7 @@ a{color:inherit;text-decoration:none}
 
 .center{flex:1;display:flex;flex-direction:column;justify-content:center}
 .word{
-  font-family:var(--font-word);font-weight:700;line-height:.98;letter-spacing:.01em;
+  font-family:var(--font-word);font-weight:700;line-height:1.16;letter-spacing:.01em;
 }
 .brand .word{font-size:clamp(3rem,7vw,6rem);color:var(--brand-ink)}
 .type .word{font-size:clamp(2.3rem,5.4vw,4.6rem);color:var(--type-ink)}
@@ -92,6 +92,7 @@ a{color:inherit;text-decoration:none}
   transition:gap .3s var(--ease);
 }
 .half:hover .enter{gap:.85rem}
+.type .enter{color:var(--type-accent)}
 .enter svg{width:1em;height:1em;stroke:currentColor;stroke-width:1.6;fill:none}
 
 .divider{width:.5px;background:var(--line);flex:0 0 auto}
