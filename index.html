@@ -3,1100 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THISISPEARWAY — Designer Seoul</title>
+<title>PEARWAY — 페어웨이 · 페어타입파운더리</title>
 
-<meta name="description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오. Brand, Graphic, Spatial, Type.">
-<meta name="keywords" content="디스이즈페어웨이, thisispearway, 브랜드 디자이너, 로고 디자인, 서울 디자이너">
-<meta name="author" content="THISISPEARWAY">
+<meta name="description" content="브랜드 디자이너 페어웨이(PEARWAY)와 폰트 파운더리 페어타입파운더리(PEARTYPE). 브랜딩과 타입 디자인, 두 갈래로 이어집니다.">
+<meta name="keywords" content="페어웨이, pearway, 페어타입, peartype, 브랜드 디자이너, 폰트 디자인, 서체, 파운더리, 서울 디자이너">
+<meta name="author" content="PEARWAY">
 <meta name="google-site-verification" content="v6Rr_eNrXPQ4uCe9w3zBydVGey0wrflSztb3m6UqTh0">
 <meta name="naver-site-verification" content="4e4c9c72ee42dd8ae6e03cc188e34dc50e64ec45">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.pearway.kr">
-<meta property="og:title" content="THISISPEARWAY — Designer">
-<meta property="og:description" content="서울 기반 브랜드 디자이너 THISISPEARWAY의 포트폴리오.">
+<meta property="og:title" content="PEARWAY — 페어웨이 · 페어타입파운더리">
+<meta property="og:description" content="브랜딩은 페어웨이, 타입 디자인은 페어타입파운더리. 두 갈래로 이어집니다.">
 <meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
 
+<link rel="canonical" href="https://www.pearway.kr">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #FAFAF7;
-  --bg-alt: #F2F2ED;
-  --ink: #0C0C0B;
-  --ink-2: #4A4A47;
-  --ink-3: #8A8A85;
-  --line: #DEDED8;
-  --line-soft: #ECECE6;
-
-  --font-display: 'Geist', 'Pretendard Variable', sans-serif;
-  --font-sans: 'Pretendard Variable', 'Geist', 'Pretendard', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, monospace;
-
-  --max: 1440px;
-  --gutter: clamp(1.25rem, 3.5vw, 2.75rem);
-  --section-y: clamp(5rem, 10vw, 9rem);
-
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --t-fast: 0.2s;
-  --t-med: 0.4s;
-  --t-slow: 0.8s;
+@font-face{
+  font-family:'Distort';
+  src:url(fonts/Distort-Bold.woff2) format('woff2');
+  font-weight:700;
+  font-display:swap;
 }
-
-/* ---------- LOADER ---------- */
-#loader {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: var(--gutter);
-  transition: opacity 0.6s var(--ease), visibility 0.6s var(--ease);
+:root{
+  --brand-bg:#FAFAF7; --brand-ink:#0C0C0B; --brand-ink2:#4A4A47; --brand-ink3:#8A8A85;
+  --type-bg:#0C0C0B; --type-ink:#FAFAF7; --type-ink2:#B9B9B4; --type-ink3:#6E6E69;
+  --line:#DEDED8;
+  --font-sans:'Google Sans','Roboto','Pretendard Variable',system-ui,sans-serif;
+  --font-mono:'Roboto Mono',ui-monospace,monospace;
+  --font-word:'Distort','Pretendard Variable',sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
 }
-#loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-sans);overflow:hidden}
+a{color:inherit;text-decoration:none}
 
-#loader .top, #loader .bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+.gate{display:flex;width:100vw;height:100dvh}
+.half{
+  flex:1;position:relative;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(1.4rem,3.5vw,2.75rem);
+  transition:flex .6s var(--ease),background .3s var(--ease);
+  overflow:hidden;
+}
+.brand{background:var(--brand-bg);color:var(--brand-ink)}
+.type{background:var(--type-bg);color:var(--type-ink)}
+
+@media(hover:hover) and (min-width:721px){
+  .gate:hover .half{flex:.8}
+  .gate .half:hover{flex:1.55}
 }
 
-#loader .middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  position: relative;
+.meta{
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:var(--font-mono);font-size:clamp(.6rem,1vw,.72rem);
+  letter-spacing:.08em;text-transform:uppercase;
 }
+.brand .meta{color:var(--brand-ink3)}
+.type .meta{color:var(--type-ink3)}
 
-#loader .counter {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.25rem, 7.5vw, 5.5rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  text-align: center;
+.center{flex:1;display:flex;flex-direction:column;justify-content:center}
+.word{
+  font-family:var(--font-word);font-weight:700;line-height:.98;letter-spacing:.01em;
 }
+.brand .word{font-size:clamp(3rem,7vw,6rem);color:var(--brand-ink)}
+.type .word{font-size:clamp(2.3rem,5.4vw,4.6rem);color:var(--type-ink)}
+.sub{
+  margin-top:clamp(.9rem,1.6vw,1.4rem);
+  font-size:clamp(.82rem,1.2vw,.95rem);line-height:1.55;max-width:26ch;
+}
+.brand .sub{color:var(--brand-ink2)}
+.type .sub{color:var(--type-ink2)}
 
-#loader .progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: var(--ink);
-  width: 0%;
-  transition: width 0.3s var(--ease);
+.enter{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--font-sans);font-weight:500;
+  font-size:clamp(.78rem,1.1vw,.9rem);letter-spacing:.01em;
+  transition:gap .3s var(--ease);
 }
-#loader .bottom { border-top: 1px solid var(--line); padding-top: 1rem; position: relative; }
+.half:hover .enter{gap:.85rem}
+.enter svg{width:1em;height:1em;stroke:currentColor;stroke-width:1.6;fill:none}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.55;
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  overflow-x: hidden;
-}
-body.modal-open { overflow: hidden; }
-::selection { background: var(--ink); color: var(--bg); }
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+.divider{width:.5px;background:var(--line);flex:0 0 auto}
 
-/* ---------- TYPE ---------- */
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  font-weight: 400;
-}
-.section-marker {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-.section-marker::before { content: "—"; font-family: var(--font-sans); font-weight: 300; }
-
-/* ---------- LAYOUT ---------- */
-.wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-.section {
-  padding-top: var(--section-y);
-  padding-bottom: var(--section-y);
-  border-top: 1px solid var(--line);
-}
-.section-head {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: clamp(1.5rem, 4vw, 4rem);
-  margin-bottom: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
-}
-@media (max-width: 720px) { .section-head { grid-template-columns: 1fr; gap: 1.25rem; } }
-
-/* ---------- HEADER ---------- */
-header.site {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.1rem var(--gutter);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-med) var(--ease);
-}
-header.site.scrolled { border-bottom-color: var(--line); }
-header.site .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-header.site .brand {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-header.site nav { display: flex; gap: clamp(1rem, 2.5vw, 2.25rem); align-items: center; }
-header.site nav a {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  transition: color var(--t-fast) var(--ease);
-}
-header.site nav a:hover { color: var(--ink); }
-header.site nav a.ext::after { content: " ↗"; transition: transform var(--t-fast) var(--ease); display: inline-block; }
-header.site nav a.ext:hover::after { transform: translate(2px, -2px); }
-@media (max-width: 720px) {
-  header.site nav a:not(.primary) { display: none; }
-}
-
-/* ---------- HERO ---------- */
-.hero {
-  min-height: 100svh;
-  padding-top: clamp(7rem, 14vh, 11rem);
-  padding-bottom: clamp(3rem, 8vh, 6rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.hero-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: clamp(3rem, 8vh, 5rem);
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(3.8rem, 13.5vw, 12.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-.hero-title .row { display: block; overflow: hidden; }
-.hero-title .row span {
-  display: inline-block;
-  transform: translateY(110%);
-  animation: rise 1.2s var(--ease) both;
-  animation-play-state: paused;
-}
-body.loaded .hero-title .row span { animation-play-state: running; }
-.hero-title .row:nth-child(2) span { animation-delay: 0.12s; }
-@keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
-
-/* Hero meta / scroll 도 로더 끝난 후 페이드 인 */
-.hero-meta, .hero-bottom {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s var(--ease) 0.4s, transform 0.8s var(--ease) 0.4s;
-}
-body.loaded .hero-meta, body.loaded .hero-bottom {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-bottom { display: flex; justify-content: flex-end; align-items: end; margin-top: clamp(3rem, 6vh, 5rem); }
-.hero-bottom .scroll {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-.hero-bottom .scroll .arrow { display: inline-block; animation: scrollHint 1.8s ease-in-out infinite; }
-@keyframes scrollHint { 0%, 100% { transform: translateY(0); opacity: 0.6; } 50% { transform: translateY(4px); opacity: 1; } }
-
-/* ---------- WORKS ---------- */
-.filters {
-  display: flex;
-  gap: clamp(1rem, 2.5vw, 2.25rem);
-  flex-wrap: wrap;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--line);
-}
-.filters button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  padding: 0;
-  position: relative;
-  transition: color var(--t-fast) var(--ease);
-}
-.filters button:hover { color: var(--ink-2); }
-.filters button.active { color: var(--ink); }
-.filters button.active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1.55rem;
-  height: 1px;
-  background: var(--ink);
-}
-
-.works-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
-}
-@media (max-width: 720px) { .works-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
-
-.work-card {
-  cursor: pointer;
-  display: block;
-  transition: opacity var(--t-med) var(--ease);
-}
-.work-card.hidden { display: none; }
-.work-card .cover {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background: var(--bg-alt);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-.work-card .cover img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform var(--t-slow) var(--ease);
-}
-.work-card:hover .cover img { transform: scale(1.03); }
-.work-card .cover .fallback {
-  position: absolute; inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: var(--ink-3);
-  background: linear-gradient(135deg, var(--bg-alt) 0%, var(--line-soft) 100%);
-}
-.work-card .meta-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.35rem;
-  gap: 1rem;
-}
-.work-card .num, .work-card .year {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  color: var(--ink-3);
-}
-.work-card .title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-.work-card .summary {
-  margin-top: 0.5rem;
-  font-size: 0.92rem;
-  color: var(--ink-2);
-  line-height: 1.55;
-  max-width: 44ch;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.work-card .tags {
-  margin-top: 0.85rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 0.85rem;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-/* ---------- LOADING ---------- */
-.loading-state {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--ink-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-/* ---------- CONTACT ---------- */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
-}
-.contact-block .label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 0.85rem;
-}
-.contact-block .label::before { content: "— "; }
-.contact-block .value {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-  letter-spacing: -0.015em;
-}
-.contact-block a.value {
-  border-bottom: 1px solid transparent;
-  transition: border-color var(--t-fast) var(--ease);
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.3rem;
-}
-.contact-block a.value:hover { border-bottom-color: var(--ink); }
-.contact-block a.value .arrow { font-family: var(--font-sans); font-size: 0.85em; transition: transform var(--t-fast) var(--ease); }
-.contact-block a.value:hover .arrow { transform: translate(2px, -2px); }
-@media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
-
-/* ---------- FOOTER ---------- */
-footer.site {
-  padding: clamp(2.5rem, 5vw, 4rem) var(--gutter) clamp(1.5rem, 3vw, 2rem);
-  border-top: 1px solid var(--line);
-}
-footer.site .inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: end;
-}
-footer.site .left .meta {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-footer.site .left .meta a { border-bottom: 1px dotted var(--ink-3); display: inline-block; width: fit-content; }
-footer.site .left .meta a:hover { border-bottom-style: solid; border-bottom-color: var(--ink); }
-footer.site .right {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  text-align: right;
-  line-height: 1.7;
-}
-footer.site .copyright {
-  margin-top: clamp(2rem, 4vw, 3rem);
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-@media (max-width: 720px) {
-  footer.site .inner { grid-template-columns: 1fr; align-items: start; }
-  footer.site .right { text-align: left; }
-}
-
-/* ---------- PROJECT DETAIL OVERLAY ---------- */
-.detail-overlay {
-  position: fixed; inset: 0;
-  background: var(--bg);
-  z-index: 200;
-  overflow-y: auto;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s var(--ease);
-}
-.detail-overlay.open { opacity: 1; pointer-events: auto; }
-
-.detail-header {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: color-mix(in srgb, var(--bg) 92%, transparent);
-  backdrop-filter: blur(10px);
-  padding: 1rem var(--gutter);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-.detail-header .title-row {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex: 1;
-  min-width: 0;
-}
-.detail-header .title-row .name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--ink);
-  letter-spacing: -0.015em;
-  text-transform: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.detail-header .close {
-  background: none;
-  border: 1px solid var(--line);
-  padding: 0.5rem 0.95rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: all 0.15s var(--ease);
-  white-space: nowrap;
-}
-.detail-header .close:hover { border-color: var(--ink); color: var(--ink); }
-
-.detail-body { max-width: 1100px; margin: 0 auto; padding: clamp(2.5rem, 6vw, 5rem) var(--gutter) 5rem; }
-.detail-hero { margin-bottom: clamp(3rem, 6vw, 5rem); }
-.detail-hero .meta {
-  display: flex;
-  gap: 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-.detail-hero h1 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-.detail-hero .desc {
-  font-size: clamp(1rem, 1.25vw, 1.1rem);
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 65ch;
-  white-space: pre-line;
-}
-
-.detail-blocks { display: flex; flex-direction: column; gap: clamp(2rem, 4vw, 3.5rem); }
-
-.block-text {
-  max-width: 65ch;
-  margin: 0 auto;
-  padding: clamp(1rem, 2vw, 2rem) 0;
-}
-.block-text h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
-  color: var(--ink);
-}
-.block-text p {
-  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
-  line-height: 1.7;
-  color: var(--ink-2);
-  white-space: pre-line;
-}
-.block-img img { width: 100%; height: auto; display: block; }
-.block-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1rem, 2vw, 1.5rem);
-}
-.block-2col img { width: 100%; height: auto; display: block; }
-@media (max-width: 640px) { .block-2col { grid-template-columns: 1fr; } }
-
-/* ---------- REVEAL ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-}
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-/* 작품 카드 stagger — 같은 페이즈 안에서 살짝씩 늦게 */
-.work-card.reveal { transition-delay: 0s; }
-.work-card.reveal.stagger-1 { transition-delay: 0.08s; }
-.work-card.reveal.stagger-2 { transition-delay: 0.16s; }
-.work-card.reveal.stagger-3 { transition-delay: 0.24s; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+@media(max-width:720px){
+  body{overflow:auto}
+  .gate{flex-direction:column;height:auto;min-height:100dvh}
+  .half{min-height:50dvh;padding:1.6rem 1.4rem}
+  .type .word{font-size:clamp(2.6rem,10vw,4rem)}
+  .brand .word{font-size:clamp(3.2rem,13vw,5rem)}
+  .divider{width:auto;height:.5px}
 }
 </style>
 </head>
 <body>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="top">
-    <span>— Loading</span>
-    <span>THISISPEARWAY · 2026</span>
-  </div>
-  <div class="middle">
-    <div class="counter">Make. Mark. Repeat.</div>
-    <div class="progress-bar" id="loader-bar"></div>
-  </div>
-  <div class="bottom">
-    <span>Seoul, KR</span>
-    <span id="loader-status">Initializing…</span>
-  </div>
-</div>
-
-<!-- HEADER -->
-<header class="site">
-  <div class="inner">
-    <a href="#top" class="brand">THISISPEARWAY</a>
-    <nav>
-      <a href="#works">Work</a>
-      <a href="#contact">Contact</a>
-      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
-    </nav>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero wrap" id="top">
-  <div class="hero-meta">
-    <span class="mono">— Portfolio · 2026</span>
-    <span class="mono">Seoul, KR</span>
-  </div>
-  <h1 class="hero-title">
-    <span class="row"><span>This is</span></span>
-    <span class="row"><span>Pearway.</span></span>
-  </h1>
-  <div class="hero-bottom">
-    <a href="#works" class="scroll">
-      <span>Scroll</span>
-      <span class="arrow">↓</span>
-    </a>
-  </div>
-</section>
-
-<!-- WORKS -->
-<section class="section" id="works">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">Selected Works</span>
+<main class="gate" role="navigation" aria-label="페어웨이 진입 선택">
+  <a class="half brand" href="/brand">
+    <div class="meta"><span>01 / Studio</span><span>Seoul</span></div>
+    <div class="center">
+      <div class="word">페어<br>웨이</div>
+      <p class="sub">브랜드 · 그래픽 · 공간 디자인</p>
     </div>
-
-    <div class="filters" role="tablist" id="filters">
-      <button class="active" data-filter="all">All</button>
-      <!-- 다른 필터는 데이터 로드 후 자동 생성 -->
+    <span class="enter">브랜딩 사이트로
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </span>
+  </a>
+  <div class="divider" aria-hidden="true"></div>
+  <a class="half type" href="https://peartype.kr">
+    <div class="meta"><span>02 / Type</span><span>peartype.kr</span></div>
+    <div class="center">
+      <div class="word">페어타입<br>파운더리</div>
+      <p class="sub">폰트 디자인 · 리테일 서체 파운더리</p>
     </div>
-
-    <div id="works-loading" class="loading-state">— loading works…</div>
-    <div class="works-grid" id="works-grid" style="display:none"></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">Contact</span>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-block">
-        <div class="label">Direct</div>
-        <a href="http://pf.kakao.com/_JdBdX/chat" class="value" target="_blank" rel="noopener">
-          KakaoTalk <span class="arrow">↗</span>
-        </a>
-      </div>
-      <div class="contact-block">
-        <div class="label">Type Work</div>
-        <a href="https://www.peartype.kr" class="value" target="_blank" rel="noopener">
-          Pear Type Foundry <span class="arrow">↗</span>
-        </a>
-      </div>
-      <div class="contact-block">
-        <div class="label">Based In</div>
-        <span class="value">Seoul, KR</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site">
-  <div class="inner">
-    <div class="left">
-      <div class="meta">
-        <span>THISISPEARWAY · Designer</span>
-        <a href="https://www.peartype.kr" target="_blank" rel="noopener">Type design by Pear Type Foundry ↗</a>
-      </div>
-    </div>
-    <div class="right">
-      <div>Brand · Graphic · Spatial · Type</div>
-      <div>Seoul, KR — 2026</div>
-    </div>
-  </div>
-  <div class="wrap copyright">
-    <span>© 2026 THISISPEARWAY</span>
-    <span>Designer · Lee Heebae</span>
-  </div>
-</footer>
-
-<!-- PROJECT DETAIL OVERLAY -->
-<div class="detail-overlay" id="detail-overlay">
-  <div class="detail-header">
-    <div class="title-row">
-      <span>— Project</span>
-      <span class="name" id="detail-name"></span>
-    </div>
-    <button class="close" id="detail-close">Close ×</button>
-  </div>
-  <div class="detail-body" id="detail-body"></div>
-</div>
-
-<!-- ============ FIREBASE + RENDER ============ -->
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
-import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
-
-/* ===== Firebase config (read-only public access via Firestore Rules) ===== */
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "thisispearway.firebaseapp.com",
-  projectId: "thisispearway",
-  storageBucket: "thisispearway.firebasestorage.app",
-  messagingSenderId: "657205333061",
-  appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
-};
-const COLLECTION = "projects";
-/* ====================================================================== */
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const $ = id => document.getElementById(id);
-const grid = $('works-grid');
-const loadingEl = $('works-loading');
-const filtersEl = $('filters');
-const overlay = $('detail-overlay');
-const detailName = $('detail-name');
-const detailBody = $('detail-body');
-const detailClose = $('detail-close');
-
-let allProjects = [];
-let currentFilter = 'all';
-
-const esc = s => String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-/* ---------- SMOOTH SCROLL (Lenis) ---------- */
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let lenis = null;
-let lenisOverlay = null;
-
-if (!reduceMotion) {
-  // 메인 페이지용
-  lenis = new Lenis({
-    duration: 1.15,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    touchMultiplier: 1.5,
-    // 오버레이 안에서 발생한 wheel/touch는 메인 Lenis가 무시
-    prevent: (node) => node.closest && node.closest('#detail-overlay') !== null
-  });
-
-  // 상세 오버레이용 — 오버레이 자체가 overflow:auto 컨테이너
-  lenisOverlay = new Lenis({
-    wrapper: document.getElementById('detail-overlay'),
-    content: document.getElementById('detail-overlay'),
-    duration: 1.1,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    smoothWheel: true,
-    touchMultiplier: 1.5
-  });
-
-  // 이미지 onload 등에서 호출할 수 있게 전역 helper
-  window.lenisOverlayResize = () => lenisOverlay.resize();
-
-  // 상세 콘텐츠 높이 변화(이미지 늦게 로드, DOM 변경 등) → Lenis 재계산
-  const overlayResize = new ResizeObserver(() => {
-    lenisOverlay.resize();
-  });
-  overlayResize.observe(document.getElementById('detail-body'));
-
-  function raf(time) {
-    lenis.raf(time);
-    lenisOverlay.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-
-  // anchor 링크는 Lenis로 부드럽게 스크롤
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href === '#' || href.length < 2) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -20 });
-    });
-  });
-}
-
-/* ---------- LOADER ---------- */
-const loader = $('loader');
-const loaderBar = $('loader-bar');
-const loaderStatus = $('loader-status');
-let loaderProgress = 0;
-let dataReady = false;
-
-function runLoader() {
-  return new Promise(resolve => {
-    const start = performance.now();
-    const MIN_DURATION = 3000; // 최소 3초 보장
-    const tick = (now) => {
-      const elapsed = now - start;
-      // 시간 기반: 0→100 over MIN_DURATION (ease-out)
-      // 단, 데이터 준비 안 됐으면 95에서 멈추고 기다림
-      const t = Math.min(1, elapsed / MIN_DURATION);
-      let target = (1 - Math.pow(1 - t, 2)) * 100;
-      if (!dataReady && target > 95) target = 95;
-      loaderProgress = Math.min(100, target);
-      loaderBar.style.width = loaderProgress + '%';
-      if (loaderProgress < 100) {
-        requestAnimationFrame(tick);
-      } else {
-        loaderStatus.textContent = 'Ready.';
-        setTimeout(() => {
-          loader.classList.add('done');
-          document.body.classList.add('loaded');
-          if (lenis) lenis.start();
-          resolve();
-        }, 450);
-      }
-    };
-    if (lenis) lenis.stop();
-    requestAnimationFrame(tick);
-  });
-}
-
-/* ---------- Header scroll ---------- */
-const header = document.querySelector('header.site');
-const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
-/* ---------- Load projects ---------- */
-async function loadProjects() {
-  try {
-    let snap;
-    try { snap = await getDocs(query(collection(db, COLLECTION), orderBy('order', 'asc'))); }
-    catch { snap = await getDocs(collection(db, COLLECTION)); }
-    allProjects = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
-    allProjects.sort((a, b) =>
-      (typeof a.order === 'number' ? a.order : 9999) - (typeof b.order === 'number' ? b.order : 9999)
-    );
-    buildFilters();
-    renderGrid();
-  } catch (e) {
-    console.error(e);
-    loadingEl.textContent = '— failed to load projects';
-  }
-}
-
-function buildFilters() {
-  // 데이터에 있는 cat 들 모두 수집해서 필터 자동 생성
-  const cats = [...new Set(allProjects.map(p => p.cat).filter(Boolean))];
-  // 표시 순서: brand → graphic → spatial → web → font → type → 기타
-  const orderHint = ['brand', 'graphic', 'spatial', 'web', 'font', 'type'];
-  cats.sort((a, b) => {
-    const ai = orderHint.indexOf(a); const bi = orderHint.indexOf(b);
-    if (ai === -1 && bi === -1) return a.localeCompare(b);
-    if (ai === -1) return 1;
-    if (bi === -1) return -1;
-    return ai - bi;
-  });
-  // 기존 All 버튼 빼고 다 지우고 다시 생성
-  filtersEl.querySelectorAll('button:not([data-filter="all"])').forEach(b => b.remove());
-  cats.forEach(cat => {
-    const b = document.createElement('button');
-    b.dataset.filter = cat;
-    b.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-    filtersEl.appendChild(b);
-  });
-  // 클릭 핸들러 (위임)
-  filtersEl.addEventListener('click', e => {
-    const btn = e.target.closest('button');
-    if (!btn) return;
-    filtersEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFilter = btn.dataset.filter;
-    renderGrid();
-  }, { once: false });
-}
-
-function renderGrid() {
-  loadingEl.style.display = 'none';
-  grid.style.display = 'grid';
-  const filtered = currentFilter === 'all'
-    ? allProjects
-    : allProjects.filter(p => p.cat === currentFilter);
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `<div class="loading-state" style="grid-column:1/-1">— no works in this category</div>`;
-    return;
-  }
-
-  grid.innerHTML = filtered.map((p, i) => {
-    const num = String(i + 1).padStart(2, '0');
-    const cat = (p.cat || 'work').toUpperCase();
-    const thumb = p.thumb
-      ? `<img src="${esc(p.thumb)}" alt="${esc(p.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="fallback" style="display:none">${esc((p.title || '?').charAt(0))}</div>`
-      : `<div class="fallback">${esc((p.title || '?').charAt(0))}</div>`;
-    const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
-
-    return `
-      <a class="work-card" data-doc-id="${esc(p._docId)}" href="#${esc(p._docId)}">
-        <div class="cover">${thumb}</div>
-        <div class="meta-row">
-          <span class="num">${num} / ${esc(cat.toLowerCase())}</span>
-          <span class="year">${esc(p.year || '')}</span>
-        </div>
-        <div class="title">${esc(p.title || '(untitled)')}</div>
-        <p class="summary">${esc(p.desc || '')}</p>
-        <div class="tags">${tags}</div>
-      </a>`;
-  }).join('');
-
-  // bind card click → open detail
-  grid.querySelectorAll('.work-card').forEach(card => {
-    card.addEventListener('click', e => {
-      e.preventDefault();
-      openDetail(card.dataset.docId);
-    });
-  });
-
-  // 새로 그려진 카드에 reveal 적용
-  if (typeof applyReveal === 'function') applyReveal();
-}
-
-/* ---------- Project detail ---------- */
-function openDetail(docId) {
-  const p = allProjects.find(x => x._docId === docId);
-  if (!p) return;
-
-  detailName.textContent = p.title || '';
-
-  const meta = [
-    p.year && `Year — ${esc(p.year)}`,
-    p.cat && `Category — ${esc(p.cat.toUpperCase())}`,
-    p.client && `Client — ${esc(p.client)}`
-  ].filter(Boolean).map(s => `<span>${s}</span>`).join('');
-
-  const blocksHtml = renderBlocks(p.blocks || []);
-  const externalLink = p.url
-    ? `<p style="margin-top:1.5rem"><a href="${esc(p.url)}" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--ink-2);padding-bottom:2px">Visit ↗</a></p>`
-    : '';
-
-  detailBody.innerHTML = `
-    <div class="detail-hero">
-      <div class="meta">${meta}</div>
-      <h1>${esc(p.title || '')}</h1>
-      ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ''}
-      ${externalLink}
-    </div>
-    <div class="detail-blocks">${blocksHtml}</div>
-  `;
-
-  overlay.classList.add('open');
-  document.body.classList.add('modal-open');
-  overlay.scrollTop = 0;
-  if (lenisOverlay) lenisOverlay.scrollTo(0, { immediate: true });
-  history.pushState({ detail: docId }, '', `#${docId}`);
-}
-
-function renderBlocks(blocks) {
-  if (!Array.isArray(blocks) || blocks.length === 0) return '';
-  return blocks.map(b => {
-    if (!b || !b.type) return '';
-    if (b.type === 'text') {
-      if (!b.heading && !b.body) return '';
-      return `<div class="block-text">
-        ${b.heading ? `<h3>${esc(b.heading)}</h3>` : ''}
-        ${b.body ? `<p>${esc(b.body)}</p>` : ''}
-      </div>`;
-    }
-    if (b.type === 'img') {
-      if (!b.src) return '';
-      return `<div class="block-img"><img src="${esc(b.src)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
-    }
-    if (b.type === '2col') {
-      const src = Array.isArray(b.src) ? b.src.filter(Boolean) : [];
-      if (src.length === 0) return '';
-      return `<div class="block-2col">
-        ${src.map(s => `<img src="${esc(s)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.style.display='none'">`).join('')}
-      </div>`;
-    }
-    return '';
-  }).join('');
-}
-
-function closeDetail() {
-  overlay.classList.remove('open');
-  document.body.classList.remove('modal-open');
-  if (location.hash) history.pushState({}, '', location.pathname);
-}
-
-detailClose.addEventListener('click', closeDetail);
-window.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && overlay.classList.contains('open')) closeDetail();
-});
-window.addEventListener('popstate', e => {
-  if (overlay.classList.contains('open')) {
-    overlay.classList.remove('open');
-    document.body.classList.remove('modal-open');
-  }
-});
-
-/* ---------- Reveal on scroll ---------- */
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
-  });
-}, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-
-function applyReveal() {
-  // 섹션 헤더 + contact 그리드 + footer
-  document.querySelectorAll('.section-head, .contact-grid, .filters, footer.site .inner, footer.site .copyright').forEach(el => {
-    if (!el.classList.contains('reveal')) {
-      el.classList.add('reveal');
-      io.observe(el);
-    }
-  });
-  // 작품 카드는 stagger 적용
-  document.querySelectorAll('.work-card').forEach((el, i) => {
-    if (!el.classList.contains('reveal')) {
-      el.classList.add('reveal');
-      // 같은 줄(2칸)끼리 stagger — 0, 1, 0, 1, ...
-      const col = i % 2;
-      if (col === 1) el.classList.add('stagger-1');
-      io.observe(el);
-    }
-  });
-}
-
-applyReveal();
-
-/* ---------- Init ---------- */
-Promise.all([
-  loadProjects().then(() => { dataReady = true; }),
-  runLoader()
-]).then(() => {
-  if (location.hash && location.hash.length > 1) {
-    const id = location.hash.slice(1);
-    if (allProjects.find(p => p._docId === id)) openDetail(id);
-  }
-});
-</script>
-
+    <span class="enter">폰트 사이트로
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+    </span>
+  </a>
+</main>
 </body>
 </html>
