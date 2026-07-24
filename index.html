@@ -42,18 +42,21 @@ body{background:var(--plum);color:var(--cream);font-family:var(--font);overflow:
 a{color:inherit;text-decoration:none}
 .sronly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-#bg{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.stage{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden}
+#pcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 
-.gate{position:relative;z-index:1;display:flex;width:100vw;height:100vh;height:100dvh}
-.half{flex:1;position:relative;display:flex;flex-direction:column;justify-content:flex-end;
-  padding:clamp(1.6rem,4vw,3rem);transition:opacity .4s var(--ease)}
-.hR{align-items:flex-end;text-align:right}
+.half{position:absolute;top:0;bottom:0;width:50%;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(1.6rem,4vw,3rem);z-index:2}
+.hL{left:0;align-items:flex-start}
+.hR{right:0;align-items:flex-end;text-align:right}
 
-.name{font-family:var(--word);font-weight:700;line-height:1.1;letter-spacing:.01em;
-  font-size:clamp(1.5rem,3vw,2.6rem)}
-.hL .name{color:var(--cream)}.hR .name{color:var(--pink)}
+/* static name — only shown as fallback (touch / no-JS / reduced-motion); hidden while particles run */
+.wm{font-family:var(--word);font-weight:700;line-height:1.14;letter-spacing:.01em;margin-bottom:.6rem}
+.hL .wm{font-size:clamp(2.4rem,6vw,4rem);color:var(--cream)}
+.hR .wm{font-size:clamp(1.9rem,4.6vw,3.4rem);color:var(--pink)}
+.stage.js .wm{display:none}
 
-.enter{margin-top:.7rem;position:relative;display:inline-flex;align-items:center;gap:8px;
+.enter{position:relative;display:inline-flex;align-items:center;gap:8px;
   font-size:clamp(.85rem,1.05vw,.98rem);font-weight:500;letter-spacing:-.01em;color:var(--dim);
   transition:gap .35s var(--ease),color .3s}
 .enter .ar{font-size:.9em}
@@ -65,62 +68,113 @@ a{color:inherit;text-decoration:none}
 .hR:hover .enter{color:var(--pink)}
 .half:hover .enter::after{opacity:1}
 
+.vig{position:absolute;top:0;bottom:0;width:54%;pointer-events:none;opacity:0;transition:opacity .35s;z-index:1}
+.vL{left:0;background:radial-gradient(120% 90% at 8% 50%,rgba(251,246,236,.08),transparent 60%)}
+.vR{right:0;background:radial-gradient(120% 90% at 92% 50%,rgba(250,157,205,.10),transparent 60%)}
+.hL:hover ~ .vL{opacity:1}.hR:hover ~ .vR{opacity:1}
+
 @media (max-width:720px){
   body{overflow:auto}
-  .gate{flex-direction:column;height:auto;min-height:100dvh}
-  .half{min-height:50dvh}
+  #pcv{display:none}
+  .half{position:static;width:100%;min-height:50dvh;justify-content:center;gap:.4rem}
   .hR{text-align:left;align-items:flex-start}
   .hL{border-bottom:.5px solid rgba(251,246,236,.12)}
-  .name{font-size:clamp(1.8rem,7vw,2.6rem)}
+  .stage.js .wm{display:block}
+  .hL .wm{font-size:clamp(3rem,15vw,5rem)}
+  .hR .wm{font-size:clamp(2.4rem,11vw,4rem)}
+}
+@media (prefers-reduced-motion:reduce){
+  #pcv{display:none}
+  .stage.js .wm{display:block}
 }
 </style>
 </head>
 <body>
 <h1 class="sronly">페어웨이 — 브랜딩 스튜디오, 그리고 페어타입파운더리 — 폰트 파운더리</h1>
-<canvas id="bg" aria-hidden="true"></canvas>
-<main class="gate" role="navigation" aria-label="페어웨이 진입 선택">
+<main class="stage" id="stage" role="navigation" aria-label="페어웨이 진입 선택">
+  <canvas id="pcv" aria-hidden="true"></canvas>
   <a class="half hL" href="/brand">
-    <span class="name">페어웨이</span>
+    <span class="wm">페어웨이</span>
     <span class="enter">브랜딩 스튜디오 <span class="ar" aria-hidden="true">&rarr;</span></span>
   </a>
   <a class="half hR" href="https://peartype.kr">
-    <span class="name">페어타입파운더리</span>
+    <span class="wm">페어타입파운더리</span>
     <span class="enter">타입 파운더리 <span class="ar" aria-hidden="true">&#8599;</span></span>
   </a>
+  <div class="vig vL" aria-hidden="true"></div><div class="vig vR" aria-hidden="true"></div>
 </main>
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  if(reduce) return;
-  var cv=document.getElementById('bg'); if(!cv||!cv.getContext) return;
-  var ctx=cv.getContext('2d'), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0, parts=[], mx=-9999,my=-9999;
-  function size(){ W=window.innerWidth; H=window.innerHeight; cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-    var n=Math.min(420, Math.max(120, Math.floor(W*H/6500)));
-    parts=[];
-    for(var i=0;i<n;i++){ parts.push({ x:Math.random()*W, y:Math.random()*H,
-      vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
-      r:Math.random()*1.8+.6, tone:Math.random() }); }
-  }
-  function frame(){
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<parts.length;i++){ var p=parts[i];
-      var dx=p.x-mx, dy=p.y-my, q=dx*dx+dy*dy;
-      if(q<18000){ var f=(18000-q)/18000, d=Math.sqrt(q)||1; p.vx+=(dx/d)*f*.6; p.vy+=(dy/d)*f*.6; }
-      p.vx*=0.975; p.vy*=0.975; p.x+=p.vx; p.y+=p.vy;
-      if(p.x<-6)p.x=W+6; if(p.x>W+6)p.x=-6; if(p.y<-6)p.y=H+6; if(p.y>H+6)p.y=-6;
-      var side=p.x/W, mixp=Math.min(1,Math.max(0, side*0.7 + p.tone*0.3));
-      var r=Math.round(251+(250-251)*mixp), g=Math.round(246+(157-246)*mixp), b=Math.round(236+(205-236)*mixp);
-      ctx.globalAlpha=0.45+p.tone*0.4;
-      ctx.fillStyle='rgb('+r+','+g+','+b+')';
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var force = /[?&]force/.test(location.search);
+  if(!force && (reduce || !fine || window.innerWidth<=720)) return;   // static fallback stays
+
+  var cv=document.getElementById('pcv'), stage=document.getElementById('stage');
+  if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d'), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
+  function size(){ var r=cv.getBoundingClientRect(); W=Math.round(r.width); H=Math.round(r.height); cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
+  function sample(txt){
+    var oc=document.createElement('canvas'); oc.width=W; oc.height=H; var o=oc.getContext('2d');
+    o.textAlign='center'; o.textBaseline='alphabetic'; o.fillStyle='#fff';
+    // auto-fit: shrink until the real glyph box fits within safe margins, then centre precisely
+    var maxW=W*0.84, maxH=H*0.44, fs=Math.min(H*0.24, W*0.9/(txt.length*0.6));
+    var asc=fs*0.8, desc=fs*0.2;
+    for(var k=0;k<7;k++){
+      o.font='700 '+fs+'px Distort';
+      var m=o.measureText(txt);
+      var tw=m.width; asc=m.actualBoundingBoxAscent||fs*0.8; desc=m.actualBoundingBoxDescent||fs*0.2;
+      var th=asc+desc;
+      if(tw<=maxW && th<=maxH) break;
+      fs *= Math.min(maxW/tw, maxH/th) * 0.97;
     }
-    ctx.globalAlpha=1;
+    var baseline = H*0.5 + (asc-desc)/2;   // centre the glyph box vertically
+    o.font='700 '+fs+'px Distort';
+    o.fillText(txt, W/2, baseline);
+    var dd=o.getImageData(0,0,W,H).data, pts=[], g=4;
+    for(var y=0;y<H;y+=g)for(var x=0;x<W;x+=g){ if(dd[(y*W+x)*4+3]>128) pts.push([x,y]); }
+    return pts;
+  }
+  var COUNT=0, parts=[], A=[],B=[], mx=-9999,my=-9999, t=0,tTarget=0, inside=false, ready=false, T0=null;
+  function build(){
+    size(); if(!W||!H) return false;
+    A=sample('페어웨이'); B=sample('페어타입파운더리');
+    if(!A.length||!B.length) return false;
+    COUNT=Math.min(3000, Math.max(1400, Math.floor(W*H/460)));
+    parts=[];
+    for(var i=0;i<COUNT;i++){ var a=A[i%A.length], b=B[i%B.length];
+      parts.push({x:Math.random()*W,y:Math.random()*H,
+        ax:a[0]+(Math.random()-.5)*2, ay:a[1]+(Math.random()-.5)*2,
+        bx:b[0]+(Math.random()-.5)*2, by:b[1]+(Math.random()-.5)*2,
+        vx:0,vy:0, r:Math.random()*1.1+.6, tone:Math.random()}); }
+    return true;
+  }
+  function frame(ts){
+    if(T0===null)T0=ts; var el=(ts-T0)/1000;
+    if(inside){ tTarget = mx < W*0.5 ? 0 : 1; } else { tTarget = 0.5+0.5*Math.sin(el*0.6); }
+    t += (tTarget-t)*0.06; ctx.clearRect(0,0,W,H);
+    for(var i=0;i<parts.length;i++){ var p=parts[i];
+      var tx=p.ax+(p.bx-p.ax)*t, ty=p.ay+(p.by-p.ay)*t;
+      p.vx+=(tx-p.x)*0.02; p.vy+=(ty-p.y)*0.02;
+      var dx=p.x-mx, dy=p.y-my, q=dx*dx+dy*dy;
+      if(q<9000){ var f=(9000-q)/9000, d=Math.sqrt(q)||1; p.vx+=(dx/d)*f*3.6; p.vy+=(dy/d)*f*3.6; }
+      p.vx*=0.86; p.vy*=0.86; p.x+=p.vx; p.y+=p.vy;
+      var mc=Math.min(1,Math.max(0,t+(p.tone-.5)*.25));
+      var r=Math.round(251+(250-251)*mc), gg=Math.round(246+(157-246)*mc), bb=Math.round(236+(205-236)*mc);
+      ctx.fillStyle='rgb('+r+','+gg+','+bb+')'; ctx.fillRect(p.x,p.y,p.r*1.6,p.r*1.6);
+    }
     requestAnimationFrame(frame);
   }
-  window.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; });
-  window.addEventListener('mouseout',function(){ mx=-9999; my=-9999; });
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(size,180); });
-  size(); requestAnimationFrame(frame);
+  stage.addEventListener('mouseenter',function(){ inside=true; });
+  stage.addEventListener('mousemove',function(e){ var r=stage.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; inside=true; });
+  stage.addEventListener('mouseleave',function(){ inside=false; mx=-9999; my=-9999; });
+  var startFn=function(){
+    if(build()){ stage.classList.add('js'); ready=true; requestAnimationFrame(frame); }
+    else { setTimeout(function(){ if(!ready && build()){ stage.classList.add('js'); ready=true; requestAnimationFrame(frame); } }, 250); }
+  };
+  (document.fonts && document.fonts.load ? document.fonts.load('700 100px "Distort"','페어타입파운더리웨이').then(function(){return document.fonts.ready;}) : Promise.resolve())
+    .then(startFn).catch(startFn);
+  var rt; window.addEventListener('resize',function(){ if(!ready)return; clearTimeout(rt); rt=setTimeout(build,180); });
 })();
 </script>
 </body>
