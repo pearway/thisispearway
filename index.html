@@ -116,26 +116,21 @@ a{color:inherit;text-decoration:none}
   var ctx=cv.getContext('2d'), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
   function size(){ var r=cv.getBoundingClientRect(); W=Math.round(r.width); H=Math.round(r.height); cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
   function sample(txt){
-    // draw into a TALL offscreen canvas so no part of the glyph is ever clipped while sampling
-    var SH=Math.round(H*1.8);
-    var oc=document.createElement('canvas'); oc.width=W; oc.height=SH; var o=oc.getContext('2d');
+    // Draw big into an oversized offscreen so the WHOLE glyph is captured (no metric guessing),
+    // then measure the real ink and SCALE it to fit a fixed target box, centred. Cannot clip.
+    var BW=Math.round(W*2), BH=Math.round(H*2);
+    var oc=document.createElement('canvas'); oc.width=BW; oc.height=BH; var o=oc.getContext('2d');
     o.textAlign='center'; o.textBaseline='middle'; o.fillStyle='#fff';
-    // auto-fit: shrink until the glyph box fits within safe margins of the REAL height
-    var maxW=W*0.84, maxH=H*0.26, fs=Math.min(H*0.14, W*0.9/(txt.length*0.6));
-    for(var k=0;k<7;k++){
-      o.font='700 '+fs+'px Distort';
-      var m=o.measureText(txt);
-      var tw=m.width, th=(m.actualBoundingBoxAscent||fs*0.85)+(m.actualBoundingBoxDescent||fs*0.35);
-      if(tw<=maxW && th<=maxH) break;
-      fs *= Math.min(maxW/tw, maxH/th) * 0.96;
-    }
-    o.font='700 '+fs+'px Distort';
-    o.fillText(txt, W/2, SH/2);
-    // collect ink, then recentre by its ACTUAL bounding box → true screen centre, immune to font metrics/baseline
-    var dd=o.getImageData(0,0,W,SH).data, pts=[], g=4, minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
-    for(var y=0;y<SH;y+=g)for(var x=0;x<W;x+=g){ if(dd[(y*W+x)*4+3]>128){ pts.push([x,y]); if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; } }
-    if(pts.length){ var dxc=W/2-(minX+maxX)/2, dyc=(H*0.42)-(minY+maxY)/2;   // bias slightly up → large bottom margin
-      for(var i=0;i<pts.length;i++){ pts[i][0]+=dxc; pts[i][1]+=dyc; } }
+    o.font='700 '+Math.round(H*0.30)+'px Distort';
+    o.fillText(txt, BW/2, BH/2);
+    var dd=o.getImageData(0,0,BW,BH).data, raw=[], g=4, minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+    for(var y=0;y<BH;y+=g)for(var x=0;x<BW;x+=g){ if(dd[(y*BW+x)*4+3]>128){ raw.push([x,y]); if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; } }
+    if(!raw.length) return raw;
+    var bw=maxX-minX||1, bh=maxY-minY||1, cx=(minX+maxX)/2, cy=(minY+maxY)/2;
+    var targetW=W*0.82, targetH=H*0.30;                 // fixed safe box, same for both words
+    var s=Math.min(targetW/bw, targetH/bh);
+    var TX=W/2, TY=H*0.44, pts=[];                        // centre horizontally, slightly above middle
+    for(var i=0;i<raw.length;i++){ pts.push([ TX+(raw[i][0]-cx)*s, TY+(raw[i][1]-cy)*s ]); }
     return pts;
   }
   var COUNT=0, parts=[], A=[],B=[], mx=-9999,my=-9999, t=0,tTarget=0, inside=false, ready=false, T0=null;
