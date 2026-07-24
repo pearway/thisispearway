@@ -42,7 +42,7 @@ body{background:var(--plum);color:var(--cream);font-family:var(--font);overflow:
 a{color:inherit;text-decoration:none}
 .sronly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-.stage{position:relative;width:100vw;height:100vh;height:100dvh;overflow:hidden}
+.stage{position:relative;width:100vw;height:100vh;height:100svh;overflow:hidden}
 #pcv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 
 .half{position:absolute;top:0;bottom:0;width:50%;display:flex;flex-direction:column;justify-content:flex-end;
@@ -76,7 +76,8 @@ a{color:inherit;text-decoration:none}
 @media (max-width:720px){
   body{overflow:auto}
   #pcv{display:none}
-  .half{position:static;width:100%;min-height:50dvh;justify-content:center;gap:.4rem}
+  .stage{height:auto;min-height:100svh;overflow:visible}
+  .half{position:static;width:100%;min-height:50svh;justify-content:center;gap:.4rem}
   .hR{text-align:left;align-items:flex-start}
   .hL{border-bottom:.5px solid rgba(251,246,236,.12)}
   .stage.js .wm{display:block}
@@ -118,7 +119,7 @@ a{color:inherit;text-decoration:none}
     var oc=document.createElement('canvas'); oc.width=W; oc.height=H; var o=oc.getContext('2d');
     o.textAlign='center'; o.textBaseline='alphabetic'; o.fillStyle='#fff';
     // auto-fit: shrink until the real glyph box fits within safe margins, then centre precisely
-    var maxW=W*0.84, maxH=H*0.44, fs=Math.min(H*0.24, W*0.9/(txt.length*0.6));
+    var maxW=W*0.84, maxH=H*0.36, fs=Math.min(H*0.19, W*0.9/(txt.length*0.6));
     var asc=fs*0.8, desc=fs*0.2;
     for(var k=0;k<7;k++){
       o.font='700 '+fs+'px Distort';
