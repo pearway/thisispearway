@@ -121,7 +121,7 @@ a{color:inherit;text-decoration:none}
     var oc=document.createElement('canvas'); oc.width=W; oc.height=SH; var o=oc.getContext('2d');
     o.textAlign='center'; o.textBaseline='middle'; o.fillStyle='#fff';
     // auto-fit: shrink until the glyph box fits within safe margins of the REAL height
-    var maxW=W*0.84, maxH=H*0.36, fs=Math.min(H*0.19, W*0.9/(txt.length*0.6));
+    var maxW=W*0.84, maxH=H*0.26, fs=Math.min(H*0.14, W*0.9/(txt.length*0.6));
     for(var k=0;k<7;k++){
       o.font='700 '+fs+'px Distort';
       var m=o.measureText(txt);
@@ -134,7 +134,7 @@ a{color:inherit;text-decoration:none}
     // collect ink, then recentre by its ACTUAL bounding box → true screen centre, immune to font metrics/baseline
     var dd=o.getImageData(0,0,W,SH).data, pts=[], g=4, minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
     for(var y=0;y<SH;y+=g)for(var x=0;x<W;x+=g){ if(dd[(y*W+x)*4+3]>128){ pts.push([x,y]); if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; } }
-    if(pts.length){ var dxc=W/2-(minX+maxX)/2, dyc=H/2-(minY+maxY)/2;
+    if(pts.length){ var dxc=W/2-(minX+maxX)/2, dyc=(H*0.42)-(minY+maxY)/2;   // bias slightly up → large bottom margin
       for(var i=0;i<pts.length;i++){ pts[i][0]+=dxc; pts[i][1]+=dyc; } }
     return pts;
   }
@@ -143,6 +143,13 @@ a{color:inherit;text-decoration:none}
     size(); if(!W||!H) return false;
     A=sample('페어웨이'); B=sample('페어타입파운더리');
     if(!A.length||!B.length) return false;
+    if(/[?&]debug/.test(location.search)){
+      var byN=1e9,byX=-1e9; for(var j=0;j<B.length;j++){ if(B[j][1]<byN)byN=B[j][1]; if(B[j][1]>byX)byX=B[j][1]; }
+      var dv=document.getElementById('dbg')||document.createElement('div'); dv.id='dbg';
+      dv.style.cssText='position:fixed;top:8px;left:8px;z-index:99999;font:12px/1.5 monospace;color:#FA9DCD;background:rgba(0,0,0,.6);padding:8px 10px;border-radius:6px;pointer-events:none';
+      dv.textContent='vw×vh '+window.innerWidth+'×'+window.innerHeight+' | canvas '+W+'×'+H+' | DPR '+DPR+' | 글자 y '+Math.round(byN)+'~'+Math.round(byX)+' ('+ (byX>H?'⚠ 하단 넘침 '+Math.round(byX-H)+'px':'OK, 하단여백 '+Math.round(H-byX)+'px')+')';
+      document.body.appendChild(dv);
+    }
     COUNT=Math.min(3000, Math.max(1400, Math.floor(W*H/460)));
     parts=[];
     for(var i=0;i<COUNT;i++){ var a=A[i%A.length], b=B[i%B.length];
