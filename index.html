@@ -116,24 +116,26 @@ a{color:inherit;text-decoration:none}
   var ctx=cv.getContext('2d'), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
   function size(){ var r=cv.getBoundingClientRect(); W=Math.round(r.width); H=Math.round(r.height); cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
   function sample(txt){
-    var oc=document.createElement('canvas'); oc.width=W; oc.height=H; var o=oc.getContext('2d');
-    o.textAlign='center'; o.textBaseline='alphabetic'; o.fillStyle='#fff';
-    // auto-fit: shrink until the real glyph box fits within safe margins, then centre precisely
+    // draw into a TALL offscreen canvas so no part of the glyph is ever clipped while sampling
+    var SH=Math.round(H*1.8);
+    var oc=document.createElement('canvas'); oc.width=W; oc.height=SH; var o=oc.getContext('2d');
+    o.textAlign='center'; o.textBaseline='middle'; o.fillStyle='#fff';
+    // auto-fit: shrink until the glyph box fits within safe margins of the REAL height
     var maxW=W*0.84, maxH=H*0.36, fs=Math.min(H*0.19, W*0.9/(txt.length*0.6));
-    var asc=fs*0.8, desc=fs*0.2;
     for(var k=0;k<7;k++){
       o.font='700 '+fs+'px Distort';
       var m=o.measureText(txt);
-      var tw=m.width; asc=m.actualBoundingBoxAscent||fs*0.8; desc=m.actualBoundingBoxDescent||fs*0.2;
-      var th=asc+desc;
+      var tw=m.width, th=(m.actualBoundingBoxAscent||fs*0.85)+(m.actualBoundingBoxDescent||fs*0.35);
       if(tw<=maxW && th<=maxH) break;
-      fs *= Math.min(maxW/tw, maxH/th) * 0.97;
+      fs *= Math.min(maxW/tw, maxH/th) * 0.96;
     }
-    var baseline = H*0.5 + (asc-desc)/2;   // centre the glyph box vertically
     o.font='700 '+fs+'px Distort';
-    o.fillText(txt, W/2, baseline);
-    var dd=o.getImageData(0,0,W,H).data, pts=[], g=4;
-    for(var y=0;y<H;y+=g)for(var x=0;x<W;x+=g){ if(dd[(y*W+x)*4+3]>128) pts.push([x,y]); }
+    o.fillText(txt, W/2, SH/2);
+    // collect ink, then recentre by its ACTUAL bounding box → true screen centre, immune to font metrics/baseline
+    var dd=o.getImageData(0,0,W,SH).data, pts=[], g=4, minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+    for(var y=0;y<SH;y+=g)for(var x=0;x<W;x+=g){ if(dd[(y*W+x)*4+3]>128){ pts.push([x,y]); if(x<minX)minX=x; if(x>maxX)maxX=x; if(y<minY)minY=y; if(y>maxY)maxY=y; } }
+    if(pts.length){ var dxc=W/2-(minX+maxX)/2, dyc=H/2-(minY+maxY)/2;
+      for(var i=0;i<pts.length;i++){ pts[i][0]+=dxc; pts[i][1]+=dyc; } }
     return pts;
   }
   var COUNT=0, parts=[], A=[],B=[], mx=-9999,my=-9999, t=0,tTarget=0, inside=false, ready=false, T0=null;
