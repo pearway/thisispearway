@@ -89,12 +89,15 @@ a{color:inherit;text-decoration:none}
       parts.push({ hx:hx, hy:hy, x:hx, y:hy, vx:0, vy:0, r:Math.random()*1.1+.6, tone:Math.random(),
         ph:Math.random()*6.2832, spd:0.3+Math.random()*0.55, orb:30+Math.random()*70 }); }  // perpetual orbit params (bigger sway)
   }
-  var T0=null;
+  var T0=null, bias=0;
   function frame(ts){
     if(T0===null)T0=ts; var el=(ts-T0)/1000;
+    var tb = (mx<-9000) ? 0 : (mx < W*0.5 ? -1 : 1);   // hovered side pulls the whole mass over
+    bias += (tb - bias)*0.045;
+    var shift = bias * W*0.17;
     ctx.clearRect(0,0,W,H);
     for(var i=0;i<parts.length;i++){ var p=parts[i];
-      var tx=p.hx+Math.cos(el*p.spd+p.ph)*p.orb, ty=p.hy+Math.sin(el*p.spd*0.9+p.ph)*p.orb*0.7;  // home wanders → never stops
+      var tx=p.hx+shift+Math.cos(el*p.spd+p.ph)*p.orb, ty=p.hy+Math.sin(el*p.spd*0.9+p.ph)*p.orb*0.7;  // wander + side-lean
       p.vx += (tx-p.x)*0.02; p.vy += (ty-p.y)*0.02;
       var dx=p.x-mx, dy=p.y-my, q=dx*dx+dy*dy;
       if(q<9000){ var f=(9000-q)/9000, d=Math.sqrt(q)||1; p.vx+=(dx/d)*f*3.6; p.vy+=(dy/d)*f*3.6; }  // strong scatter
