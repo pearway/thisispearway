@@ -627,22 +627,6 @@ footer.site .copyright {
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="top">
-    <span>— Loading</span>
-    <span>THISISPEARWAY · 2026</span>
-  </div>
-  <div class="middle">
-    <div class="counter">Make. Mark. Repeat.</div>
-    <div class="progress-bar" id="loader-bar"></div>
-  </div>
-  <div class="bottom">
-    <span>Seoul, KR</span>
-    <span id="loader-status">Initializing…</span>
-  </div>
-</div>
-
 <!-- HEADER -->
 <header class="site">
   <div class="inner">
@@ -839,42 +823,10 @@ if (!reduceMotion) {
   });
 }
 
-/* ---------- LOADER ---------- */
-const loader = $('loader');
-const loaderBar = $('loader-bar');
-const loaderStatus = $('loader-status');
-let loaderProgress = 0;
+/* ---------- (intro loader removed — enter instantly) ---------- */
 let dataReady = false;
-
-function runLoader() {
-  return new Promise(resolve => {
-    const start = performance.now();
-    const MIN_DURATION = 3000; // 최소 3초 보장
-    const tick = (now) => {
-      const elapsed = now - start;
-      // 시간 기반: 0→100 over MIN_DURATION (ease-out)
-      // 단, 데이터 준비 안 됐으면 95에서 멈추고 기다림
-      const t = Math.min(1, elapsed / MIN_DURATION);
-      let target = (1 - Math.pow(1 - t, 2)) * 100;
-      if (!dataReady && target > 95) target = 95;
-      loaderProgress = Math.min(100, target);
-      loaderBar.style.width = loaderProgress + '%';
-      if (loaderProgress < 100) {
-        requestAnimationFrame(tick);
-      } else {
-        loaderStatus.textContent = 'Ready.';
-        setTimeout(() => {
-          loader.classList.add('done');
-          document.body.classList.add('loaded');
-          if (lenis) lenis.start();
-          resolve();
-        }, 450);
-      }
-    };
-    if (lenis) lenis.stop();
-    requestAnimationFrame(tick);
-  });
-}
+document.body.classList.add('loaded');
+if (lenis) lenis.start();
 
 /* ---------- Header scroll ---------- */
 const header = document.querySelector('header.site');
@@ -1088,10 +1040,8 @@ function applyReveal() {
 applyReveal();
 
 /* ---------- Init ---------- */
-Promise.all([
-  loadProjects().then(() => { dataReady = true; }),
-  runLoader()
-]).then(() => {
+loadProjects().then(() => {
+  dataReady = true;
   if (location.hash && location.hash.length > 1) {
     const id = location.hash.slice(1);
     if (allProjects.find(p => p._docId === id)) openDetail(id);
