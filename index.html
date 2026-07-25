@@ -79,9 +79,13 @@ a{color:inherit;text-decoration:none}
   var cv=document.getElementById('bg'); if(!cv||!cv.getContext) return;
   var ctx=cv.getContext('2d'), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0, parts=[], mx=-9999,my=-9999;
   function size(){ W=window.innerWidth; H=window.innerHeight; cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
-    var n=Math.min(2600, Math.max(700, Math.floor(W*H/2200)));
+    var n=Math.min(3000, Math.max(900, Math.floor(W*H/1500)));
+    // homes cluster into a dense abstract mass in the centre (morph feel, but NOT letters → nothing to clip)
+    var rx=Math.min(W*0.34, 560), ry=Math.min(H*0.24, 320);
     parts=[];
-    for(var i=0;i<n;i++){ var hx=Math.random()*W, hy=Math.random()*H;   // each dot has a home to spring back to
+    for(var i=0;i<n;i++){
+      var a=Math.random()*6.2832, rr=Math.pow(Math.random(),0.65);        // denser toward the centre
+      var hx=W/2 + Math.cos(a)*rr*rx, hy=H/2 + Math.sin(a)*rr*ry;
       parts.push({ hx:hx, hy:hy, x:hx, y:hy, vx:0, vy:0, r:Math.random()*1.1+.6, tone:Math.random() }); }
   }
   function frame(){
