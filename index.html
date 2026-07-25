@@ -86,12 +86,16 @@ a{color:inherit;text-decoration:none}
     for(var i=0;i<n;i++){
       var a=Math.random()*6.2832, rr=Math.pow(Math.random(),0.65);        // denser toward the centre
       var hx=W/2 + Math.cos(a)*rr*rx, hy=H/2 + Math.sin(a)*rr*ry;
-      parts.push({ hx:hx, hy:hy, x:hx, y:hy, vx:0, vy:0, r:Math.random()*1.1+.6, tone:Math.random() }); }
+      parts.push({ hx:hx, hy:hy, x:hx, y:hy, vx:0, vy:0, r:Math.random()*1.1+.6, tone:Math.random(),
+        ph:Math.random()*6.2832, spd:0.25+Math.random()*0.5, orb:10+Math.random()*26 }); }  // perpetual orbit params
   }
-  function frame(){
+  var T0=null;
+  function frame(ts){
+    if(T0===null)T0=ts; var el=(ts-T0)/1000;
     ctx.clearRect(0,0,W,H);
     for(var i=0;i<parts.length;i++){ var p=parts[i];
-      p.vx += (p.hx-p.x)*0.02; p.vy += (p.hy-p.y)*0.02;                 // spring home (morph feel)
+      var tx=p.hx+Math.cos(el*p.spd+p.ph)*p.orb, ty=p.hy+Math.sin(el*p.spd*0.9+p.ph)*p.orb*0.7;  // home wanders → never stops
+      p.vx += (tx-p.x)*0.02; p.vy += (ty-p.y)*0.02;
       var dx=p.x-mx, dy=p.y-my, q=dx*dx+dy*dy;
       if(q<9000){ var f=(9000-q)/9000, d=Math.sqrt(q)||1; p.vx+=(dx/d)*f*3.6; p.vy+=(dy/d)*f*3.6; }  // strong scatter
       p.vx*=0.86; p.vy*=0.86; p.x+=p.vx; p.y+=p.vy;
