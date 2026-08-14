@@ -1,116 +1,5 @@
 [
   {
-    "id": "mini-warehouse-darak",
-    "title": "미니창고 다락",
-    "title_en": "Mini Warehouse Darak",
-    "year": "2025",
-    "period": "2025.06 — 진행중",
-    "category": [
-      "brand",
-      "graphic"
-    ],
-    "primary": "brand",
-    "role": "브랜드 · 사이니지 디자인",
-    "client": "세컨신드롬",
-    "summary": "급격히 확장하는 브랜드의 시각적 파편화를 정제하는 사이니지 시스템 재정립.",
-    "cover": "images/works/mini-warehouse-darak/cover.jpg",
-    "tags": [
-      "Signage System",
-      "Guidelines"
-    ],
-    "story": "‘창고’는 늘 가격으로 먼저 비교됩니다. 미니창고 다락은 이미 업계를 대표하는 규모로 성장했지만, 인식은 여전히 ‘싼 창고’에 묶여 있었습니다. 페어웨이는 다락을 ‘프리미엄 스토리지’로 다시 세웠습니다. 지점마다 제각각이던 간판을 하나의 사이니지 시스템으로 정리하고, 가격이 아니라 신뢰로 기억되는 브랜드로 자리를 옮겼습니다.",
-    "problem": {
-      "kicker": "Positioning · 포지셔닝",
-      "headline": "‘싼 창고’에서 ‘믿고 맡기는 스토리지’로",
-      "sub": "규모는 앞섰지만 브랜드는 가격에 묶여 있었습니다. 경쟁이 비어 있던 ‘프리미엄·신뢰’ 축으로 다락의 자리를 옮기는 것을 전략의 출발점으로 삼았습니다.",
-      "reposition": {
-        "low": "저가 · 범용 창고",
-        "high": "프리미엄 · 신뢰",
-        "from": {
-          "label": "AS-IS",
-          "name": "저가 창고",
-          "at": 15
-        },
-        "to": {
-          "label": "TO-BE",
-          "name": "프리미엄 스토리지",
-          "at": 83
-        }
-      },
-      "shifts": [
-        {
-          "from": "가격으로 비교되는 창고",
-          "to": "신뢰로 선택되는 브랜드"
-        },
-        {
-          "from": "지점마다 다른 간판",
-          "to": "하나의 사이니지 시스템"
-        },
-        {
-          "from": "저장 공간",
-          "to": "관리해 주는 스토리지"
-        }
-      ],
-      "note": "네이밍·로고·컬러·사이니지 모듈까지 하나의 언어로 정리해, 브랜드가 가격이 아니라 경험으로 소비되도록 설계했습니다."
-    },
-    "sections": [
-      {
-        "type": "identity",
-        "label": "Identity · 로고 · 컬러",
-        "headline": "‘창고’는 남기되, 가치는 프리미엄으로",
-        "sub": "슬로건부터 로고까지 군더더기를 덜어내 브랜드의 기준을 다시 세웠습니다. ‘창고’를 품되 프리미엄으로 느껴지는 언어를 도출하고, 그리드 위에서 로고타입을 정제했습니다.",
-        "logo": "images/works/mini-warehouse-darak/logo-grid.jpg",
-        "keywords": [
-          {
-            "en": "expand",
-            "ko": "확장",
-            "desc": "가족의 공간을 넓히다"
-          },
-          {
-            "en": "flexible",
-            "ko": "유연",
-            "desc": "다양한 생활 방식을 수용"
-          },
-          {
-            "en": "connect",
-            "ko": "연결",
-            "desc": "공간과 일상을 잇다"
-          }
-        ],
-        "color": {
-          "name": "Clear Blue",
-          "hex": "#2868FF"
-        }
-      },
-      {
-        "type": "signage",
-        "label": "Signage System · 사이니지 모듈",
-        "headline": "현장마다 달랐던 간판을, 모듈 시스템으로",
-        "sub": "기존 간판은 플렉스·채널 두 형태가 혼재해 매장마다 견적과 마진의 변동성이 컸고, 후킹 포인트가 없어 시인성도 약했습니다. 어떤 매장 폭에도 조합되는 표준 모듈을 설계해 견적·시공·시인성을 한 번에 정리했습니다.",
-        "before": {
-          "img": "images/works/mini-warehouse-darak/before-sign.jpg",
-          "label": "BEFORE · 혼재된 기존 간판"
-        },
-        "afterLabel": "AFTER · 표준 모듈 도면 (SCALE 10/1)",
-        "drawing": "images/works/mini-warehouse-darak/signage-drawing.png",
-        "specs": [
-          "모듈 · 파나 플랙스 / LED 백색 조명 취부 / 측면 지정 블루 도색",
-          "채널 · 캡채널 / LED 백색 조명 취부 / 측면 지정 블루 도색",
-          "트러스트 · H200 진회색",
-          "마감 · 시트지 대신 솔벤 실사 인쇄로 일관된 브랜드 컬러를 오프라인에 반영"
-        ]
-      }
-    ],
-    "gallery": [
-      "images/works/mini-warehouse-darak/m1.jpg",
-      "images/works/mini-warehouse-darak/m2.jpg",
-      [
-        "images/works/mini-warehouse-darak/m3.jpg",
-        "images/works/mini-warehouse-darak/m4.jpg"
-      ]
-    ]
-  },
-  {
     "id": "duomo-pizza",
     "title": "듀오모피자",
     "title_en": "Duomo Pizza",
@@ -160,58 +49,6 @@
     ]
   },
   {
-    "id": "chicken-farmers",
-    "title": "치킨파머스",
-    "title_en": "Chicken Farmers",
-    "year": "2024",
-    "period": "2023.06 — 2025.05",
-    "category": [
-      "brand",
-      "graphic",
-      "spatial"
-    ],
-    "primary": "brand",
-    "role": "브랜딩 · 그래픽 · 공간 디자인",
-    "client": "금화식품",
-    "summary": "Farm To Table. 자극 경쟁의 시장에서 '신선함은 곧 안전과 신뢰'라는 독자적 USP를 정의한 리브랜딩.",
-    "cover": "images/works/chicken-farmers/cover.jpg",
-    "tags": [
-      "Rebranding",
-      "F&B",
-      "Spatial"
-    ],
-    "story": "국내에서 직접 공수한 신선한 식재료가 강점인 치킨 브랜드. ‘Farm To Table’을 축으로, 자극적인 맛 경쟁이 지배하던 시장에서 ‘신선함은 곧 안전과 신뢰’라는 독자적 USP를 정의한 리브랜딩입니다. 브랜딩·그래픽·공간을 함께 전개했습니다.",
-    "problem": {
-      "kicker": "전략 · Strategy",
-      "headline": "신선함만으로는 새로운 문화를 만들기 어렵다",
-      "sub": "리서치 결과 신혼 부모 타깃에서 ‘아이에게 안심하고 먹일 수 있는 치킨’에 대한 강력한 니즈를 발견했습니다. 대다수 경쟁사가 자극적인 맛 경쟁에 머무는 사이, 신선함을 안전과 신뢰라는 USP로 재정의했습니다.",
-      "stats": [
-        {
-          "value": "안전·신뢰",
-          "label": "재정의한 USP",
-          "note": "‘신선함’을 넘어선 가치"
-        },
-        {
-          "value": "신혼 부모",
-          "label": "코어 타깃",
-          "note": "아이에게 안심하고 먹이는 치킨"
-        },
-        {
-          "value": "순함·안심",
-          "label": "포지셔닝",
-          "note": "자극 경쟁에서 이탈"
-        }
-      ],
-      "note": "경쟁은 ‘매운맛·자극’에 몰려 있었고, 파머스는 ‘순함·안심’의 빈 자리를 차지했습니다."
-    },
-    "gallery": [
-      "images/works/chicken-farmers/g1.jpg",
-      "images/works/chicken-farmers/g2.jpg",
-      "images/works/chicken-farmers/g3.jpg",
-      "images/works/chicken-farmers/g4.jpg"
-    ]
-  },
-  {
     "id": "woosundam",
     "title": "우선담",
     "title_en": "Woosundam",
@@ -231,48 +68,96 @@
       "Brand Identity",
       "F&B"
     ],
-    "story": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점의 문법을 벗어나, 강렬한 민트색 파사드로 거리의 시선을 붙잡았습니다. 브랜딩·그래픽·공간을 프리랜서로 전개했습니다.",
-    "problem": {
-      "kicker": "시장 & 고객 · Market",
-      "headline": "유동은 적어도, 이유는 분명한 자리",
-      "sub": "유동은 적지만 방문 목적성이 뚜렷한 상권. 30–40대 코어 타깃에 맞춰 거리의 랜드마크 전략을 세웠습니다.",
-      "stats": [
-        {
-          "value": "LOW",
-          "label": "유동량",
-          "note": "상권 평균 이하"
-        },
-        {
-          "value": "HIGH",
-          "label": "방문 목적성",
-          "note": "예약·맞춤 수요 중심"
-        },
-        {
-          "value": "30–40대",
-          "label": "핵심 타깃",
-          "note": "직장인·예물 맞춤 수요"
-        }
-      ],
-      "note": "낮은 유동·칙칙한 거리 → 민트 컬러를 ‘가로의 랜드마크’로 세워 시선을 정지시켰습니다."
-    },
     "gallery": [
-      "images/works/woosundam/g1.jpg",
       [
-        "images/works/woosundam/n1.jpg",
-        "images/works/woosundam/n2.jpg"
-      ],
-      "images/works/woosundam/n3.jpg"
+        "images/works/woosundam/food.jpg",
+        "images/works/woosundam/card.jpg"
+      ]
     ],
     "sections": [
       {
         "type": "media",
+        "label": "Logo · 로고",
+        "images": [
+          [
+            "images/works/woosundam/logo-word.jpg",
+            "images/works/woosundam/logo-pylon.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Signage · 사이니지",
+        "images": [
+          "images/works/woosundam/ext.jpg"
+        ]
+      },
+      {
+        "type": "media",
         "label": "Space · 공간 설계",
-        "sub": "평면(Floor)과 아이소메트릭(Isometric)으로 매장 동선과 파사드를 함께 설계했습니다.",
         "images": [
           [
             "images/works/woosundam/floor.png",
             "images/works/woosundam/iso.png"
           ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Interior · 인테리어",
+        "images": [
+          [
+            "images/works/woosundam/int1.jpg",
+            "images/works/woosundam/int2.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Uniform · 유니폼",
+        "images": [
+          [
+            "images/works/woosundam/uni1.jpg",
+            "images/works/woosundam/uni2.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Graphic · 그래픽",
+        "images": [
+          [
+            "images/works/woosundam/menu.jpg",
+            "images/works/woosundam/banner.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Promotion · 마케팅 프로모션",
+        "images": [
+          [
+            "images/works/woosundam/n1.jpg",
+            "images/works/woosundam/n2.jpg",
+            "images/works/woosundam/n3.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Merchandise · 굿즈",
+        "images": [
+          [
+            "images/works/woosundam/tshirt.jpg",
+            "images/works/woosundam/pkg.jpg"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Outdoor · 옥외 광고",
+        "images": [
+          "images/works/woosundam/billboard.jpg"
         ]
       }
     ]
@@ -344,112 +229,6 @@
         "images/works/jaws/n5.jpg",
         "images/works/jaws/n6.jpg"
       ]
-    ]
-  },
-  {
-    "id": "jindaegam",
-    "title": "진대감",
-    "title_en": "Jindaegam",
-    "year": "2022",
-    "period": "2021.05 — 2022.08",
-    "category": [
-      "brand",
-      "graphic",
-      "spatial"
-    ],
-    "primary": "spatial",
-    "role": "브랜딩 · 그래픽 · 공간 디자인",
-    "client": "고릴라에프앤디",
-    "summary": "한국 고유의 '합' 문화를 미식의 영역에서 재해석. 전통의 물성으로 현대적 미감을 설계한 모던 한식.",
-    "cover": "images/works/jindaegam/cover.jpg",
-    "tags": [
-      "Brand Identity",
-      "Spatial",
-      "F&B"
-    ],
-    "story": "한국 고유의 ‘합’ 문화를 미식의 영역에서 재해석한 모던 한식. 전통의 물성으로 현대적 미감을 설계해, ‘도심형 뉴트로 다이닝’이라는 고유한 영역을 만들었습니다. 브랜딩·그래픽·공간을 전개했습니다.",
-    "problem": {
-      "kicker": "포지셔닝 · Positioning",
-      "headline": "전통의 헤리티지를, 모던함으로 승화하다",
-      "sub": "전통성과 모던함 어느 한쪽에 치우친 시장. 진대감은 다섯 축의 균형점에서 ‘도심형 뉴트로 다이닝’이라는 고유한 영역을 만들었습니다.",
-      "stats": [
-        {
-          "value": "차돌삼합",
-          "label": "핵심 타깃 수요",
-          "note": "모임·접대 중심"
-        },
-        {
-          "value": "전통 × 모던",
-          "label": "포지셔닝",
-          "note": "전통 물성 · 모던 표현"
-        },
-        {
-          "value": "도심형 뉴트로",
-          "label": "고유 영역",
-          "note": "‘진정한 대접을 하는 곳’"
-        }
-      ],
-      "bars": {
-        "title": "포지셔닝 · 5축 균형 (진대감)",
-        "items": [
-          {
-            "label": "전통성",
-            "pct": 90
-          },
-          {
-            "label": "격식·대접",
-            "pct": 85
-          },
-          {
-            "label": "미식 완성도",
-            "pct": 88
-          },
-          {
-            "label": "모던함",
-            "pct": 80
-          },
-          {
-            "label": "접근성",
-            "pct": 55
-          }
-        ]
-      },
-      "note": "전통 물성(소재) → 모던하게(표현) → 도심형 뉴트로(공간) → 진정한 대접(경험)."
-    },
-    "gallery": [
-      [
-        "images/works/jindaegam/n1.jpg",
-        "images/works/jindaegam/n2.jpg"
-      ],
-      [
-        "images/works/jindaegam/g3.jpg",
-        "images/works/jindaegam/g4.jpg"
-      ],
-      "images/works/jindaegam/g1.jpg"
-    ],
-    "sections": [
-      {
-        "type": "media",
-        "label": "Space · 공간 설계",
-        "sub": "전통 물성을 현대적으로 재구성한 다이닝. 평면과 아이소메트릭으로 공간을 설계했습니다.",
-        "images": [
-          [
-            "images/works/jindaegam/floor.png",
-            "images/works/jindaegam/iso.png"
-          ]
-        ]
-      },
-      {
-        "type": "media",
-        "label": "Menu · 메뉴",
-        "sub": "차돌삼합·한우 중심 구성. 한지 질감의 메뉴로 대접의 격을 더했습니다.",
-        "images": [
-          [
-            "images/works/jindaegam/menu1.jpg",
-            "images/works/jindaegam/menu2.jpg"
-          ]
-        ]
-      }
     ]
   }
 ]

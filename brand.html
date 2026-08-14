@@ -407,9 +407,7 @@ function renderCaseStudy(p) {
     h += `<section class="cs-sec">
       <div class="cs-label">Application · 적용</div>
       <div class="cs-gallery">
-        ${p.gallery.map(s => Array.isArray(s)
-          ? `<div class="cs-gallery-row">${s.map(shotHTML).join('')}</div>`
-          : shotHTML(s)).join('')}
+        ${p.gallery.map(galleryItemHTML).join('')}
       </div>
     </section>`;
   }
@@ -418,6 +416,12 @@ function renderCaseStudy(p) {
 
 function shotHTML(u) {
   return `<div class="cs-shot"><img src="${esc(u)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
+}
+
+function galleryItemHTML(s) {
+  return Array.isArray(s)
+    ? `<div class="cs-gallery-row" style="grid-template-columns:repeat(${s.length},minmax(0,1fr))">${s.map(shotHTML).join('')}</div>`
+    : shotHTML(s);
 }
 
 function csHead(sec) {
@@ -528,9 +532,7 @@ function renderProcess(sec) {
 }
 
 function renderMedia(sec) {
-  const shots = (sec.images || []).map(s => Array.isArray(s)
-    ? `<div class="cs-gallery-row">${s.map(shotHTML).join('')}</div>`
-    : shotHTML(s)).join('');
+  const shots = (sec.images || []).map(galleryItemHTML).join('');
   return `<section class="cs-sec">
     ${csHead(sec)}
     <div class="cs-gallery">${shots}</div>

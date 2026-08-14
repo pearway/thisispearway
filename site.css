@@ -674,8 +674,8 @@ footer.site .copyright {
 .cs-gallery { display: flex; flex-direction: column; gap: clamp(0.75rem,1.5vw,1.25rem); }
 .cs-shot { border-radius: 12px; overflow: hidden; background: var(--bg-alt); }
 .cs-shot img { width: 100%; display: block; }
-.cs-gallery-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.75rem,1.5vw,1.25rem); }
-@media (max-width: 620px) { .cs-gallery-row { grid-template-columns: 1fr; } }
+.cs-gallery-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(0.75rem,1.5vw,1.25rem); align-items: start; }
+@media (max-width: 620px) { .cs-gallery-row { grid-template-columns: 1fr !important; } }
 
 /* identity (logo · keywords · color) */
 .cs-id { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1rem,2.5vw,1.75rem); margin-top: clamp(1.75rem,4vw,2.75rem); align-items: stretch; }
