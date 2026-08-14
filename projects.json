@@ -87,13 +87,35 @@
       "Spatial",
       "Collaboration"
     ],
-    "images": [
-      "images/works/duomo-pizza/01.jpg",
-      "images/works/duomo-pizza/02.jpg",
-      "images/works/duomo-pizza/03.jpg",
-      "images/works/duomo-pizza/04.jpg",
-      "images/works/duomo-pizza/05.jpg",
-      "images/works/duomo-pizza/06.jpg"
+    "story": "이탈리안 피자 브랜드 듀오모의 베네수엘라 진출 프로젝트. 현지 에이전시 Burgo와 협업해, 단순히 피자를 파는 매장이 아니라 도심의 에너지가 녹아든 라이프스타일 경험으로 공간을 설계했습니다. 이탈리아 모티브를 산업적 디테일·네온·스트릿 감성으로 재해석했습니다.",
+    "problem": {
+      "kicker": "컨셉 · Concept",
+      "headline": "단순함에서 벗어나, 새로운 문화 공간으로",
+      "sub": "현지 타깃은 피자를 먹는 것을 넘어 도심의 에너지와 현대적 감각이 녹아든 경험을 원했습니다. 베네수엘라 거리의 물성을 재해석해 강렬하고 개성 있는 공간을 완성했습니다.",
+      "stats": [
+        {
+          "value": "베네수엘라",
+          "label": "진출 시장",
+          "note": "현지 라이프스타일 타깃"
+        },
+        {
+          "value": "산업·네온·거리",
+          "label": "공간 언어",
+          "note": "로컬 감성 재해석"
+        },
+        {
+          "value": "Burgo",
+          "label": "협업 구조",
+          "note": "현지 에이전시 파트너십"
+        }
+      ],
+      "note": "이탈리아의 상징성을 베네수엘라 거리의 날것 그대로의 에너지로 번역했습니다."
+    },
+    "gallery": [
+      "images/works/duomo-pizza/g1.jpg",
+      "images/works/duomo-pizza/g2.jpg",
+      "images/works/duomo-pizza/g3.jpg",
+      "images/works/duomo-pizza/g4.jpg"
     ]
   },
   {
@@ -117,17 +139,35 @@
       "F&B",
       "Spatial"
     ],
-    "images": [
-      "images/works/chicken-farmers/01.jpg",
-      "images/works/chicken-farmers/02.jpg",
-      "images/works/chicken-farmers/03.jpg",
-      "images/works/chicken-farmers/04.jpg",
-      "images/works/chicken-farmers/05.jpg",
-      "images/works/chicken-farmers/06.jpg",
-      "images/works/chicken-farmers/07.jpg",
-      "images/works/chicken-farmers/08.jpg",
-      "images/works/chicken-farmers/09.jpg",
-      "images/works/chicken-farmers/10.jpg"
+    "story": "국내에서 직접 공수한 신선한 식재료가 강점인 치킨 브랜드. ‘Farm To Table’을 축으로, 자극적인 맛 경쟁이 지배하던 시장에서 ‘신선함은 곧 안전과 신뢰’라는 독자적 USP를 정의한 리브랜딩입니다. 브랜딩·그래픽·공간을 함께 전개했습니다.",
+    "problem": {
+      "kicker": "전략 · Strategy",
+      "headline": "신선함만으로는 새로운 문화를 만들기 어렵다",
+      "sub": "리서치 결과 신혼 부모 타깃에서 ‘아이에게 안심하고 먹일 수 있는 치킨’에 대한 강력한 니즈를 발견했습니다. 대다수 경쟁사가 자극적인 맛 경쟁에 머무는 사이, 신선함을 안전과 신뢰라는 USP로 재정의했습니다.",
+      "stats": [
+        {
+          "value": "안전·신뢰",
+          "label": "재정의한 USP",
+          "note": "‘신선함’을 넘어선 가치"
+        },
+        {
+          "value": "신혼 부모",
+          "label": "코어 타깃",
+          "note": "아이에게 안심하고 먹이는 치킨"
+        },
+        {
+          "value": "순함·안심",
+          "label": "포지셔닝",
+          "note": "자극 경쟁에서 이탈"
+        }
+      ],
+      "note": "경쟁은 ‘매운맛·자극’에 몰려 있었고, 파머스는 ‘순함·안심’의 빈 자리를 차지했습니다."
+    },
+    "gallery": [
+      "images/works/chicken-farmers/g1.jpg",
+      "images/works/chicken-farmers/g2.jpg",
+      "images/works/chicken-farmers/g3.jpg",
+      "images/works/chicken-farmers/g4.jpg"
     ]
   },
   {
@@ -150,14 +190,33 @@
       "Brand Identity",
       "F&B"
     ],
-    "images": [
-      "images/works/woosundam/01.jpg",
-      "images/works/woosundam/02.jpg",
-      "images/works/woosundam/03.jpg",
-      "images/works/woosundam/04.jpg",
-      "images/works/woosundam/05.jpg",
-      "images/works/woosundam/06.jpg",
-      "images/works/woosundam/07.jpg"
+    "story": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점의 문법을 벗어나, 강렬한 민트색 파사드로 거리의 시선을 붙잡았습니다. 브랜딩·그래픽·공간을 프리랜서로 전개했습니다.",
+    "problem": {
+      "kicker": "시장 & 고객 · Market",
+      "headline": "유동은 적어도, 이유는 분명한 자리",
+      "sub": "유동은 적지만 방문 목적성이 뚜렷한 상권. 30–40대 코어 타깃에 맞춰 거리의 랜드마크 전략을 세웠습니다.",
+      "stats": [
+        {
+          "value": "LOW",
+          "label": "유동량",
+          "note": "상권 평균 이하"
+        },
+        {
+          "value": "HIGH",
+          "label": "방문 목적성",
+          "note": "예약·맞춤 수요 중심"
+        },
+        {
+          "value": "30–40대",
+          "label": "핵심 타깃",
+          "note": "직장인·예물 맞춤 수요"
+        }
+      ],
+      "note": "낮은 유동·칙칙한 거리 → 민트 컬러를 ‘가로의 랜드마크’로 세워 시선을 정지시켰습니다."
+    },
+    "gallery": [
+      "images/works/woosundam/g1.jpg",
+      "images/works/woosundam/g2.jpg"
     ]
   },
   {
@@ -181,14 +240,46 @@
       "Graphic",
       "F&B"
     ],
-    "images": [
-      "images/works/jaws/01.jpg",
-      "images/works/jaws/02.jpg",
-      "images/works/jaws/03.jpg",
-      "images/works/jaws/04.jpg",
-      "images/works/jaws/05.jpg",
-      "images/works/jaws/06.jpg",
-      "images/works/jaws/07.jpg"
+    "story": "죠스푸드의 해외 진출 프로젝트. LA 코리아타운 매장의 익스테리어와 신규 브랜드 런칭을 맡아, JAWS 떡볶이·콰삭(QUASAK)·okaay 등 서브 브랜드의 그래픽과 패키지까지 함께 전개했습니다.",
+    "problem": {
+      "kicker": "해외 시공 · Overseas",
+      "headline": "프로토타입으로, 시공 리스크를 지우다",
+      "sub": "현장 수정이 불가능한 해외 시공. 3D 프로토타이핑으로 짓기 전 이미지로 합의하고, 원격의 시행착오를 미리 없앴습니다.",
+      "stats": [
+        {
+          "value": "98",
+          "unit": "%",
+          "label": "시공 전 구현 정확도",
+          "note": "3D 사전 검증 기준"
+        },
+        {
+          "value": "0",
+          "unit": "회",
+          "label": "현장 재작업",
+          "note": "원격·현장 수정 불가 대응"
+        },
+        {
+          "value": "한국↔해외",
+          "label": "협업 구조",
+          "note": "법인 간 원격 협업"
+        }
+      ],
+      "bars": {
+        "title": "시공 전 사전 구현율 · 3D 합의 → 실제 시공 일치도",
+        "items": [
+          {
+            "label": "구현 일치도",
+            "pct": 98
+          }
+        ]
+      },
+      "note": "해외·현장 수정 불가 → 3D 이미지로 합의 → 시공 전 확인 → 불필요한 지출 방지."
+    },
+    "gallery": [
+      "images/works/jaws/g1.jpg",
+      "images/works/jaws/g2.jpg",
+      "images/works/jaws/g3.jpg",
+      "images/works/jaws/g4.jpg"
     ]
   },
   {
@@ -212,15 +303,59 @@
       "Spatial",
       "F&B"
     ],
-    "images": [
-      "images/works/jindaegam/01.jpg",
-      "images/works/jindaegam/02.jpg",
-      "images/works/jindaegam/03.jpg",
-      "images/works/jindaegam/04.jpg",
-      "images/works/jindaegam/05.jpg",
-      "images/works/jindaegam/06.jpg",
-      "images/works/jindaegam/07.jpg",
-      "images/works/jindaegam/08.jpg"
+    "story": "한국 고유의 ‘합’ 문화를 미식의 영역에서 재해석한 모던 한식. 전통의 물성으로 현대적 미감을 설계해, ‘도심형 뉴트로 다이닝’이라는 고유한 영역을 만들었습니다. 브랜딩·그래픽·공간을 전개했습니다.",
+    "problem": {
+      "kicker": "포지셔닝 · Positioning",
+      "headline": "전통의 헤리티지를, 모던함으로 승화하다",
+      "sub": "전통성과 모던함 어느 한쪽에 치우친 시장. 진대감은 다섯 축의 균형점에서 ‘도심형 뉴트로 다이닝’이라는 고유한 영역을 만들었습니다.",
+      "stats": [
+        {
+          "value": "차돌삼합",
+          "label": "핵심 타깃 수요",
+          "note": "모임·접대 중심"
+        },
+        {
+          "value": "전통 × 모던",
+          "label": "포지셔닝",
+          "note": "전통 물성 · 모던 표현"
+        },
+        {
+          "value": "도심형 뉴트로",
+          "label": "고유 영역",
+          "note": "‘진정한 대접을 하는 곳’"
+        }
+      ],
+      "bars": {
+        "title": "포지셔닝 · 5축 균형 (진대감)",
+        "items": [
+          {
+            "label": "전통성",
+            "pct": 90
+          },
+          {
+            "label": "격식·대접",
+            "pct": 85
+          },
+          {
+            "label": "미식 완성도",
+            "pct": 88
+          },
+          {
+            "label": "모던함",
+            "pct": 80
+          },
+          {
+            "label": "접근성",
+            "pct": 55
+          }
+        ]
+      },
+      "note": "전통 물성(소재) → 모던하게(표현) → 도심형 뉴트로(공간) → 진정한 대접(경험)."
+    },
+    "gallery": [
+      "images/works/jindaegam/g1.jpg",
+      "images/works/jindaegam/g2.jpg",
+      "images/works/jindaegam/g3.jpg"
     ]
   }
 ]
