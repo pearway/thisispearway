@@ -241,10 +241,8 @@ async function loadProjects() {
       thumb: p.cover,
       cat: p.primary,
       desc: p.summary,
-      blocks: [
-        ...(p.cover ? [{ type: 'img', src: p.cover }] : []),
-        ...((p.images || []).map(s => ({ type: 'img', src: s })))
-      ]
+      blocks: ((p.images && p.images.length) ? p.images : (p.cover ? [p.cover] : []))
+        .map(s => ({ type: 'img', src: s }))
     }));
     buildFilters();
     renderGrid();
