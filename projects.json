@@ -18,16 +18,55 @@
       "Signage System",
       "Guidelines"
     ],
-    "images": [
-      "images/works/mini-warehouse-darak/01.jpg",
-      "images/works/mini-warehouse-darak/02.jpg",
-      "images/works/mini-warehouse-darak/03.jpg",
-      "images/works/mini-warehouse-darak/04.jpg",
-      "images/works/mini-warehouse-darak/05.jpg",
-      "images/works/mini-warehouse-darak/06.jpg",
-      "images/works/mini-warehouse-darak/07.jpg",
-      "images/works/mini-warehouse-darak/08.jpg",
-      "images/works/mini-warehouse-darak/09.jpg"
+    "story": "저가 창고로 저평가되던 미니창고 다락을 ‘프리미엄 스토리지’로 재정의했습니다. 포지셔닝부터 네이밍·로고·컬러, 그리고 비용까지 개선한 사이니지 모듈 시스템을 정립했습니다. 프로덕트 디자이너와 2인으로 진행했습니다.",
+    "problem": {
+      "kicker": "문제 정의",
+      "headline": "규모는 200배 커졌지만, 인식은 그대로였다",
+      "sub": "10년간 지점은 1개에서 200개로 늘었지만, 브랜드 인식은 여전히 ‘저가 창고’에 머물러 있었습니다.",
+      "stats": [
+        {
+          "value": "1 → 200",
+          "unit": "개",
+          "label": "지점 성장 · 2016 → 2025",
+          "note": "10년간 200배 확장"
+        },
+        {
+          "value": "61",
+          "unit": "%",
+          "label": "저가 키워드 유입",
+          "note": "전체 유입 중 최다"
+        },
+        {
+          "value": "저평가",
+          "unit": "",
+          "label": "브랜드 인식",
+          "note": "규모는 성장, 인식은 정체"
+        }
+      ],
+      "bars": {
+        "title": "유입 경로 · 고객은 어떻게 찾아오는가",
+        "items": [
+          {
+            "label": "저가 키워드 검색",
+            "pct": 61
+          },
+          {
+            "label": "브랜드 광고",
+            "pct": 22
+          },
+          {
+            "label": "오프라인",
+            "pct": 18
+          }
+        ]
+      },
+      "note": "유입의 61%가 ‘저가’ 검색 — 브랜드가 아니라 가격으로 소비되고 있었습니다."
+    },
+    "gallery": [
+      "images/works/mini-warehouse-darak/m1.jpg",
+      "images/works/mini-warehouse-darak/m2.jpg",
+      "images/works/mini-warehouse-darak/m3.jpg",
+      "images/works/mini-warehouse-darak/m4.jpg"
     ]
   },
   {

@@ -342,10 +342,14 @@ function openDetail(docId) {
     p.client && `Client — ${esc(p.client)}`
   ].filter(Boolean).map(s => `<span>${s}</span>`).join('');
 
-  const blocksHtml = renderBlocks(p.blocks || []);
   const externalLink = p.url
     ? `<p style="margin-top:1.5rem"><a href="${esc(p.url)}" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-2);border-bottom:1px solid var(--ink-2);padding-bottom:2px">Visit ↗</a></p>`
     : '';
+
+  const isCase = p.story || p.problem || (Array.isArray(p.gallery) && p.gallery.length);
+  const bodyHtml = isCase
+    ? renderCaseStudy(p)
+    : `<div class="detail-blocks">${renderBlocks(p.blocks || [])}</div>`;
 
   detailBody.innerHTML = `
     <div class="detail-hero">
@@ -354,7 +358,7 @@ function openDetail(docId) {
       ${p.desc ? `<p class="desc">${esc(p.desc)}</p>` : ''}
       ${externalLink}
     </div>
-    <div class="detail-blocks">${blocksHtml}</div>
+    ${bodyHtml}
   `;
 
   overlay.classList.add('open');
@@ -388,6 +392,52 @@ function renderBlocks(blocks) {
     }
     return '';
   }).join('');
+}
+
+/* Web-native case study: Story → 기획(밝은 지표·차트) → 목업 */
+function renderCaseStudy(p) {
+  let h = '';
+  if (p.story) {
+    h += `<section class="cs-sec">
+      <div class="cs-label">Story · 스토리</div>
+      <p class="cs-lead">${esc(p.story)}</p>
+    </section>`;
+  }
+  const pr = p.problem;
+  if (pr) {
+    const stats = (pr.stats || []).map(s => `
+      <div class="cs-stat">
+        <div class="cs-stat-v">${esc(s.value)}${s.unit ? `<span>${esc(s.unit)}</span>` : ''}</div>
+        <div class="cs-stat-l">${esc(s.label)}</div>
+        ${s.note ? `<div class="cs-stat-n">${esc(s.note)}</div>` : ''}
+      </div>`).join('');
+    const bars = pr.bars ? `
+      <div class="cs-bars">
+        ${pr.bars.title ? `<div class="cs-bars-t">${esc(pr.bars.title)}</div>` : ''}
+        ${(pr.bars.items || []).map(it => `
+          <div class="cs-bar">
+            <div class="cs-bar-h"><span>${esc(it.label)}</span><span>${Number(it.pct)}%</span></div>
+            <div class="cs-bar-track"><i style="width:${Number(it.pct)}%"></i></div>
+          </div>`).join('')}
+      </div>` : '';
+    h += `<section class="cs-sec">
+      <div class="cs-label">기획 · ${esc(pr.kicker || '문제 정의')}</div>
+      ${pr.headline ? `<h3 class="cs-head">${esc(pr.headline)}</h3>` : ''}
+      ${pr.sub ? `<p class="cs-sub">${esc(pr.sub)}</p>` : ''}
+      ${stats ? `<div class="cs-stats">${stats}</div>` : ''}
+      ${bars}
+      ${pr.note ? `<p class="cs-note">${esc(pr.note)}</p>` : ''}
+    </section>`;
+  }
+  if (Array.isArray(p.gallery) && p.gallery.length) {
+    h += `<section class="cs-sec">
+      <div class="cs-label">Application · 적용</div>
+      <div class="cs-gallery">
+        ${p.gallery.map(s => `<div class="cs-shot"><img src="${esc(s)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`).join('')}
+      </div>
+    </section>`;
+  }
+  return h;
 }
 
 function closeDetail() {

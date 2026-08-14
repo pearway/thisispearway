@@ -620,3 +620,28 @@ footer.site .copyright {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- CASE STUDY (project detail, light theme) ---------- */
+.cs-sec { padding: clamp(2.5rem,6vw,5rem) 0; border-top: 1px solid var(--line); }
+.cs-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: clamp(1.25rem,3vw,2rem); }
+.cs-lead { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.15rem,2vw,1.6rem); line-height: 1.55; letter-spacing: -0.01em; color: var(--ink); max-width: 42ch; }
+.cs-head { font-family: var(--font-display); font-weight: 500; font-size: clamp(1.5rem,3.2vw,2.4rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); max-width: 22ch; }
+.cs-sub { margin-top: 1rem; font-size: clamp(1rem,1.2vw,1.1rem); line-height: 1.7; color: var(--ink-2); max-width: 52ch; }
+.cs-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr)); gap: clamp(0.75rem,1.5vw,1rem); margin-top: clamp(1.75rem,4vw,2.75rem); }
+.cs-stat { background: var(--bg-alt); border-radius: 14px; padding: clamp(1.25rem,2.5vw,1.75rem); }
+.cs-stat-v { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.7rem,3.4vw,2.5rem); line-height: 1; letter-spacing: -0.02em; color: var(--ink); }
+.cs-stat-v span { font-size: 0.5em; font-weight: 500; margin-left: 0.12em; color: var(--ink-2); }
+.cs-stat-l { margin-top: 0.85rem; font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+.cs-stat-n { margin-top: 0.3rem; font-size: 0.82rem; color: var(--ink-3); }
+.cs-bars { margin-top: clamp(1.5rem,3vw,2.25rem); background: var(--bg-alt); border-radius: 14px; padding: clamp(1.5rem,3vw,2rem); max-width: 620px; }
+.cs-bars-t { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 1.25rem; }
+.cs-bar { margin-bottom: 1.1rem; }
+.cs-bar:last-child { margin-bottom: 0; }
+.cs-bar-h { display: flex; justify-content: space-between; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.5rem; }
+.cs-bar-h span:last-child { font-family: var(--font-mono); color: var(--ink-2); }
+.cs-bar-track { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.cs-bar-track i { display: block; height: 100%; background: var(--ink); border-radius: 3px; }
+.cs-note { margin-top: clamp(1.5rem,3vw,2rem); padding-left: 1rem; border-left: 2px solid var(--ink); font-size: 1rem; line-height: 1.7; color: var(--ink-2); max-width: 46ch; }
+.cs-gallery { display: flex; flex-direction: column; gap: clamp(0.75rem,1.5vw,1.25rem); }
+.cs-shot { border-radius: 12px; overflow: hidden; background: var(--bg-alt); }
+.cs-shot img { width: 100%; display: block; }
