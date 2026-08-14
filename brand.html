@@ -141,26 +141,12 @@
   <div class="detail-body" id="detail-body"></div>
 </div>
 
-<!-- ============ FIREBASE + RENDER ============ -->
+<!-- ============ PROJECTS (repo JSON) + RENDER ============ -->
 <script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
 import Lenis from 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/+esm';
 
-/* ===== Firebase config (read-only public access via Firestore Rules) ===== */
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "thisispearway.firebaseapp.com",
-  projectId: "thisispearway",
-  storageBucket: "thisispearway.firebasestorage.app",
-  messagingSenderId: "657205333061",
-  appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
-};
-const COLLECTION = "projects";
-/* ====================================================================== */
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+/* Projects load from /projects.json in this repo. Images live in
+   images/works/<id>/ — drop a cover.jpg (and extra photos) into each folder. */
 
 const $ = id => document.getElementById(id);
 const grid = $('works-grid');
@@ -245,13 +231,21 @@ onScroll();
 /* ---------- Load projects ---------- */
 async function loadProjects() {
   try {
-    let snap;
-    try { snap = await getDocs(query(collection(db, COLLECTION), orderBy('order', 'asc'))); }
-    catch { snap = await getDocs(collection(db, COLLECTION)); }
-    allProjects = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
-    allProjects.sort((a, b) =>
-      (typeof a.order === 'number' ? a.order : 9999) - (typeof b.order === 'number' ? b.order : 9999)
-    );
+    const res = await fetch('projects.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('projects.json ' + res.status);
+    const data = await res.json();
+    // normalise repo JSON → fields the renderer expects
+    allProjects = data.map(p => ({
+      ...p,
+      _docId: p.id,
+      thumb: p.cover,
+      cat: p.primary,
+      desc: p.summary,
+      blocks: [
+        ...(p.cover ? [{ type: 'img', src: p.cover }] : []),
+        ...((p.images || []).map(s => ({ type: 'img', src: s })))
+      ]
+    }));
     buildFilters();
     renderGrid();
   } catch (e) {
