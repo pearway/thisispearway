@@ -56,30 +56,13 @@
         "headline": "현장마다 달랐던 간판을, 모듈 시스템으로",
         "sub": "기존 간판은 플렉스·채널 두 형태가 혼재해 매장마다 견적과 마진의 변동성이 컸고, 후킹 포인트가 없어 시인성도 약했습니다. 어떤 매장 폭에도 조합되는 표준 모듈을 설계해 견적·시공·시인성을 한 번에 정리했습니다.",
         "before": { "img": "images/works/mini-warehouse-darak/before-sign.jpg", "label": "BEFORE · 혼재된 기존 간판" },
-        "afterLabel": "AFTER · 표준 모듈 시스템",
-        "scaleLabel": "모듈 설계 · SCALE 10/1",
-        "wordmark": "다락",
-        "accent": "#2868FF",
-        "signText": { "left": "기흥서천점", "right": "창업문의 1661.0180" },
-        "callouts": [
-          { "label": "슬림 인쇄", "at": 0.16 },
-          { "label": "트러스트 H200", "at": 0.26 },
-          { "label": "캡채널", "at": 0.34 }
-        ],
-        "overall": "6,000",
-        "height": 200,
-        "modules": [
-          { "no": "No.1", "w": 390 },
-          { "no": "No.2", "w": 920 },
-          { "no": "No.3", "w": 920 },
-          { "no": "No.4", "w": 1000 },
-          { "no": "No.5", "w": 1000 },
-          { "no": "No.6", "w": 390 }
-        ],
+        "afterLabel": "AFTER · 표준 모듈 도면 (SCALE 10/1)",
+        "drawing": "images/works/mini-warehouse-darak/signage-drawing.png",
         "specs": [
-          "모듈 · 미니 플렉스 / LED 백색 조명 / 지정 블루 도색",
-          "채널 · 캡채널 H200 / 측면 지정 블루",
-          "마감 · 시트지 대신 슬림 실사 인쇄로 일관된 브랜드 컬러"
+          "모듈 · 파나 플랙스 / LED 백색 조명 취부 / 측면 지정 블루 도색",
+          "채널 · 캡채널 / LED 백색 조명 취부 / 측면 지정 블루 도색",
+          "트러스트 · H200 진회색",
+          "마감 · 시트지 대신 솔벤 실사 인쇄로 일관된 브랜드 컬러를 오프라인에 반영"
         ]
       }
     ],

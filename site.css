@@ -696,6 +696,11 @@ footer.site .copyright {
 .cs-sign-before figcaption, .cs-sign-cap { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 0.9rem; }
 .cs-sign-before img { width: 100%; border-radius: 8px; display: block; margin: auto 0; background: #fff; }
 .cs-sign-svg { width: 100%; height: auto; display: block; margin: auto 0; }
+.cs-sign.stack { grid-template-columns: 1fr; gap: clamp(0.75rem,1.5vw,1.1rem); }
+.cs-sign.stack .cs-sign-before { max-width: 560px; }
+.cs-draw-wrap { display: flex; flex-direction: column; }
+.cs-draw-wrap .cs-sign-cap { margin-bottom: 0.9rem; }
+.cs-draw { width: 100%; display: block; border-radius: 14px; background: #242526; }
 .cs-specs { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 0.6rem; margin-top: 1rem; }
 .cs-spec { font-size: 0.85rem; color: var(--ink-2); line-height: 1.6; padding-left: 0.9rem; border-left: 2px solid var(--line); }
 

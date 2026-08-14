@@ -550,21 +550,24 @@ function signageSVG(sec) {
 }
 
 function renderSignage(sec) {
-  const accent = sec.accent || '#2868FF';
   const before = sec.before ? `
     <figure class="cs-sign-before">
       <figcaption>${esc(sec.before.label || 'BEFORE')}</figcaption>
       <img src="${esc(sec.before.img)}" alt="기존 간판" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()">
     </figure>` : '';
+  const afterLabel = esc(sec.afterLabel || 'AFTER · 표준 모듈 시스템');
+  const after = sec.drawing
+    ? `<figure class="cs-draw-wrap">
+        <figcaption class="cs-sign-cap">${afterLabel}</figcaption>
+        <img class="cs-draw" src="${esc(sec.drawing)}" alt="사이니지 모듈 도면" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()">
+      </figure>`
+    : `<div class="cs-sign-after"><div class="cs-sign-cap">${afterLabel}</div>${signageSVG(sec)}</div>`;
   const specs = (sec.specs || []).map(s => `<div class="cs-spec">${esc(s)}</div>`).join('');
   return `<section class="cs-sec">
     ${csHead(sec)}
-    <div class="cs-sign">
+    <div class="cs-sign${sec.drawing ? ' stack' : ''}">
       ${before}
-      <div class="cs-sign-after">
-        <div class="cs-sign-cap">${esc(sec.afterLabel || 'AFTER · 표준 모듈 시스템')}</div>
-        ${signageSVG(sec)}
-      </div>
+      ${after}
     </div>
     ${specs ? `<div class="cs-specs">${specs}</div>` : ''}
   </section>`;
