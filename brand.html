@@ -486,40 +486,66 @@ function renderIdentity(sec) {
   </section>`;
 }
 
-function signageSVG(modules, wordmark, accent) {
-  const mods = modules || [];
+function signageSVG(sec) {
+  const mods = sec.modules || [];
   const total = mods.reduce((s, m) => s + Number(m.w), 0) || 1;
-  const VW = 1000, x0 = 26;
-  const avail = VW - x0 * 2;
-  const barTop = 92, barH = 96, barBottom = barTop + barH;
-  let x = x0, labels = '', dividers = '';
-  mods.forEach((m, i) => {
-    const w = Number(m.w) / total * avail;
-    const cx = x + w / 2;
-    labels += `<text x="${cx.toFixed(1)}" y="52" class="sg-no">${esc(m.no)}</text>
-      <text x="${cx.toFixed(1)}" y="74" class="sg-w">${Number(m.w)}</text>`;
-    if (i > 0) {
-      dividers += `<line x1="${x.toFixed(1)}" y1="${barTop}" x2="${x.toFixed(1)}" y2="${barBottom}" stroke="rgba(255,255,255,0.42)" stroke-width="1.5"/>
-        <line x1="${x.toFixed(1)}" y1="${barTop - 12}" x2="${x.toFixed(1)}" y2="${barTop}" stroke="var(--line)" stroke-width="1"/>`;
-    }
-    x += w;
-  });
+  const accent = sec.accent || '#2868FF';
+  const st = sec.signText || {};
+  const VW = 1000, x0 = 34, rightPad = 74;
+  const avail = VW - x0 - rightPad;
+  const barTop = 196, barH = 84, barBottom = barTop + barH;
+  let x = x0; const segs = [];
+  mods.forEach(m => { const w = Number(m.w) / total * avail; segs.push({ no: m.no, w: Number(m.w), x, cx: x + w / 2 }); x += w; });
   const right = x;
-  return `<svg viewBox="0 0 1000 220" class="cs-sign-svg" role="img" aria-label="사이니지 모듈 시스템">
+  let nums = '', dividers = '';
+  segs.forEach((s, i) => {
+    nums += `<text x="${s.cx.toFixed(1)}" y="150" class="sg-no">${esc(s.no)}</text>
+      <text x="${s.cx.toFixed(1)}" y="171" class="sg-w">${s.w}</text>`;
+    if (i > 0) dividers += `<line x1="${s.x.toFixed(1)}" y1="${barTop}" x2="${s.x.toFixed(1)}" y2="${barBottom}" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>`;
+  });
+  const topDim = `<line x1="${x0}" y1="181" x2="${right.toFixed(1)}" y2="181" stroke="var(--line)"/>
+    <line x1="${x0}" y1="177" x2="${x0}" y2="185" stroke="var(--line)"/>
+    <line x1="${right.toFixed(1)}" y1="177" x2="${right.toFixed(1)}" y2="185" stroke="var(--line)"/>`;
+  const callouts = (sec.callouts || []).map((c, i) => {
+    const cx = x0 + Number(c.at) * avail;
+    const ly = 92 + (i % 2) * 24;
+    return `<line x1="${cx.toFixed(1)}" y1="${ly + 6}" x2="${cx.toFixed(1)}" y2="${barTop}" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="2 3"/>
+      <circle cx="${cx.toFixed(1)}" cy="${barTop}" r="2.5" fill="var(--ink-3)"/>
+      <text x="${cx.toFixed(1)}" y="${ly}" class="sg-call">${esc(c.label)}</text>`;
+  }).join('');
+  const midY = barTop + barH / 2;
+  const barText = `${st.left ? `<text x="${(x0 + avail * 0.19).toFixed(1)}" y="${midY + 5}" class="sg-store">${esc(st.left)}</text>` : ''}
+    ${st.right ? `<text x="${(x0 + avail * 0.66).toFixed(1)}" y="${midY + 5}" class="sg-store">${esc(st.right)}</text>` : ''}`;
+  const wm = sec.wordmark ? `<text x="${(x0 + avail * 0.37).toFixed(1)}" y="${midY + 18}" class="sg-wm">${esc(sec.wordmark)}</text>` : '';
+  const overall = sec.overall || total.toLocaleString();
+  const botDim = `<line x1="${x0}" y1="${barBottom + 26}" x2="${right.toFixed(1)}" y2="${barBottom + 26}" stroke="var(--line)"/>
+    <line x1="${x0}" y1="${barBottom + 22}" x2="${x0}" y2="${barBottom + 30}" stroke="var(--line)"/>
+    <line x1="${right.toFixed(1)}" y1="${barBottom + 22}" x2="${right.toFixed(1)}" y2="${barBottom + 30}" stroke="var(--line)"/>
+    <text x="${((x0 + right) / 2).toFixed(1)}" y="${barBottom + 45}" class="sg-dim">W ${esc(String(overall))}</text>`;
+  const hx = right + 24, hh = sec.height || 200;
+  const heightDim = `<line x1="${hx.toFixed(1)}" y1="${barTop}" x2="${hx.toFixed(1)}" y2="${barBottom}" stroke="var(--line)"/>
+    <line x1="${(hx - 4).toFixed(1)}" y1="${barTop}" x2="${(hx + 4).toFixed(1)}" y2="${barTop}" stroke="var(--line)"/>
+    <line x1="${(hx - 4).toFixed(1)}" y1="${barBottom}" x2="${(hx + 4).toFixed(1)}" y2="${barBottom}" stroke="var(--line)"/>
+    <text x="${(hx + 9).toFixed(1)}" y="${(midY + 4).toFixed(1)}" class="sg-hdim">${esc(String(hh))}</text>`;
+  const scaleLabel = sec.scaleLabel ? `<text x="${x0}" y="54" class="sg-scale">${esc(sec.scaleLabel)}</text>` : '';
+  return `<svg viewBox="0 0 1000 336" class="cs-sign-svg" role="img" aria-label="사이니지 모듈 시스템 도면">
     <style>
-      .sg-no{font-family:'Geist Mono',monospace;font-size:19px;fill:var(--ink-2);text-anchor:middle}
-      .sg-w{font-family:'Geist Mono',monospace;font-size:16px;fill:var(--ink-3);text-anchor:middle}
-      .sg-dim{font-family:'Geist Mono',monospace;font-size:16px;fill:var(--ink-3);text-anchor:middle}
-      .sg-wm{font-family:'Pretendard',sans-serif;font-weight:800;font-size:60px;fill:#fff;text-anchor:middle}
+      .sg-no{font-family:'Geist Mono',monospace;font-size:17px;fill:var(--ink-2);text-anchor:middle}
+      .sg-w{font-family:'Geist Mono',monospace;font-size:14px;fill:var(--ink-3);text-anchor:middle}
+      .sg-call{font-family:'Geist Mono',monospace;font-size:13px;fill:var(--ink-3);text-anchor:middle}
+      .sg-store{font-family:'Pretendard',sans-serif;font-size:16px;fill:#fff;text-anchor:middle;font-weight:500}
+      .sg-wm{font-family:'Pretendard',sans-serif;font-weight:800;font-size:54px;fill:#fff;text-anchor:middle}
+      .sg-dim{font-family:'Geist Mono',monospace;font-size:14px;fill:var(--ink-3);text-anchor:middle}
+      .sg-hdim{font-family:'Geist Mono',monospace;font-size:14px;fill:var(--ink-3)}
+      .sg-scale{font-family:'Geist Mono',monospace;font-size:13px;fill:var(--ink-3)}
     </style>
-    ${labels}
-    <rect x="${x0}" y="${barTop}" width="${avail}" height="${barH}" rx="6" fill="${accent}"/>
+    ${scaleLabel}
+    ${nums}${topDim}
+    ${callouts}
+    <rect x="${x0}" y="${barTop}" width="${avail.toFixed(1)}" height="${barH}" rx="5" fill="${accent}"/>
     ${dividers}
-    <text x="500" y="${barTop + barH / 2 + 21}" class="sg-wm">${esc(wordmark || '')}</text>
-    <line x1="${x0}" y1="202" x2="${right}" y2="202" stroke="var(--line)" stroke-width="1"/>
-    <line x1="${x0}" y1="198" x2="${x0}" y2="206" stroke="var(--line)" stroke-width="1"/>
-    <line x1="${right}" y1="198" x2="${right}" y2="206" stroke="var(--line)" stroke-width="1"/>
-    <text x="500" y="218" class="sg-dim">어떤 매장 폭에도 조합 · W ${total.toLocaleString()} × H 200</text>
+    ${barText}${wm}
+    ${botDim}${heightDim}
   </svg>`;
 }
 
@@ -537,7 +563,7 @@ function renderSignage(sec) {
       ${before}
       <div class="cs-sign-after">
         <div class="cs-sign-cap">${esc(sec.afterLabel || 'AFTER · 표준 모듈 시스템')}</div>
-        ${signageSVG(sec.modules, sec.wordmark, accent)}
+        ${signageSVG(sec)}
       </div>
     </div>
     ${specs ? `<div class="cs-specs">${specs}</div>` : ''}

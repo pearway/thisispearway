@@ -57,8 +57,17 @@
         "sub": "기존 간판은 플렉스·채널 두 형태가 혼재해 매장마다 견적과 마진의 변동성이 컸고, 후킹 포인트가 없어 시인성도 약했습니다. 어떤 매장 폭에도 조합되는 표준 모듈을 설계해 견적·시공·시인성을 한 번에 정리했습니다.",
         "before": { "img": "images/works/mini-warehouse-darak/before-sign.jpg", "label": "BEFORE · 혼재된 기존 간판" },
         "afterLabel": "AFTER · 표준 모듈 시스템",
+        "scaleLabel": "모듈 설계 · SCALE 10/1",
         "wordmark": "다락",
         "accent": "#2868FF",
+        "signText": { "left": "기흥서천점", "right": "창업문의 1661.0180" },
+        "callouts": [
+          { "label": "슬림 인쇄", "at": 0.16 },
+          { "label": "트러스트 H200", "at": 0.26 },
+          { "label": "캡채널", "at": 0.34 }
+        ],
+        "overall": "6,000",
+        "height": 200,
         "modules": [
           { "no": "No.1", "w": 390 },
           { "no": "No.2", "w": 920 },
