@@ -396,54 +396,7 @@ function renderBlocks(blocks) {
 /* Web-native case study: Story → 기획(밝은 지표·차트) → 목업 */
 function renderCaseStudy(p) {
   let h = '';
-  if (p.story) {
-    h += `<section class="cs-sec">
-      <div class="cs-label">Story · 스토리</div>
-      <p class="cs-lead">${esc(p.story)}</p>
-    </section>`;
-  }
-  const pr = p.problem;
-  if (pr) {
-    const stats = (pr.stats || []).map(s => `
-      <div class="cs-stat">
-        <div class="cs-stat-v">${esc(s.value)}${s.unit ? `<span>${esc(s.unit)}</span>` : ''}</div>
-        <div class="cs-stat-l">${esc(s.label)}</div>
-        ${s.note ? `<div class="cs-stat-n">${esc(s.note)}</div>` : ''}
-      </div>`).join('');
-    const bars = pr.bars ? `
-      <div class="cs-bars">
-        ${pr.bars.title ? `<div class="cs-bars-t">${esc(pr.bars.title)}</div>` : ''}
-        ${(pr.bars.items || []).map(it => `
-          <div class="cs-bar">
-            <div class="cs-bar-h"><span>${esc(it.label)}</span><span>${Number(it.pct)}%</span></div>
-            <div class="cs-bar-track"><i style="width:${Number(it.pct)}%"></i></div>
-          </div>`).join('')}
-      </div>` : '';
-    const rp = pr.reposition;
-    const reposition = rp ? `
-      <div class="cs-repos">
-        <div class="cs-repos-scale"><span>${esc(rp.low)}</span><span>${esc(rp.high)}</span></div>
-        <div class="cs-repos-track">
-          <span class="cs-repos-fill" style="left:${Number(rp.from.at)}%;right:${100 - Number(rp.to.at)}%"></span>
-          <span class="cs-repos-node from" style="left:${Number(rp.from.at)}%"><b>${esc(rp.from.label)}</b><em>${esc(rp.from.name)}</em></span>
-          <span class="cs-repos-node to" style="left:${Number(rp.to.at)}%"><b>${esc(rp.to.label)}</b><em>${esc(rp.to.name)}</em></span>
-        </div>
-      </div>` : '';
-    const shifts = (pr.shifts && pr.shifts.length) ? `
-      <div class="cs-shifts">
-        ${pr.shifts.map(s => `<div class="cs-shift"><span class="cs-shift-a">${esc(s.from)}</span><span class="cs-shift-arrow">→</span><span class="cs-shift-b">${esc(s.to)}</span></div>`).join('')}
-      </div>` : '';
-    h += `<section class="cs-sec">
-      <div class="cs-label">기획 · ${esc(pr.kicker || '문제 정의')}</div>
-      ${pr.headline ? `<h3 class="cs-head">${esc(pr.headline)}</h3>` : ''}
-      ${pr.sub ? `<p class="cs-sub">${esc(pr.sub)}</p>` : ''}
-      ${reposition}
-      ${shifts}
-      ${stats ? `<div class="cs-stats">${stats}</div>` : ''}
-      ${bars}
-      ${pr.note ? `<p class="cs-note">${esc(pr.note)}</p>` : ''}
-    </section>`;
-  }
+  // Visual-only: charts and prose removed — the work speaks.
   (p.sections || []).forEach(sec => {
     if (sec.type === 'identity') h += renderIdentity(sec);
     else if (sec.type === 'signage') h += renderSignage(sec);
@@ -468,26 +421,13 @@ function shotHTML(u) {
 }
 
 function csHead(sec) {
-  return `<div class="cs-label">${esc(sec.label || '')}</div>
-    ${sec.headline ? `<h3 class="cs-head">${esc(sec.headline)}</h3>` : ''}
-    ${sec.sub ? `<p class="cs-sub">${esc(sec.sub)}</p>` : ''}`;
+  return `<div class="cs-label">${esc(sec.label || '')}</div>`;
 }
 
 function renderIdentity(sec) {
-  const kw = (sec.keywords || []).map(k => `
-    <div class="cs-kw-item"><b>${esc(k.en)}</b><span>${esc(k.ko)} · ${esc(k.desc)}</span></div>`).join('');
-  const color = sec.color ? `
-    <div class="cs-color"><span class="cs-color-chip" style="background:${esc(sec.color.hex)}"></span>
-      <span class="cs-color-meta"><b>${esc(sec.color.name)}</b><em>${esc(sec.color.hex)}</em></span></div>` : '';
   return `<section class="cs-sec">
     ${csHead(sec)}
-    <div class="cs-id">
-      ${sec.logo ? `<figure class="cs-id-logo"><img src="${esc(sec.logo)}" alt="로고 · 로고 그리드 시스템" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()"></figure>` : ''}
-      <div class="cs-id-side">
-        <div class="cs-kw">${kw}</div>
-        ${color}
-      </div>
-    </div>
+    ${sec.logo ? `<figure class="cs-id-logo solo"><img src="${esc(sec.logo)}" alt="로고" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()"></figure>` : ''}
   </section>`;
 }
 
@@ -567,14 +507,12 @@ function renderSignage(sec) {
         <img class="cs-draw" src="${esc(sec.drawing)}" alt="사이니지 모듈 도면" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()">
       </figure>`
     : `<div class="cs-sign-after"><div class="cs-sign-cap">${afterLabel}</div>${signageSVG(sec)}</div>`;
-  const specs = (sec.specs || []).map(s => `<div class="cs-spec">${esc(s)}</div>`).join('');
   return `<section class="cs-sec">
     ${csHead(sec)}
     <div class="cs-sign${sec.drawing ? ' stack' : ''}">
       ${before}
       ${after}
     </div>
-    ${specs ? `<div class="cs-specs">${specs}</div>` : ''}
   </section>`;
 }
 

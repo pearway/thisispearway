@@ -681,6 +681,8 @@ footer.site .copyright {
 .cs-id { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1rem,2.5vw,1.75rem); margin-top: clamp(1.75rem,4vw,2.75rem); align-items: stretch; }
 .cs-id-logo { border-radius: 14px; overflow: hidden; }
 .cs-id-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-id-logo.solo { margin-top: clamp(1.5rem,3vw,2.25rem); max-width: 760px; }
+.cs-id-logo.solo img { height: auto; object-fit: initial; }
 .cs-id-side { display: flex; flex-direction: column; gap: 0.6rem; }
 .cs-kw { display: flex; flex-direction: column; gap: 0.6rem; }
 .cs-kw-item { background: var(--bg-alt); border-radius: 12px; padding: clamp(0.9rem,2vw,1.15rem) clamp(1.1rem,2.5vw,1.4rem); display: flex; flex-direction: column; gap: 0.28rem; }
