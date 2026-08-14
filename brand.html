@@ -420,10 +420,26 @@ function renderCaseStudy(p) {
             <div class="cs-bar-track"><i style="width:${Number(it.pct)}%"></i></div>
           </div>`).join('')}
       </div>` : '';
+    const rp = pr.reposition;
+    const reposition = rp ? `
+      <div class="cs-repos">
+        <div class="cs-repos-scale"><span>${esc(rp.low)}</span><span>${esc(rp.high)}</span></div>
+        <div class="cs-repos-track">
+          <span class="cs-repos-fill" style="left:${Number(rp.from.at)}%;right:${100 - Number(rp.to.at)}%"></span>
+          <span class="cs-repos-node from" style="left:${Number(rp.from.at)}%"><b>${esc(rp.from.label)}</b><em>${esc(rp.from.name)}</em></span>
+          <span class="cs-repos-node to" style="left:${Number(rp.to.at)}%"><b>${esc(rp.to.label)}</b><em>${esc(rp.to.name)}</em></span>
+        </div>
+      </div>` : '';
+    const shifts = (pr.shifts && pr.shifts.length) ? `
+      <div class="cs-shifts">
+        ${pr.shifts.map(s => `<div class="cs-shift"><span class="cs-shift-a">${esc(s.from)}</span><span class="cs-shift-arrow">→</span><span class="cs-shift-b">${esc(s.to)}</span></div>`).join('')}
+      </div>` : '';
     h += `<section class="cs-sec">
       <div class="cs-label">기획 · ${esc(pr.kicker || '문제 정의')}</div>
       ${pr.headline ? `<h3 class="cs-head">${esc(pr.headline)}</h3>` : ''}
       ${pr.sub ? `<p class="cs-sub">${esc(pr.sub)}</p>` : ''}
+      ${reposition}
+      ${shifts}
       ${stats ? `<div class="cs-stats">${stats}</div>` : ''}
       ${bars}
       ${pr.note ? `<p class="cs-note">${esc(pr.note)}</p>` : ''}

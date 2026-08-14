@@ -643,6 +643,33 @@ footer.site .copyright {
 .cs-bar-h span:last-child { font-family: var(--font-mono); color: var(--ink-2); }
 .cs-bar-track { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
 .cs-bar-track i { display: block; height: 100%; background: var(--ink); border-radius: 3px; }
+/* repositioning axis (branding framework) */
+.cs-repos { margin-top: clamp(2rem,4vw,3rem); max-width: 720px; }
+.cs-repos-scale { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--ink-3); }
+.cs-repos-track { position: relative; height: 2px; background: var(--line); margin: 4rem 0 3.75rem; }
+.cs-repos-fill { position: absolute; top: 0; height: 2px; background: var(--ink); }
+.cs-repos-node { position: absolute; top: 50%; display: flex; flex-direction: column; align-items: center; }
+.cs-repos-node::after { content: ''; width: 11px; height: 11px; border-radius: 50%; background: var(--ink-3); transform: translateY(-50%); }
+.cs-repos-node.to::after { width: 15px; height: 15px; background: var(--ink); }
+.cs-repos-node b { position: absolute; bottom: calc(50% + 14px); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.09em; color: var(--ink-3); white-space: nowrap; }
+.cs-repos-node.to b { color: var(--ink); }
+.cs-repos-node em { position: absolute; top: calc(50% + 16px); font-style: normal; font-size: clamp(0.9rem,1.1vw,1.02rem); font-weight: 500; color: var(--ink-2); white-space: nowrap; }
+.cs-repos-node.to em { color: var(--ink); font-weight: 600; }
+.cs-repos-node.from { transform: translateX(-50%); }
+.cs-repos-node.to { transform: translateX(-50%); }
+.cs-repos-node.from b, .cs-repos-node.from em { left: 50%; transform: translateX(-50%); }
+.cs-repos-node.to b, .cs-repos-node.to em { left: 50%; transform: translateX(-50%); }
+
+/* before → after shift cards (branding framework) */
+.cs-shifts { display: grid; gap: 0.6rem; margin-top: clamp(1.75rem,3.5vw,2.5rem); max-width: 720px; }
+.cs-shift { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(0.75rem,2vw,1.5rem); background: var(--bg-alt); border-radius: 12px; padding: clamp(0.95rem,2vw,1.15rem) clamp(1.1rem,2.5vw,1.5rem); }
+.cs-shift-a { text-align: right; font-size: clamp(0.9rem,1.1vw,0.98rem); color: var(--ink-3); }
+.cs-shift-arrow { color: var(--ink-3); font-size: 0.95rem; }
+.cs-shift-b { text-align: left; font-size: clamp(0.9rem,1.1vw,0.98rem); color: var(--ink); font-weight: 600; }
+@media (max-width: 520px) {
+  .cs-repos-track { margin: 3.5rem 0 3.25rem; }
+  .cs-repos-node em { font-size: 0.82rem; }
+}
 .cs-note { margin-top: clamp(1.5rem,3vw,2rem); padding-left: 1rem; border-left: 2px solid var(--ink); font-size: 1rem; line-height: 1.7; color: var(--ink-2); max-width: 46ch; }
 .cs-gallery { display: flex; flex-direction: column; gap: clamp(0.75rem,1.5vw,1.25rem); }
 .cs-shot { border-radius: 12px; overflow: hidden; background: var(--bg-alt); }
