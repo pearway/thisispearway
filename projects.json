@@ -82,6 +82,28 @@
     ]
   },
   {
+    "id": "jaws",
+    "title": "죠스푸드",
+    "title_en": "Jaws Food",
+    "year": "2023",
+    "period": "2022.10 — 2023.03",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
+    "primary": "brand",
+    "role": "해외 매장 익스테리어 · 신규 브랜드 런칭",
+    "client": "죠스푸드",
+    "summary": "죠스푸드의 해외 매장 익스테리어와 신규 브랜드 런칭. JAWS·콰삭(QUASNK)·okaay 등 서브 브랜드의 그래픽과 패키지를 함께 전개했다.",
+    "cover": "images/works/jaws/cover.jpg",
+    "tags": [
+      "Brand Launch",
+      "Graphic",
+      "F&B"
+    ]
+  },
+  {
     "id": "jindaegam",
     "title": "진대감",
     "title_en": "Jindaegam",
@@ -102,45 +124,5 @@
       "Spatial",
       "F&B"
     ]
-  },
-  {
-    "id": "grace-serif",
-    "title": "우아한 세리프",
-    "title_en": "Grace Serif",
-    "year": "2026",
-    "period": "2026 —",
-    "category": [
-      "type"
-    ],
-    "primary": "type",
-    "role": "한글 디스플레이 서체 설계",
-    "client": "Pear Type Foundry",
-    "summary": "클래식 명조의 구조에서 영감을 얻어 현대적 감각으로 재해석한 한글 세리프 서체. Pear Type Foundry에서 정식 배포.",
-    "cover": "images/works/grace-serif/cover.jpg",
-    "tags": [
-      "Type Design",
-      "Korean"
-    ],
-    "external": "https://www.peartype.kr"
-  },
-  {
-    "id": "toucan",
-    "title": "큰부리새",
-    "title_en": "Toucan",
-    "year": "2026",
-    "period": "2026 —",
-    "category": [
-      "type"
-    ],
-    "primary": "type",
-    "role": "한글 디스플레이 서체 설계",
-    "client": "Pear Type Foundry",
-    "summary": "큰부리새의 두툼한 부리에서 자음의 굵은 가로획으로. 무게감과 유머가 공존하는 디스플레이 서체.",
-    "cover": "images/works/toucan/cover.jpg",
-    "tags": [
-      "Type Design",
-      "Display"
-    ],
-    "external": "https://www.peartype.kr"
   }
 ]
