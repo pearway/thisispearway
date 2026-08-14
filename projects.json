@@ -69,8 +69,10 @@
     "gallery": [
       "images/works/mini-warehouse-darak/m1.jpg",
       "images/works/mini-warehouse-darak/m2.jpg",
-      "images/works/mini-warehouse-darak/m3.jpg",
-      "images/works/mini-warehouse-darak/m4.jpg"
+      [
+        "images/works/mini-warehouse-darak/m3.jpg",
+        "images/works/mini-warehouse-darak/m4.jpg"
+      ]
     ]
   },
   {
