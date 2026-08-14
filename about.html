@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소개 · About — THISISPEARWAY</title>
+
+<meta name="description" content="브랜드 디자인 스튜디오 THISISPEARWAY(이희배) 소개. 브랜드가 오래 기억되는 방식을 만드는 서울의 스튜디오.">
+<meta name="author" content="THISISPEARWAY">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pearway.kr/brand/about">
+<meta property="og:title" content="소개 · About — THISISPEARWAY">
+<meta property="og:description" content="브랜드가 오래 기억되는 방식을 만드는 서울의 브랜드 디자인 스튜디오.">
+<meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
+<link rel="canonical" href="https://www.pearway.kr/brand/about">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="inner">
+    <a href="/brand" class="brand">THISISPEARWAY</a>
+    <nav>
+      <a href="/brand/about" style="color:var(--ink)">About</a>
+      <a href="/brand#works">Work</a>
+      <a href="/brand/journal">Journal</a>
+      <a href="/brand#contact">Contact</a>
+      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ABOUT (소개) -->
+  <section class="section" id="about" style="border-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-marker">About · 소개</span>
+        <p class="about-lead">브랜드의 이름과 인상, 그리고 그것이 놓이는 자리까지. THISISPEARWAY는 <em>브랜드가 오래 기억되는 방식</em>을 만드는 서울의 브랜드 디자인 스튜디오입니다.</p>
+      </div>
+
+      <div class="about-body">
+        <div class="about-block">
+          <span class="mono">Studio</span>
+          <div class="about-copy">
+            <p>작은 가게의 간판부터 캠페인의 그래픽까지, 규모보다 결이 맞는 일을 찾습니다. 유행을 좇기보다 그 브랜드에만 어울리는 형태를 오래 들여다봐요.</p>
+            <p>로고 하나로 끝나지 않습니다. 색과 타입, 사진과 말투까지 — 흩어진 조각들이 하나의 목소리로 들리도록 정리하는 것이 저희가 하는 일입니다.</p>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <span class="mono">Maker</span>
+          <div class="about-maker">
+            <img class="about-portrait" src="images/profile/portrait.jpg" alt="이희배 · Lee Heebae" loading="lazy">
+            <div>
+              <div class="maker-name">이희배 <span>Lee Heebae</span></div>
+              <div class="maker-role mono">브랜드 디자이너 · 파운더</div>
+              <p class="m-copy">직접 그린 서체가 필요한 순간엔 Pear Type Foundry로 이어집니다. 브랜딩과 타입, 두 손으로 하나의 인상을 만듭니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <span class="mono">Approach</span>
+          <div class="about-copy">
+            <p>브랜드를 오래 보게 만드는 건 화려함이 아니라 일관성이라고 믿어요. 처음의 인상이 끝까지 흐트러지지 않도록, 눈에 닿는 모든 접점을 같은 기준으로 다듬습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="inner">
+    <div class="left">
+      <div class="meta">
+        <span>THISISPEARWAY · Designer</span>
+        <a href="https://www.peartype.kr" target="_blank" rel="noopener">Type design by Pear Type Foundry ↗</a>
+      </div>
+    </div>
+    <div class="right">
+      <div>Brand · Graphic · Spatial · Type</div>
+      <div>Seoul, KR — 2026</div>
+    </div>
+  </div>
+  <div class="wrap copyright">
+    <span>© 2026 THISISPEARWAY</span>
+    <span>Designer · Lee Heebae</span>
+  </div>
+</footer>
+
+<script>
+  const h = document.querySelector('header.site');
+  const s = () => h.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', s, { passive: true }); s();
+</script>
+</body>
+</html>

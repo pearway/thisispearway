@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이야기 · Journal — THISISPEARWAY</title>
+
+<meta name="description" content="THISISPEARWAY 저널. 브랜드가 만들어지는 과정에서 남긴 기록과 생각.">
+<meta name="author" content="THISISPEARWAY">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pearway.kr/brand/journal">
+<meta property="og:title" content="이야기 · Journal — THISISPEARWAY">
+<meta property="og:description" content="브랜드가 만들어지는 과정에서 남긴 기록과 생각.">
+<meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
+<link rel="canonical" href="https://www.pearway.kr/brand/journal">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="inner">
+    <a href="/brand" class="brand">THISISPEARWAY</a>
+    <nav>
+      <a href="/brand/about">About</a>
+      <a href="/brand#works">Work</a>
+      <a href="/brand/journal" style="color:var(--ink)">Journal</a>
+      <a href="/brand#contact">Contact</a>
+      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- JOURNAL (이야기) -->
+  <section class="section" id="journal" style="border-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-marker">Journal · 이야기</span>
+        <p class="about-lead">작업하며 남긴 기록과 생각. 브랜드가 만들어지는 과정을 하나씩 나눕니다.</p>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <div class="story-thumb"><img src="images/journal/01.jpg" alt="" loading="lazy"></div>
+          <div class="story-body">
+            <div class="story-meta mono"><span>브랜딩</span><span>2026.03</span></div>
+            <h3 class="story-title">이름이 인상이 되기까지</h3>
+            <p class="story-excerpt">좋은 이름은 긴 설명이 필요 없습니다. 한 브랜드의 이름과 로고가 자리를 잡기까지, 스튜디오에서 오간 고민을 정리했어요.</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="story-thumb"><img src="images/journal/02.jpg" alt="" loading="lazy"></div>
+          <div class="story-body">
+            <div class="story-meta mono"><span>그래픽</span><span>2026.01</span></div>
+            <h3 class="story-title">매주 다른 그래픽, 지치지 않고</h3>
+            <p class="story-excerpt">매주 올라가는 소셜 그래픽을 지루하지 않게 유지하는 법. 시리즈를 만들며 배운 리듬과 규칙에 대하여.</p>
+          </div>
+        </article>
+
+        <article class="story-card">
+          <div class="story-thumb"><img src="images/journal/03.jpg" alt="" loading="lazy"></div>
+          <div class="story-body">
+            <div class="story-meta mono"><span>스튜디오</span><span>2025.12</span></div>
+            <h3 class="story-title">작게 일한다는 것</h3>
+            <p class="story-excerpt">1인 스튜디오로 브랜드를 맡는다는 건 어떤 일일까. 규모 대신 밀도로 승부하는 방식에 대하여.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="inner">
+    <div class="left">
+      <div class="meta">
+        <span>THISISPEARWAY · Designer</span>
+        <a href="https://www.peartype.kr" target="_blank" rel="noopener">Type design by Pear Type Foundry ↗</a>
+      </div>
+    </div>
+    <div class="right">
+      <div>Brand · Graphic · Spatial · Type</div>
+      <div>Seoul, KR — 2026</div>
+    </div>
+  </div>
+  <div class="wrap copyright">
+    <span>© 2026 THISISPEARWAY</span>
+    <span>Designer · Lee Heebae</span>
+  </div>
+</footer>
+
+<script>
+  const h = document.querySelector('header.site');
+  const s = () => h.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', s, { passive: true }); s();
+</script>
+</body>
+</html>
