@@ -674,3 +674,40 @@ footer.site .copyright {
 .cs-gallery { display: flex; flex-direction: column; gap: clamp(0.75rem,1.5vw,1.25rem); }
 .cs-shot { border-radius: 12px; overflow: hidden; background: var(--bg-alt); }
 .cs-shot img { width: 100%; display: block; }
+
+/* identity (logo · keywords · color) */
+.cs-id { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1rem,2.5vw,1.75rem); margin-top: clamp(1.75rem,4vw,2.75rem); align-items: stretch; }
+.cs-id-logo { border-radius: 14px; overflow: hidden; }
+.cs-id-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-id-side { display: flex; flex-direction: column; gap: 0.6rem; }
+.cs-kw { display: flex; flex-direction: column; gap: 0.6rem; }
+.cs-kw-item { background: var(--bg-alt); border-radius: 12px; padding: clamp(0.9rem,2vw,1.15rem) clamp(1.1rem,2.5vw,1.4rem); display: flex; flex-direction: column; gap: 0.28rem; }
+.cs-kw-item b { font-family: var(--font-mono); font-size: 0.98rem; color: var(--ink); letter-spacing: 0.01em; }
+.cs-kw-item span { font-size: 0.88rem; color: var(--ink-3); }
+.cs-color { display: flex; align-items: center; gap: 0.8rem; background: var(--bg-alt); border-radius: 12px; padding: 0.9rem clamp(1.1rem,2.5vw,1.4rem); margin-top: auto; }
+.cs-color-chip { width: 34px; height: 34px; border-radius: 8px; flex: 0 0 auto; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08); }
+.cs-color-meta { display: flex; flex-direction: column; }
+.cs-color-meta b { font-size: 0.92rem; color: var(--ink); }
+.cs-color-meta em { font-style: normal; font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-3); }
+
+/* signage module system */
+.cs-sign { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: clamp(1rem,2.5vw,1.5rem); margin-top: clamp(1.75rem,4vw,2.75rem); align-items: stretch; }
+.cs-sign-before, .cs-sign-after { background: var(--bg-alt); border-radius: 14px; padding: clamp(1.1rem,2.5vw,1.5rem); display: flex; flex-direction: column; }
+.cs-sign-before figcaption, .cs-sign-cap { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 0.9rem; }
+.cs-sign-before img { width: 100%; border-radius: 8px; display: block; margin: auto 0; background: #fff; }
+.cs-sign-svg { width: 100%; height: auto; display: block; margin: auto 0; }
+.cs-specs { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 0.6rem; margin-top: 1rem; }
+.cs-spec { font-size: 0.85rem; color: var(--ink-2); line-height: 1.6; padding-left: 0.9rem; border-left: 2px solid var(--line); }
+
+/* process steps */
+.cs-steps { display: grid; gap: 0.6rem; margin-top: clamp(1.75rem,4vw,2.75rem); }
+.cs-step { display: flex; gap: 1.1rem; align-items: baseline; background: var(--bg-alt); border-radius: 12px; padding: clamp(1rem,2vw,1.3rem) clamp(1.2rem,2.5vw,1.6rem); }
+.cs-step-n { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-3); flex: 0 0 auto; }
+.cs-step-b { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-step-b b { font-size: 1rem; font-weight: 600; color: var(--ink); }
+.cs-step-b span { font-size: 0.9rem; color: var(--ink-3); line-height: 1.6; }
+
+@media (max-width: 720px) {
+  .cs-id { grid-template-columns: 1fr; }
+  .cs-sign { grid-template-columns: 1fr; }
+}

@@ -445,6 +445,12 @@ function renderCaseStudy(p) {
       ${pr.note ? `<p class="cs-note">${esc(pr.note)}</p>` : ''}
     </section>`;
   }
+  (p.sections || []).forEach(sec => {
+    if (sec.type === 'identity') h += renderIdentity(sec);
+    else if (sec.type === 'signage') h += renderSignage(sec);
+    else if (sec.type === 'process') h += renderProcess(sec);
+    else if (sec.type === 'media') h += renderMedia(sec);
+  });
   if (Array.isArray(p.gallery) && p.gallery.length) {
     h += `<section class="cs-sec">
       <div class="cs-label">Application · 적용</div>
@@ -454,6 +460,102 @@ function renderCaseStudy(p) {
     </section>`;
   }
   return h;
+}
+
+function csHead(sec) {
+  return `<div class="cs-label">${esc(sec.label || '')}</div>
+    ${sec.headline ? `<h3 class="cs-head">${esc(sec.headline)}</h3>` : ''}
+    ${sec.sub ? `<p class="cs-sub">${esc(sec.sub)}</p>` : ''}`;
+}
+
+function renderIdentity(sec) {
+  const kw = (sec.keywords || []).map(k => `
+    <div class="cs-kw-item"><b>${esc(k.en)}</b><span>${esc(k.ko)} · ${esc(k.desc)}</span></div>`).join('');
+  const color = sec.color ? `
+    <div class="cs-color"><span class="cs-color-chip" style="background:${esc(sec.color.hex)}"></span>
+      <span class="cs-color-meta"><b>${esc(sec.color.name)}</b><em>${esc(sec.color.hex)}</em></span></div>` : '';
+  return `<section class="cs-sec">
+    ${csHead(sec)}
+    <div class="cs-id">
+      ${sec.logo ? `<figure class="cs-id-logo"><img src="${esc(sec.logo)}" alt="로고 · 로고 그리드 시스템" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()"></figure>` : ''}
+      <div class="cs-id-side">
+        <div class="cs-kw">${kw}</div>
+        ${color}
+      </div>
+    </div>
+  </section>`;
+}
+
+function signageSVG(modules, wordmark, accent) {
+  const mods = modules || [];
+  const total = mods.reduce((s, m) => s + Number(m.w), 0) || 1;
+  const VW = 1000, x0 = 20, gap = 6;
+  const avail = VW - x0 * 2 - gap * (mods.length - 1);
+  const barTop = 78, barH = 92;
+  let x = x0, rects = '', labels = '';
+  mods.forEach(m => {
+    const w = Number(m.w) / total * avail;
+    rects += `<rect x="${x.toFixed(1)}" y="${barTop}" width="${w.toFixed(1)}" height="${barH}" rx="3" fill="${accent}"/>`;
+    labels += `<text x="${(x + w / 2).toFixed(1)}" y="58" class="sg-no">${esc(m.no)}</text>
+      <text x="${(x + w / 2).toFixed(1)}" y="72" class="sg-w">${Number(m.w)}</text>`;
+    x += w + gap;
+  });
+  const right = x - gap;
+  return `<svg viewBox="0 0 1000 210" class="cs-sign-svg" role="img" aria-label="사이니지 모듈 시스템">
+    <style>
+      .sg-no{font-family:'Geist Mono',monospace;font-size:12px;fill:var(--ink-3);text-anchor:middle}
+      .sg-w{font-family:'Geist Mono',monospace;font-size:11px;fill:var(--ink-3);text-anchor:middle;opacity:.7}
+      .sg-dim{font-family:'Geist Mono',monospace;font-size:11px;fill:var(--ink-3)}
+      .sg-wm{font-family:'Pretendard',sans-serif;font-weight:800;font-size:52px;fill:#fff;text-anchor:middle}
+    </style>
+    ${labels}
+    ${rects}
+    <text x="500" y="${barTop + barH / 2 + 18}" class="sg-wm">${esc(wordmark || '')}</text>
+    <line x1="${x0}" y1="190" x2="${right}" y2="190" stroke="var(--line)" stroke-width="1"/>
+    <line x1="${x0}" y1="186" x2="${x0}" y2="194" stroke="var(--line)" stroke-width="1"/>
+    <line x1="${right}" y1="186" x2="${right}" y2="194" stroke="var(--line)" stroke-width="1"/>
+    <text x="500" y="204" class="sg-dim" text-anchor="middle">어떤 매장 폭에도 조합 · W ${total.toLocaleString()} × H 200</text>
+  </svg>`;
+}
+
+function renderSignage(sec) {
+  const accent = sec.accent || '#2868FF';
+  const before = sec.before ? `
+    <figure class="cs-sign-before">
+      <figcaption>${esc(sec.before.label || 'BEFORE')}</figcaption>
+      <img src="${esc(sec.before.img)}" alt="기존 간판" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()">
+    </figure>` : '';
+  const specs = (sec.specs || []).map(s => `<div class="cs-spec">${esc(s)}</div>`).join('');
+  return `<section class="cs-sec">
+    ${csHead(sec)}
+    <div class="cs-sign">
+      ${before}
+      <div class="cs-sign-after">
+        <div class="cs-sign-cap">${esc(sec.afterLabel || 'AFTER · 표준 모듈 시스템')}</div>
+        ${signageSVG(sec.modules, sec.wordmark, accent)}
+      </div>
+    </div>
+    ${specs ? `<div class="cs-specs">${specs}</div>` : ''}
+  </section>`;
+}
+
+function renderProcess(sec) {
+  const steps = (sec.steps || []).map((s, i) => `
+    <div class="cs-step"><span class="cs-step-n">${String(i + 1).padStart(2, '0')}</span>
+      <div class="cs-step-b"><b>${esc(s.title)}</b>${s.desc ? `<span>${esc(s.desc)}</span>` : ''}</div></div>`).join('');
+  return `<section class="cs-sec">
+    ${csHead(sec)}
+    <div class="cs-steps">${steps}</div>
+    ${sec.note ? `<p class="cs-note">${esc(sec.note)}</p>` : ''}
+  </section>`;
+}
+
+function renderMedia(sec) {
+  const shots = (sec.images || []).map(s => `<div class="cs-shot"><img src="${esc(s)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`).join('');
+  return `<section class="cs-sec">
+    ${csHead(sec)}
+    <div class="cs-gallery">${shots}</div>
+  </section>`;
 }
 
 function closeDetail() {

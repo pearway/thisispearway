@@ -36,6 +36,44 @@
       ],
       "note": "네이밍·로고·컬러·사이니지 모듈까지 하나의 언어로 정리해, 브랜드가 가격이 아니라 경험으로 소비되도록 설계했습니다."
     },
+    "sections": [
+      {
+        "type": "identity",
+        "label": "Identity · 로고 · 컬러",
+        "headline": "‘창고’는 남기되, 가치는 프리미엄으로",
+        "sub": "슬로건부터 로고까지 군더더기를 덜어내 브랜드의 기준을 다시 세웠습니다. ‘창고’를 품되 프리미엄으로 느껴지는 언어를 도출하고, 그리드 위에서 로고타입을 정제했습니다.",
+        "logo": "images/works/mini-warehouse-darak/logo-grid.jpg",
+        "keywords": [
+          { "en": "expand", "ko": "확장", "desc": "가족의 공간을 넓히다" },
+          { "en": "flexible", "ko": "유연", "desc": "다양한 생활 방식을 수용" },
+          { "en": "connect", "ko": "연결", "desc": "공간과 일상을 잇다" }
+        ],
+        "color": { "name": "Clear Blue", "hex": "#2868FF" }
+      },
+      {
+        "type": "signage",
+        "label": "Signage System · 사이니지 모듈",
+        "headline": "현장마다 달랐던 간판을, 모듈 시스템으로",
+        "sub": "기존 간판은 플렉스·채널 두 형태가 혼재해 매장마다 견적과 마진의 변동성이 컸고, 후킹 포인트가 없어 시인성도 약했습니다. 어떤 매장 폭에도 조합되는 표준 모듈을 설계해 견적·시공·시인성을 한 번에 정리했습니다.",
+        "before": { "img": "images/works/mini-warehouse-darak/before-sign.jpg", "label": "BEFORE · 혼재된 기존 간판" },
+        "afterLabel": "AFTER · 표준 모듈 시스템",
+        "wordmark": "다락",
+        "accent": "#2868FF",
+        "modules": [
+          { "no": "No.1", "w": 390 },
+          { "no": "No.2", "w": 920 },
+          { "no": "No.3", "w": 920 },
+          { "no": "No.4", "w": 1000 },
+          { "no": "No.5", "w": 1000 },
+          { "no": "No.6", "w": 390 }
+        ],
+        "specs": [
+          "모듈 · 미니 플렉스 / LED 백색 조명 / 지정 블루 도색",
+          "채널 · 캡채널 H200 / 측면 지정 블루",
+          "마감 · 시트지 대신 슬림 실사 인쇄로 일관된 브랜드 컬러"
+        ]
+      }
+    ],
     "gallery": [
       "images/works/mini-warehouse-darak/m1.jpg",
       "images/works/mini-warehouse-darak/m2.jpg",
