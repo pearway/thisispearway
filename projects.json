@@ -71,19 +71,19 @@
     "gallery": [
       {
         "src": "images/works/woosundam/logo-word.jpg",
-        "size": "narrow"
+        "size": "full"
       },
       {
         "src": "images/works/woosundam/ext-day.jpg",
         "size": "full"
       },
       {
-        "src": "images/works/woosundam/ext.jpg",
-        "size": "wide"
-      },
-      {
         "src": "images/works/woosundam/logo-pylon.jpg",
         "size": "narrow"
+      },
+      {
+        "src": "images/works/woosundam/ext.jpg",
+        "size": "wide"
       },
       [
         "images/works/woosundam/floor.png",
