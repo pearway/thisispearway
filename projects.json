@@ -1,29 +1,23 @@
 [
   {
-    "id": "woosundam",
-    "title": "우선담",
-    "title_en": "Woosundam",
-    "year": "2023",
-    "period": "2023.03 — 2023.06",
-    "category": ["brand", "graphic", "spatial"],
+    "id": "mini-warehouse-darak",
+    "title": "미니창고 다락",
+    "title_en": "Mini Warehouse Darak",
+    "year": "2025",
+    "period": "2025.06 — 진행중",
+    "category": [
+      "brand",
+      "graphic"
+    ],
     "primary": "brand",
-    "role": "브랜딩 · 그래픽 · 공간 디자인",
-    "summary": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점 문법을 탈피한 강렬한 민트색 파사드.",
-    "cover": "images/works/woosundam/cover.jpg",
-    "tags": ["Brand Identity", "F&B"]
-  },
-  {
-    "id": "chicken-farmers",
-    "title": "치킨파머스",
-    "title_en": "Chicken Farmers",
-    "year": "2024",
-    "period": "2023.06 — 2025.05",
-    "category": ["brand", "graphic", "spatial"],
-    "primary": "brand",
-    "role": "브랜딩 · 그래픽 · 공간 디자인",
-    "summary": "Farm To Table. 자극 경쟁의 시장에서 '신선함은 곧 안전과 신뢰'라는 독자적 USP를 정의한 리브랜딩.",
-    "cover": "images/works/chicken-farmers/cover.jpg",
-    "tags": ["Rebranding", "F&B", "Spatial"]
+    "role": "브랜드 · 사이니지 디자인",
+    "client": "세컨신드롬",
+    "summary": "급격히 확장하는 브랜드의 시각적 파편화를 정제하는 사이니지 시스템 재정립.",
+    "cover": "images/works/mini-warehouse-darak/cover.jpg",
+    "tags": [
+      "Signage System",
+      "Guidelines"
+    ]
   },
   {
     "id": "duomo-pizza",
@@ -31,38 +25,83 @@
     "title_en": "Duomo Pizza",
     "year": "2025",
     "period": "2025.04 — 2025.06",
-    "category": ["spatial"],
+    "category": [
+      "spatial"
+    ],
     "primary": "spatial",
     "role": "공간 디자인",
+    "client": "Duomo Pizza · Burgo 협업",
     "summary": "베네수엘라 Burgo 에이전시와의 협업. 이탈리아 모티브를 산업적 디테일·네온·스트릿 감성으로 재해석.",
     "cover": "images/works/duomo-pizza/cover.jpg",
-    "tags": ["Spatial", "Collaboration"]
+    "tags": [
+      "Spatial",
+      "Collaboration"
+    ]
   },
   {
-    "id": "mini-warehouse-darak",
-    "title": "미니창고 다락",
-    "title_en": "Mini Warehouse Darak",
-    "year": "2025",
-    "period": "2025.06 — 진행중",
-    "category": ["brand", "graphic"],
+    "id": "chicken-farmers",
+    "title": "치킨파머스",
+    "title_en": "Chicken Farmers",
+    "year": "2024",
+    "period": "2023.06 — 2025.05",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
     "primary": "brand",
-    "role": "브랜드 · 사이니지 디자인",
-    "summary": "급격히 확장하는 브랜드의 시각적 파편화를 정제하는 사이니지 시스템 재정립.",
-    "cover": "images/works/mini-warehouse-darak/cover.jpg",
-    "tags": ["Signage System", "Guidelines"]
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "client": "금화식품",
+    "summary": "Farm To Table. 자극 경쟁의 시장에서 '신선함은 곧 안전과 신뢰'라는 독자적 USP를 정의한 리브랜딩.",
+    "cover": "images/works/chicken-farmers/cover.jpg",
+    "tags": [
+      "Rebranding",
+      "F&B",
+      "Spatial"
+    ]
+  },
+  {
+    "id": "woosundam",
+    "title": "우선담",
+    "title_en": "Woosundam",
+    "year": "2023",
+    "period": "2023.03 — 2023.06",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
+    "primary": "brand",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "client": "우선담 (프리랜서)",
+    "summary": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점 문법을 탈피한 강렬한 민트색 파사드.",
+    "cover": "images/works/woosundam/cover.jpg",
+    "tags": [
+      "Brand Identity",
+      "F&B"
+    ]
   },
   {
     "id": "jindaegam",
     "title": "진대감",
     "title_en": "Jindaegam",
     "year": "2022",
-    "period": "2022.05 — 2022.08",
-    "category": ["brand", "graphic", "spatial"],
+    "period": "2021.05 — 2022.08",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
     "primary": "spatial",
     "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "client": "고릴라에프앤디",
     "summary": "한국 고유의 '합' 문화를 미식의 영역에서 재해석. 전통의 물성으로 현대적 미감을 설계한 모던 한식.",
     "cover": "images/works/jindaegam/cover.jpg",
-    "tags": ["Brand Identity", "Spatial", "F&B"]
+    "tags": [
+      "Brand Identity",
+      "Spatial",
+      "F&B"
+    ]
   },
   {
     "id": "grace-serif",
@@ -70,12 +109,18 @@
     "title_en": "Grace Serif",
     "year": "2026",
     "period": "2026 —",
-    "category": ["type"],
+    "category": [
+      "type"
+    ],
     "primary": "type",
     "role": "한글 디스플레이 서체 설계",
+    "client": "Pear Type Foundry",
     "summary": "클래식 명조의 구조에서 영감을 얻어 현대적 감각으로 재해석한 한글 세리프 서체. Pear Type Foundry에서 정식 배포.",
     "cover": "images/works/grace-serif/cover.jpg",
-    "tags": ["Type Design", "Korean"],
+    "tags": [
+      "Type Design",
+      "Korean"
+    ],
     "external": "https://www.peartype.kr"
   },
   {
@@ -84,12 +129,18 @@
     "title_en": "Toucan",
     "year": "2026",
     "period": "2026 —",
-    "category": ["type"],
+    "category": [
+      "type"
+    ],
     "primary": "type",
     "role": "한글 디스플레이 서체 설계",
+    "client": "Pear Type Foundry",
     "summary": "큰부리새의 두툼한 부리에서 자음의 굵은 가로획으로. 무게감과 유머가 공존하는 디스플레이 서체.",
     "cover": "images/works/toucan/cover.jpg",
-    "tags": ["Type Design", "Display"],
+    "tags": [
+      "Type Design",
+      "Display"
+    ],
     "external": "https://www.peartype.kr"
   }
 ]
