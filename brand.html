@@ -405,7 +405,6 @@ function renderCaseStudy(p) {
   });
   if (Array.isArray(p.gallery) && p.gallery.length) {
     h += `<section class="cs-sec">
-      <div class="cs-label">Application · 적용</div>
       <div class="cs-gallery">
         ${p.gallery.map(galleryItemHTML).join('')}
       </div>
@@ -414,19 +413,18 @@ function renderCaseStudy(p) {
   return h;
 }
 
-function shotHTML(u) {
-  return `<div class="cs-shot"><img src="${esc(u)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
+function shotHTML(u, size) {
+  const cls = size ? ' cs-' + size : '';
+  return `<div class="cs-shot${cls}"><img src="${esc(u)}" alt="" loading="lazy" onload="window.lenisOverlayResize&&window.lenisOverlayResize()" onerror="this.parentElement.style.display='none'"></div>`;
 }
 
 function galleryItemHTML(s) {
-  return Array.isArray(s)
-    ? `<div class="cs-gallery-row" style="grid-template-columns:repeat(${s.length},minmax(0,1fr))">${s.map(shotHTML).join('')}</div>`
-    : shotHTML(s);
+  if (Array.isArray(s)) return `<div class="cs-gallery-row" style="grid-template-columns:repeat(${s.length},minmax(0,1fr))">${s.map(x => shotHTML(x)).join('')}</div>`;
+  if (s && typeof s === 'object') return shotHTML(s.src, s.size);
+  return shotHTML(s);
 }
 
-function csHead(sec) {
-  return `<div class="cs-label">${esc(sec.label || '')}</div>`;
-}
+function csHead() { return ''; }
 
 function renderIdentity(sec) {
   return `<section class="cs-sec">

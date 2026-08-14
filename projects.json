@@ -69,96 +69,58 @@
       "F&B"
     ],
     "gallery": [
+      {
+        "src": "images/works/woosundam/ext.jpg",
+        "size": "full"
+      },
+      {
+        "src": "images/works/woosundam/logo-word.jpg",
+        "size": "narrow"
+      },
       [
-        "images/works/woosundam/food.jpg",
-        "images/works/woosundam/card.jpg"
-      ]
-    ],
-    "sections": [
+        "images/works/woosundam/int1.jpg",
+        "images/works/woosundam/int2.jpg"
+      ],
       {
-        "type": "media",
-        "label": "Logo · 로고",
-        "images": [
-          [
-            "images/works/woosundam/logo-word.jpg",
-            "images/works/woosundam/logo-pylon.jpg"
-          ]
-        ]
+        "src": "images/works/woosundam/food.jpg",
+        "size": "left"
       },
       {
-        "type": "media",
-        "label": "Signage · 사이니지",
-        "images": [
-          "images/works/woosundam/ext.jpg"
-        ]
+        "src": "images/works/woosundam/card.jpg",
+        "size": "right"
       },
+      [
+        "images/works/woosundam/uni1.jpg",
+        "images/works/woosundam/uni2.jpg"
+      ],
       {
-        "type": "media",
-        "label": "Space · 공간 설계",
-        "images": [
-          [
-            "images/works/woosundam/floor.png",
-            "images/works/woosundam/iso.png"
-          ]
-        ]
+        "src": "images/works/woosundam/menu.jpg",
+        "size": "wide"
       },
+      [
+        "images/works/woosundam/n1.jpg",
+        "images/works/woosundam/n2.jpg",
+        "images/works/woosundam/n3.jpg"
+      ],
       {
-        "type": "media",
-        "label": "Interior · 인테리어",
-        "images": [
-          [
-            "images/works/woosundam/int1.jpg",
-            "images/works/woosundam/int2.jpg"
-          ]
-        ]
+        "src": "images/works/woosundam/banner.jpg",
+        "size": "full"
       },
+      [
+        "images/works/woosundam/tshirt.jpg",
+        "images/works/woosundam/pkg.jpg"
+      ],
       {
-        "type": "media",
-        "label": "Uniform · 유니폼",
-        "images": [
-          [
-            "images/works/woosundam/uni1.jpg",
-            "images/works/woosundam/uni2.jpg"
-          ]
-        ]
+        "src": "images/works/woosundam/billboard.jpg",
+        "size": "narrow"
       },
+      [
+        "images/works/woosundam/floor.png",
+        "images/works/woosundam/iso.png"
+      ],
       {
-        "type": "media",
-        "label": "Graphic · 그래픽",
-        "images": [
-          [
-            "images/works/woosundam/menu.jpg",
-            "images/works/woosundam/banner.jpg"
-          ]
-        ]
-      },
-      {
-        "type": "media",
-        "label": "Promotion · 마케팅 프로모션",
-        "images": [
-          [
-            "images/works/woosundam/n1.jpg",
-            "images/works/woosundam/n2.jpg",
-            "images/works/woosundam/n3.jpg"
-          ]
-        ]
-      },
-      {
-        "type": "media",
-        "label": "Merchandise · 굿즈",
-        "images": [
-          [
-            "images/works/woosundam/tshirt.jpg",
-            "images/works/woosundam/pkg.jpg"
-          ]
-        ]
-      },
-      {
-        "type": "media",
-        "label": "Outdoor · 옥외 광고",
-        "images": [
-          "images/works/woosundam/billboard.jpg"
-        ]
+        "src": "images/works/woosundam/logo-pylon.jpg",
+        "size": "narrow"
       }
     ]
   },
