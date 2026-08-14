@@ -2,8 +2,6 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/brand", "destination": "/brand.html" },
-    { "source": "/brand/about", "destination": "/about.html" },
-    { "source": "/brand/journal", "destination": "/journal.html" },
     { "source": "/admin", "destination": "/admin.html" }
   ]
 }
