@@ -61,7 +61,7 @@
     ],
     "primary": "brand",
     "role": "브랜딩 · 그래픽 · 공간 디자인",
-    "client": "우선담 (프리랜서)",
+    "client": "우선담",
     "summary": "논현동 골목의 새로운 랜드마크. 정형화된 고기 전문점 문법을 탈피한 강렬한 민트색 파사드.",
     "cover": "images/works/woosundam/cover.jpg",
     "tags": [
@@ -70,41 +70,53 @@
     ],
     "gallery": [
       {
+        "src": "images/works/woosundam/logo-word.jpg",
+        "size": "narrow"
+      },
+      {
         "src": "images/works/woosundam/ext-day.jpg",
         "size": "full"
       },
       {
-        "src": "images/works/woosundam/logo-word.jpg",
-        "size": "narrow"
-      },
-      [
-        "images/works/woosundam/int7.jpg",
-        "images/works/woosundam/int3.jpg"
-      ],
-      {
-        "src": "images/works/woosundam/food.jpg",
+        "src": "images/works/woosundam/ext.jpg",
         "size": "wide"
       },
       {
-        "src": "images/works/woosundam/ext.jpg",
-        "size": "left"
-      },
-      {
-        "src": "images/works/woosundam/card.jpg",
-        "size": "right"
+        "src": "images/works/woosundam/logo-pylon.jpg",
+        "size": "narrow"
       },
       [
-        "images/works/woosundam/int4.jpg",
-        "images/works/woosundam/int2.jpg"
+        "images/works/woosundam/floor.png",
+        "images/works/woosundam/iso.png"
       ],
+      {
+        "src": "images/works/woosundam/int7.jpg",
+        "size": "full"
+      },
+      [
+        "images/works/woosundam/int3.jpg",
+        "images/works/woosundam/int4.jpg"
+      ],
+      [
+        "images/works/woosundam/int2.jpg",
+        "images/works/woosundam/int5.jpg"
+      ],
+      {
+        "src": "images/works/woosundam/int6.jpg",
+        "size": "wide"
+      },
+      {
+        "src": "images/works/woosundam/food.jpg",
+        "size": "full"
+      },
       {
         "src": "images/works/woosundam/food2.jpg",
         "size": "wide"
       },
-      [
-        "images/works/woosundam/int5.jpg",
-        "images/works/woosundam/int6.jpg"
-      ],
+      {
+        "src": "images/works/woosundam/menu.jpg",
+        "size": "wide"
+      },
       {
         "src": "images/works/woosundam/poster-series.jpg",
         "size": "full"
@@ -114,13 +126,13 @@
         "images/works/woosundam/n2.jpg",
         "images/works/woosundam/n3.jpg"
       ],
-      [
-        "images/works/woosundam/uni1.jpg",
-        "images/works/woosundam/uni2.jpg"
-      ],
       {
         "src": "images/works/woosundam/banner.jpg",
         "size": "full"
+      },
+      {
+        "src": "images/works/woosundam/billboard.jpg",
+        "size": "narrow"
       },
       [
         "images/works/woosundam/tshirt.jpg",
@@ -131,20 +143,8 @@
         "images/works/woosundam/collateral.jpg"
       ],
       {
-        "src": "images/works/woosundam/billboard.jpg",
-        "size": "narrow"
-      },
-      [
-        "images/works/woosundam/floor.png",
-        "images/works/woosundam/iso.png"
-      ],
-      {
-        "src": "images/works/woosundam/menu.jpg",
+        "src": "images/works/woosundam/card.jpg",
         "size": "wide"
-      },
-      {
-        "src": "images/works/woosundam/logo-pylon.jpg",
-        "size": "narrow"
       }
     ]
   },
