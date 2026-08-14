@@ -70,7 +70,7 @@
     ],
     "gallery": [
       {
-        "src": "images/works/woosundam/ext.jpg",
+        "src": "images/works/woosundam/ext-day.jpg",
         "size": "full"
       },
       {
@@ -78,11 +78,15 @@
         "size": "narrow"
       },
       [
-        "images/works/woosundam/int1.jpg",
-        "images/works/woosundam/int2.jpg"
+        "images/works/woosundam/int7.jpg",
+        "images/works/woosundam/int3.jpg"
       ],
       {
         "src": "images/works/woosundam/food.jpg",
+        "size": "wide"
+      },
+      {
+        "src": "images/works/woosundam/ext.jpg",
         "size": "left"
       },
       {
@@ -90,17 +94,29 @@
         "size": "right"
       },
       [
-        "images/works/woosundam/uni1.jpg",
-        "images/works/woosundam/uni2.jpg"
+        "images/works/woosundam/int4.jpg",
+        "images/works/woosundam/int2.jpg"
       ],
       {
-        "src": "images/works/woosundam/menu.jpg",
+        "src": "images/works/woosundam/food2.jpg",
         "size": "wide"
+      },
+      [
+        "images/works/woosundam/int5.jpg",
+        "images/works/woosundam/int6.jpg"
+      ],
+      {
+        "src": "images/works/woosundam/poster-series.jpg",
+        "size": "full"
       },
       [
         "images/works/woosundam/n1.jpg",
         "images/works/woosundam/n2.jpg",
         "images/works/woosundam/n3.jpg"
+      ],
+      [
+        "images/works/woosundam/uni1.jpg",
+        "images/works/woosundam/uni2.jpg"
       ],
       {
         "src": "images/works/woosundam/banner.jpg",
@@ -110,6 +126,10 @@
         "images/works/woosundam/tshirt.jpg",
         "images/works/woosundam/pkg.jpg"
       ],
+      [
+        "images/works/woosundam/pkg2.jpg",
+        "images/works/woosundam/collateral.jpg"
+      ],
       {
         "src": "images/works/woosundam/billboard.jpg",
         "size": "narrow"
@@ -118,6 +138,10 @@
         "images/works/woosundam/floor.png",
         "images/works/woosundam/iso.png"
       ],
+      {
+        "src": "images/works/woosundam/menu.jpg",
+        "size": "wide"
+      },
       {
         "src": "images/works/woosundam/logo-pylon.jpg",
         "size": "narrow"
