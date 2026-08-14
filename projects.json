@@ -26,13 +26,30 @@
       "reposition": {
         "low": "저가 · 범용 창고",
         "high": "프리미엄 · 신뢰",
-        "from": { "label": "AS-IS", "name": "저가 창고", "at": 15 },
-        "to": { "label": "TO-BE", "name": "프리미엄 스토리지", "at": 83 }
+        "from": {
+          "label": "AS-IS",
+          "name": "저가 창고",
+          "at": 15
+        },
+        "to": {
+          "label": "TO-BE",
+          "name": "프리미엄 스토리지",
+          "at": 83
+        }
       },
       "shifts": [
-        { "from": "가격으로 비교되는 창고", "to": "신뢰로 선택되는 브랜드" },
-        { "from": "지점마다 다른 간판", "to": "하나의 사이니지 시스템" },
-        { "from": "저장 공간", "to": "관리해 주는 스토리지" }
+        {
+          "from": "가격으로 비교되는 창고",
+          "to": "신뢰로 선택되는 브랜드"
+        },
+        {
+          "from": "지점마다 다른 간판",
+          "to": "하나의 사이니지 시스템"
+        },
+        {
+          "from": "저장 공간",
+          "to": "관리해 주는 스토리지"
+        }
       ],
       "note": "네이밍·로고·컬러·사이니지 모듈까지 하나의 언어로 정리해, 브랜드가 가격이 아니라 경험으로 소비되도록 설계했습니다."
     },
@@ -44,18 +61,36 @@
         "sub": "슬로건부터 로고까지 군더더기를 덜어내 브랜드의 기준을 다시 세웠습니다. ‘창고’를 품되 프리미엄으로 느껴지는 언어를 도출하고, 그리드 위에서 로고타입을 정제했습니다.",
         "logo": "images/works/mini-warehouse-darak/logo-grid.jpg",
         "keywords": [
-          { "en": "expand", "ko": "확장", "desc": "가족의 공간을 넓히다" },
-          { "en": "flexible", "ko": "유연", "desc": "다양한 생활 방식을 수용" },
-          { "en": "connect", "ko": "연결", "desc": "공간과 일상을 잇다" }
+          {
+            "en": "expand",
+            "ko": "확장",
+            "desc": "가족의 공간을 넓히다"
+          },
+          {
+            "en": "flexible",
+            "ko": "유연",
+            "desc": "다양한 생활 방식을 수용"
+          },
+          {
+            "en": "connect",
+            "ko": "연결",
+            "desc": "공간과 일상을 잇다"
+          }
         ],
-        "color": { "name": "Clear Blue", "hex": "#2868FF" }
+        "color": {
+          "name": "Clear Blue",
+          "hex": "#2868FF"
+        }
       },
       {
         "type": "signage",
         "label": "Signage System · 사이니지 모듈",
         "headline": "현장마다 달랐던 간판을, 모듈 시스템으로",
         "sub": "기존 간판은 플렉스·채널 두 형태가 혼재해 매장마다 견적과 마진의 변동성이 컸고, 후킹 포인트가 없어 시인성도 약했습니다. 어떤 매장 폭에도 조합되는 표준 모듈을 설계해 견적·시공·시인성을 한 번에 정리했습니다.",
-        "before": { "img": "images/works/mini-warehouse-darak/before-sign.jpg", "label": "BEFORE · 혼재된 기존 간판" },
+        "before": {
+          "img": "images/works/mini-warehouse-darak/before-sign.jpg",
+          "label": "BEFORE · 혼재된 기존 간판"
+        },
         "afterLabel": "AFTER · 표준 모듈 도면 (SCALE 10/1)",
         "drawing": "images/works/mini-warehouse-darak/signage-drawing.png",
         "specs": [
@@ -221,7 +256,25 @@
       "note": "낮은 유동·칙칙한 거리 → 민트 컬러를 ‘가로의 랜드마크’로 세워 시선을 정지시켰습니다."
     },
     "gallery": [
-      "images/works/woosundam/g1.jpg"
+      "images/works/woosundam/g1.jpg",
+      [
+        "images/works/woosundam/n1.jpg",
+        "images/works/woosundam/n2.jpg"
+      ],
+      "images/works/woosundam/n3.jpg"
+    ],
+    "sections": [
+      {
+        "type": "media",
+        "label": "Space · 공간 설계",
+        "sub": "평면(Floor)과 아이소메트릭(Isometric)으로 매장 동선과 파사드를 함께 설계했습니다.",
+        "images": [
+          [
+            "images/works/woosundam/floor.png",
+            "images/works/woosundam/iso.png"
+          ]
+        ]
+      }
     ]
   },
   {
@@ -281,10 +334,16 @@
       "note": "해외·현장 수정 불가 → 3D 이미지로 합의 → 시공 전 확인 → 불필요한 지출 방지."
     },
     "gallery": [
-      "images/works/jaws/g1.jpg",
-      "images/works/jaws/g2.jpg",
-      "images/works/jaws/g3.jpg",
-      "images/works/jaws/g4.jpg"
+      "images/works/jaws/n1.jpg",
+      "images/works/jaws/n3.jpg",
+      [
+        "images/works/jaws/n2.jpg",
+        "images/works/jaws/n4.jpg"
+      ],
+      [
+        "images/works/jaws/n5.jpg",
+        "images/works/jaws/n6.jpg"
+      ]
     ]
   },
   {
@@ -358,10 +417,39 @@
       "note": "전통 물성(소재) → 모던하게(표현) → 도심형 뉴트로(공간) → 진정한 대접(경험)."
     },
     "gallery": [
-      "images/works/jindaegam/g1.jpg",
-      "images/works/jindaegam/g2.jpg",
-      "images/works/jindaegam/g3.jpg",
-      "images/works/jindaegam/g4.jpg"
+      [
+        "images/works/jindaegam/n1.jpg",
+        "images/works/jindaegam/n2.jpg"
+      ],
+      [
+        "images/works/jindaegam/g3.jpg",
+        "images/works/jindaegam/g4.jpg"
+      ],
+      "images/works/jindaegam/g1.jpg"
+    ],
+    "sections": [
+      {
+        "type": "media",
+        "label": "Space · 공간 설계",
+        "sub": "전통 물성을 현대적으로 재구성한 다이닝. 평면과 아이소메트릭으로 공간을 설계했습니다.",
+        "images": [
+          [
+            "images/works/jindaegam/floor.png",
+            "images/works/jindaegam/iso.png"
+          ]
+        ]
+      },
+      {
+        "type": "media",
+        "label": "Menu · 메뉴",
+        "sub": "차돌삼합·한우 중심 구성. 한지 질감의 메뉴로 대접의 격을 더했습니다.",
+        "images": [
+          [
+            "images/works/jindaegam/menu1.jpg",
+            "images/works/jindaegam/menu2.jpg"
+          ]
+        ]
+      }
     ]
   }
 ]
