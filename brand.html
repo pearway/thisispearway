@@ -489,32 +489,37 @@ function renderIdentity(sec) {
 function signageSVG(modules, wordmark, accent) {
   const mods = modules || [];
   const total = mods.reduce((s, m) => s + Number(m.w), 0) || 1;
-  const VW = 1000, x0 = 20, gap = 6;
-  const avail = VW - x0 * 2 - gap * (mods.length - 1);
-  const barTop = 78, barH = 92;
-  let x = x0, rects = '', labels = '';
-  mods.forEach(m => {
+  const VW = 1000, x0 = 26;
+  const avail = VW - x0 * 2;
+  const barTop = 92, barH = 96, barBottom = barTop + barH;
+  let x = x0, labels = '', dividers = '';
+  mods.forEach((m, i) => {
     const w = Number(m.w) / total * avail;
-    rects += `<rect x="${x.toFixed(1)}" y="${barTop}" width="${w.toFixed(1)}" height="${barH}" rx="3" fill="${accent}"/>`;
-    labels += `<text x="${(x + w / 2).toFixed(1)}" y="58" class="sg-no">${esc(m.no)}</text>
-      <text x="${(x + w / 2).toFixed(1)}" y="72" class="sg-w">${Number(m.w)}</text>`;
-    x += w + gap;
+    const cx = x + w / 2;
+    labels += `<text x="${cx.toFixed(1)}" y="52" class="sg-no">${esc(m.no)}</text>
+      <text x="${cx.toFixed(1)}" y="74" class="sg-w">${Number(m.w)}</text>`;
+    if (i > 0) {
+      dividers += `<line x1="${x.toFixed(1)}" y1="${barTop}" x2="${x.toFixed(1)}" y2="${barBottom}" stroke="rgba(255,255,255,0.42)" stroke-width="1.5"/>
+        <line x1="${x.toFixed(1)}" y1="${barTop - 12}" x2="${x.toFixed(1)}" y2="${barTop}" stroke="var(--line)" stroke-width="1"/>`;
+    }
+    x += w;
   });
-  const right = x - gap;
-  return `<svg viewBox="0 0 1000 210" class="cs-sign-svg" role="img" aria-label="사이니지 모듈 시스템">
+  const right = x;
+  return `<svg viewBox="0 0 1000 220" class="cs-sign-svg" role="img" aria-label="사이니지 모듈 시스템">
     <style>
-      .sg-no{font-family:'Geist Mono',monospace;font-size:12px;fill:var(--ink-3);text-anchor:middle}
-      .sg-w{font-family:'Geist Mono',monospace;font-size:11px;fill:var(--ink-3);text-anchor:middle;opacity:.7}
-      .sg-dim{font-family:'Geist Mono',monospace;font-size:11px;fill:var(--ink-3)}
-      .sg-wm{font-family:'Pretendard',sans-serif;font-weight:800;font-size:52px;fill:#fff;text-anchor:middle}
+      .sg-no{font-family:'Geist Mono',monospace;font-size:19px;fill:var(--ink-2);text-anchor:middle}
+      .sg-w{font-family:'Geist Mono',monospace;font-size:16px;fill:var(--ink-3);text-anchor:middle}
+      .sg-dim{font-family:'Geist Mono',monospace;font-size:16px;fill:var(--ink-3);text-anchor:middle}
+      .sg-wm{font-family:'Pretendard',sans-serif;font-weight:800;font-size:60px;fill:#fff;text-anchor:middle}
     </style>
     ${labels}
-    ${rects}
-    <text x="500" y="${barTop + barH / 2 + 18}" class="sg-wm">${esc(wordmark || '')}</text>
-    <line x1="${x0}" y1="190" x2="${right}" y2="190" stroke="var(--line)" stroke-width="1"/>
-    <line x1="${x0}" y1="186" x2="${x0}" y2="194" stroke="var(--line)" stroke-width="1"/>
-    <line x1="${right}" y1="186" x2="${right}" y2="194" stroke="var(--line)" stroke-width="1"/>
-    <text x="500" y="204" class="sg-dim" text-anchor="middle">어떤 매장 폭에도 조합 · W ${total.toLocaleString()} × H 200</text>
+    <rect x="${x0}" y="${barTop}" width="${avail}" height="${barH}" rx="6" fill="${accent}"/>
+    ${dividers}
+    <text x="500" y="${barTop + barH / 2 + 21}" class="sg-wm">${esc(wordmark || '')}</text>
+    <line x1="${x0}" y1="202" x2="${right}" y2="202" stroke="var(--line)" stroke-width="1"/>
+    <line x1="${x0}" y1="198" x2="${x0}" y2="206" stroke="var(--line)" stroke-width="1"/>
+    <line x1="${right}" y1="198" x2="${right}" y2="206" stroke="var(--line)" stroke-width="1"/>
+    <text x="500" y="218" class="sg-dim">어떤 매장 폭에도 조합 · W ${total.toLocaleString()} × H 200</text>
   </svg>`;
 }
 
