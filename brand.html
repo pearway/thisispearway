@@ -109,9 +109,7 @@
     <div class="contact-grid">
       <div class="contact-block">
         <div class="label">Direct</div>
-        <a href="http://pf.kakao.com/_JdBdX/chat" class="value" target="_blank" rel="noopener">
-          KakaoTalk <span class="arrow">↗</span>
-        </a>
+        <a href="mailto:ppearwayy@gmail.com" class="value">ppearwayy@gmail.com</a>
       </div>
       <div class="contact-block">
         <div class="label">Type Work</div>
@@ -218,24 +216,25 @@ if (!reduceMotion) {
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
-
-  // anchor 링크는 Lenis로 부드럽게 스크롤
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href === '#' || href.length < 2) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -20 });
-    });
-  });
 }
 
 /* ---------- (intro loader removed — enter instantly) ---------- */
 let dataReady = false;
 document.body.classList.add('loaded');
 if (lenis) lenis.start();
+
+/* anchor links → smooth scroll (works with or without Lenis) */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href || href === '#' || href.length < 2) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(target, { offset: -20 });
+    else window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 20, behavior: 'smooth' });
+  });
+});
 
 /* ---------- Header scroll ---------- */
 const header = document.querySelector('header.site');
