@@ -26,10 +26,6 @@
         "src": "images/works/duomo-pizza/int1.jpg",
         "size": "full"
       },
-      {
-        "src": "images/works/duomo-pizza/ext2.jpg",
-        "size": "wide"
-      },
       [
         "images/works/duomo-pizza/floor.png",
         "images/works/duomo-pizza/iso.png"
@@ -40,6 +36,10 @@
       ],
       {
         "src": "images/works/duomo-pizza/int2.jpg",
+        "size": "wide"
+      },
+      {
+        "src": "images/works/duomo-pizza/ext2.jpg",
         "size": "wide"
       }
     ]
