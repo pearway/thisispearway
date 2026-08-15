@@ -11,7 +11,7 @@
     "primary": "spatial",
     "role": "공간 디자인",
     "client": "",
-    "summary": "",
+    "summary": "김치찌개 노포의 온기를, 원목과 붉은 톤으로 정리한 도심형 한식 공간.",
     "cover": "images/works/hwamiok/ext.jpg",
     "tags": [
       "Spatial",
@@ -45,7 +45,7 @@
     "primary": "spatial",
     "role": "브랜딩 · 공간 디자인",
     "client": "",
-    "summary": "",
+    "summary": "그린 타일과 원목으로 다시 짠 뼈구이 전문점의 얼굴.",
     "cover": "images/works/bone-grill/ext.jpg",
     "tags": [
       "Spatial",
@@ -105,6 +105,10 @@
         "images/works/duomo-pizza/int2.jpg",
         "images/works/duomo-pizza/int3.jpg"
       ],
+      [
+        "images/works/duomo-pizza/tshirt.jpg",
+        "images/works/duomo-pizza/pizzabox.jpg"
+      ],
       {
         "src": "images/works/duomo-pizza/ext-a.jpg",
         "size": "wide"
@@ -125,7 +129,7 @@
     "primary": "brand",
     "role": "브랜딩 · 그래픽 · 공간 디자인",
     "client": "",
-    "summary": "",
+    "summary": "분식을 단정하게. 강남김밥의 로고부터 매장·패키지까지.",
     "cover": "images/works/gangnam-gimbap/ext.jpg",
     "tags": [
       "Brand Identity",
@@ -134,7 +138,7 @@
     "gallery": [
       {
         "src": "images/works/gangnam-gimbap/logo.jpg",
-        "size": "narrow"
+        "size": "full"
       },
       {
         "src": "images/works/gangnam-gimbap/ext.jpg",
@@ -172,7 +176,7 @@
     "primary": "brand",
     "role": "브랜딩 · 그래픽 · 공간 디자인",
     "client": "",
-    "summary": "",
+    "summary": "하루 종일 크레페. 레드 스트라이프의 캐주얼 크레페 브랜드.",
     "cover": "images/works/allday-crepe/ext.jpg",
     "tags": [
       "Brand Identity",
@@ -181,11 +185,7 @@
     "gallery": [
       {
         "src": "images/works/allday-crepe/logo.jpg",
-        "size": "narrow"
-      },
-      {
-        "src": "images/works/allday-crepe/guide.jpg",
-        "size": "wide"
+        "size": "full"
       },
       {
         "src": "images/works/allday-crepe/ext.jpg",
@@ -195,10 +195,18 @@
         "images/works/allday-crepe/int1.jpg",
         "images/works/allday-crepe/int2.jpg"
       ],
-      [
-        "images/works/allday-crepe/sign-stand.jpg",
-        "images/works/allday-crepe/sign-round.jpg"
-      ]
+      {
+        "src": "images/works/allday-crepe/guide.jpg",
+        "size": "wide"
+      },
+      {
+        "src": "images/works/allday-crepe/sign-stand.jpg",
+        "size": "left"
+      },
+      {
+        "src": "images/works/allday-crepe/sign-round.jpg",
+        "size": "right"
+      }
     ]
   },
   {
