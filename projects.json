@@ -19,7 +19,7 @@
     ],
     "gallery": [
       {
-        "src": "images/works/duomo-pizza/ext1.jpg",
+        "src": "images/works/duomo-pizza/ext-hero.jpg",
         "size": "full"
       },
       {
@@ -31,15 +31,11 @@
         "images/works/duomo-pizza/iso.png"
       ],
       [
-        "images/works/duomo-pizza/int3.jpg",
-        "images/works/duomo-pizza/int4.jpg"
+        "images/works/duomo-pizza/int2.jpg",
+        "images/works/duomo-pizza/int3.jpg"
       ],
       {
-        "src": "images/works/duomo-pizza/int2.jpg",
-        "size": "wide"
-      },
-      {
-        "src": "images/works/duomo-pizza/ext2.jpg",
+        "src": "images/works/duomo-pizza/ext-a.jpg",
         "size": "wide"
       }
     ]
