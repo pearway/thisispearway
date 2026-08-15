@@ -1,5 +1,76 @@
 [
   {
+    "id": "hwamiok",
+    "title": "화미옥김치찌개",
+    "title_en": "Hwamiok",
+    "year": "2026",
+    "period": "2026",
+    "category": [
+      "spatial"
+    ],
+    "primary": "spatial",
+    "role": "공간 디자인",
+    "client": "",
+    "summary": "",
+    "cover": "images/works/hwamiok/ext.jpg",
+    "tags": [
+      "Spatial",
+      "F&B"
+    ],
+    "gallery": [
+      {
+        "src": "images/works/hwamiok/ext.jpg",
+        "size": "full"
+      },
+      {
+        "src": "images/works/hwamiok/int1.jpg",
+        "size": "full"
+      },
+      [
+        "images/works/hwamiok/int2.jpg",
+        "images/works/hwamiok/int3.jpg"
+      ]
+    ]
+  },
+  {
+    "id": "bone-grill",
+    "title": "뼈구이집",
+    "title_en": "Bone Grill",
+    "year": "2025",
+    "period": "2025",
+    "category": [
+      "brand",
+      "spatial"
+    ],
+    "primary": "spatial",
+    "role": "브랜딩 · 공간 디자인",
+    "client": "",
+    "summary": "",
+    "cover": "images/works/bone-grill/ext.jpg",
+    "tags": [
+      "Spatial",
+      "F&B"
+    ],
+    "gallery": [
+      {
+        "src": "images/works/bone-grill/ext.jpg",
+        "size": "full"
+      },
+      {
+        "src": "images/works/bone-grill/int1.jpg",
+        "size": "full"
+      },
+      [
+        "images/works/bone-grill/int2.jpg",
+        "images/works/bone-grill/int3.jpg"
+      ],
+      [
+        "images/works/bone-grill/int4.jpg",
+        "images/works/bone-grill/int5.jpg"
+      ]
+    ]
+  },
+  {
     "id": "duomo-pizza",
     "title": "듀오모피자",
     "title_en": "Duomo Pizza",
@@ -38,6 +109,96 @@
         "src": "images/works/duomo-pizza/ext-a.jpg",
         "size": "wide"
       }
+    ]
+  },
+  {
+    "id": "gangnam-gimbap",
+    "title": "강남김밥",
+    "title_en": "Gangnam Gimbap",
+    "year": "2024",
+    "period": "2024",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
+    "primary": "brand",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "client": "",
+    "summary": "",
+    "cover": "images/works/gangnam-gimbap/ext.jpg",
+    "tags": [
+      "Brand Identity",
+      "F&B"
+    ],
+    "gallery": [
+      {
+        "src": "images/works/gangnam-gimbap/logo.jpg",
+        "size": "narrow"
+      },
+      {
+        "src": "images/works/gangnam-gimbap/ext.jpg",
+        "size": "full"
+      },
+      [
+        "images/works/gangnam-gimbap/int1.jpg",
+        "images/works/gangnam-gimbap/int2.jpg"
+      ],
+      {
+        "src": "images/works/gangnam-gimbap/pkg-box.jpg",
+        "size": "wide"
+      },
+      [
+        "images/works/gangnam-gimbap/pkg-bag.jpg",
+        "images/works/gangnam-gimbap/pkg-chop.jpg"
+      ],
+      [
+        "images/works/gangnam-gimbap/pkg-paper.jpg",
+        "images/works/gangnam-gimbap/stickers.jpg"
+      ]
+    ]
+  },
+  {
+    "id": "allday-crepe",
+    "title": "올데이크레페",
+    "title_en": "All Day Crepe",
+    "year": "2024",
+    "period": "2024",
+    "category": [
+      "brand",
+      "graphic",
+      "spatial"
+    ],
+    "primary": "brand",
+    "role": "브랜딩 · 그래픽 · 공간 디자인",
+    "client": "",
+    "summary": "",
+    "cover": "images/works/allday-crepe/ext.jpg",
+    "tags": [
+      "Brand Identity",
+      "F&B"
+    ],
+    "gallery": [
+      {
+        "src": "images/works/allday-crepe/logo.jpg",
+        "size": "narrow"
+      },
+      {
+        "src": "images/works/allday-crepe/guide.jpg",
+        "size": "wide"
+      },
+      {
+        "src": "images/works/allday-crepe/ext.jpg",
+        "size": "full"
+      },
+      [
+        "images/works/allday-crepe/int1.jpg",
+        "images/works/allday-crepe/int2.jpg"
+      ],
+      [
+        "images/works/allday-crepe/sign-stand.jpg",
+        "images/works/allday-crepe/sign-round.jpg"
+      ]
     ]
   },
   {
