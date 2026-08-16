@@ -435,6 +435,7 @@ function shotHTML(u, size) {
 
 function galleryItemHTML(s) {
   if (Array.isArray(s)) return `<div class="cs-gallery-row" style="grid-template-columns:repeat(${s.length},minmax(0,1fr))">${s.map(x => shotHTML(x)).join('')}</div>`;
+  if (s && typeof s === 'object' && s.row) return `<div class="cs-gallery-row" style="grid-template-columns:${esc(s.cols || 'repeat(' + s.row.length + ',minmax(0,1fr))')}">${s.row.map(x => shotHTML(x)).join('')}</div>`;
   if (s && typeof s === 'object') return shotHTML(s.src, s.size);
   return shotHTML(s);
 }

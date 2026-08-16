@@ -24,12 +24,16 @@
       },
       {
         "src": "images/works/hwamiok/int1.jpg",
-        "size": "full"
+        "size": "left"
       },
-      [
-        "images/works/hwamiok/int2.jpg",
-        "images/works/hwamiok/int3.jpg"
-      ]
+      {
+        "src": "images/works/hwamiok/int2.jpg",
+        "size": "right"
+      },
+      {
+        "src": "images/works/hwamiok/int3.jpg",
+        "size": "wide"
+      }
     ]
   },
   {
@@ -57,17 +61,24 @@
         "size": "full"
       },
       {
-        "src": "images/works/bone-grill/int1.jpg",
-        "size": "full"
+        "row": [
+          "images/works/bone-grill/int1.jpg",
+          "images/works/bone-grill/int2.jpg"
+        ],
+        "cols": "3fr 2fr"
       },
-      [
-        "images/works/bone-grill/int2.jpg",
-        "images/works/bone-grill/int3.jpg"
-      ],
-      [
-        "images/works/bone-grill/int4.jpg",
-        "images/works/bone-grill/int5.jpg"
-      ]
+      {
+        "src": "images/works/bone-grill/int3.jpg",
+        "size": "left"
+      },
+      {
+        "src": "images/works/bone-grill/int4.jpg",
+        "size": "right"
+      },
+      {
+        "src": "images/works/bone-grill/int5.jpg",
+        "size": "wide"
+      }
     ]
   },
   {
@@ -95,20 +106,27 @@
       },
       {
         "src": "images/works/duomo-pizza/int1.jpg",
-        "size": "full"
+        "size": "left"
       },
       [
         "images/works/duomo-pizza/floor.png",
         "images/works/duomo-pizza/iso.png"
       ],
-      [
-        "images/works/duomo-pizza/int2.jpg",
-        "images/works/duomo-pizza/int3.jpg"
-      ],
-      [
-        "images/works/duomo-pizza/tshirt.jpg",
-        "images/works/duomo-pizza/pizzabox.jpg"
-      ],
+      {
+        "src": "images/works/duomo-pizza/int2.jpg",
+        "size": "right"
+      },
+      {
+        "src": "images/works/duomo-pizza/int3.jpg",
+        "size": "wide"
+      },
+      {
+        "row": [
+          "images/works/duomo-pizza/tshirt.jpg",
+          "images/works/duomo-pizza/pizzabox.jpg"
+        ],
+        "cols": "2fr 3fr"
+      },
       {
         "src": "images/works/duomo-pizza/ext-a.jpg",
         "size": "wide"
@@ -144,22 +162,28 @@
         "src": "images/works/gangnam-gimbap/ext.jpg",
         "size": "full"
       },
-      [
-        "images/works/gangnam-gimbap/int1.jpg",
-        "images/works/gangnam-gimbap/int2.jpg"
-      ],
+      {
+        "row": [
+          "images/works/gangnam-gimbap/int1.jpg",
+          "images/works/gangnam-gimbap/int2.jpg"
+        ],
+        "cols": "3fr 2fr"
+      },
       {
         "src": "images/works/gangnam-gimbap/pkg-box.jpg",
-        "size": "wide"
+        "size": "left"
       },
       [
         "images/works/gangnam-gimbap/pkg-bag.jpg",
         "images/works/gangnam-gimbap/pkg-chop.jpg"
       ],
-      [
-        "images/works/gangnam-gimbap/pkg-paper.jpg",
-        "images/works/gangnam-gimbap/stickers.jpg"
-      ]
+      {
+        "row": [
+          "images/works/gangnam-gimbap/pkg-paper.jpg",
+          "images/works/gangnam-gimbap/stickers.jpg"
+        ],
+        "cols": "2fr 3fr"
+      }
     ]
   },
   {
@@ -191,10 +215,13 @@
         "src": "images/works/allday-crepe/ext.jpg",
         "size": "full"
       },
-      [
-        "images/works/allday-crepe/int1.jpg",
-        "images/works/allday-crepe/int2.jpg"
-      ],
+      {
+        "row": [
+          "images/works/allday-crepe/int1.jpg",
+          "images/works/allday-crepe/int2.jpg"
+        ],
+        "cols": "2fr 3fr"
+      },
       {
         "src": "images/works/allday-crepe/guide.jpg",
         "size": "wide"
@@ -254,17 +281,23 @@
         "src": "images/works/woosundam/int7.jpg",
         "size": "full"
       },
-      [
-        "images/works/woosundam/int3.jpg",
-        "images/works/woosundam/int4.jpg"
-      ],
-      [
-        "images/works/woosundam/int2.jpg",
-        "images/works/woosundam/int5.jpg"
-      ],
+      {
+        "row": [
+          "images/works/woosundam/int3.jpg",
+          "images/works/woosundam/int4.jpg"
+        ],
+        "cols": "3fr 2fr"
+      },
       {
         "src": "images/works/woosundam/int6.jpg",
-        "size": "wide"
+        "size": "left"
+      },
+      {
+        "row": [
+          "images/works/woosundam/int2.jpg",
+          "images/works/woosundam/int5.jpg"
+        ],
+        "cols": "2fr 3fr"
       },
       {
         "src": "images/works/woosundam/food.jpg",
@@ -272,11 +305,11 @@
       },
       {
         "src": "images/works/woosundam/food2.jpg",
-        "size": "wide"
+        "size": "right"
       },
       {
         "src": "images/works/woosundam/menu.jpg",
-        "size": "wide"
+        "size": "left"
       },
       {
         "src": "images/works/woosundam/poster-series.jpg",
@@ -295,14 +328,20 @@
         "src": "images/works/woosundam/billboard.jpg",
         "size": "narrow"
       },
-      [
-        "images/works/woosundam/tshirt.jpg",
-        "images/works/woosundam/pkg.jpg"
-      ],
-      [
-        "images/works/woosundam/pkg2.jpg",
-        "images/works/woosundam/collateral.jpg"
-      ],
+      {
+        "row": [
+          "images/works/woosundam/tshirt.jpg",
+          "images/works/woosundam/pkg.jpg"
+        ],
+        "cols": "3fr 2fr"
+      },
+      {
+        "row": [
+          "images/works/woosundam/pkg2.jpg",
+          "images/works/woosundam/collateral.jpg"
+        ],
+        "cols": "2fr 3fr"
+      },
       {
         "src": "images/works/woosundam/card.jpg",
         "size": "wide"
@@ -339,17 +378,20 @@
         "src": "images/works/jaws/poster.jpg",
         "size": "narrow"
       },
-      [
-        "images/works/jaws/n2.jpg",
-        "images/works/jaws/n3.jpg"
-      ],
+      {
+        "row": [
+          "images/works/jaws/n2.jpg",
+          "images/works/jaws/n3.jpg"
+        ],
+        "cols": "2fr 3fr"
+      },
       {
         "src": "images/works/jaws/n4.jpg",
-        "size": "wide"
+        "size": "left"
       },
       {
         "src": "images/works/jaws/sns.jpg",
-        "size": "full"
+        "size": "wide"
       },
       {
         "src": "images/works/jaws/n5.jpg",
@@ -357,7 +399,7 @@
       },
       {
         "src": "images/works/jaws/n6.jpg",
-        "size": "wide"
+        "size": "right"
       }
     ]
   }
