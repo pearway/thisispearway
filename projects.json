@@ -216,15 +216,15 @@
         "size": "full"
       },
       {
+        "src": "images/works/allday-crepe/guide.jpg",
+        "size": "wide"
+      },
+      {
         "row": [
           "images/works/allday-crepe/int1.jpg",
           "images/works/allday-crepe/int2.jpg"
         ],
         "cols": "2fr 3fr"
-      },
-      {
-        "src": "images/works/allday-crepe/guide.jpg",
-        "size": "wide"
       },
       {
         "src": "images/works/allday-crepe/sign-stand.jpg",
@@ -233,6 +233,17 @@
       {
         "src": "images/works/allday-crepe/sign-round.jpg",
         "size": "right"
+      },
+      {
+        "src": "images/works/allday-crepe/iso.jpg",
+        "size": "wide"
+      },
+      {
+        "row": [
+          "images/works/allday-crepe/pkg1.jpg",
+          "images/works/allday-crepe/pkg2.jpg"
+        ],
+        "cols": "3fr 2fr"
       }
     ]
   },
