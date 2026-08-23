@@ -798,3 +798,11 @@ footer.site .copyright {
 .obj-color .cn { font-family: var(--font-display); font-size: 1rem; color: var(--ink); }
 .obj-color .cc { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-3); }
 .obj-disclaimer { margin-top: 1.25rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--ink-3); }
+
+/* colorway switcher (buttons) */
+.obj-color { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; text-align: left; }
+.obj-color .chip { transition: transform .18s ease, box-shadow .18s ease; }
+.obj-color:hover .chip { transform: scale(1.12); }
+.obj-color.active .chip { box-shadow: inset 0 0 0 1px rgba(0,0,0,.28), 0 0 0 2px var(--silver); }
+.obj-color:not(.active) .cn { color: var(--ink-3); }
+.obj-color.active .cn { color: var(--ink); }
