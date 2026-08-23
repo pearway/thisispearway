@@ -393,13 +393,14 @@ function openObject() {
     ['Price', '109,000원']
   ];
   const colors = [
-    { name: 'Yellow', code: 'PANTONE 116 C', hex: '#FFCD00', imgs: ['umbloom-1.jpg', 'umbloom-2.jpg'] },
-    { name: 'Blue', code: 'PANTONE 272 C', hex: '#4B4FE0', imgs: ['umbloom-blue-1.jpg', 'umbloom-blue-2.jpg'] },
-    { name: 'Orange', code: 'PANTONE 173 C', hex: '#E85028', imgs: ['umbloom-orange-1.jpg', 'umbloom-orange-2.jpg'] }
+    { name: 'Yellow', code: 'PANTONE 116 C', hex: '#FFCD00', hero: 'umbloom-1.jpg', detail: 'umbloom-2.jpg' },
+    { name: 'Blue', code: 'PANTONE 272 C', hex: '#4B4FE0', hero: 'umbloom-blue-1.jpg', detail: 'umbloom-blue-2.jpg' },
+    { name: 'Orange', code: 'PANTONE 173 C', hex: '#E85028', hero: 'umbloom-orange-1.jpg', detail: 'umbloom-orange-2.jpg' }
   ];
   const gallery = [
-    { src: 'images/objects/' + colors[0].imgs[0], size: 'full' },
-    { src: 'images/objects/' + colors[0].imgs[1], size: 'wide' }
+    { src: 'images/objects/' + colors[0].hero, size: 'full' },
+    { src: 'images/objects/' + colors[0].detail, size: 'wide' },
+    { row: colors.map(c => 'images/objects/' + c.hero), cols: 'repeat(3,minmax(0,1fr))' }
   ];
   detailBody.innerHTML = `
     <div class="detail-hero">
@@ -409,24 +410,12 @@ function openObject() {
     <section class="cs-sec">
       <div class="obj-spec">
         ${spec.map(([k, v]) => `<div class="obj-spec-row"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join('')}
-      </div>
-      <div class="obj-colors">
-        ${colors.map((c, i) => `<button class="obj-color${i === 0 ? ' active' : ''}" data-ci="${i}"><span class="chip" style="background:${esc(c.hex)}"></span><span class="cn">${esc(c.name)}</span><span class="cc">${esc(c.code)}</span></button>`).join('')}
+        ${colors.map((c, i) => `<div class="obj-spec-row obj-color-row"><span class="k">${i === 0 ? 'Colors' : ''}</span><span class="v"><span class="chip" style="background:${esc(c.hex)}"></span>${esc(c.name)} · ${esc(c.code)}</span></div>`).join('')}
       </div>
       <p class="obj-disclaimer">화면과 모니터 환경에 따라 실제 색상과 다르게 보일 수 있습니다.</p>
     </section>
     <section class="cs-sec"><div class="cs-gallery">${gallery.map(galleryItemHTML).join('')}</div></section>
   `;
-  detailBody.querySelectorAll('.obj-color').forEach(sw => {
-    sw.addEventListener('click', () => {
-      const ci = +sw.dataset.ci;
-      detailBody.querySelectorAll('.obj-color').forEach(s => s.classList.remove('active'));
-      sw.classList.add('active');
-      const imgs = detailBody.querySelectorAll('.cs-gallery .cs-shot img');
-      colors[ci].imgs.forEach((src, i) => { if (imgs[i]) imgs[i].src = 'images/objects/' + src; });
-      if (lenisOverlay) lenisOverlay.resize();
-    });
-  });
   overlay.classList.add('open');
   document.body.classList.add('modal-open');
   overlay.scrollTop = 0;
