@@ -398,9 +398,8 @@ function openObject() {
     { name: 'Orange', code: 'PANTONE 173 C', hex: '#E85028', hero: 'umbloom-orange-1.jpg', detail: 'umbloom-orange-2.jpg' }
   ];
   const gallery = [
-    { src: 'images/objects/' + colors[0].hero, size: 'full' },
-    { src: 'images/objects/' + colors[0].detail, size: 'wide' },
-    { row: colors.map(c => 'images/objects/' + c.hero), cols: 'repeat(3,minmax(0,1fr))' }
+    { row: colors.map(c => 'images/objects/' + c.hero), cols: 'repeat(3,minmax(0,1fr))', cls: 'cs-colorway' },
+    { src: 'images/objects/umbloom-base.jpg', size: 'wide' }
   ];
   detailBody.innerHTML = `
     <div class="detail-hero">
@@ -479,7 +478,7 @@ function shotHTML(u, size) {
 
 function galleryItemHTML(s) {
   if (Array.isArray(s)) return `<div class="cs-gallery-row" style="grid-template-columns:repeat(${s.length},minmax(0,1fr))">${s.map(x => shotHTML(x)).join('')}</div>`;
-  if (s && typeof s === 'object' && s.row) return `<div class="cs-gallery-row" style="grid-template-columns:${esc(s.cols || 'repeat(' + s.row.length + ',minmax(0,1fr))')}">${s.row.map(x => shotHTML(x)).join('')}</div>`;
+  if (s && typeof s === 'object' && s.row) return `<div class="cs-gallery-row${s.cls ? ' ' + esc(s.cls) : ''}" style="grid-template-columns:${esc(s.cols || 'repeat(' + s.row.length + ',minmax(0,1fr))')}">${s.row.map(x => shotHTML(x)).join('')}</div>`;
   if (s && typeof s === 'object') return shotHTML(s.src, s.size);
   return shotHTML(s);
 }

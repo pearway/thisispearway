@@ -732,6 +732,7 @@ footer.site .copyright {
 }
 .cs-gallery-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(0.75rem,1.5vw,1.25rem); align-items: start; }
 @media (max-width: 620px) { .cs-gallery-row { grid-template-columns: 1fr !important; } }
+.cs-gallery-row.cs-colorway { grid-template-columns: repeat(3,minmax(0,1fr)) !important; gap: clamp(0.4rem,1.4vw,1.25rem); }
 
 /* identity (logo · keywords · color) */
 .cs-id { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(1rem,2.5vw,1.75rem); margin-top: clamp(1.75rem,4vw,2.75rem); align-items: stretch; }
