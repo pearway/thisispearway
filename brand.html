@@ -89,13 +89,13 @@
       <span class="section-marker">Objects · 오브제</span>
     </div>
     <div class="objects-grid">
-      <article class="object-card is-soon">
-        <div class="object-thumb"><span class="object-soon">Coming 2026</span></div>
+      <a class="object-card" href="#umbloom" data-object>
+        <div class="object-thumb"><img src="images/objects/umbloom-1.jpg" alt="Umbloom 우산꽂이" loading="lazy"></div>
         <div class="object-meta">
           <span class="object-no">Object 01</span>
           <h3 class="object-name">Umbloom <span>우산꽂이</span></h3>
         </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
@@ -381,6 +381,32 @@ function openDetail(docId) {
   if (lenisOverlay) lenisOverlay.scrollTo(0, { immediate: true });
   history.pushState({ detail: docId }, '', `#${docId}`);
 }
+
+/* ---------- Object detail (product) ---------- */
+function openObject() {
+  detailName.textContent = 'Umbloom';
+  const meta = ['Object 01', '우산꽂이'].map(s => `<span>${esc(s)}</span>`).join('');
+  const gallery = [
+    { src: 'images/objects/umbloom-1.jpg', size: 'full' },
+    { src: 'images/objects/umbloom-2.jpg', size: 'full' }
+  ];
+  detailBody.innerHTML = `
+    <div class="detail-hero">
+      <div class="meta">${meta}</div>
+      <h1>Umbloom</h1>
+      <p style="margin-top:1.5rem"><a class="object-inquiry" href="mailto:ppearwayy@gmail.com?subject=Umbloom%20%EA%B5%AC%EB%A7%A4%20%EB%AC%B8%EC%9D%98">구매 문의 ↗</a></p>
+    </div>
+    <section class="cs-sec"><div class="cs-gallery">${gallery.map(galleryItemHTML).join('')}</div></section>
+  `;
+  overlay.classList.add('open');
+  document.body.classList.add('modal-open');
+  overlay.scrollTop = 0;
+  if (lenisOverlay) lenisOverlay.scrollTo(0, { immediate: true });
+  history.pushState({ object: 'umbloom' }, '', '#umbloom');
+}
+document.querySelectorAll('.object-card[data-object]').forEach(card => {
+  card.addEventListener('click', e => { e.preventDefault(); openObject(); });
+});
 
 function renderBlocks(blocks) {
   if (!Array.isArray(blocks) || blocks.length === 0) return '';
