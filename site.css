@@ -783,3 +783,10 @@ footer.site .copyright {
 .object-inquiry:hover { background: #E6E9ED; color: #141518; border-color: #E6E9ED; }
 
 .obj-price { margin-top: clamp(0.9rem,2vw,1.4rem); font-family: var(--font-display); font-weight: 500; font-size: clamp(1.3rem,2.4vw,1.9rem); letter-spacing: -0.01em; color: var(--silver); }
+
+/* Object spec (rule list) */
+.obj-spec { max-width: 640px; }
+.obj-spec-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1.5rem; padding: clamp(0.85rem,2vw,1.1rem) 0; border-top: 1px solid var(--line); }
+.obj-spec-row:last-child { border-bottom: 1px solid var(--line); }
+.obj-spec-row .k { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.obj-spec-row .v { font-family: var(--font-display); font-size: clamp(1rem,1.6vw,1.2rem); color: var(--ink); letter-spacing: -0.01em; text-align: right; }

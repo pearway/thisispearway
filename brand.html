@@ -386,16 +386,27 @@ function openDetail(docId) {
 function openObject() {
   detailName.textContent = 'Umbloom';
   const meta = ['Object 01', '우산꽂이'].map(s => `<span>${esc(s)}</span>`).join('');
+  const spec = [
+    ['Size', 'W457 × D457 × H492 mm'],
+    ['Base', 'Ø220 mm'],
+    ['Form', '피어나는 네 장의 꽃잎'],
+    ['Price', '109,000원']
+  ];
   const gallery = [
     { src: 'images/objects/umbloom-1.jpg', size: 'full' },
-    { src: 'images/objects/umbloom-2.jpg', size: 'full' }
+    { src: 'images/objects/umbloom-2.jpg', size: 'wide' },
+    { row: ['images/objects/umbloom-3.jpg', 'images/objects/umbloom-4.jpg'] }
   ];
   detailBody.innerHTML = `
     <div class="detail-hero">
       <div class="meta">${meta}</div>
       <h1>Umbloom</h1>
-      <div class="obj-price">109,000원</div>
     </div>
+    <section class="cs-sec">
+      <div class="obj-spec">
+        ${spec.map(([k, v]) => `<div class="obj-spec-row"><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join('')}
+      </div>
+    </section>
     <section class="cs-sec"><div class="cs-gallery">${gallery.map(galleryItemHTML).join('')}</div></section>
   `;
   overlay.classList.add('open');
