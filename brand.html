@@ -90,7 +90,7 @@
     </div>
     <div class="objects-grid">
       <a class="object-card" href="#umbloom" data-object>
-        <div class="object-thumb"><img src="images/objects/umbloom-1.jpg" alt="Umbloom 우산꽂이" loading="lazy"></div>
+        <div class="object-thumb"><img src="images/objects/umbloom-1.jpg" alt="Umbloom 우산꽂이" loading="lazy"><span class="object-soon">준비중</span></div>
         <div class="object-meta">
           <span class="object-no">Object 01</span>
           <h3 class="object-name">Umbloom <span>우산꽂이</span></h3>
@@ -387,10 +387,11 @@ function openObject() {
   detailName.textContent = 'Umbloom';
   const meta = ['Object 01', '우산꽂이'].map(s => `<span>${esc(s)}</span>`).join('');
   const spec = [
+    ['Status', '준비중'],
     ['Size', 'W457 × D457 × H492 mm'],
     ['Base', 'Ø220 mm'],
     ['Form', '비 오는 날 피어나는 꽃'],
-    ['Price', '109,000원']
+    ['Price', '109,000원 · 예정가']
   ];
   const colors = [
     { name: 'Yellow', code: 'PANTONE 116 C', hex: '#EAB300', hero: 'umbloom-1.jpg', detail: 'umbloom-2.jpg' },
