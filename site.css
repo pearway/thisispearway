@@ -659,6 +659,8 @@ footer.site .copyright {
 /* ---------- OBJECTS (product line) ---------- */
 .objects-intro { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.15rem,2vw,1.6rem); line-height: 1.55; letter-spacing: -0.01em; color: var(--ink); max-width: 40ch; margin-bottom: clamp(2.25rem,5vw,3.5rem); }
 .objects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: clamp(1.5rem,3vw,2.5rem); }
+.ggoji-lead { font-family: var(--font-display); font-size: clamp(1rem,1.5vw,1.25rem); line-height: 1.65; color: var(--ink-2); max-width: 36ch; letter-spacing: -0.01em; text-align: left; }
+.ggoji-note { margin-top: clamp(1.6rem,3vw,2.4rem); color: var(--ink-3); font-size: 0.74rem; letter-spacing: 0.03em; }
 .object-card { display: block; cursor: pointer; }
 .object-card .object-thumb img { transition: transform var(--t-slow) var(--ease); }
 .object-card:hover .object-thumb img { transform: scale(1.03); }

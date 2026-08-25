@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GGOJI · 우산꽂이 브랜드 — PEARWAY</title>
+
+<meta name="description" content="PEARWAY가 만든 우산꽂이 오브제 브랜드 GGOJI(꼬지). 야자꼬지, 바나꼬지. 준비중.">
+<meta name="keywords" content="GGOJI, 꼬지, 우산꽂이, 오브제, 야자꼬지, 바나꼬지, PEARWAY, 페어웨이">
+<meta name="author" content="PEARWAY">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.pearway.kr/ggoji">
+<meta property="og:title" content="GGOJI · 우산꽂이 브랜드 — PEARWAY">
+<meta property="og:description" content="우산꽂이를 다시 그리는 오브제 브랜드 GGOJI. 야자꼬지, 바나꼬지. 준비중.">
+<meta property="og:image" content="https://www.pearway.kr/images/og-thumbnail.jpg">
+<link rel="canonical" href="https://www.pearway.kr/ggoji">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site">
+  <div class="inner">
+    <a href="/brand" class="brand">THISISPEARWAY</a>
+    <nav>
+      <a href="/about">About</a>
+      <a href="/brand#works">Work</a>
+      <a href="/ggoji" style="color:var(--ink)">GGOJI</a>
+      <a href="/brand#contact">Contact</a>
+      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero wrap" id="top">
+  <div class="hero-meta">
+    <span class="mono">GGOJI · 우산꽂이 브랜드</span>
+    <span class="mono">준비중 · Coming soon</span>
+  </div>
+  <h1 class="hero-title">
+    <span class="row"><span>GGOJI</span></span>
+  </h1>
+  <div class="hero-bottom" style="justify-content:space-between;gap:2rem;flex-wrap:wrap">
+    <p class="ggoji-lead">우산꽂이를 다시 그리는 오브제 브랜드.<br>비 오는 날에 낯선 식물 하나를 들입니다.</p>
+    <a href="#products" class="scroll">
+      <span>Products</span>
+      <span class="arrow">↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-marker">Products · 라인업</span>
+    </div>
+    <div class="objects-grid">
+
+      <div class="object-card is-soon">
+        <div class="object-thumb"><span class="object-soon-c">준비중</span></div>
+        <div class="object-meta">
+          <span class="object-no">GGOJI 01 · 우산꽂이</span>
+          <h3 class="object-name">야자꼬지 <span>Yaja Ggoji</span></h3>
+        </div>
+      </div>
+
+      <div class="object-card is-soon">
+        <div class="object-thumb"><span class="object-soon-c">준비중</span></div>
+        <div class="object-meta">
+          <span class="object-no">GGOJI 02 · 우산꽂이</span>
+          <h3 class="object-name">바나꼬지 <span>Bana Ggoji</span></h3>
+        </div>
+      </div>
+
+    </div>
+    <p class="ggoji-note mono">제품 정보와 사진은 준비 중입니다. 공개되면 이곳에서 먼저 만나보실 수 있어요.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="inner">
+    <div class="left">
+      <div class="meta">
+        <span>GGOJI · Object brand by PEARWAY</span>
+        <a href="/brand">THISISPEARWAY ↗</a>
+      </div>
+    </div>
+    <div class="right">
+      <div>우산꽂이 · 오브제</div>
+      <div>Seoul, KR · 2026</div>
+    </div>
+  </div>
+  <div class="wrap copyright">
+    <span>© 2026 PEARWAY</span>
+    <span>Designer · Lee Heebae</span>
+  </div>
+</footer>
+
+<script>
+  document.body.classList.add('loaded');
+  const h = document.querySelector('header.site');
+  const s = () => h.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', s, { passive: true }); s();
+
+  // anchor smooth scroll (native)
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (!href || href.length < 2) return;
+      const t = document.querySelector(href);
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 20, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
