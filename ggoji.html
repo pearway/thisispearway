@@ -26,44 +26,22 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (logo only → home) -->
 <header class="site">
   <div class="inner">
-    <a href="/brand" class="brand">THISISPEARWAY</a>
-    <nav>
-      <a href="/about">About</a>
-      <a href="/brand#works">Work</a>
-      <a href="/ggoji" style="color:var(--ink)">GGOJI</a>
-      <a href="/brand#contact">Contact</a>
-      <a href="https://www.peartype.kr" class="ext" target="_blank" rel="noopener">Peartype</a>
-    </nav>
+    <a href="/" class="brand" aria-label="홈으로">THISISPEARWAY</a>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero wrap" id="top">
-  <div class="hero-meta">
-    <span class="mono">GGOJI · 오브제 브랜드</span>
-    <span class="mono">준비중 · Coming soon</span>
-  </div>
-  <h1 class="hero-title">
-    <span class="row"><span>GGOJI</span></span>
-  </h1>
-  <div class="hero-bottom" style="justify-content:space-between;gap:2rem;flex-wrap:wrap">
-    <p class="ggoji-lead">독창적인 디자이너 오브제 브랜드 GGOJI.<br>지나치던 물건을 곁에 두고 싶은 오브제로 다시 그립니다.</p>
-    <a href="#products" class="scroll">
-      <span>Products</span>
-      <span class="arrow">↓</span>
-    </a>
-  </div>
-</section>
-
-<!-- PRODUCTS -->
-<section class="section" id="products">
+<!-- PRODUCTS (제품 바로 노출) -->
+<main>
+<section class="section ggoji-top" id="products">
   <div class="wrap">
-    <div class="section-head">
-      <span class="section-marker">First Line · 우산꽂이</span>
+    <div class="ggoji-bar">
+      <span class="section-marker">GGOJI · 오브제 브랜드</span>
+      <span class="mono ggoji-soon">준비중 · Coming soon</span>
     </div>
+    <p class="ggoji-lead">독창적인 디자이너 오브제 브랜드 GGOJI. 지나치던 물건을 곁에 두고 싶은 오브제로 다시 그립니다.</p>
     <div class="objects-grid">
 
       <div class="object-card is-soon">
@@ -86,6 +64,7 @@
     <p class="ggoji-note mono">제품 정보와 사진은 준비 중입니다. 공개되면 이곳에서 먼저 만나보실 수 있어요.</p>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="site">
@@ -112,18 +91,6 @@
   const h = document.querySelector('header.site');
   const s = () => h.classList.toggle('scrolled', window.scrollY > 8);
   window.addEventListener('scroll', s, { passive: true }); s();
-
-  // anchor smooth scroll (native)
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (!href || href.length < 2) return;
-      const t = document.querySelector(href);
-      if (!t) return;
-      e.preventDefault();
-      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 20, behavior: 'smooth' });
-    });
-  });
 </script>
 </body>
 </html>
