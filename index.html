@@ -41,6 +41,7 @@ a{color:inherit;text-decoration:none}
 .gate{position:relative;z-index:1;display:flex;width:100vw;height:100vh;height:100svh}
 .half{flex:1;position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;
   padding:clamp(1.4rem,4vw,3rem);transition:opacity .4s var(--ease)}
+.hC{align-items:center;text-align:center}
 .hR{align-items:flex-end;text-align:right}
 
 .enter{position:relative;display:inline-flex;align-items:center;gap:8px;
@@ -49,9 +50,11 @@ a{color:inherit;text-decoration:none}
 .enter .ar{font-size:.9em}
 .enter::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;
   opacity:.35;transform-origin:left;transition:opacity .3s}
+.hC .enter::after{transform-origin:center}
 .hR .enter::after{transform-origin:right}
 .half:hover .enter{gap:13px}
 .hL:hover .enter{color:var(--cream)}
+.hC:hover .enter{color:var(--cream)}
 .hR:hover .enter{color:var(--pink)}
 .half:hover .enter::after{opacity:1}
 
@@ -59,14 +62,23 @@ a{color:inherit;text-decoration:none}
   .gate:hover .half{opacity:.55}
   .gate .half:hover{opacity:1}
 }
+
+@media (max-width:640px){
+  .gate{flex-direction:column}
+  .half,.hC,.hR{align-items:flex-start;text-align:left;justify-content:center}
+  .hC .enter::after,.hR .enter::after{transform-origin:left}
+}
 </style>
 </head>
 <body>
-<h1 class="sronly">페어웨이 — 브랜딩 스튜디오, 그리고 페어타입파운더리 — 폰트 파운더리</h1>
+<h1 class="sronly">페어웨이 — 브랜딩 스튜디오, GGOJI 오브제 브랜드, 그리고 페어타입파운더리 폰트 파운더리</h1>
 <canvas id="bg" aria-hidden="true"></canvas>
 <main class="gate" role="navigation" aria-label="페어웨이 진입 선택">
   <a class="half hL" href="/brand">
     <span class="enter">브랜딩 스튜디오 <span class="ar" aria-hidden="true">&rarr;</span></span>
+  </a>
+  <a class="half hC" href="/ggoji">
+    <span class="enter">오브제 브랜드 <span class="ar" aria-hidden="true">&rarr;</span></span>
   </a>
   <a class="half hR" href="https://peartype.kr">
     <span class="enter">타입 파운더리 <span class="ar" aria-hidden="true">&#8599;</span></span>
