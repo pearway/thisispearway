@@ -115,7 +115,7 @@
     if (!p) return;
     dName.textContent = p.name;
     dBody.innerHTML = `
-      <div class="detail-hero"><h1>${p.name}</h1></div>
+      <div class="detail-hero"><h1>${p.name}</h1><p class="desc">개업 선물로 잘 어울리는 오브제입니다. 화분 트레이로도, 우산꽂이로도 쓸 수 있어요.</p></div>
       <section class="cs-sec"><div class="cs-gallery">${
         p.imgs.map((src, i) => `<div class="cs-shot${i === 1 ? ' cs-wide' : ''}"><img src="images/objects/${src}" alt="" loading="lazy"></div>`).join('')
       }</div></section>`;
