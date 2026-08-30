@@ -39,34 +39,40 @@
   <div class="wrap">
     <div class="objects-grid">
 
-      <div class="object-card">
-        <div class="object-thumb"><img src="images/objects/ggoji-lily.jpg" alt="백합 우산꽂이" loading="lazy"></div>
+      <a class="object-card" href="#lily" data-product="lily">
+        <div class="object-thumb"><img src="images/objects/ggoji-lily.jpg" alt="백합" loading="lazy"></div>
         <div class="object-meta">
-          <span class="object-no">GGOJI 01 · 우산꽂이</span>
           <h3 class="object-name">백합</h3>
         </div>
-      </div>
+      </a>
 
-      <div class="object-card">
-        <div class="object-thumb"><img src="images/objects/ggoji-euryops.jpg" alt="유리홉스 우산꽂이" loading="lazy"></div>
+      <a class="object-card" href="#euryops" data-product="euryops">
+        <div class="object-thumb"><img src="images/objects/ggoji-euryops.jpg" alt="유리홉스" loading="lazy"></div>
         <div class="object-meta">
-          <span class="object-no">GGOJI 02 · 우산꽂이</span>
           <h3 class="object-name">유리홉스</h3>
         </div>
-      </div>
+      </a>
 
-      <div class="object-card">
-        <div class="object-thumb"><img src="images/objects/ggoji-schefflera.jpg" alt="홍콩야자 우산꽂이" loading="lazy"></div>
+      <a class="object-card" href="#schefflera" data-product="schefflera">
+        <div class="object-thumb"><img src="images/objects/ggoji-schefflera.jpg" alt="홍콩야자" loading="lazy"></div>
         <div class="object-meta">
-          <span class="object-no">GGOJI 03 · 우산꽂이</span>
           <h3 class="object-name">홍콩야자</h3>
         </div>
-      </div>
+      </a>
 
     </div>
   </div>
 </section>
 </main>
+
+<!-- PRODUCT DETAIL -->
+<div class="detail-overlay" id="detail-overlay">
+  <div class="detail-header">
+    <button class="back" id="detail-close" aria-label="닫기">←</button>
+    <span class="name" id="detail-name"></span>
+  </div>
+  <div class="detail-body" id="detail-body"></div>
+</div>
 
 <!-- FOOTER -->
 <footer class="site">
@@ -93,6 +99,48 @@
   const h = document.querySelector('header.site');
   const s = () => h.classList.toggle('scrolled', window.scrollY > 8);
   window.addEventListener('scroll', s, { passive: true }); s();
+
+  /* ---------- Product detail ---------- */
+  const PRODUCTS = {
+    lily:       { name: '백합',   imgs: ['ggoji-lily.jpg', 'ggoji-lily-b.jpg', 'ggoji-lily-f.jpg', 'ggoji-lily-l.jpg'] },
+    euryops:    { name: '유리홉스', imgs: ['ggoji-euryops.jpg', 'ggoji-euryops-b.jpg', 'ggoji-euryops-f.jpg'] },
+    schefflera: { name: '홍콩야자', imgs: ['ggoji-schefflera.jpg', 'ggoji-schefflera-b.jpg', 'ggoji-schefflera-f.jpg'] }
+  };
+  const overlay = document.getElementById('detail-overlay');
+  const dName = document.getElementById('detail-name');
+  const dBody = document.getElementById('detail-body');
+
+  function openProduct(key) {
+    const p = PRODUCTS[key];
+    if (!p) return;
+    dName.textContent = p.name;
+    dBody.innerHTML = `
+      <div class="detail-hero"><h1>${p.name}</h1></div>
+      <section class="cs-sec"><div class="cs-gallery">${
+        p.imgs.map((src, i) => `<div class="cs-shot${i === 1 ? ' cs-wide' : ''}"><img src="images/objects/${src}" alt="" loading="lazy"></div>`).join('')
+      }</div></section>`;
+    overlay.classList.add('open');
+    document.body.classList.add('modal-open');
+    overlay.scrollTop = 0;
+    if (location.hash !== '#' + key) history.pushState({ p: key }, '', '#' + key);
+  }
+  function closeProduct() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    if (location.hash) history.pushState({}, '', location.pathname);
+  }
+
+  document.querySelectorAll('.object-card[data-product]').forEach(c => {
+    c.addEventListener('click', e => { e.preventDefault(); openProduct(c.dataset.product); });
+  });
+  document.getElementById('detail-close').addEventListener('click', closeProduct);
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeProduct(); });
+  window.addEventListener('popstate', () => {
+    const key = location.hash.slice(1);
+    if (PRODUCTS[key]) openProduct(key);
+    else if (overlay.classList.contains('open')) { overlay.classList.remove('open'); document.body.classList.remove('modal-open'); }
+  });
+  if (PRODUCTS[location.hash.slice(1)]) openProduct(location.hash.slice(1));
 </script>
 </body>
 </html>
