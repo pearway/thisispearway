@@ -265,7 +265,7 @@
 <div class="lift"></div>
 
 <div class="notice">
-  <p id="noticeText">5만원 이상 무료 배송</p>
+  <p id="noticeText">10만원 이상 무료 배송</p>
   <button aria-label="공지 닫기" onclick="this.parentElement.hidden=true">
     <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l10 10M11 1L1 11"/></svg>
   </button>
@@ -359,7 +359,7 @@
               <dt>무게</dt><dd>3.2 kg</dd>
               <dt>수용량</dt><dd>장우산 5개 · 단우산 8개</dd>
               <dt>구성</dt><dd>본체 1, 분리형 물받이 1</dd>
-              <dt>출시년월</dt><dd>2026.10</dd>
+              <dt>출시</dt><dd>출시 예정</dd>
               <dt>제조자</dt><dd>플로르몽드 및 국내 협력사</dd>
               <dt>제조국</dt><dd>대한민국</dd>
             </dl>
@@ -377,7 +377,7 @@
           <summary>배송 &amp; 반품 정책</summary>
           <div class="body">
             <b style="color:var(--ink);font-weight:500">배송 정책</b><br>
-            5만원 이상 구매 시 무료 배송. 주문 후 2~3 영업일 내 출고.<br><br>
+            10만원 이상 구매 시 무료 배송. 주문 후 2~3 영업일 내 출고.<br><br>
             <b style="color:var(--ink);font-weight:500">반품 정책</b><br>
             수령 후 7일 이내 신청. 반품 신청 건당 3,000원 (고객 귀책 사유 한정).
           </div>
@@ -514,7 +514,7 @@
 
 
   /* 공지 롤링 */
-  var NOTICES=['5만원 이상 무료 배송','페탈 엄브렐라 스탠드 2026.10 출시'];
+  var NOTICES=['10만원 이상 무료 배송','페탈 엄브렐라 스탠드 출시 예정'];
   var ni=0, nt=document.getElementById('noticeText');
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function(){ ni=(ni+1)%NOTICES.length; nt.textContent=NOTICES[ni]; }, 4000);
 
@@ -531,7 +531,7 @@
     ]},
     { id:'shipping', label:'배송', desc:'출고와 배송에 관한 안내입니다.', items:[
       ['배송은 얼마나 걸리나요?','주문 후 2~3 영업일 내 출고됩니다. 도서산간은 2일이 추가됩니다.'],
-      ['배송비는 얼마인가요?','5만원 이상 구매 시 무료입니다.'],
+      ['배송비는 얼마인가요?','10만원 이상 구매 시 무료입니다.'],
       ['포장은 어떻게 되나요?','부피가 큰 제품이라 이중 골판지와 완충재로 포장합니다. 박스는 재활용 소재를 씁니다.'],
       ['해외 배송이 되나요?','현재는 국내 배송만 가능합니다.']
     ]},
