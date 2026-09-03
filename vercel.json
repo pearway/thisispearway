@@ -3,6 +3,7 @@
   "rewrites": [
     { "source": "/brand", "destination": "/brand.html" },
     { "source": "/ggoji", "destination": "/ggoji.html" },
+    { "source": "/flormonde", "destination": "/flormonde/index.html" },
     { "source": "/admin", "destination": "/admin.html" }
   ]
 }
