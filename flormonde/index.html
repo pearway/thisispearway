@@ -140,6 +140,8 @@
   .rail > * { scroll-snap-align: start; }
   .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px 16px; }
   .card .ph { aspect-ratio: 1/1; position: relative; }
+  .card.is-soon .ph { background: transparent; border: 1px dashed var(--line2); }
+  .ph-soon { font-size: 12px; letter-spacing: .04em; color: var(--pht); position: relative; z-index: 1; }
   .card .idx { position: absolute; left: 10px; top: 10px; color: var(--pht); z-index: 2; }
   .card .cap { margin-top: 12px; text-align: center; font-size: 14px; }
   .card .cap .pr { color: var(--sub); font-size: 13px; }
@@ -479,10 +481,10 @@
 
   function card(p, i){
     var el = document.createElement(p.href ? 'a' : 'div');
-    el.className = 'card'; if (p.href) el.href = p.href;
-    var no = String(i + 1).padStart(3, '0');
-    el.innerHTML = '<div class="ph">' + (p.img ? '<img src="' + p.img + '" alt="">' : '') + '</div>' +
-      '<p class="cap">' + p.t + (p.soon ? '<br><span class="soon">준비 중</span>' : '') + '</p>';
+    el.className = 'card' + (p.soon && !p.img ? ' is-soon' : ''); if (p.href) el.href = p.href;
+    var box = p.img ? '<img src="' + p.img + '" alt="">' : (p.soon ? '<span class="ph-soon">준비 중</span>' : '');
+    el.innerHTML = '<div class="ph">' + box + '</div>' +
+      '<p class="cap">' + p.t + '</p>';
     return el;
   }
   function fill(el, list){ el.innerHTML=''; list.forEach(function(p,i){ el.appendChild(card(p,i)); }); }
