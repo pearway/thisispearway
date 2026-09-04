@@ -111,6 +111,11 @@
   .hero { position: relative; }
   .hero .ph { aspect-ratio: 16/9; border-radius: 0; background: #2F2C36; }
   .hero .ph i { color: #767B85; }
+  .hero-carousel .hs { opacity: 0; transition: opacity .9s ease; }
+  .hero-carousel .hs.on { opacity: 1; }
+  .hero-dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px; display: flex; gap: 8px; justify-content: center; }
+  .hero-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; transition: background .2s, transform .2s; }
+  .hero-dots button.on { background: #fff; transform: scale(1.15); }
 
   /* ===== 색보정: 빛바랜 필름 ===== */
   /* 따뜻한 하이라이트 → 차가운 그림자로 갈리는 스플릿 톤 */
@@ -291,7 +296,13 @@
 <!-- ================= 홈 ================= -->
 <main id="v-home" data-view="/">
   <section class="hero">
-    <div class="ph"><img src="img/hero-blue.jpg" alt="플로르몽드 캠페인 컷"></div>
+    <div class="ph hero-carousel">
+      <img class="hs on" src="img/hero-1.jpg" alt="플로르몽드 캠페인 컷">
+      <img class="hs" src="img/hero-2.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
+      <img class="hs" src="img/hero-3.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
+      <img class="hs" src="img/hero-4.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
+      <div class="hero-dots"><button class="on" type="button" aria-label="1번 이미지"></button><button type="button" aria-label="2번 이미지"></button><button type="button" aria-label="3번 이미지"></button><button type="button" aria-label="4번 이미지"></button></div>
+    </div>
   </section>
 
   <section class="sec">
@@ -299,12 +310,12 @@
   </section>
 
   <section class="ed">
-    <div class="ph"></div>
+    <div class="ph"><img src="img/ed-planter.jpg" alt="플로르몽드 연출 컷"></div>
   </section>
 
   <div class="duo">
-    <div class="ph"><img src="img/field-yellow.jpg" alt="플로르몽드 연출 컷"></div>
-    <div class="ph"><img src="img/duo-bouquet.jpg" alt="플로르몽드 연출 컷"></div>
+    <div class="ph"><img src="img/duo-1.jpg" alt="플로르몽드 연출 컷"></div>
+    <div class="ph"><img src="img/duo-2.jpg" alt="플로르몽드 연출 컷"></div>
   </div>
 
 </main>
@@ -404,7 +415,7 @@
 
 <!-- ================= 브랜드 ================= -->
 <main id="v-story" data-view="/story" hidden>
-  <div class="ph" style="aspect-ratio:21/9;border-radius:0"><img src="img/garden-green.jpg" alt="플로르몽드 브랜드 이미지" style="object-position:center 30%"></div>
+  <div class="ph" style="aspect-ratio:21/9;border-radius:0"><img src="img/story.jpg" alt="플로르몽드 브랜드 이미지" style="object-position:center 38%"></div>
   <div class="page-h" style="text-align:center"><h1>Brand</h1></div>
   <div class="prose">
     <div class="in">
@@ -595,5 +606,19 @@
     } else { show(f); }
   }
   addEventListener('hashchange', route); route();
+
+  /* 히어로 캐러셀 */
+  (function(){
+    var wrap=document.querySelector('.hero-carousel'); if(!wrap) return;
+    var slides=wrap.querySelectorAll('.hs'), dots=wrap.querySelectorAll('.hero-dots button');
+    if(slides.length<2) return;
+    var i=0, timer=null, moving=matchMedia('(prefers-reduced-motion: reduce)').matches?false:true;
+    function go(n){ n=(n+slides.length)%slides.length; if(n===i) return;
+      slides[i].classList.remove('on'); if(dots[i])dots[i].classList.remove('on');
+      i=n; slides[i].classList.add('on'); if(dots[i])dots[i].classList.add('on'); }
+    function play(){ if(!moving) return; clearInterval(timer); timer=setInterval(function(){ go(i+1); }, 5000); }
+    dots.forEach(function(d,idx){ d.addEventListener('click', function(){ go(idx); play(); }); });
+    play();
+  })();
 })();
 </script>
