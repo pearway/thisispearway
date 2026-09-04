@@ -175,6 +175,22 @@
   .pdp-en { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--sub); margin-top: 4px; }
   .pdp-price { font-size: 18px; margin-top: 8px; }
   .pdp-lead { font-size: 14px; color: var(--sub); margin-top: 14px; }
+  .price { margin-top: 22px; }
+  .price-tag { font-size: 30px; font-weight: 600; letter-spacing: -.01em; }
+  .price-tag span { font-size: 17px; font-weight: 500; margin-left: 3px; }
+  .price-line { font-size: 13px; color: var(--sub); margin-top: 5px; }
+  .open-price { margin-top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 6px; background: rgba(255,255,255,.28); }
+  .op-lead { font-size: 13px; line-height: 1.72; color: var(--sub); max-width: 48ch; }
+  .op-rows { margin-top: 16px; }
+  .op-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 0; font-size: 14px; border-top: 1px solid var(--line2); }
+  .op-rows li:first-child { border-top: 0; padding-top: 2px; }
+  .op-rows li b { font-family: Archivo, sans-serif; font-weight: 600; white-space: nowrap; }
+  .op-rows .op-sub span, .op-rows .op-sub b { color: var(--sub); }
+  .op-rows .op-ind span { padding-left: 12px; color: var(--pht); font-size: 13px; }
+  .op-rows .op-ind b { color: var(--pht); font-weight: 500; }
+  .op-rows .op-total { border-top: 1.5px solid var(--ink); margin-top: 5px; }
+  .op-rows .op-total span { font-weight: 600; }
+  .op-rows .op-total b { font-size: 16px; }
   .opt { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); }
   .opt-l { font-size: 13px; color: var(--sub); margin-bottom: 9px; }
   .sw-row { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -350,6 +366,24 @@
       <p class="crumb"><a href="#/shop">전체 상품</a> &gt; <a href="#/shop">현관</a></p>
       <h1>페탈 엄브렐라 스탠드</h1>
       <p class="pdp-en">Petal Umbrella Stand</p>
+
+      <div class="price">
+        <p class="price-tag">200,000<span>원</span></p>
+        <p class="price-line">국내 생산 · 원가부터 마진까지 전부 공개합니다.</p>
+      </div>
+
+      <div class="open-price">
+        <p class="op-lead">비싸게 팔되, 왜 비싼지는 숨기지 않습니다. 강판을 자르고 구부려 분체도장으로 완성하는 국내 생산 원가를 그대로 밝히고, 마진의 일부는 기부로 돌립니다.</p>
+        <ul class="op-rows">
+          <li><span>제작 단가 · 국내 생산</span><b>135,000원</b></li>
+          <li><span>배송비</span><b>5,000원</b></li>
+          <li class="op-sub"><span>원가 소계 (70%)</span><b>140,000원</b></li>
+          <li><span>마진 (30%)</span><b>60,000원</b></li>
+          <li class="op-ind"><span>운영 · 순수익 (25%)</span><b>50,000원</b></li>
+          <li class="op-ind"><span>기부 (5%)</span><b>10,000원</b></li>
+          <li class="op-total"><span>판매가</span><b>200,000원</b></li>
+        </ul>
+      </div>
 
       <div class="opt">
         <p class="opt-l">색상 · <span id="cName">파인 그린</span> <span id="cCode" style="color:var(--pht)">RAL 6028</span></p>
