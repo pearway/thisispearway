@@ -357,8 +357,8 @@
 <main id="v-product" data-view="/product" hidden>
   <div class="pdp">
     <div class="pdp-media">
-      <div class="ph"><img src="img/product-1.jpg" alt="페탈 엄브렐라 스탠드"></div>
-      <div class="ph"><img src="img/product-2.jpg" alt="페탈 엄브렐라 스탠드 받침 디테일"></div>
+      <div class="ph"><img src="img/product-green.jpg" alt="페탈 엄브렐라 스탠드"></div>
+      <div class="ph"><img src="img/product-green-d.jpg" alt="페탈 엄브렐라 스탠드 받침 디테일"></div>
       <div class="ph"></div>
       <div class="ph"></div>
       <div class="ph"></div>
@@ -376,6 +376,10 @@
       <div class="open-price">
         <ul class="op-rows">
           <li><span>제작 단가 · 국내 생산</span><b>165,000원</b></li>
+          <li class="op-ind"><span>판금 · 레이저 절단</span><b>55,000원</b></li>
+          <li class="op-ind"><span>절곡 · 밴딩</span><b>45,000원</b></li>
+          <li class="op-ind"><span>분체도장</span><b>40,000원</b></li>
+          <li class="op-ind"><span>조립 · 검수 · 포장</span><b>25,000원</b></li>
           <li><span>배송비</span><b>10,000원</b></li>
           <li class="op-sub"><span>원가 소계 (약 70%)</span><b>175,000원</b></li>
           <li><span>마진 (약 30%)</span><b>74,000원</b></li>
@@ -386,7 +390,7 @@
       </div>
 
       <div class="opt">
-        <p class="opt-l">색상 · <span id="cName">파인 그린</span> <span id="cCode" style="color:var(--pht)">RAL 6028</span></p>
+        <p class="opt-l">색상 · <span id="cName">그린</span> <span id="cCode" style="color:var(--pht)">RAL 6028</span></p>
         <div class="sw-row" id="swRow"></div>
       </div>
 
@@ -400,9 +404,11 @@
           <div class="body">
             <dl class="dl">
               <dt>재질</dt><dd>냉간압연강판 1.5T</dd>
-              <dt>마감</dt><dd>분체도장 무광 (RAL 6028)</dd>
-              <dt>크기</dt><dd>240 × 240 × 480 mm</dd>
-              <dt>입구 지름</dt><dd>200 mm</dd>
+              <dt>마감</dt><dd>분체도장 무광</dd>
+              <dt>크기</dt><dd>약 450 × 450 × 640 mm (펼친 꽃잎 기준)</dd>
+              <dt>몸통</dt><dd>240 × 208 mm</dd>
+              <dt>받침</dt><dd>336 mm (육각)</dd>
+              <dt>입구 지름</dt><dd>약 200 mm</dd>
               <dt>무게</dt><dd>3.2 kg</dd>
               <dt>수용량</dt><dd>장우산 5개 · 단우산 8개</dd>
               <dt>구성</dt><dd>본체 1, 분리형 물받이 1</dd>
@@ -510,13 +516,12 @@
   function say(m){ toast.textContent=m; toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('on');},2200); }
 
   var COLORS = [
-    {n:'파인 그린',c:'RAL 6028',hex:'#2C5140'},
-    {n:'오이스터 화이트',c:'RAL 1013',hex:'#EAE6CA'},
-    {n:'윈도우 그레이',c:'RAL 7040',hex:'#9DA1AA'},
-    {n:'안트라사이트',c:'RAL 7016',hex:'#383E42'}
+    {n:'그린',c:'RAL 6028',hex:'#2C5140',full:'img/product-green.jpg',det:'img/product-green-d.jpg'},
+    {n:'옐로',c:'RAL 1023',hex:'#E8B200',full:'img/product-yellow.jpg',det:'img/product-yellow-d.jpg'},
+    {n:'오렌지',c:'RAL 2008',hex:'#D9532A',full:'img/product-orange.jpg',det:'img/product-orange-d.jpg'}
   ];
   var PRODUCTS = [
-    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-1.jpg'},
+    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-green.jpg'},
     {t:'페탈 코트 스탠드', en:'Petal Coat Stand', place:'현관', cat:'entrance', soon:true},
     {t:'페탈 플랜트 트레이', en:'Petal Plant Tray', place:'창가', cat:'window', soon:true},
     {t:'페탈 와인 트레이', en:'Petal Wine Tray', place:'식탁', cat:'table', soon:true},
@@ -555,7 +560,11 @@
   COLORS.forEach(function(c,i){
     var b=document.createElement('button'); b.className='sw'+(i===0?' on':'');
     b.style.background=c.hex; b.setAttribute('aria-label',c.n);
-    b.onclick=function(){ swRow.querySelectorAll('.sw').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); cN.textContent=c.n; cC.textContent=c.c; };
+    b.onclick=function(){ swRow.querySelectorAll('.sw').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); cN.textContent=c.n; cC.textContent=c.c;
+      var media=document.querySelectorAll('.pdp-media .ph img');
+      if(media[0]&&c.full) media[0].src=c.full;
+      if(media[1]&&c.det) media[1].src=c.det;
+    };
     swRow.appendChild(b);
   });
 
