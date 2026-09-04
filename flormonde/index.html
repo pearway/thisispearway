@@ -111,10 +111,9 @@
   .hero { position: relative; }
   .hero .ph { aspect-ratio: 16/9; border-radius: 0; background: #2F2C36; }
   .hero .ph i { color: #767B85; }
-  .hero-carousel .hs { opacity: 0; transition: opacity 1.5s cubic-bezier(.4,0,.2,1); }
-  .hero-carousel .hs.on { opacity: 1; animation: heroKen 9s ease-out both; }
-  @keyframes heroKen { from { transform: scale(1.0); } to { transform: scale(1.055); } }
-  @media (prefers-reduced-motion: reduce) { .hero-carousel .hs.on { animation: none; } }
+  .hero-carousel .hs { opacity: 0; transform: scale(1.035); transition: opacity 1.7s cubic-bezier(.4,0,.2,1), transform 1.7s cubic-bezier(.4,0,.2,1); }
+  .hero-carousel .hs.on { opacity: 1; transform: scale(1.0); }
+  @media (prefers-reduced-motion: reduce) { .hero-carousel .hs { transition: opacity .4s; transform: none; } }
   .hero-dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px; display: flex; gap: 8px; justify-content: center; }
   .hero-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; transition: background .2s, transform .2s; }
   .hero-dots button.on { background: #fff; transform: scale(1.15); }
