@@ -111,8 +111,10 @@
   .hero { position: relative; }
   .hero .ph { aspect-ratio: 16/9; border-radius: 0; background: #2F2C36; }
   .hero .ph i { color: #767B85; }
-  .hero-carousel .hs { opacity: 0; transition: opacity .9s ease; }
-  .hero-carousel .hs.on { opacity: 1; }
+  .hero-carousel .hs { opacity: 0; transition: opacity 1.5s cubic-bezier(.4,0,.2,1); }
+  .hero-carousel .hs.on { opacity: 1; animation: heroKen 9s ease-out both; }
+  @keyframes heroKen { from { transform: scale(1.0); } to { transform: scale(1.055); } }
+  @media (prefers-reduced-motion: reduce) { .hero-carousel .hs.on { animation: none; } }
   .hero-dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px; display: flex; gap: 8px; justify-content: center; }
   .hero-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; transition: background .2s, transform .2s; }
   .hero-dots button.on { background: #fff; transform: scale(1.15); }
@@ -182,7 +184,7 @@
   .price-line { font-size: 13px; color: var(--sub); margin-top: 5px; }
   .open-price { margin-top: 20px; padding: 18px; border: 1px solid var(--line); border-radius: 6px; background: rgba(255,255,255,.28); }
   .op-lead { font-size: 13px; line-height: 1.72; color: var(--sub); max-width: 48ch; }
-  .op-rows { margin-top: 16px; }
+  .op-rows { margin-top: 2px; }
   .op-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 0; font-size: 14px; border-top: 1px solid var(--line2); }
   .op-rows li:first-child { border-top: 0; padding-top: 2px; }
   .op-rows li b { font-family: Archivo, sans-serif; font-weight: 600; white-space: nowrap; }
@@ -366,7 +368,6 @@
     <div class="pdp-info">
       <p class="crumb"><a href="#/shop">전체 상품</a> &gt; <a href="#/shop">현관</a></p>
       <h1>페탈 엄브렐라 스탠드</h1>
-      <p class="pdp-en">Petal Umbrella Stand</p>
 
       <div class="price">
         <p class="price-tag">249,000<span>원</span> <em class="price-soon">출시 예정</em></p>
@@ -374,7 +375,6 @@
       </div>
 
       <div class="open-price">
-        <p class="op-lead">비싸게 팔되, 왜 비싼지는 숨기지 않습니다. 강판을 자르고 구부려 분체도장으로 완성하는 국내 생산 원가를 그대로 밝히고, 마진의 일부는 기부로 돌립니다.</p>
         <ul class="op-rows">
           <li><span>제작 단가 · 국내 생산</span><b>165,000원</b></li>
           <li><span>배송비</span><b>10,000원</b></li>
@@ -651,7 +651,7 @@
     function go(n){ n=(n+slides.length)%slides.length; if(n===i) return;
       slides[i].classList.remove('on'); if(dots[i])dots[i].classList.remove('on');
       i=n; slides[i].classList.add('on'); if(dots[i])dots[i].classList.add('on'); }
-    function play(){ if(!moving) return; clearInterval(timer); timer=setInterval(function(){ go(i+1); }, 5000); }
+    function play(){ if(!moving) return; clearInterval(timer); timer=setInterval(function(){ go(i+1); }, 6500); }
     dots.forEach(function(d,idx){ d.addEventListener('click', function(){ go(idx); play(); }); });
     play();
   })();
