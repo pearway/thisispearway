@@ -35,6 +35,53 @@
   html { background: #17121A; }
   body { background: transparent; }
   #plasma-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; display: block; pointer-events: none; }
+
+  /* ---- Interactive hover links (Selected Works) ---- */
+  #works-grid.hlinks { display: block; }
+  .hlink {
+    position: relative; display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; padding: clamp(1.4rem, 3.4vw, 2.6rem) 0;
+    border-top: 1px solid var(--line); text-decoration: none;
+    transition: border-color .55s var(--ease); overflow: visible;
+  }
+  .hlink:last-child { border-bottom: 1px solid var(--line); }
+  .hlink:hover { border-color: rgba(199,203,210,.55); }
+  .hlink-l { position: relative; z-index: 2; display: flex; align-items: baseline; gap: 1rem; min-width: 0; }
+  .hlink-num { font-family: var(--font-display); font-size: .78rem; letter-spacing: .04em; color: var(--ink-3); flex: none; padding-top: .3em; transition: color .55s var(--ease); }
+  .hlink:hover .hlink-num { color: var(--silver); }
+  .hlink-h {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(1.9rem, 5.4vw, 4.1rem); line-height: .98; letter-spacing: -.035em;
+    color: var(--ink-3); transition: color .55s var(--ease), transform .55s var(--ease);
+    display: block;
+  }
+  .hlink:hover .hlink-h { color: var(--ink); transform: translateX(clamp(6px, 1.4vw, 18px)); }
+  .hlink-sub { display: block; margin-top: .55rem; font-size: .85rem; letter-spacing: .01em; color: var(--ink-3); transition: color .55s var(--ease); max-width: 46ch; }
+  .hlink:hover .hlink-sub { color: var(--ink-2); }
+  .hlink-img {
+    position: absolute; z-index: 1; top: 50%; left: 58%;
+    width: clamp(150px, 20vw, 250px); aspect-ratio: 4 / 3;
+    object-fit: cover; border-radius: 10px; pointer-events: none;
+    opacity: 0; transform: translate(-12%, -50%) scale(.55) rotate(-11deg);
+    box-shadow: 0 24px 60px rgba(0,0,0,.5); border: 1px solid rgba(199,203,210,.16);
+    transition: transform .5s var(--ease), opacity .35s var(--ease), top .35s var(--ease), left .35s var(--ease);
+  }
+  .hlink:hover .hlink-img { opacity: 1; transform: translate(-12%, -50%) scale(1) rotate(11deg); }
+  .hlink-arrow {
+    position: relative; z-index: 2; flex: none;
+    font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2.3rem); color: var(--silver);
+    opacity: 0; transform: translateX(120%);
+    transition: transform .5s var(--ease), opacity .35s var(--ease);
+  }
+  .hlink:hover .hlink-arrow { opacity: 1; transform: translateX(0); }
+  @media (max-width: 640px) { .hlink-img { display: none; } .hlink-arrow { display: none; } }
+  @media (hover: none) {
+    .hlink-h { color: var(--ink); } .hlink-num { color: var(--silver); }
+    .hlink-img { display: none; } .hlink-arrow { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hlink, .hlink-h, .hlink-sub, .hlink-num, .hlink-img, .hlink-arrow { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -288,47 +335,55 @@ function buildFilters() {
 
 function renderGrid() {
   loadingEl.style.display = 'none';
-  grid.style.display = 'grid';
+  grid.style.display = 'block';
+  grid.classList.add('hlinks');
   const filtered = currentFilter === 'all'
     ? allProjects
     : allProjects.filter(p => p.cat === currentFilter);
 
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="loading-state" style="grid-column:1/-1">No works in this category</div>`;
+    grid.innerHTML = `<div class="loading-state">No works in this category</div>`;
     return;
   }
 
   grid.innerHTML = filtered.map((p, i) => {
     const num = String(i + 1).padStart(2, '0');
-    const cat = (p.cat || 'work').toUpperCase();
-    const thumb = p.thumb
-      ? `<img src="${esc(p.thumb)}" alt="${esc(p.title)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-         <div class="fallback" style="display:none">${esc((p.title || '?').charAt(0))}</div>`
-      : `<div class="fallback">${esc((p.title || '?').charAt(0))}</div>`;
-    const tags = (p.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
-
+    const img = p.thumb
+      ? `<img class="hlink-img" src="${esc(p.thumb)}" alt="" decoding="async" onerror="this.remove()">`
+      : '';
     return `
-      <a class="work-card" data-doc-id="${esc(p._docId)}" href="#${esc(p._docId)}">
-        <div class="cover">${thumb}</div>
-        <div class="meta-row">
-          <span class="num">${num} / ${esc(cat.toLowerCase())}</span>
-          <span class="year">${esc(p.year || '')}</span>
-        </div>
-        <div class="title">${esc(p.title || '(untitled)')}</div>
-        <p class="summary">${esc(p.desc || '')}</p>
-        <div class="tags">${tags}</div>
+      <a class="hlink" data-doc-id="${esc(p._docId)}" href="#${esc(p._docId)}">
+        <span class="hlink-l">
+          <span class="hlink-num">${num}</span>
+          <span>
+            <span class="hlink-h">${esc(p.title || '(untitled)')}</span>
+            <span class="hlink-sub">${esc(p.desc || '')}</span>
+          </span>
+        </span>
+        ${img}
+        <span class="hlink-arrow" aria-hidden="true">→</span>
       </a>`;
   }).join('');
 
-  // bind card click → open detail
-  grid.querySelectorAll('.work-card').forEach(card => {
-    card.addEventListener('click', e => {
+  // bind: click → open detail, mousemove → image follows cursor
+  grid.querySelectorAll('.hlink').forEach(row => {
+    row.addEventListener('click', e => {
       e.preventDefault();
-      openDetail(card.dataset.docId);
+      openDetail(row.dataset.docId);
     });
+    const img = row.querySelector('.hlink-img');
+    if (img) {
+      row.addEventListener('mousemove', e => {
+        const r = row.getBoundingClientRect();
+        const xp = (e.clientX - r.left) / r.width - 0.5;   // -0.5 .. 0.5
+        const yp = (e.clientY - r.top) / r.height - 0.5;
+        img.style.top = (50 - yp * 22) + '%';
+        img.style.left = (50 + xp * 22) + '%';
+      });
+    }
   });
 
-  // 새로 그려진 카드에 reveal 적용
+  // 새로 그려진 링크에 reveal 적용
   if (typeof applyReveal === 'function') applyReveal();
 }
 
@@ -579,13 +634,11 @@ function applyReveal() {
       io.observe(el);
     }
   });
-  // 작품 카드는 stagger 적용
-  document.querySelectorAll('.work-card').forEach((el, i) => {
+  // 작품 링크는 순차 stagger
+  document.querySelectorAll('.hlink').forEach((el, i) => {
     if (!el.classList.contains('reveal')) {
       el.classList.add('reveal');
-      // 같은 줄(2칸)끼리 stagger — 0, 1, 0, 1, ...
-      const col = i % 2;
-      if (col === 1) el.classList.add('stagger-1');
+      if (i % 2 === 1) el.classList.add('stagger-1');
       io.observe(el);
     }
   });
