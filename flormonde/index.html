@@ -108,15 +108,25 @@
   .navsep { height: 1px; background: var(--line); }
 
   /* ===== 히어로 ===== */
-  .hero { position: relative; }
-  .hero .ph { aspect-ratio: 16/9; border-radius: 0; background: #2F2C36; }
-  .hero .ph i { color: #767B85; }
-  .hero-carousel .hs { opacity: 0; transform: scale(1.035); transition: opacity 1.7s cubic-bezier(.4,0,.2,1), transform 1.7s cubic-bezier(.4,0,.2,1); }
-  .hero-carousel .hs.on { opacity: 1; transform: scale(1.0); }
-  @media (prefers-reduced-motion: reduce) { .hero-carousel .hs { transition: opacity .4s; transform: none; } }
-  .hero-dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px; display: flex; gap: 8px; justify-content: center; }
-  .hero-dots button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.55); cursor: pointer; transition: background .2s, transform .2s; }
-  .hero-dots button.on { background: #fff; transform: scale(1.15); }
+  .hero { position: relative; background: #000; }
+  .hero-kv { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .hero-kv img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+  /* ---- Campaign editorial ---- */
+  .campaign { padding: clamp(56px, 8vw, 96px) 20px; max-width: 1360px; margin: 0 auto; }
+  .campaign-h { display: flex; align-items: baseline; justify-content: space-between; gap: 20px 40px; margin-bottom: clamp(24px, 3.5vw, 42px); flex-wrap: wrap; }
+  .campaign-h .ovl { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); }
+  .campaign-h p { font-size: 14px; line-height: 1.6; color: var(--sub); max-width: 42ch; margin: 0; }
+  .campaign-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.6vw, 22px); align-items: start; }
+  .cg { margin: 0; overflow: hidden; background: #201e26; }
+  .cg img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+  .cg-2 { transform: translateY(clamp(20px, 4vw, 56px)); }
+  @media (max-width: 760px) {
+    .campaign-grid { grid-template-columns: 1fr 1fr; }
+    .cg-1 { grid-column: 1 / -1; } .cg-1 img { aspect-ratio: 4/3; }
+    .cg-2 { transform: none; }
+  }
+  @media (max-width: 460px) { .campaign-grid { grid-template-columns: 1fr; } .cg-1 img { aspect-ratio: 3/4; } }
 
   /* ===== 색보정: 빛바랜 필름 ===== */
   /* 따뜻한 하이라이트 → 차가운 그림자로 갈리는 스플릿 톤 */
@@ -315,13 +325,20 @@
 <!-- ================= 홈 ================= -->
 <main id="v-home" data-view="/">
   <section class="hero">
-    <div class="ph hero-carousel">
-      <img class="hs on" src="img/hero-1.jpg" alt="플로르몽드 캠페인 컷">
-      <img class="hs" src="img/hero-woman.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
-      <img class="hs" src="img/hero-2.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
-      <img class="hs" src="img/hero-3.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
-      <img class="hs" src="img/hero-4.jpg" alt="플로르몽드 캠페인 컷" loading="lazy">
-      <div class="hero-dots"><button class="on" type="button" aria-label="1번 이미지"></button><button type="button" aria-label="2번 이미지"></button><button type="button" aria-label="3번 이미지"></button><button type="button" aria-label="4번 이미지"></button><button type="button" aria-label="5번 이미지"></button></div>
+    <div class="hero-kv">
+      <img src="img/campaign-hero.jpg" alt="플로르몽드 캠페인 — 지지 않는 꽃">
+    </div>
+  </section>
+
+  <section class="campaign">
+    <div class="campaign-h">
+      <span class="ovl">Campaign</span>
+      <p>지지 않는 꽃. 금속으로 피워낸 플로르몽드의 첫 화보.</p>
+    </div>
+    <div class="campaign-grid">
+      <figure class="cg cg-1"><img src="img/campaign-1.jpg" alt="플로르몽드 캠페인" loading="lazy"></figure>
+      <figure class="cg cg-2"><img src="img/campaign-2.jpg" alt="플로르몽드 캠페인" loading="lazy"></figure>
+      <figure class="cg cg-3"><img src="img/campaign-3.jpg" alt="플로르몽드 캠페인" loading="lazy"></figure>
     </div>
   </section>
 
