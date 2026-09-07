@@ -173,6 +173,12 @@
   .duo .cap { margin-top: 12px; font-size: 14px; }
   .duo .cap .s { color: var(--sub); font-size: 13px; }
 
+  /* ===== 룩북 그리드 ===== */
+  .lookbook { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(6px, .9vw, 12px); padding: 0 clamp(6px, .9vw, 12px) clamp(56px, 7vw, 80px); }
+  .lookbook img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: #322E3A; }
+  @media (max-width: 820px) { .lookbook { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .lookbook { grid-template-columns: 1fr; } }
+
   /* ===== PDP ===== */
   .pdp { display: grid; grid-template-columns: 1fr 440px; gap: 48px; padding: 20px 20px 70px; align-items: start; }
   .pdp-media { display: grid; gap: 8px; }
@@ -347,6 +353,15 @@
     <div class="ph"><img src="img/duo-1.jpg" alt="플로르몽드 연출 컷"></div>
     <div class="ph"><img src="img/duo-2.jpg" alt="플로르몽드 연출 컷"></div>
   </div>
+
+  <section class="lookbook">
+    <img src="img/lookbook-1.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/lookbook-2.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/lookbook-3.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/lookbook-4.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/lookbook-5.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/lookbook-6.jpg" alt="플로르몽드 연출 컷" loading="lazy">
+  </section>
 
 </main>
 
