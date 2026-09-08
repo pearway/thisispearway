@@ -110,8 +110,14 @@
 
   /* ===== 히어로 ===== */
   .hero { position: relative; background: #000; }
-  .hero-kv { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
-  .hero-kv img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .hero-carousel { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .hero-carousel .hs { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;
+    opacity: 0; transform: scale(1.035); transition: opacity 1.7s cubic-bezier(.4,0,.2,1), transform 1.7s cubic-bezier(.4,0,.2,1); }
+  .hero-carousel .hs.on { opacity: 1; transform: scale(1.0); }
+  @media (prefers-reduced-motion: reduce) { .hero-carousel .hs { transition: opacity .4s; transform: none; } }
+  .hero-dots { position: absolute; z-index: 3; left: 0; right: 0; bottom: 16px; display: flex; gap: 8px; justify-content: center; }
+  .hero-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 50%; background: rgba(255,255,255,.5); cursor: pointer; transition: background .2s, transform .2s; }
+  .hero-dots button.on { background: #fff; transform: scale(1.2); }
 
   /* ---- Campaign editorial ---- */
   .campaign { padding: clamp(56px, 8vw, 96px) 20px; max-width: 1360px; margin: 0 auto; }
@@ -311,6 +317,7 @@
     <a href="#/shop">전체</a>
     <a href="#/c/entrance">현관</a>
     <a href="#/c/table">식탁</a>
+    <a href="#/lookbook">룩북</a>
     <a href="#/story">브랜드</a>
   </div>
   <a href="#/" aria-label="FlorMonde 홈"><svg class="wm"><use href="#wm"/></svg></a>
@@ -324,10 +331,22 @@
 <!-- ================= 홈 ================= -->
 <main id="v-home" data-view="/">
   <section class="hero">
-    <div class="hero-kv">
-      <img src="img/campaign-hero.jpg" alt="플로르몽드 캠페인 — 지지 않는 꽃">
+    <div class="hero-carousel">
+      <img class="hs on" src="img/campaign-hero.jpg" alt="플로르몽드">
+      <img class="hs" src="img/ed-planter.jpg" alt="플로르몽드" loading="lazy">
+      <img class="hs" src="img/story.jpg" alt="플로르몽드" loading="lazy">
+      <div class="hero-dots"><button class="on" type="button" aria-label="1"></button><button type="button" aria-label="2"></button><button type="button" aria-label="3"></button></div>
     </div>
   </section>
+
+  <section class="sec">
+    <div class="grid" id="railGrid"></div>
+  </section>
+</main>
+
+<!-- ================= 2026 룩북 ================= -->
+<main id="v-lookbook" data-view="/lookbook" hidden>
+  <div class="page-h"><h1>2026 Lookbook</h1></div>
 
   <section class="campaign">
     <div class="campaign-grid">
@@ -337,20 +356,14 @@
     </div>
   </section>
 
-  <section class="sec">
-    <div class="rail" id="railGrid"></div>
-  </section>
-
   <section class="ed">
-    <div class="ph"><img src="img/ed-planter.jpg" alt="플로르몽드 연출 컷"></div>
+    <div class="ph"><img src="img/ed-planter.jpg" alt="플로르몽드 연출 컷" loading="lazy"></div>
   </section>
 
   <div class="duo">
-    <div class="ph"><img src="img/duo-1.jpg" alt="플로르몽드 연출 컷"></div>
-    <div class="ph"><img src="img/duo-2.jpg" alt="플로르몽드 연출 컷"></div>
+    <div class="ph"><img src="img/duo-1.jpg" alt="플로르몽드 연출 컷" loading="lazy"></div>
+    <div class="ph"><img src="img/duo-2.jpg" alt="플로르몽드 연출 컷" loading="lazy"></div>
   </div>
-
-
 </main>
 
 <!-- ================= 전체 상품 ================= -->
