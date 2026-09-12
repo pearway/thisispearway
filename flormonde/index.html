@@ -349,7 +349,8 @@
       <img class="hs on" src="img/hero-face.jpg" alt="플로르몽드">
       <img class="hs" src="img/hero-pool.jpg" alt="플로르몽드" loading="lazy">
       <img class="hs" src="img/campaign-hero.jpg" alt="플로르몽드" loading="lazy">
-      <div class="hero-dots"><button class="on" type="button" aria-label="1"></button><button type="button" aria-label="2"></button><button type="button" aria-label="3"></button></div>
+      <img class="hs" src="img/hero-red.jpg" alt="플로르몽드" loading="lazy">
+      <div class="hero-dots"><button class="on" type="button" aria-label="1"></button><button type="button" aria-label="2"></button><button type="button" aria-label="3"></button><button type="button" aria-label="4"></button></div>
     </div>
   </section>
 
@@ -377,9 +378,8 @@
 <main id="v-product" data-view="/product" hidden>
   <div class="pdp">
     <div class="pdp-media">
-      <div class="ph"><img src="img/product-green.jpg" alt="페탈 엄브렐라 스탠드"></div>
-      <div class="ph"><img src="img/product-green-d.jpg" alt="페탈 엄브렐라 스탠드 받침 디테일"></div>
-      <div class="ph"><img src="img/ctx-green.jpg" alt="페탈 엄브렐라 스탠드 연출 컷" loading="lazy"></div>
+      <div class="ph"><img src="img/product-orange.jpg" alt="페탈 엄브렐라 스탠드"></div>
+      <div class="ph"><img src="img/product-orange-d.jpg" alt="페탈 엄브렐라 스탠드 받침 디테일"></div>
     </div>
 
     <div class="pdp-info">
@@ -566,9 +566,8 @@
   function say(m){ toast.textContent=m; toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('on');},2200); }
 
   var COLORS = [
-    {n:'그린',c:'RAL 6028',hex:'#2C5140',full:'img/product-green.jpg',det:'img/product-green-d.jpg',ctx:'img/ctx-green.jpg'},
-    {n:'옐로',c:'RAL 1023',hex:'#E8B200',full:'img/product-yellow.jpg',det:'img/product-yellow-d.jpg',ctx:'img/ctx-yellow.jpg'},
-    {n:'오렌지',c:'RAL 2008',hex:'#D9532A',full:'img/product-orange.jpg',det:'img/product-orange-d.jpg',ctx:'img/ctx-orange.jpg'}
+    {n:'오렌지',c:'RAL 2002',hex:'#CA371D',full:'img/product-orange.jpg',det:'img/product-orange-d.jpg'},
+    {n:'레드',c:'RAL 3020',hex:'#B81614',full:'img/product-red.jpg',det:'img/product-red-d.jpg'}
   ];
   var PRODUCTS = [
     {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-orange.jpg'},
@@ -610,7 +609,6 @@
       var media=document.querySelectorAll('.pdp-media .ph img');
       if(media[0]&&c.full) media[0].src=c.full;
       if(media[1]&&c.det) media[1].src=c.det;
-      if(media[2]&&c.ctx) media[2].src=c.ctx;
     };
     swRow.appendChild(b);
   });
