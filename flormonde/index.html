@@ -103,6 +103,9 @@
   .nav-r { justify-content: flex-end; }
   .nav a, .nav button { font-size: 14px; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; }
   .nav-r button, .nav-r a { display: inline-flex; align-items: center; gap: 5px; line-height: 1; }
+  .nav-menu { display: flex; align-items: center; gap: 18px; }
+  .nav-burger { display: none; padding: 0; }
+  .nav-burger .ico { width: 22px; height: 22px; }
   .wm { display: block; height: 26px; width: auto; aspect-ratio: 650.8 / 140.5; color: var(--brand); }
   .cartn { font-size: 12px; color: var(--ink); font-variant-numeric: tabular-nums; }
   .ico { width: 19px; height: 19px; }
@@ -299,7 +302,11 @@
   .toast.on { opacity: 1; transform: translate(-50%,0); }
 
   @media (max-width: 900px) {
-    .nav-l { display: none; }
+    .nav-burger { display: inline-flex; align-items: center; }
+    .nav-menu { position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0;
+                background: var(--bg); border-bottom: 1px solid var(--line); padding: 2px 20px 10px; display: none; z-index: 59; }
+    .nav.open .nav-menu { display: flex; }
+    .nav-menu a { width: 100%; padding: 13px 0; font-size: 15px; border-top: 1px solid var(--line2); }
     .cs { grid-template-columns: 1fr; gap: 24px; }
     .cs-side { position: static; }
     .cs-tabs { grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0; }
@@ -329,10 +336,15 @@
 
 <div class="nav">
   <div class="nav-l">
-    <a href="#/shop">전체</a>
-    <a href="#/c/entrance">현관</a>
-    <a href="#/c/table">식탁</a>
-    <a href="#/story">브랜드</a>
+    <button class="nav-burger" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <a href="#/shop">전체</a>
+      <a href="#/c/entrance">현관</a>
+      <a href="#/c/table">식탁</a>
+      <a href="#/story">브랜드</a>
+    </div>
   </div>
   <a href="#/" aria-label="FlorMonde 홈"><svg class="wm"><use href="#wm"/></svg></a>
   <div class="nav-r">
@@ -693,6 +705,17 @@
     } else { show(f); }
   }
   addEventListener('hashchange', route); route();
+
+  /* 모바일 메뉴 */
+  (function(){
+    var nav=document.querySelector('.nav'), burger=document.querySelector('.nav-burger'), menu=document.getElementById('navMenu');
+    if(!nav||!burger||!menu) return;
+    function setOpen(o){ nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o?'true':'false'); burger.setAttribute('aria-label', o?'메뉴 닫기':'메뉴 열기'); }
+    burger.addEventListener('click', function(e){ e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
+    menu.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
+    document.addEventListener('click', function(e){ if(nav.classList.contains('open') && !nav.contains(e.target)) setOpen(false); });
+    addEventListener('hashchange', function(){ setOpen(false); });
+  })();
 
   /* 히어로 캐러셀 */
   (function(){
