@@ -1,11 +1,11 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/flormonde", "destination": "/flormonde/", "permanent": false }
+    { "source": "/flormonde", "destination": "/flormonde/", "permanent": false },
+    { "source": "/ggoji", "destination": "/flormonde/", "permanent": false }
   ],
   "rewrites": [
     { "source": "/brand", "destination": "/brand.html" },
-    { "source": "/ggoji", "destination": "/ggoji.html" },
     { "source": "/admin", "destination": "/admin.html" }
   ]
 }
