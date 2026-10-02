@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>간판 · 사이니지 — PEARWAY</title>
+<meta name="description" content="간판은 브랜드의 얼굴입니다. 디자이너가 직접 운영하는 간판과 사이니지. 공간 시뮬레이션과 10년의 경험으로 처음부터 함께 고민합니다.">
+<meta property="og:title" content="간판 · 사이니지 — PEARWAY">
+<meta property="og:description" content="간판은 브랜드의 얼굴입니다. 디자이너가 직접 운영하는 간판과 사이니지.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#E7E3DB; --paper-2:#DCD7CC; --ink:#1B1A17; --sub:#716D64;
+    --line:rgba(27,26,23,.16); --line-2:rgba(27,26,23,.08); --cream:#F2EEE6;
+    --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+    --mono:'Geist','Pretendard Variable',sans-serif;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink); background:var(--paper);
+    font-family:var(--sans); font-weight:400; line-height:1.5;
+    -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+    word-break:keep-all; overflow-wrap:break-word;
+    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='300'%20height='300'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='300'%20height='300'%20filter='url(%23n)'%20opacity='.035'/%3E%3C/svg%3E");
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,64px)}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--sub)}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+      padding:clamp(16px,2.6vw,26px) clamp(22px,5vw,64px);mix-blend-mode:normal}
+  .home{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);
+        border-radius:50%;color:var(--ink);transition:background .3s var(--ease),color .3s var(--ease)}
+  .home:hover{background:var(--ink);color:var(--cream)}
+  .home svg{width:18px;height:18px}
+  .nav-r{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.02em}
+  .nav-r .tag{color:var(--sub);text-transform:uppercase;letter-spacing:.2em;font-size:11px}
+  .nav-r a.cta{color:var(--ink)}
+  .nav-r a.cta:hover{color:var(--sub)}
+  @media(max-width:620px){.nav-r .tag{display:none}}
+
+  /* hero */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 90px}
+  .hero .eyebrow{margin-bottom:clamp(22px,3vw,34px)}
+  .hero h1{font-weight:800;line-height:1.02;letter-spacing:-.035em;margin:0;
+           font-size:clamp(2.7rem,9.2vw,7rem)}
+  .hero .lead{margin-top:clamp(26px,3.4vw,40px);max-width:30ch;font-size:clamp(1.02rem,1.5vw,1.3rem);
+              line-height:1.7;color:var(--sub);font-weight:450}
+  .hero .scroll{margin-top:clamp(40px,7vw,90px);font-family:var(--mono);font-size:11px;letter-spacing:.24em;
+                text-transform:uppercase;color:var(--sub);display:inline-flex;align-items:center;gap:10px}
+  .hero .scroll::after{content:"";width:34px;height:1px;background:currentColor}
+
+  section{padding:clamp(84px,13vw,180px) 0}
+  .sec-eyebrow{margin-bottom:clamp(26px,3.4vw,44px);display:flex;align-items:baseline;gap:14px}
+  .sec-eyebrow .no{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink);letter-spacing:.1em}
+
+  /* 고민 */
+  .worry h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;line-height:1.14;margin:0 0 clamp(40px,6vw,80px)}
+  .worry-list{border-top:1px solid var(--line)}
+  .worry-list li{list-style:none;display:flex;align-items:baseline;gap:clamp(16px,4vw,48px);
+                 padding:clamp(22px,3.4vw,40px) 0;border-bottom:1px solid var(--line)}
+  .worry-list .q{font-family:var(--mono);font-size:13px;color:var(--sub);flex:none;padding-top:.3em}
+  .worry-list .t{font-weight:500;font-size:clamp(1.15rem,2.6vw,1.9rem);letter-spacing:-.02em;line-height:1.4}
+
+  /* 해석 */
+  .view{background:var(--paper-2)}
+  .view .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,110px);align-items:start}
+  .view h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;line-height:1.14;margin:0}
+  .view .pts{display:grid;gap:clamp(34px,4vw,54px)}
+  .view .pt h3{font-weight:700;font-size:clamp(1.15rem,1.8vw,1.4rem);letter-spacing:-.02em;margin:0 0 12px}
+  .view .pt p{margin:0;color:var(--sub);font-size:clamp(1rem,1.3vw,1.12rem);line-height:1.75;max-width:40ch}
+  @media(max-width:760px){.view .grid{grid-template-columns:1fr;gap:clamp(30px,8vw,50px)}}
+
+  /* 가격 — 다크 밴드 */
+  .price{background:var(--ink);color:var(--cream)}
+  .price .eyebrow{color:rgba(242,238,230,.55)}
+  .price p.stmt{margin:clamp(26px,3.4vw,44px) 0 0;font-weight:500;letter-spacing:-.025em;
+                font-size:clamp(1.5rem,3.6vw,2.9rem);line-height:1.42;max-width:22ch}
+  .price p.stmt .dim{color:rgba(242,238,230,.5)}
+
+  /* 작업 */
+  .work h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;margin:0 0 clamp(36px,5vw,64px)}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px)}
+  .ph{position:relative;aspect-ratio:3/4;background:var(--paper-2);border:1px solid var(--line-2);overflow:hidden;
+      display:flex;align-items:center;justify-content:center}
+  .ph span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sub)}
+  .work .note{margin-top:clamp(22px,3vw,34px);font-size:14px;color:var(--sub)}
+  @media(max-width:760px){.work-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.work-grid{grid-template-columns:1fr}.ph{aspect-ratio:4/3}}
+
+  /* 문의 */
+  .contact{text-align:center;padding:clamp(100px,16vw,220px) 0}
+  .contact h2{font-weight:800;font-size:clamp(2rem,6vw,4.4rem);letter-spacing:-.035em;line-height:1.08;margin:0 auto;max-width:16ch}
+  .contact p{margin:clamp(22px,3vw,30px) auto 0;color:var(--sub);font-size:clamp(1rem,1.4vw,1.18rem);line-height:1.7;max-width:34ch}
+  .btn{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(34px,4.5vw,52px);
+       background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:14px;font-weight:600;letter-spacing:.02em;
+       padding:17px 32px;border-radius:999px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);opacity:.9}
+  .btn .ar{transition:transform .3s var(--ease)}
+  .btn:hover .ar{transform:translate(3px,-3px)}
+
+  footer{border-top:1px solid var(--line);padding:clamp(34px,5vw,56px) 0}
+  footer .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+               font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--sub)}
+  footer a:hover{color:var(--ink)}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="home" aria-label="홈으로">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
+  </a>
+  <div class="nav-r">
+    <span class="tag">Pearway Signage</span>
+    <a class="cta" href="#contact">문의</a>
+  </div>
+</nav>
+
+<main>
+  <header class="hero wrap">
+    <span class="eyebrow">간판 · 사이니지</span>
+    <h1>간판은<br>브랜드의 얼굴입니다</h1>
+    <p class="lead">디자이너가 직접 운영하는 간판과 사이니지. 문의는 언제나 환영합니다.</p>
+    <span class="scroll">아래로</span>
+  </header>
+
+  <section class="worry">
+    <div class="wrap">
+      <div class="sec-eyebrow"><span class="no">01</span><span class="eyebrow">고민</span></div>
+      <h2 class="reveal">이런 고민, 하고 계신가요.</h2>
+      <ul class="worry-list">
+        <li class="reveal"><span class="q">Q</span><span class="t">어디에 맡겨야 할지 모르겠다</span></li>
+        <li class="reveal"><span class="q">Q</span><span class="t">업체마다 가격도 말도 다르다</span></li>
+        <li class="reveal"><span class="q">Q</span><span class="t">한 번 달면 바꾸기 어렵다</span></li>
+        <li class="reveal"><span class="q">Q</span><span class="t">내 공간과 어울릴지 모르겠다</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="view">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <div class="sec-eyebrow"><span class="no">02</span><span class="eyebrow">해석</span></div>
+          <h2 class="reveal">저의 해석.</h2>
+        </div>
+        <div class="pts">
+          <div class="pt reveal">
+            <h3>설치 전에, 미리</h3>
+            <p>간판은 한 번 달면 해체나 수정이 어렵습니다. 공간 시뮬레이션으로 완성된 모습을 먼저 보고 결정합니다.</p>
+          </div>
+          <div class="pt reveal">
+            <h3>10년의 경험</h3>
+            <p>사이니지와 간판을 10년간 디자인했습니다. 유행을 좇기보다 그 공간에 오래 어울릴 형태를 찾습니다.</p>
+          </div>
+          <div class="pt reveal">
+            <h3>얼굴을 만드는 일</h3>
+            <p>간판은 브랜드가 거리에서 처음 건네는 인사입니다. 그래서 신중하게, 처음부터 함께 고민합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="price">
+    <div class="wrap">
+      <span class="eyebrow">가격보다 먼저</span>
+      <p class="stmt reveal">가격은 여러 업체와 충분히 비교해 보세요. <span class="dim">업체마다 해석이 다릅니다. 저에게는 저만의 해석이 있습니다.</span> 간판은 한 번 설치하면 되돌리기 어렵기에, 공간 시뮬레이션 역량과 10년의 경험으로 처음부터 함께 고민합니다.</p>
+    </div>
+  </section>
+
+  <section class="work">
+    <div class="wrap">
+      <div class="sec-eyebrow"><span class="no">03</span><span class="eyebrow">작업</span></div>
+      <h2 class="reveal">설치된 간판.</h2>
+      <div class="work-grid">
+        <div class="ph reveal"><span>작업 사진</span></div>
+        <div class="ph reveal"><span>작업 사진</span></div>
+        <div class="ph reveal"><span>작업 사진</span></div>
+      </div>
+      <p class="note">작업 사진을 준비하고 있습니다.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="reveal">간판, 함께 고민하겠습니다.</h2>
+      <p>작은 가게의 간판 하나도 신중하게. 편하게 문의 남겨 주세요.</p>
+      <a class="btn" href="mailto:ppearwayy@gmail.com?subject=간판%20·%20사이니지%20문의">문의하기 <span class="ar" aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>PEARWAY · 간판 사이니지</span>
+    <a href="/">pearway.kr</a>
+  </div>
+</footer>
+
+<script>
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
