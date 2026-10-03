@@ -104,18 +104,18 @@
   /* INDEX of divisions */
   .idx-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 var(--pad) clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
   .idx-head h2{margin:0;font-weight:600;letter-spacing:-.02em;font-size:clamp(1.2rem,2vw,1.6rem)}
-  .divs{padding:0 var(--pad) clamp(40px,6vw,90px)}
-  .div{display:block;position:relative;border-bottom:1px solid var(--line);padding:clamp(18px,2.4vw,30px) 0}
-  .div .d-ph{width:100%;height:clamp(300px,46vw,560px);border-radius:12px}
-  .div .d-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:clamp(16px,1.8vw,22px)}
-  .div .d-no{font-family:var(--mono);font-size:12px;color:var(--dim);flex:none;width:3ch}
-  .div .d-nm{flex:1;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.6rem,4.5vw,3.2rem);line-height:1;transition:transform .5s var(--ease)}
-  .div .d-en{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);flex:none}
-  .div .d-ar{flex:none;font-size:1.3rem;color:var(--dim);transition:transform .4s var(--ease),color .3s}
+  .divs{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px)}
+  .div{display:block;margin-bottom:clamp(56px,8vw,118px)}
+  .div:last-child{margin-bottom:0}
+  .div .d-ph{width:100%;height:clamp(420px,62vw,760px);border-radius:12px;transition:opacity .4s var(--ease)}
+  .div .d-cap{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(14px,2vw,28px);flex-wrap:wrap;margin-top:clamp(16px,1.8vw,24px)}
+  .div .d-nm{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.05}
+  .d-tags{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
+  .d-tags .pill{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--dim);border:1px solid var(--line);border-radius:7px;padding:6px 12px;white-space:nowrap;transition:border-color .25s,color .25s}
   @media(hover:hover){
-    .div:hover .d-nm{transform:translateX(8px);background-image:var(--foil-d);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 4s linear infinite}
-    .div:hover .d-ar{transform:translate(4px,-4px);color:var(--ink)}
     .div:hover .d-ph{opacity:.94}
+    .div:hover .d-nm{background-image:var(--foil-d);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 4s linear infinite}
+    .div:hover .pill{border-color:rgba(11,11,12,.26);color:var(--ink)}
   }
 
   /* FOOTER */
@@ -163,7 +163,7 @@
   </header>
 
   <section class="lede">
-    <p>페어웨이는 공간 그래픽, 간판, 폰트, 오브제를 다루는 <span class="dim">서울의 디자인 스튜디오입니다.</span></p>
+    <p>Pearway is a Seoul-based design studio, <span class="dim">working across space, graphic, signage, type &amp; objet.</span></p>
   </section>
 
   <div class="idx-head">
@@ -171,40 +171,32 @@
     <span class="mono dim">04</span>
   </div>
   <div class="divs">
-    <a class="div" href="/brand">
-      <div class="ph d-ph" data-label="공간 및 그래픽 / 이미지 준비 중"></div>
-      <div class="d-row">
-        <span class="d-no">01</span>
+    <a class="div reveal" href="/brand">
+      <div class="ph d-ph" data-label="공간 및 그래픽"></div>
+      <div class="d-cap">
         <span class="d-nm">공간 및 그래픽</span>
-        <span class="d-en">Space &amp; Graphic</span>
-        <span class="d-ar" aria-hidden="true">↗</span>
+        <div class="d-tags"><span class="pill">Space</span><span class="pill">Graphic</span><span class="pill">Interior</span><span class="pill">Branding</span></div>
       </div>
     </a>
-    <a class="div" href="/signage">
-      <div class="ph d-ph" data-label="간판 및 사이니지 / 이미지 준비 중"></div>
-      <div class="d-row">
-        <span class="d-no">02</span>
+    <a class="div reveal" href="/signage">
+      <div class="ph d-ph" data-label="간판 및 사이니지"></div>
+      <div class="d-cap">
         <span class="d-nm">간판 및 사이니지</span>
-        <span class="d-en">Signage</span>
-        <span class="d-ar" aria-hidden="true">↗</span>
+        <div class="d-tags"><span class="pill">Signage</span><span class="pill">Wayfinding</span><span class="pill">Fabrication</span></div>
       </div>
     </a>
-    <a class="div" href="https://peartype.kr">
-      <div class="ph d-ph" data-label="폰트 파운더리 / 이미지 준비 중"></div>
-      <div class="d-row">
-        <span class="d-no">03</span>
+    <a class="div reveal" href="https://peartype.kr">
+      <div class="ph d-ph" data-label="폰트 파운더리"></div>
+      <div class="d-cap">
         <span class="d-nm">폰트 파운더리</span>
-        <span class="d-en">Type Foundry ↗</span>
-        <span class="d-ar" aria-hidden="true">↗</span>
+        <div class="d-tags"><span class="pill">Type</span><span class="pill">Foundry</span><span class="pill">Retail ↗</span></div>
       </div>
     </a>
-    <a class="div" href="/flormonde/">
-      <div class="ph d-ph" data-label="플로르몽드 / 이미지 준비 중"></div>
-      <div class="d-row">
-        <span class="d-no">04</span>
+    <a class="div reveal" href="/flormonde/">
+      <div class="ph d-ph" data-label="플로르몽드"></div>
+      <div class="d-cap">
         <span class="d-nm">플로르몽드</span>
-        <span class="d-en">Objet ↗</span>
-        <span class="d-ar" aria-hidden="true">↗</span>
+        <div class="d-tags"><span class="pill">Objet</span><span class="pill">Metal</span><span class="pill">Product ↗</span></div>
       </div>
     </a>
   </div>
