@@ -55,6 +55,33 @@
     if (c) c.addEventListener('click', close);
     m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+    /* ---- 메뉴 호버 프리뷰 (항목에 올리면 이미지가 뜸) ---- */
+    (function () {
+      var ml = m.querySelector('.menu-list');
+      var links = ml ? ml.querySelectorAll('a') : [];
+      if (!ml || !links.length) return;
+      var pv = document.createElement('div'); pv.className = 'menu-pv'; pv.setAttribute('aria-hidden', 'true');
+      var tiles = [];
+      links.forEach(function (a) {
+        var label = ((a.childNodes[0] && a.childNodes[0].textContent) || a.textContent).trim();
+        var tile = document.createElement('span'); tile.className = 'pv';
+        var ph = document.createElement('span'); ph.className = 'ph';
+        var img = a.getAttribute('data-pv-img');
+        if (img) { ph.style.backgroundImage = 'url(' + img + ')'; ph.style.backgroundSize = 'cover'; ph.style.backgroundPosition = 'center'; }
+        else { ph.setAttribute('data-label', label); }
+        tile.appendChild(ph); pv.appendChild(tile); tiles.push(tile);
+        a.addEventListener('mouseenter', function () {
+          ml.classList.add('pv-on');
+          tiles.forEach(function (t, j) { t.classList.toggle('show', t === tile); });
+        });
+      });
+      m.appendChild(pv);
+      ml.addEventListener('mouseleave', function () {
+        ml.classList.remove('pv-on');
+        tiles.forEach(function (t) { t.classList.remove('show'); });
+      });
+    })();
   })();
 
   /* ---- 페이지 전환 (페이드) ---- */
