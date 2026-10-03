@@ -24,12 +24,10 @@ a{color:inherit;text-decoration:none}
 .dim{color:var(--dim)}
 
 /* 실버 은박 */
-.foil-mark{display:block;background-image:var(--foil);background-size:280% 100%;background-position:0 0;
-  -webkit-mask:url(images/pearway-mark-ink.png) no-repeat center/contain;mask:url(images/pearway-mark-ink.png) no-repeat center/contain;
-  animation:foil 5.5s linear infinite}
-@keyframes foil{from{background-position:0 0}to{background-position:280% 0}}
-.foil-txt{background-image:var(--foil);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 5.5s linear infinite}
-@media(prefers-reduced-motion:reduce){.foil-mark,.foil-txt{animation:none;background-position:38% 0}}
+/* 정적 실버 (흐름 애니메이션 없음) */
+.foil-mark{display:block;background-image:var(--foil);background-size:100% 100%;background-position:0 0;
+  -webkit-mask:url(images/pearway-mark-ink.png) no-repeat center/contain;mask:url(images/pearway-mark-ink.png) no-repeat center/contain}
+.foil-txt{background-image:var(--foil);background-size:100% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* 회색 이미지 플레이스홀더 (추후 교체) */
 .ph{background:var(--ph);position:relative;overflow:hidden}
