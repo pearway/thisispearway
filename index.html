@@ -29,10 +29,11 @@
 
 <style>
   :root{
-    --bg:#FCFCFC; --ink:#0B0B0C; --dim:#8C8C8E;
-    --ph:#ECECEA; --ph-ink:rgba(11,11,12,.38);
-    --line:rgba(11,11,12,.13); --line-2:rgba(11,11,12,.06);
+    --bg:#FFFFFF; --ink:#0B0B0C; --dim:#8E8E90;
+    --ph:#F1F1EF; --ph-ink:rgba(11,11,12,.34);
+    --line:rgba(11,11,12,.12); --line-2:rgba(11,11,12,.055);
     --foil:linear-gradient(100deg,#8d8d8d 0%,#cacaca 14%,#ffffff 29%,#b9b9b9 44%,#f4f4f4 60%,#9c9c9c 78%,#dcdcdc 100%);
+    --foil-d:linear-gradient(100deg,#454547 0%,#9a9a9c 17%,#cfcfd1 30%,#6a6a6c 47%,#bcbcbe 63%,#505052 82%,#8c8c8e 100%);
     --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
     --mono:'Geist Mono',ui-monospace,monospace;
     --ease:cubic-bezier(.22,1,.36,1);
@@ -73,7 +74,7 @@
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
       padding:clamp(16px,2.2vw,24px) var(--pad);mix-blend-mode:normal}
-  nav .mk{height:clamp(22px,2.6vw,30px);width:auto}
+  nav .mk{width:clamp(28px,3vw,36px);aspect-ratio:660/592;background-image:var(--foil-d)}
   .menu-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
             background:none;border:0;cursor:pointer;color:var(--ink);padding:6px 2px}
   .menu-btn .bars{display:inline-flex;flex-direction:column;gap:4px;width:20px}
@@ -111,7 +112,11 @@
   .div .d-nm{flex:1;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.6rem,4.5vw,3.2rem);line-height:1;transition:transform .5s var(--ease)}
   .div .d-en{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);flex:none}
   .div .d-ar{flex:none;font-size:1.3rem;color:var(--dim);transition:transform .4s var(--ease),color .3s}
-  @media(hover:hover){ .div:hover .d-nm{transform:translateX(8px)} .div:hover .d-ar{transform:translate(4px,-4px);color:var(--ink)} .div:hover .d-ph{opacity:.92} }
+  @media(hover:hover){
+    .div:hover .d-nm{transform:translateX(8px);background-image:var(--foil-d);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 4s linear infinite}
+    .div:hover .d-ar{transform:translate(4px,-4px);color:var(--ink)}
+    .div:hover .d-ph{opacity:.94}
+  }
 
   /* FOOTER */
   footer{border-top:1px solid var(--line)}
@@ -138,7 +143,7 @@
 </div>
 
 <nav>
-  <a href="/" aria-label="페어웨이 홈"><img class="mk" src="images/pearway-mark-ink.png" alt="PEARWAY" width="660" height="592"></a>
+  <a href="/" aria-label="페어웨이 홈"><span class="mk foil-mark" role="img" aria-label="PEARWAY"></span></a>
   <button class="menu-btn" id="menuOpen" aria-label="메뉴 열기">Menu <span class="bars" aria-hidden="true"><i></i><i></i></span></button>
 </nav>
 
