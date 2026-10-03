@@ -56,4 +56,20 @@
     m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
+
+  /* ---- 페이지 전환 (페이드) ---- */
+  if (!reduce) {
+    document.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href[0] === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) return;
+      var isExt = /^https?:\/\//.test(href) && href.indexOf(location.host) === -1;
+      if (isExt || a.target === '_blank') return;
+      a.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        document.documentElement.classList.add('leaving');
+        setTimeout(function () { window.location.href = href; }, 330);
+      });
+    });
+  }
 })();
