@@ -49,12 +49,9 @@
   .nav-r a.cta:hover{color:var(--sub)}
   @media(max-width:620px){.nav-r .tag{display:none}}
 
-  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 90px}
-  .hero .eyebrow{margin-bottom:clamp(22px,3vw,34px)}
-  .hero h1{font-weight:800;line-height:1.02;letter-spacing:-.035em;margin:0;font-size:clamp(2.7rem,9.4vw,7.2rem)}
-  .hero .lead{margin-top:clamp(26px,3.4vw,40px);max-width:30ch;font-size:clamp(1.02rem,1.5vw,1.3rem);line-height:1.7;color:var(--sub);font-weight:450}
-  .hero .scroll{margin-top:clamp(40px,7vw,90px);font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sub);display:inline-flex;align-items:center;gap:10px}
-  .hero .scroll::after{content:"";width:34px;height:1px;background:currentColor}
+  .hero{position:relative;width:100%;height:92svh;min-height:520px;overflow:hidden;background:var(--plum-2)}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(23,18,26,.62),rgba(23,18,26,0) 20%),linear-gradient(to top,rgba(23,18,26,.55),rgba(23,18,26,0) 30%)}
 
   section{padding:clamp(84px,13vw,180px) 0}
 
@@ -75,8 +72,8 @@
   /* 작업 */
   .work h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;margin:0 0 clamp(36px,5vw,64px)}
   .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px)}
-  .ph{position:relative;aspect-ratio:3/4;background:var(--plum-2);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center}
-  .ph span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--sub)}
+  .ph{position:relative;aspect-ratio:3/4;background:var(--plum-2);border:1px solid var(--line-2);overflow:hidden;margin:0}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .work .note{margin-top:clamp(22px,3vw,34px);font-size:14px;color:var(--sub)}
   @media(max-width:760px){.work-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:460px){.work-grid{grid-template-columns:1fr}.ph{aspect-ratio:4/3}}
@@ -115,14 +112,13 @@
 </nav>
 
 <main>
-  <header class="hero wrap">
-    <span class="eyebrow">간판 사이니지</span>
-    <h1>간판은<br>브랜드의 얼굴입니다</h1>
-    <p class="lead">10년의 디자인, 25년의 시공. 그 시간을 간판 하나에 담습니다.</p>
+  <header class="hero">
+    <img class="hero-bg" src="images/signage/hero.jpg" alt="페어웨이 간판 작업">
   </header>
 
   <section class="team">
     <div class="wrap">
+      <span class="eyebrow" style="display:block;margin-bottom:clamp(22px,3vw,34px)">간판 사이니지</span>
       <h2 class="reveal">그리는 사람, 그리고 만드는 사람.</h2>
       <div class="nums">
         <div class="num reveal">
@@ -151,11 +147,10 @@
       <span class="eyebrow">작업</span>
       <h2 class="reveal" style="margin-top:clamp(20px,2.4vw,30px)">설치된 간판.</h2>
       <div class="work-grid">
-        <div class="ph reveal"><span>작업 사진</span></div>
-        <div class="ph reveal"><span>작업 사진</span></div>
-        <div class="ph reveal"><span>작업 사진</span></div>
+        <figure class="ph reveal"><img src="images/signage/work-1.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
+        <figure class="ph reveal"><img src="images/signage/work-2.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
+        <figure class="ph reveal"><img src="images/signage/work-3.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
       </div>
-      <p class="note">작업 사진을 준비하고 있습니다.</p>
     </div>
   </section>
 
