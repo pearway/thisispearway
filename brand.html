@@ -687,39 +687,33 @@ loadProjects().then(() => {
 
 <script src="plasma.js"></script>
 
-<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+<script>
+(function(){
+  var SB_URL = 'https://afbdebwyddlgbphsbash.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmYmRlYnd5ZGRsZ2JwaHNiYXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjE3MTcsImV4cCI6MjA5ODc5NzcxN30.JgBeIhDi8Z44VLZfCyaPa0K4lnI8ub0yg2kg2vEAmvU';
 
-  const db = getFirestore(initializeApp({
-    apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
-    authDomain: "thisispearway.firebaseapp.com",
-    projectId: "thisispearway",
-    storageBucket: "thisispearway.firebasestorage.app",
-    messagingSenderId: "657205333061",
-    appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
-  }));
+  var form = document.getElementById('inq-form');
+  var nameEl = document.getElementById('inq-name');
+  var contactEl = document.getElementById('inq-contact');
+  var msgEl = document.getElementById('inq-message');
+  var submitEl = document.getElementById('inq-submit');
+  var noteEl = document.getElementById('inq-msg');
+  var setNote = function(t, k){ noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); };
 
-  const form = document.getElementById('inq-form');
-  const nameEl = document.getElementById('inq-name');
-  const contactEl = document.getElementById('inq-contact');
-  const msgEl = document.getElementById('inq-message');
-  const submitEl = document.getElementById('inq-submit');
-  const noteEl = document.getElementById('inq-msg');
-  const setNote = (t, k) => { noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); };
-
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
-    [nameEl, contactEl].forEach(el => el.classList.remove('err'));
-    const name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
+    [nameEl, contactEl].forEach(function(el){ el.classList.remove('err'); });
+    var name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
     if (!name) { nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
     if (!contact) { contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
     submitEl.disabled = true; setNote('보내는 중…', '');
     try {
-      await addDoc(collection(db, 'inquiries'), {
-        name, contact, message, source: 'brand', status: 'new',
-        createdAt: serverTimestamp(), ua: navigator.userAgent.slice(0, 180)
+      var res = await fetch(SB_URL + '/rest/v1/inquiries', {
+        method: 'POST',
+        headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name: name, contact: contact, message: message, source: 'brand', ua: navigator.userAgent.slice(0, 180) })
       });
+      if(!res.ok) throw new Error('HTTP ' + res.status);
       form.reset();
       setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.', 'ok');
     } catch (err) {
@@ -727,6 +721,7 @@ loadProjects().then(() => {
       setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad');
     } finally { submitEl.disabled = false; }
   });
+})();
 </script>
 
 </body>

@@ -70,37 +70,7 @@ service cloud.firestore {
 ```
 → `YOUR_EMAIL@gmail.com`을 본인 Google 계정 이메일로 교체.
 
-> **간판 문의 폼(`/signage`)을 쓰려면** 아래 `inquiries` 블록을 규칙에 추가해야 합니다.
-> 공개 사이트 방문자가 문의를 **남기는 것(create)** 만 허용하고, **읽기·수정·삭제는 관리자만** 가능합니다.
-> 현재 실제 적용 규칙(ppearwayy@gmail.com 기준) 전체는 다음과 같습니다:
->
-> ```
-> rules_version = '2';
-> service cloud.firestore {
->   match /databases/{database}/documents {
->
->     match /projects/{document} {
->       allow read: if true;
->       allow write: if request.auth != null
->                    && request.auth.token.email in ['ppearwayy@gmail.com'];
->     }
->
->     match /inquiries/{document} {
->       allow create: if request.resource.data.name is string
->                     && request.resource.data.name.size() > 0
->                     && request.resource.data.name.size() <= 100
->                     && request.resource.data.contact is string
->                     && request.resource.data.contact.size() > 0
->                     && request.resource.data.contact.size() <= 200
->                     && request.resource.data.message.size() <= 5000;
->       allow read, update, delete: if request.auth != null
->                    && request.auth.token.email in ['ppearwayy@gmail.com'];
->     }
->   }
-> }
-> ```
->
-> 문의는 Firestore `inquiries` 컬렉션에 쌓이고, `admin.html` 하단 **Inquiries** 섹션에서 바로 확인/읽음표시/삭제할 수 있습니다. (projects 처럼 Export 안 해도 됨 — 어드민에서 실시간 조회)
+> **간판·공간 문의 폼(`/signage`, `/brand`)** 은 Firebase가 아니라 **haru의 Supabase**(`inquiries` 테이블)에 저장됩니다. haru 대시보드에서 통합 조회. pearway Firebase는 projects 관리 전용.
 
 #### Storage
 - **Build → Storage → Get started**
