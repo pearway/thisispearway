@@ -69,14 +69,16 @@
   .price p.stmt{margin:clamp(26px,3.4vw,44px) 0 0;font-weight:500;letter-spacing:-.025em;font-size:clamp(1.5rem,3.7vw,2.95rem);line-height:1.42;max-width:23ch}
   .price p.stmt .dim{color:var(--sub)}
 
-  /* 작업 */
-  .work h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;margin:0 0 clamp(36px,5vw,64px)}
-  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,1.4vw,18px)}
-  .ph{position:relative;aspect-ratio:3/4;background:var(--plum-2);border:1px solid var(--line-2);overflow:hidden;margin:0}
-  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .work .note{margin-top:clamp(22px,3vw,34px);font-size:14px;color:var(--sub)}
-  @media(max-width:760px){.work-grid{grid-template-columns:1fr 1fr}}
-  @media(max-width:460px){.work-grid{grid-template-columns:1fr}.ph{aspect-ratio:4/3}}
+  /* 작업 롤링 */
+  .work h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;margin:0}
+  .marquee{margin-top:clamp(40px,5vw,66px);overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+  .track{display:flex;gap:clamp(12px,1.4vw,18px);width:max-content;animation:marq 75s linear infinite}
+  .track img{height:clamp(230px,32vw,430px);width:auto;flex:none;display:block;object-fit:cover;background:var(--plum-2)}
+  .marquee:hover .track{animation-play-state:paused}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.track{animation:none}}
 
   /* 문의 */
   .contact{text-align:center;padding:clamp(100px,16vw,220px) 0}
@@ -90,9 +92,15 @@
   .btn .ar{transition:transform .3s var(--ease)}
 
   footer{border-top:1px solid var(--line)}
-  footer .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
-               padding:clamp(34px,5vw,56px) clamp(22px,5vw,64px);font-family:var(--mono);font-size:12px;color:var(--sub)}
-  footer a:hover{color:var(--cream)}
+  .f-top{display:flex;justify-content:space-between;gap:clamp(28px,5vw,64px);flex-wrap:wrap;
+         padding:clamp(48px,7vw,86px) clamp(22px,5vw,64px) clamp(26px,3vw,38px)}
+  .f-name{font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--cream)}
+  .f-brand p{margin:10px 0 0;font-size:13px;color:var(--sub)}
+  .f-biz{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:12.5px;color:var(--sub)}
+  .f-links{display:flex;flex-direction:column;gap:9px;font-family:var(--mono);font-size:13px}
+  .f-links a:hover,.f-biz a:hover{color:var(--cream)}
+  .f-copy{padding:0 clamp(22px,5vw,64px) clamp(40px,5vw,56px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sub);opacity:.65}
+  @media(max-width:640px){.f-top{flex-direction:column;gap:30px}}
 
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
   .reveal.in{opacity:1;transform:none}
@@ -113,13 +121,11 @@
 
 <main>
   <header class="hero">
-    <img class="hero-bg" src="images/signage/hero.jpg" alt="페어웨이 간판 작업">
+    <img class="hero-bg" src="images/works/duomo-pizza/g1.jpg" alt="페어웨이 간판 작업">
   </header>
 
   <section class="team">
     <div class="wrap">
-      <span class="eyebrow" style="display:block;margin-bottom:clamp(22px,3vw,34px)">간판 사이니지</span>
-      <h2 class="reveal">그리는 사람, 그리고 만드는 사람.</h2>
       <div class="nums">
         <div class="num reveal">
           <span class="n">10년</span>
@@ -146,10 +152,21 @@
     <div class="wrap">
       <span class="eyebrow">작업</span>
       <h2 class="reveal" style="margin-top:clamp(20px,2.4vw,30px)">설치된 간판.</h2>
-      <div class="work-grid">
-        <figure class="ph reveal"><img src="images/signage/work-1.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
-        <figure class="ph reveal"><img src="images/signage/work-2.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
-        <figure class="ph reveal"><img src="images/signage/work-3.jpg" alt="페어웨이 간판 작업" loading="lazy"></figure>
+    </div>
+    <div class="marquee" aria-label="작업 사진">
+      <div class="track">
+        <img src="images/signage/work-1.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-3.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-4.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-2.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-5.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-6.jpg" alt="페어웨이 간판 작업" loading="lazy">
+        <img src="images/signage/work-1.jpg" alt="" aria-hidden="true">
+        <img src="images/signage/work-3.jpg" alt="" aria-hidden="true">
+        <img src="images/signage/work-4.jpg" alt="" aria-hidden="true">
+        <img src="images/signage/work-2.jpg" alt="" aria-hidden="true">
+        <img src="images/signage/work-5.jpg" alt="" aria-hidden="true">
+        <img src="images/signage/work-6.jpg" alt="" aria-hidden="true">
       </div>
     </div>
   </section>
@@ -164,10 +181,24 @@
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>PEARWAY 간판 사이니지</span>
-    <a href="/">pearway.kr</a>
+  <div class="f-top">
+    <div class="f-brand">
+      <div class="f-name">PEARWAY</div>
+      <p>간판 사이니지. 공간 그래픽 디자인.<br>그리는 사람과 만드는 사람이 함께합니다.</p>
+    </div>
+    <div class="f-biz">
+      <span>대표 이희배</span>
+      <span>사업자등록번호 000-00-00000</span>
+      <span>서울 경기 전역 시공</span>
+      <span><a href="mailto:ppearwayy@gmail.com">ppearwayy@gmail.com</a></span>
+    </div>
+    <nav class="f-links">
+      <a href="/">홈</a>
+      <a href="#contact">문의</a>
+      <a href="https://pearway.kr">pearway.kr</a>
+    </nav>
   </div>
+  <div class="f-copy">© 2026 PEARWAY. All rights reserved.</div>
 </footer>
 
 <script>
