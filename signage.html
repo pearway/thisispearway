@@ -74,8 +74,8 @@
   .marquee{margin-top:clamp(40px,5vw,66px);overflow:hidden;
     -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
     mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
-  .track{display:flex;gap:clamp(12px,1.4vw,18px);width:max-content;animation:marq 75s linear infinite}
-  .track img{height:clamp(230px,32vw,430px);width:auto;flex:none;display:block;object-fit:cover;background:var(--plum-2)}
+  .track{display:flex;gap:clamp(12px,1.4vw,18px);width:max-content;animation:marq 68s linear infinite}
+  .track img{width:clamp(220px,25vw,330px);height:clamp(300px,34vw,460px);flex:none;display:block;object-fit:cover;object-position:center;background:var(--plum-2)}
   .marquee:hover .track{animation-play-state:paused}
   @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   @media(prefers-reduced-motion:reduce){.track{animation:none}}
@@ -121,7 +121,7 @@
 
 <main>
   <header class="hero">
-    <img class="hero-bg" src="images/works/duomo-pizza/g1.jpg" alt="페어웨이 간판 작업">
+    <img class="hero-bg" src="images/signage/work-3.jpg" alt="페어웨이 간판 작업">
   </header>
 
   <section class="team">
@@ -143,26 +143,22 @@
 
   <section class="price">
     <div class="wrap">
-      <span class="eyebrow">가격보다 먼저</span>
       <p class="stmt reveal">가격은 충분히 비교해 보세요. <span class="dim">업체마다 해석이 다릅니다.</span> 간판은 되돌릴 수 없습니다. 그래서 처음부터 끝까지, 함께 고민합니다.</p>
     </div>
   </section>
 
   <section class="work">
     <div class="wrap">
-      <span class="eyebrow">작업</span>
-      <h2 class="reveal" style="margin-top:clamp(20px,2.4vw,30px)">설치된 간판.</h2>
+      <h2 class="reveal">설치된 간판.</h2>
     </div>
     <div class="marquee" aria-label="작업 사진">
       <div class="track">
         <img src="images/signage/work-1.jpg" alt="페어웨이 간판 작업" loading="lazy">
-        <img src="images/signage/work-3.jpg" alt="페어웨이 간판 작업" loading="lazy">
         <img src="images/signage/work-4.jpg" alt="페어웨이 간판 작업" loading="lazy">
         <img src="images/signage/work-2.jpg" alt="페어웨이 간판 작업" loading="lazy">
         <img src="images/signage/work-5.jpg" alt="페어웨이 간판 작업" loading="lazy">
         <img src="images/signage/work-6.jpg" alt="페어웨이 간판 작업" loading="lazy">
         <img src="images/signage/work-1.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-3.jpg" alt="" aria-hidden="true">
         <img src="images/signage/work-4.jpg" alt="" aria-hidden="true">
         <img src="images/signage/work-2.jpg" alt="" aria-hidden="true">
         <img src="images/signage/work-5.jpg" alt="" aria-hidden="true">
@@ -184,21 +180,16 @@
   <div class="f-top">
     <div class="f-brand">
       <div class="f-name">PEARWAY</div>
-      <p>간판 사이니지. 공간 그래픽 디자인.<br>그리는 사람과 만드는 사람이 함께합니다.</p>
     </div>
     <div class="f-biz">
       <span>대표 이희배</span>
       <span>사업자등록번호 515-11-75407</span>
       <span>서울 경기 전역 시공</span>
       <span><a href="mailto:ppearwayy@gmail.com">ppearwayy@gmail.com</a></span>
+      <span><a href="https://pearway.kr">pearway.kr</a></span>
     </div>
-    <nav class="f-links">
-      <a href="/">홈</a>
-      <a href="#contact">문의</a>
-      <a href="https://pearway.kr">pearway.kr</a>
-    </nav>
   </div>
-  <div class="f-copy">© 2026 PEARWAY. All rights reserved.</div>
+  <div class="f-copy">© 2026 PEARWAY</div>
 </footer>
 
 <script>
