@@ -52,7 +52,10 @@
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
       padding:clamp(15px,2.2vw,24px) var(--pad);background:linear-gradient(var(--bg),rgba(236,232,224,0))}
-  nav .brand{font-family:var(--serif);font-size:19px;font-weight:500;letter-spacing:.01em}
+  nav .home{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);
+            border-radius:50%;color:var(--ink);transition:background .3s var(--ease),color .3s var(--ease)}
+  nav .home:hover{background:var(--ink);color:var(--bg)}
+  nav .home svg{width:18px;height:18px}
   nav .nav-r{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--dim)}
   nav .nav-r a:hover{color:var(--ink)}
   nav .nav-r .cta{color:var(--accent)}
@@ -167,7 +170,9 @@
 <body>
 
 <nav>
-  <a href="/" class="brand" aria-label="페어웨이 홈">Pearway</a>
+  <a href="/" class="home" aria-label="홈으로">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
+  </a>
   <div class="nav-r">
     <span>Signage / Environment</span>
     <a class="cta" href="#contact">문의</a>
