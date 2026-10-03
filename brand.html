@@ -27,18 +27,14 @@
   .phead .sub{margin:clamp(16px,2vw,24px) 0 0;max-width:46ch;color:var(--dim);font-size:clamp(1rem,1.3vw,1.18rem);line-height:1.6}
   .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 var(--pad) clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
   .shead h2{margin:0;font-weight:600;letter-spacing:-.02em;font-size:clamp(1.2rem,2vw,1.6rem)}
-  /* 에디토리얼 비대칭 그리드 (패션 브랜드 느낌 / 좌우·크기 변주) */
-  .works{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);display:flex;flex-direction:column;gap:clamp(46px,9vw,140px)}
-  .work{display:block;width:58%}
-  .work:nth-child(6n+1){width:58%;margin:0 auto 0 0}
-  .work:nth-child(6n+2){width:42%;margin:clamp(-60px,-6vw,-20px) 0 0 auto}
-  .work:nth-child(6n+3){width:48%;margin:0 auto 0 0}
-  .work:nth-child(6n+4){width:64%;margin:0 0 0 auto}
-  .work:nth-child(6n+5){width:44%;margin:clamp(-50px,-5vw,-10px) auto 0 0}
-  .work:nth-child(6n+0){width:54%;margin:0 0 0 auto}
-  .work .w-ph{width:100%;aspect-ratio:4/5;border-radius:12px;transition:opacity .4s var(--ease)}
-  .work:nth-child(6n+1) .w-ph,.work:nth-child(6n+4) .w-ph{aspect-ratio:4/3}
-  @media(max-width:760px){.works{gap:clamp(40px,10vw,64px)}.work,.work:nth-child(n){width:100%;margin:0}.work .w-ph{aspect-ratio:4/5}}
+  /* 풀폭 / 2-up 섞인 리듬 그리드 */
+  .works{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px) clamp(22px,3.4vw,56px);align-items:start}
+  .work{display:block;min-width:0}
+  .work:nth-child(3n+1){grid-column:1 / -1}
+  .work:nth-child(3n) .w-ph{margin-top:clamp(40px,8vw,120px)}
+  .work .w-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden}
+  .work:nth-child(3n+1) .w-ph{aspect-ratio:16/9}
+  @media(max-width:760px){.works{grid-template-columns:1fr;gap:clamp(40px,10vw,64px)}.work:nth-child(3n) .w-ph{margin-top:0}.work .w-ph{aspect-ratio:4/5}.work:nth-child(3n+1) .w-ph{aspect-ratio:4/3}}
   .work .w-cap{margin-top:clamp(16px,1.8vw,22px)}
   .work .w-nm{display:block;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.05}
   .w-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -159,17 +155,8 @@
   <div class="f-copy">© 2026 PEARWAY</div>
 </footer>
 
-<script>
-  (function(){
-    var m=document.getElementById('menu'), o=document.getElementById('menuOpen'), c=document.getElementById('menuClose');
-    function open(){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); }
-    function close(){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
-    o.addEventListener('click',open); c.addEventListener('click',close);
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="pearway.js"></script>
 
 <script>
 (function(){

@@ -67,6 +67,12 @@ footer{border-top:1px solid var(--line)}
 @media(max-width:640px){.f-top{flex-direction:column;gap:28px}}
 
 /* reveal */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease) var(--d,0s),transform 1s var(--ease) var(--d,0s)}
 .reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* 이미지 호버 줌 (작업 블록) */
+.w-ph,.d-ph,.hero-ph{transition:transform .7s var(--ease)}
+.work,.div{cursor:pointer}
+@media(hover:hover){.work:hover .w-ph,.div:hover .d-ph{transform:scale(1.016)}}
+
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.w-ph,.d-ph,.hero-ph{transition:none}html{scroll-behavior:auto}}

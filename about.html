@@ -95,14 +95,7 @@
   <div class="f-copy">© 2026 PEARWAY</div>
 </footer>
 
-<script>
-  (function(){
-    var m=document.getElementById('menu'), o=document.getElementById('menuOpen'), c=document.getElementById('menuClose');
-    function open(){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); }
-    function close(){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
-    o.addEventListener('click',open); c.addEventListener('click',close);
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="pearway.js"></script>
 </body>
 </html>

@@ -101,16 +101,16 @@
   /* INDEX of divisions */
   .idx-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 var(--pad) clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
   .idx-head h2{margin:0;font-weight:600;letter-spacing:-.02em;font-size:clamp(1.2rem,2vw,1.6rem)}
-  /* 에디토리얼 비대칭 그리드 (패션 브랜드 느낌 / 좌우·크기 변주) */
-  .divs{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);display:flex;flex-direction:column;gap:clamp(46px,9vw,140px)}
-  .div{display:block;width:58%}
-  .div:nth-child(6n+1){width:58%;margin:0 auto 0 0}
-  .div:nth-child(6n+2){width:42%;margin:clamp(-60px,-6vw,-20px) 0 0 auto}
-  .div:nth-child(6n+3){width:48%;margin:0 auto 0 0}
-  .div:nth-child(6n+4){width:64%;margin:0 0 0 auto}
-  .div .d-ph{width:100%;aspect-ratio:4/5;border-radius:12px;transition:opacity .4s var(--ease)}
-  .div:nth-child(6n+1) .d-ph,.div:nth-child(6n+4) .d-ph{aspect-ratio:4/3}
-  @media(max-width:760px){.divs{gap:clamp(40px,10vw,64px)}.div,.div:nth-child(n){width:100%;margin:0}.div .d-ph{aspect-ratio:4/5}}
+  /* 풀폭 / 2-up 섞인 리듬 그리드 */
+  .divs{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px) clamp(22px,3.4vw,56px);align-items:start}
+  .div{display:block;min-width:0}
+  .div:nth-child(3n+1){grid-column:1 / -1}
+  .div:nth-child(3n) .d-ph{margin-top:clamp(40px,8vw,120px)}
+  .div .d-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;transition:transform .7s var(--ease)}
+  .div:nth-child(3n+1) .d-ph{aspect-ratio:16/9}
+  .div{cursor:pointer}
+  @media(hover:hover){.div:hover .d-ph{transform:scale(1.016)}}
+  @media(max-width:760px){.divs{grid-template-columns:1fr;gap:clamp(40px,10vw,64px)}.div:nth-child(3n) .d-ph{margin-top:0}.div .d-ph{aspect-ratio:4/5}.div:nth-child(3n+1) .d-ph{aspect-ratio:4/3}}
   .div .d-cap{margin-top:clamp(16px,1.8vw,22px)}
   .div .d-nm{display:block;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.05}
   .d-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -129,7 +129,7 @@
   .f-copy{padding:0 var(--pad) clamp(34px,4vw,48px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim)}
   @media(max-width:640px){.f-top{flex-direction:column;gap:28px}}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease) var(--d,0s),transform 1s var(--ease) var(--d,0s)}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
     .intro{display:none}
@@ -219,29 +219,17 @@
   <div class="f-copy">© 2026 PEARWAY</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="pearway.js"></script>
 <script>
-  // intro loader
+  // 인트로 로더 (홈 전용)
   (function(){
     var intro=document.getElementById('intro'); if(!intro) return;
-    document.body.classList.add('lock');
-    function end(){ intro.classList.add('done'); document.body.classList.remove('lock'); setTimeout(function(){ intro.style.display='none'; },1000); }
+    document.body.classList.add('lock'); if(window.__lenis) window.__lenis.stop();
+    function end(){ intro.classList.add('done'); document.body.classList.remove('lock'); if(window.__lenis) window.__lenis.start(); setTimeout(function(){ intro.style.display='none'; },1000); }
     window.addEventListener('load', function(){ setTimeout(end, 950); });
     setTimeout(end, 2600); // safety
   })();
-
-  // menu
-  (function(){
-    var m=document.getElementById('menu'), o=document.getElementById('menuOpen'), c=document.getElementById('menuClose');
-    function open(){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); }
-    function close(){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
-    o.addEventListener('click',open); c.addEventListener('click',close);
-    m.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
-    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
-  })();
-
-  // reveal
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
 </script>
 </body>
 </html>
