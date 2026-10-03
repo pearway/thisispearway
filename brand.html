@@ -82,6 +82,24 @@
   @media (prefers-reduced-motion: reduce) {
     .hlink, .hlink-h, .hlink-sub, .hlink-num, .hlink-img, .hlink-arrow { transition: none; }
   }
+
+  /* 문의 폼 */
+  .inq { max-width: 620px; margin: clamp(2.5rem, 5vw, 4rem) 0 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .inq-head { margin: 0 0 0.4rem; color: var(--ink-2); font-size: 0.98rem; line-height: 1.6; }
+  .inq-row { display: flex; gap: 0.75rem; }
+  .inq-row input { flex: 1; min-width: 0; }
+  .inq input, .inq textarea { width: 100%; background: rgba(233,234,238,.04); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font-family: var(--font-sans); font-size: 0.95rem; letter-spacing: -0.01em; padding: 0.9rem 1rem; transition: border-color 0.25s var(--ease), background 0.25s var(--ease); }
+  .inq textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+  .inq input::placeholder, .inq textarea::placeholder { color: var(--ink-3); }
+  .inq input:focus, .inq textarea:focus { outline: none; border-color: var(--ink); background: rgba(233,234,238,.07); }
+  .inq input.err, .inq textarea.err { border-color: #E07A6B; }
+  .inq-btn { align-self: flex-start; margin-top: 0.3rem; display: inline-flex; align-items: center; gap: 0.6rem; background: var(--ink); color: var(--bg); border: 0; cursor: pointer; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.95rem 1.5rem; border-radius: 999px; transition: opacity 0.25s var(--ease), transform 0.25s var(--ease); }
+  .inq-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+  .inq-btn:disabled { opacity: 0.5; cursor: default; transform: none; }
+  .inq-msg { min-height: 1.2em; margin: 0.2rem 0 0; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0; }
+  .inq-msg.ok { color: #8FD0A6; }
+  .inq-msg.bad { color: #E07A6B; }
+  @media (max-width: 560px) { .inq-row { flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -158,6 +176,17 @@
         <span class="value">Seoul, KR</span>
       </div>
     </div>
+
+    <form class="inq" id="inq-form" novalidate>
+      <p class="inq-head">브랜드, 공간, 그래픽 어떤 작업이든 편하게 문의 남겨 주세요.</p>
+      <div class="inq-row">
+        <input type="text" id="inq-name" name="name" placeholder="성함 / 업체명" autocomplete="name" required>
+        <input type="text" id="inq-contact" name="contact" placeholder="연락처 (전화 또는 이메일)" required>
+      </div>
+      <textarea id="inq-message" name="message" rows="4" placeholder="어떤 작업을 고민 중이신가요? 업종, 범위, 일정 등 편하게 적어 주세요."></textarea>
+      <button type="submit" class="inq-btn" id="inq-submit">문의 남기기 <span aria-hidden="true">↗</span></button>
+      <p class="inq-msg" id="inq-msg" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -657,6 +686,48 @@ loadProjects().then(() => {
 </script>
 
 <script src="plasma.js"></script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+
+  const db = getFirestore(initializeApp({
+    apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+    authDomain: "thisispearway.firebaseapp.com",
+    projectId: "thisispearway",
+    storageBucket: "thisispearway.firebasestorage.app",
+    messagingSenderId: "657205333061",
+    appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
+  }));
+
+  const form = document.getElementById('inq-form');
+  const nameEl = document.getElementById('inq-name');
+  const contactEl = document.getElementById('inq-contact');
+  const msgEl = document.getElementById('inq-message');
+  const submitEl = document.getElementById('inq-submit');
+  const noteEl = document.getElementById('inq-msg');
+  const setNote = (t, k) => { noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    [nameEl, contactEl].forEach(el => el.classList.remove('err'));
+    const name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
+    if (!name) { nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
+    if (!contact) { contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
+    submitEl.disabled = true; setNote('보내는 중…', '');
+    try {
+      await addDoc(collection(db, 'inquiries'), {
+        name, contact, message, source: 'brand', status: 'new',
+        createdAt: serverTimestamp(), ua: navigator.userAgent.slice(0, 180)
+      });
+      form.reset();
+      setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.', 'ok');
+    } catch (err) {
+      console.error(err);
+      setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad');
+    } finally { submitEl.disabled = false; }
+  });
+</script>
 
 </body>
 </html>
