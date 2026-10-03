@@ -55,8 +55,25 @@
 
   section{padding:clamp(84px,13vw,180px) 0}
 
+  /* 섹션 헤더 (인덱스 넘버) */
+  .sec-head{margin:0 0 clamp(44px,6vw,84px)}
+  .sec-head .idx{display:block;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--sub)}
+  .sec-head h2{margin:18px 0 0;font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;line-height:1.16;max-width:20ch}
+  .sec-head h2 .dim{color:var(--sub)}
+
+  /* 셀렉티드 워크 (대형 에디토리얼) */
+  .sel-list{display:flex;flex-direction:column;gap:clamp(72px,11vw,150px)}
+  .sel-img{overflow:hidden;background:var(--plum-2)}
+  .sel-img img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform 1.3s var(--ease)}
+  .sel-item:hover .sel-img img{transform:scale(1.035)}
+  .sel-cap{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);margin-top:clamp(20px,2.4vw,30px);padding-top:clamp(18px,2vw,24px);border-top:1px solid var(--line)}
+  .sel-no{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--sub);flex:none;padding-top:.55em}
+  .sel-meta{flex:1;min-width:0}
+  .sel-meta h3{margin:0;font-weight:700;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:-.02em}
+  .sel-type{display:block;margin-top:9px;color:var(--sub);font-size:clamp(.95rem,1.2vw,1.05rem)}
+  .sel-year{font-family:var(--mono);font-size:13px;color:var(--sub);flex:none}
+
   /* 팀: 디자인 10년 / 시공 25년 */
-  .team h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;line-height:1.14;margin:0 0 clamp(48px,7vw,96px)}
   .nums{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
   .num{border-top:1px solid var(--line);padding-top:clamp(22px,2.6vw,32px)}
   .num .n{display:block;font-weight:800;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.04em;line-height:1}
@@ -69,8 +86,7 @@
   .price p.stmt{margin:clamp(26px,3.4vw,44px) 0 0;font-weight:500;letter-spacing:-.025em;font-size:clamp(1.5rem,3.7vw,2.95rem);line-height:1.42;max-width:23ch}
   .price p.stmt .dim{color:var(--sub)}
 
-  /* 작업 롤링 */
-  .work h2{font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;margin:0}
+  /* 작업 롤링 (아카이브) */
   .marquee{margin-top:clamp(40px,5vw,66px);overflow:hidden;
     -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
     mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
@@ -141,8 +157,56 @@
     <img class="hero-bg" src="images/signage/hero.jpg" alt="페어웨이 간판 작업">
   </header>
 
+  <section class="sel">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">01 / Selected</span>
+        <h2>간판은 공간을 완성하는 <span class="dim">마지막 디자인입니다.</span></h2>
+      </div>
+      <div class="sel-list">
+        <article class="sel-item reveal">
+          <div class="sel-img"><img src="images/signage/work-1.jpg" alt="우선담 간판" loading="lazy"></div>
+          <div class="sel-cap">
+            <span class="sel-no">01</span>
+            <div class="sel-meta">
+              <h3>우선담</h3>
+              <span class="sel-type">전구 마퀴 네온, 돌출 채널 사인</span>
+            </div>
+            <span class="sel-year">2023</span>
+          </div>
+        </article>
+        <article class="sel-item reveal">
+          <div class="sel-img"><img src="images/signage/work-8.jpg" alt="치킨파머스 간판" loading="lazy"></div>
+          <div class="sel-cap">
+            <span class="sel-no">02</span>
+            <div class="sel-meta">
+              <h3>치킨파머스</h3>
+              <span class="sel-type">파사드 전면 사인, 라운드 엠블럼</span>
+            </div>
+            <span class="sel-year">2024</span>
+          </div>
+        </article>
+        <article class="sel-item reveal">
+          <div class="sel-img"><img src="images/signage/work-3.jpg" alt="진대감 간판" loading="lazy"></div>
+          <div class="sel-cap">
+            <span class="sel-no">03</span>
+            <div class="sel-meta">
+              <h3>진대감</h3>
+              <span class="sel-type">블랙 박스 돌출 사인</span>
+            </div>
+            <span class="sel-year">2022</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="team">
     <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">02 / Approach</span>
+        <h2>설계부터 시공까지, <span class="dim">한 팀이 끝까지 맡습니다.</span></h2>
+      </div>
       <div class="nums">
         <div class="num reveal">
           <span class="n">10년</span>
@@ -160,13 +224,17 @@
 
   <section class="price">
     <div class="wrap">
+      <span class="eyebrow reveal" style="display:block;margin-bottom:clamp(26px,3vw,38px)">03 / Pricing</span>
       <p class="stmt reveal">가격은 충분히 비교해 보세요. <span class="dim">업체마다 해석이 다릅니다.</span> 간판은 되돌릴 수 없습니다. 그래서 처음부터 끝까지, 함께 고민합니다.</p>
     </div>
   </section>
 
   <section class="work">
     <div class="wrap">
-      <h2 class="reveal">설치된 간판.</h2>
+      <div class="sec-head reveal">
+        <span class="idx">04 / Archive</span>
+        <h2>설치된 간판.</h2>
+      </div>
     </div>
     <div class="marquee" aria-label="작업 사진">
       <div class="track">
@@ -194,6 +262,7 @@
 
   <section class="contact" id="contact">
     <div class="wrap">
+      <span class="eyebrow reveal" style="display:block;margin-bottom:clamp(20px,2.4vw,28px)">05 / Contact</span>
       <h2 class="reveal">간판, 함께 고민하겠습니다.</h2>
       <p>작은 간판 하나도 신중하게. 편하게 문의 남겨 주세요.</p>
       <form class="inq" id="inq-form" novalidate>
