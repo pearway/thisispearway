@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>간판 사이니지 PEARWAY</title>
-<meta name="description" content="간판은 브랜드가 세상에 내거는 첫 문장입니다. 공간을 읽는 디자인과 25년의 시공. 디자이너가 직접 운영하는 간판과 사이니지.">
-<meta property="og:title" content="간판 사이니지 PEARWAY">
-<meta property="og:description" content="간판은 브랜드가 세상에 내거는 첫 문장입니다. 공간을 읽는 디자인과 25년의 시공.">
+<title>간판 및 사이니지 / PEARWAY</title>
+<meta name="description" content="페어웨이 간판과 사이니지. 공간을 읽는 디자인과 직접 시공. 디자이너가 운영하는 간판 스튜디오.">
+<meta property="og:title" content="간판 및 사이니지 / PEARWAY">
+<meta property="og:description" content="공간을 읽는 디자인과 직접 시공. 디자이너가 운영하는 간판 스튜디오.">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,270 +14,131 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pearway.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <style>
-  :root{
-    --bg:#E7E7E6; --bg-2:#DEDEDC; --ink:#131315; --dim:#8A8A8E;
-    --accent:#131315; --accent-ink:#F2F2F1;
-    --ph:#D4D4D3; --ph-2:#CCCCCB; --ph-ink:rgba(19,19,21,.42);
-    --line:rgba(19,19,21,.15); --line-2:rgba(19,19,21,.07);
-    --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
-    --serif:'Fraunces',Georgia,'Times New Roman',serif;
-    --mono:'Geist Mono',ui-monospace,monospace;
-    --ease:cubic-bezier(.22,1,.36,1);
-    --pad:clamp(20px,5vw,72px);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
-    font-family:var(--sans); font-weight:400; line-height:1.5;
-    -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
-    word-break:keep-all; overflow-wrap:break-word;
-  }
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
   .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
-  .mono{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-  .ac{color:var(--dim)}
 
-  /* 회색 이미지 플레이스홀더 (추후 AI 이미지 교체) */
-  .ph{background:var(--ph);position:relative;overflow:hidden}
-  .ph::before{content:"";position:absolute;inset:0;background:
-    repeating-linear-gradient(135deg,transparent 0 22px,rgba(26,24,19,.025) 22px 44px)}
-  .ph[data-label]::after{content:attr(data-label);position:absolute;left:16px;bottom:13px;
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ph-ink)}
+  .hero{padding:calc(clamp(16px,2.2vw,24px) + clamp(44px,6vw,70px)) var(--pad) 0}
+  .hero-ph{width:100%;height:78svh;min-height:440px;border-radius:14px}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
-      padding:clamp(15px,2.2vw,24px) var(--pad);background:linear-gradient(var(--bg),rgba(236,232,224,0))}
-  nav .home{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);
-            border-radius:50%;color:var(--ink);transition:background .3s var(--ease),color .3s var(--ease)}
-  nav .home:hover{background:var(--ink);color:var(--bg)}
-  nav .home svg{width:18px;height:18px}
-  nav .nav-r{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--dim)}
-  nav .nav-r a:hover{color:var(--ink)}
-  nav .nav-r .cta{color:var(--accent)}
+  .phead{padding:clamp(40px,6vw,86px) var(--pad) clamp(44px,6vw,90px);display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(20px,4vw,60px);flex-wrap:wrap}
+  .phead h1{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1;font-size:clamp(2.2rem,6vw,4.6rem)}
+  .phead .sub{max-width:34ch;color:var(--dim);font-size:clamp(1rem,1.3vw,1.18rem);line-height:1.6}
 
-  /* HERO */
-  .hero{width:100%;height:86svh;min-height:500px}
-  .hero .hero-ph{width:100%;height:100%}
-  .intro{padding:clamp(40px,6vw,86px) 0 clamp(64px,9vw,120px)}
-  .intro-row{display:flex;justify-content:space-between;align-items:flex-end;gap:clamp(28px,5vw,60px);flex-wrap:wrap}
-  .intro-line{margin:0;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.5rem,3.4vw,2.7rem);line-height:1.28;max-width:22ch}
-  .intro-line .d{color:var(--dim)}
-  .meta{display:flex;gap:clamp(22px,3.4vw,52px);flex-wrap:wrap}
-  .meta .m .mv{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.9rem);font-weight:400}
-  .meta .m .mk{display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 var(--pad) clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
+  .shead h2{margin:0;font-weight:600;letter-spacing:-.02em;font-size:clamp(1.2rem,2vw,1.6rem)}
 
-  /* SECTION */
-  section{padding:clamp(80px,12vw,160px) 0}
-  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px;flex-wrap:wrap}
-  .shead h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,3.2rem);letter-spacing:-.01em}
-  .shead h2 em{font-style:italic}
-
-  /* WORKS (editorial index) */
-  .idx{margin-top:4px}
-  .idx-row{position:relative;display:grid;grid-template-columns:clamp(54px,7vw,96px) 1fr auto;align-items:center;gap:clamp(12px,3vw,40px);
-           padding:clamp(22px,3.4vw,40px) 0;border-bottom:1px solid var(--line);transition:opacity .4s var(--ease),padding-left .5s var(--ease)}
-  .idx-row .no{font-family:var(--serif);font-size:clamp(1rem,1.5vw,1.3rem);color:var(--dim)}
-  .idx-row .nm{font-weight:700;letter-spacing:-.025em;font-size:clamp(1.7rem,5vw,3.6rem);line-height:1;transition:transform .5s var(--ease),color .3s var(--ease)}
-  .idx-row .ty{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--dim);text-align:right;max-width:22ch}
-  .idx-row .ty .yr{display:block;margin-top:5px;opacity:.7}
-  .idx-row .thumb{display:none}
+  .works{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px)}
+  .work{display:block;margin-bottom:clamp(56px,8vw,118px)}
+  .work:last-child{margin-bottom:0}
+  .work .w-ph{width:100%;height:clamp(420px,62vw,760px);border-radius:12px;transition:opacity .4s var(--ease)}
+  .work .w-cap{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(14px,2vw,28px);flex-wrap:wrap;margin-top:clamp(16px,1.8vw,24px)}
+  .work .w-nm{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.05}
+  .w-tags{display:flex;flex-wrap:wrap;gap:8px;padding-top:4px}
   @media(hover:hover){
-    .idx.hovering .idx-row{opacity:.3}
-    .idx.hovering .idx-row.on{opacity:1}
-    .idx-row.on{padding-left:clamp(10px,1.4vw,22px)}
-    .idx-row.on .nm{transform:translateX(6px);color:var(--ink)}
-  }
-  .idx-prev{position:fixed;left:0;top:0;width:clamp(260px,26vw,380px);aspect-ratio:4/5;z-index:40;pointer-events:none;
-            transform:translate3d(var(--mx,-50%),var(--my,-50%),0) translate(-50%,-50%) scale(.96);
-            opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:0 30px 70px rgba(26,24,19,.22)}
-  .idx-prev.on{opacity:1;transform:translate3d(var(--mx,-50%),var(--my,-50%),0) translate(-50%,-50%) scale(1)}
-  .idx-prev .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-  .idx-prev .pv-nm{font-weight:700;font-size:1.4rem;letter-spacing:-.02em;color:var(--ph-ink)}
-  @media(max-width:760px){
-    .idx-row{grid-template-columns:auto 1fr;grid-template-areas:"no nm" "thumb thumb" "ty ty";row-gap:16px}
-    .idx-row .no{grid-area:no}.idx-row .nm{grid-area:nm}.idx-row .ty{grid-area:ty;text-align:left;max-width:none}
-    .idx-row .thumb{grid-area:thumb;display:block;width:100%;aspect-ratio:16/10}
-    .idx-prev{display:none}
+    .work:hover .w-ph{opacity:.94}
+    .work:hover .w-nm{background-image:var(--foil-d);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 4s linear infinite}
+    .work:hover .pill{border-color:rgba(11,11,12,.26);color:var(--ink)}
   }
 
-  /* APPROACH */
-  .appr .lede{font-weight:700;letter-spacing:-.03em;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:1.18;max-width:20ch;margin:clamp(40px,5vw,70px) 0 0}
-  .appr .lede .d{color:var(--dim)}
-  .nums{margin-top:clamp(56px,8vw,110px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
-  .num{border-top:1px solid var(--line);padding-top:clamp(20px,2.4vw,30px)}
-  .num .n{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.04em;line-height:1}
-  .num .n .u{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.32em;letter-spacing:0;color:var(--dim)}
-  .num .lb{display:block;margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-  .num p{margin:clamp(18px,2.2vw,26px) 0 0;color:var(--dim);font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.75;max-width:34ch}
-  @media(max-width:700px){.nums{grid-template-columns:1fr;gap:clamp(40px,10vw,52px)}}
-
-  /* PRICING */
-  .price{background:var(--bg-2)}
-  .price .stmt{margin:clamp(34px,4vw,56px) 0 0;font-weight:500;letter-spacing:-.022em;font-size:clamp(1.6rem,4vw,3.1rem);line-height:1.4;max-width:24ch}
-  .price .stmt .d{color:var(--dim)}
-
-  /* CONTACT */
-  .contact h2{margin:clamp(34px,4vw,56px) 0 0;font-weight:800;letter-spacing:-.04em;line-height:1.02;font-size:clamp(2.4rem,8vw,6rem)}
-  .contact h2 .ac{color:var(--dim)}
-  .contact p{margin:clamp(20px,2.4vw,28px) 0 0;color:var(--dim);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.7}
-  .inq{max-width:620px;margin:clamp(40px,5vw,64px) 0 0;display:flex;flex-direction:column;gap:12px}
+  /* 문의 */
+  .contact{padding:clamp(80px,12vw,160px) 0}
+  .contact h2{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1.02;font-size:clamp(2rem,6vw,4.4rem)}
+  .inq{max-width:620px;margin:clamp(34px,4.5vw,56px) 0 0;display:flex;flex-direction:column;gap:12px}
   .inq-row{display:flex;gap:12px}.inq-row input{flex:1;min-width:0}
-  .inq input,.inq textarea{width:100%;background:rgba(26,24,19,.03);border:1px solid var(--line);border-radius:12px;
-    color:var(--ink);font-family:var(--sans);font-size:15px;letter-spacing:-.01em;padding:15px 17px;transition:border-color .25s var(--ease),background .25s var(--ease)}
+  .inq input,.inq textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;color:var(--ink);
+    font-family:var(--sans);font-size:15px;letter-spacing:-.01em;padding:15px 17px;transition:border-color .25s var(--ease)}
   .inq textarea{resize:vertical;min-height:120px;line-height:1.6}
-  .inq input::placeholder,.inq textarea::placeholder{color:var(--dim);opacity:.8}
-  .inq input:focus,.inq textarea:focus{outline:none;border-color:var(--ink);background:rgba(26,24,19,.05)}
-  .inq input.err,.inq textarea.err{border-color:var(--accent)}
-  .btn{align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);
-       border:0;cursor:pointer;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.03em;padding:16px 30px;border-radius:999px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .inq input::placeholder,.inq textarea::placeholder{color:var(--dim)}
+  .inq input:focus,.inq textarea:focus{outline:none;border-color:var(--ink)}
+  .inq input.err,.inq textarea.err{border-color:#C8452F}
+  .btn{align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:0;cursor:pointer;
+       font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.03em;padding:16px 30px;border-radius:999px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
   .btn:hover{transform:translateY(-2px);opacity:.92}
   .btn:disabled{opacity:.5;cursor:default;transform:none}
   .inq-msg{min-height:1.2em;margin:4px 0 0;font-family:var(--mono);font-size:13px;letter-spacing:0}
-  .inq-msg.ok{color:#2E7D55}.inq-msg.bad{color:var(--accent)}
+  .inq-msg.ok{color:#2E7D55}.inq-msg.bad{color:#C8452F}
   @media(max-width:560px){.inq-row{flex-direction:column}}
-
-  /* FOOTER */
-  footer{border-top:1px solid var(--line)}
-  .f-top{display:flex;justify-content:space-between;gap:clamp(28px,5vw,64px);flex-wrap:wrap;padding:clamp(48px,7vw,86px) var(--pad) clamp(26px,3vw,38px)}
-  .f-name{font-family:var(--serif);font-size:22px;letter-spacing:.01em}
-  .f-biz{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:12px;color:var(--dim)}
-  .f-biz a:hover{color:var(--ink)}
-  .f-copy{padding:0 var(--pad) clamp(40px,5vw,56px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim);opacity:.8}
-  @media(max-width:640px){.f-top{flex-direction:column;gap:30px}}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
-    .hero h1 .l span{transform:none}
-    html{scroll-behavior:auto}
-  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="home" aria-label="홈으로">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
-  </a>
-  <div class="nav-r">
-    <a class="cta" href="#contact">문의</a>
-  </div>
+  <a href="/" aria-label="페어웨이 홈"><span class="mk foil-mark" role="img" aria-label="PEARWAY"></span></a>
+  <button class="menu-btn" id="menuOpen" aria-label="메뉴 열기">Menu <span class="bars" aria-hidden="true"><i></i><i></i></span></button>
 </nav>
 
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="메뉴 닫기">Close</button>
+  <nav class="menu-list">
+    <a href="/brand">공간 및 그래픽 <span class="en">Space &amp; Graphic</span></a>
+    <a href="/signage" aria-current="page">간판 및 사이니지 <span class="en">Signage</span></a>
+    <a href="https://peartype.kr">폰트 파운더리 <span class="en">Type Foundry ↗</span></a>
+    <a href="/flormonde/">플로르몽드 <span class="en">Objet ↗</span></a>
+  </nav>
+</div>
+
 <main>
-  <header class="hero" id="hero">
-    <div class="ph hero-ph" data-label="이미지 준비 중"></div>
+  <header class="hero">
+    <div class="ph hero-ph" data-label="간판 및 사이니지"></div>
   </header>
 
-  <section class="intro">
-    <div class="wrap">
-      <div class="meta reveal">
-        <div class="m"><span class="mv">10</span><span class="mk">Design</span></div>
-        <div class="m"><span class="mv">25</span><span class="mk">Craft</span></div>
-        <div class="m"><span class="mv">서울 경기</span><span class="mk">Install</span></div>
-      </div>
-    </div>
+  <section class="phead">
+    <h1>간판 및 사이니지</h1>
+    <p class="sub">In-house design and fabrication, <span class="dim">from drawing to installation.</span></p>
   </section>
 
-  <section class="works">
-    <div class="wrap">
-      <div class="shead reveal">
-        <h2><em>Selected</em> Works</h2>
-        <span class="mono">007</span>
-      </div>
-      <div class="idx" id="idx">
-        <a class="idx-row reveal" href="#contact" data-nm="우선담">
-          <span class="no">01</span>
-          <span class="nm">우선담</span>
-          <span class="ty">네온 채널 사인<span class="yr">2023</span></span>
-          <div class="thumb ph" data-label="우선담 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="진대감">
-          <span class="no">02</span>
-          <span class="nm">진대감</span>
-          <span class="ty">블랙 박스 돌출 사인<span class="yr">2022</span></span>
-          <div class="thumb ph" data-label="진대감 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="다락">
-          <span class="no">03</span>
-          <span class="nm">다락</span>
-          <span class="ty">채널 레터, 돌출 사인<span class="yr">2025</span></span>
-          <div class="thumb ph" data-label="다락 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="치킨파머스">
-          <span class="no">04</span>
-          <span class="nm">치킨파머스</span>
-          <span class="ty">파사드 사인<span class="yr">2024</span></span>
-          <div class="thumb ph" data-label="치킨파머스 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="듀오모">
-          <span class="no">05</span>
-          <span class="nm">듀오모</span>
-          <span class="ty">파사드 박스 사인<span class="yr">2025</span></span>
-          <div class="thumb ph" data-label="듀오모 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="올데이크레페">
-          <span class="no">06</span>
-          <span class="nm">올데이크레페</span>
-          <span class="ty">라운드 돌출 사인<span class="yr">2024</span></span>
-          <div class="thumb ph" data-label="올데이크레페 / 이미지 준비 중"></div>
-        </a>
-        <a class="idx-row reveal" href="#contact" data-nm="뼈구이집">
-          <span class="no">07</span>
-          <span class="nm">뼈구이집</span>
-          <span class="ty">파사드 사인<span class="yr">2023</span></span>
-          <div class="thumb ph" data-label="뼈구이집 / 이미지 준비 중"></div>
-        </a>
-      </div>
-    </div>
-    <div class="idx-prev" id="idxPrev" aria-hidden="true"><div class="ph" data-label="이미지 준비 중"><span class="pv-nm"></span></div></div>
-  </section>
-
-  <section class="appr">
-    <div class="wrap">
-      <div class="shead reveal">
-        <h2><em>Approach</em></h2>
-      </div>
-      <div class="nums">
-        <div class="num reveal">
-          <span class="n">10<span class="u">years</span></span>
-          <span class="lb">Design</span>
-        </div>
-        <div class="num reveal">
-          <span class="n">25<span class="u">years</span></span>
-          <span class="lb">Craft</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="price">
-    <div class="wrap">
-      <div class="shead reveal">
-        <h2><em>Pricing</em></h2>
-      </div>
-      <p class="stmt reveal">가격은 충분히 비교해 보세요. <span class="d">간판은 되돌릴 수 없으니까.</span></p>
-    </div>
-  </section>
+  <div class="shead reveal">
+    <h2>Work</h2>
+    <span class="mono dim">06</span>
+  </div>
+  <div class="works">
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="우선담"></div>
+      <div class="w-cap"><span class="w-nm">우선담</span>
+        <div class="w-tags"><span class="pill">Neon</span><span class="pill">Channel</span><span class="pill">Projecting</span></div></div>
+    </a>
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="진대감"></div>
+      <div class="w-cap"><span class="w-nm">진대감</span>
+        <div class="w-tags"><span class="pill">Box</span><span class="pill">Projecting</span></div></div>
+    </a>
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="다락"></div>
+      <div class="w-cap"><span class="w-nm">다락</span>
+        <div class="w-tags"><span class="pill">Channel</span><span class="pill">Projecting</span></div></div>
+    </a>
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="치킨파머스"></div>
+      <div class="w-cap"><span class="w-nm">치킨파머스</span>
+        <div class="w-tags"><span class="pill">Facade</span><span class="pill">Emblem</span></div></div>
+    </a>
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="올데이크레페"></div>
+      <div class="w-cap"><span class="w-nm">올데이크레페</span>
+        <div class="w-tags"><span class="pill">Projecting</span><span class="pill">Round</span></div></div>
+    </a>
+    <a class="work reveal" href="#contact">
+      <div class="ph w-ph" data-label="뼈구이집"></div>
+      <div class="w-cap"><span class="w-nm">뼈구이집</span>
+        <div class="w-tags"><span class="pill">Facade</span></div></div>
+    </a>
+  </div>
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <span class="mono reveal">Contact</span>
-      <h2 class="reveal">간판, <span class="ac">함께</span> 고민하겠습니다.</h2>
-      <p class="reveal">편하게 문의 남겨 주세요.</p>
+      <span class="mono dim reveal" style="display:block;margin-bottom:18px">Contact</span>
+      <h2 class="reveal">간판, 함께 고민하겠습니다.</h2>
       <form class="inq" id="inq-form" novalidate>
         <div class="inq-row">
           <input type="text" id="inq-name" name="name" placeholder="성함 / 업체명" autocomplete="name" required>
           <input type="text" id="inq-contact" name="contact" placeholder="연락처 (전화 또는 이메일)" required>
         </div>
         <textarea id="inq-message" name="message" rows="4" placeholder="어떤 간판을 고민 중이신가요? 위치, 업종, 일정 등 편하게 적어 주세요."></textarea>
-        <button type="submit" class="btn" id="inq-submit">문의 남기기 <span class="ar" aria-hidden="true">↗</span></button>
+        <button type="submit" class="btn" id="inq-submit">문의 남기기 <span aria-hidden="true">↗</span></button>
         <p class="inq-msg" id="inq-msg" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -286,71 +147,52 @@
 
 <footer>
   <div class="f-top">
-    <div class="f-brand"><div class="f-name">Pearway</div></div>
+    <div class="f-name">Pearway</div>
     <div class="f-biz">
       <span>대표 이희배</span>
       <span>사업자등록번호 515-11-75407</span>
-      <span>서울 경기 전역 시공</span>
+      <span>서울 경기</span>
       <span><a href="mailto:ppearwayy@gmail.com">ppearwayy@gmail.com</a></span>
-      <span><a href="https://pearway.kr">pearway.kr</a></span>
+      <span><a href="https://instagram.com/thisispearway">@thisispearway</a></span>
     </div>
   </div>
   <div class="f-copy">© 2026 PEARWAY</div>
 </footer>
 
 <script>
-  requestAnimationFrame(function(){ document.getElementById('hero').classList.add('in'); });
+  (function(){
+    var m=document.getElementById('menu'), o=document.getElementById('menuOpen'), c=document.getElementById('menuClose');
+    function open(){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); }
+    function close(){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
+    o.addEventListener('click',open); c.addEventListener('click',close);
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+  })();
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-
-  (function(){
-    var idx=document.getElementById('idx'), prev=document.getElementById('idxPrev');
-    if(!idx||!prev||!window.matchMedia('(hover:hover)').matches) return;
-    var pvNm=prev.querySelector('.pv-nm'), rows=idx.querySelectorAll('.idx-row');
-    rows.forEach(function(row){
-      row.addEventListener('mouseenter',function(){
-        pvNm.textContent=row.getAttribute('data-nm')||''; prev.classList.add('on'); idx.classList.add('hovering');
-        rows.forEach(function(r){r.classList.remove('on')}); row.classList.add('on');
-      });
-      row.addEventListener('mouseleave',function(){ prev.classList.remove('on'); idx.classList.remove('hovering'); row.classList.remove('on'); });
-    });
-    window.addEventListener('mousemove',function(e){
-      prev.style.setProperty('--mx', e.clientX+'px'); prev.style.setProperty('--my', e.clientY+'px');
-    },{passive:true});
-  })();
 </script>
 
 <script>
 (function(){
-  var SB_URL = 'https://afbdebwyddlgbphsbash.supabase.co';
-  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmYmRlYnd5ZGRsZ2JwaHNiYXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjE3MTcsImV4cCI6MjA5ODc5NzcxN30.JgBeIhDi8Z44VLZfCyaPa0K4lnI8ub0yg2kg2vEAmvU';
-  var form = document.getElementById('inq-form');
-  var nameEl = document.getElementById('inq-name');
-  var contactEl = document.getElementById('inq-contact');
-  var msgEl = document.getElementById('inq-message');
-  var submitEl = document.getElementById('inq-submit');
-  var noteEl = document.getElementById('inq-msg');
-  function setNote(t,k){ noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); }
-  form.addEventListener('submit', async function(e){
+  var SB_URL='https://afbdebwyddlgbphsbash.supabase.co';
+  var SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmYmRlYnd5ZGRsZ2JwaHNiYXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjE3MTcsImV4cCI6MjA5ODc5NzcxN30.JgBeIhDi8Z44VLZfCyaPa0K4lnI8ub0yg2kg2vEAmvU';
+  var form=document.getElementById('inq-form'),nameEl=document.getElementById('inq-name'),contactEl=document.getElementById('inq-contact'),
+      msgEl=document.getElementById('inq-message'),submitEl=document.getElementById('inq-submit'),noteEl=document.getElementById('inq-msg');
+  function setNote(t,k){ noteEl.textContent=t; noteEl.className='inq-msg'+(k?' '+k:''); }
+  form.addEventListener('submit',async function(e){
     e.preventDefault();
-    [nameEl, contactEl].forEach(function(el){ el.classList.remove('err'); });
-    var name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
-    if(!name){ nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
-    if(!contact){ contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
-    submitEl.disabled = true; setNote('보내는 중…', '');
-    try {
-      var res = await fetch(SB_URL + '/rest/v1/inquiries', {
-        method: 'POST',
-        headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
-        body: JSON.stringify({ name: name, contact: contact, message: message, source: 'signage', ua: navigator.userAgent.slice(0, 180) })
-      });
-      if(!res.ok) throw new Error('HTTP ' + res.status);
-      form.reset();
-      setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.', 'ok');
-    } catch (err) {
-      console.error(err);
-      setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad');
-    } finally { submitEl.disabled = false; }
+    [nameEl,contactEl].forEach(function(el){el.classList.remove('err');});
+    var name=nameEl.value.trim(),contact=contactEl.value.trim(),message=msgEl.value.trim();
+    if(!name){nameEl.classList.add('err');nameEl.focus();setNote('성함 또는 업체명을 입력해 주세요.','bad');return;}
+    if(!contact){contactEl.classList.add('err');contactEl.focus();setNote('연락받으실 연락처를 입력해 주세요.','bad');return;}
+    submitEl.disabled=true;setNote('보내는 중…','');
+    try{
+      var res=await fetch(SB_URL+'/rest/v1/inquiries',{method:'POST',
+        headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+        body:JSON.stringify({name:name,contact:contact,message:message,source:'signage',ua:navigator.userAgent.slice(0,180)})});
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      form.reset(); setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.','ok');
+    }catch(err){ console.error(err); setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.','bad'); }
+    finally{ submitEl.disabled=false; }
   });
 })();
 </script>
