@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>우선담 / PEARWAY</title>
+<meta name="description" content="우선담(WOOSUNDAM) 브랜드 아이덴티티, 간판, 그래픽. 강남 논현의 블랙앵거스 한우 구이. 페어웨이 작업.">
+<meta property="og:title" content="우선담 / PEARWAY">
+<meta property="og:description" content="워드마크부터 간판, 메뉴, 포스터, 패키지까지. 하나의 아이덴티티로.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/works/woosundam-2026/facade.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pearway.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<style>
+  .case-wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+
+  /* hero */
+  .case-hero{position:relative;width:100%;height:92svh;min-height:520px;overflow:hidden}
+  .case-hero img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+  .case-hero.in img{transform:scale(1)}
+  .case-hero .ch-cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(22px,3.4vw,46px);color:#fff}
+  .ch-cap .back{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);display:inline-block;margin-bottom:14px}
+  .ch-cap h1{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1;font-size:clamp(2rem,4.4vw,2.8rem);text-shadow:0 2px 30px rgba(0,0,0,.28)}
+  .ch-cap .tagline{margin:8px 0 0;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(255,255,255,.9);text-shadow:0 2px 24px rgba(0,0,0,.3)}
+
+  /* head: lead + meta */
+  .case-head{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(28px,6vw,90px);
+    padding:clamp(48px,8vw,120px) 0 clamp(36px,5vw,72px);align-items:start}
+  .case-head .lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.32;font-size:clamp(1.3rem,2.4vw,1.75rem);max-width:24ch}
+  .case-head .lead .dim{color:var(--dim)}
+  .meta{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+  .meta .m{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:baseline;
+    border-top:1px solid var(--line);padding-top:11px}
+  .meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .meta .v{font-size:14.5px;letter-spacing:-.01em;line-height:1.45}
+  @media(max-width:760px){.case-head{grid-template-columns:1fr;gap:30px}}
+
+  /* image rows */
+  .rows{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,20px)}
+  .fig{overflow:hidden;border-radius:12px;background:var(--ph)}
+  .fig img{display:block;width:100%;height:100%;object-fit:cover}
+  .fig .fimg{transition:transform 1.2s var(--ease)}
+  .reveal .fimg{transform:scale(1.06)}
+  .reveal.in .fimg{transform:scale(1)}
+  .row.full .fig img{height:auto}           /* 전체 보이기 */
+  .row.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px)}
+  .row.two .fig{aspect-ratio:4/3}
+  .row.two.port .fig{aspect-ratio:3/4}
+  .row.solo{display:flex;justify-content:center}
+  .row.solo .fig{width:min(100%,540px)}
+  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}}
+
+  /* note between images */
+  .note{max-width:52ch;padding:clamp(40px,6vw,88px) 0}
+  .note .k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+  .note p{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.4;font-size:clamp(1.25rem,2.2vw,1.6rem)}
+
+  /* closing / next */
+  .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
+    padding:clamp(56px,8vw,120px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px)}
+  .case-end a{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.3rem,2.4vw,1.8rem)}
+  .case-end .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" aria-label="페어웨이 홈"><span class="mk foil-mark" role="img" aria-label="PEARWAY"></span></a>
+  <button class="menu-btn" id="menuOpen" aria-label="메뉴 열기">Menu <span class="bars" aria-hidden="true"><i></i><i></i></span></button>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="메뉴 닫기">Close</button>
+  <nav class="menu-list">
+    <a href="/brand">그래픽 디자인 <span class="en">Graphic Design</span></a>
+    <a href="/signage">간판 및 사이니지 <span class="en">Signage</span></a>
+    <a href="https://peartype.kr">폰트 파운더리 <span class="en">Type Foundry ↗</span></a>
+    <a href="/flormonde/">플로르몽드 <span class="en">Objet ↗</span></a>
+    <a href="/about">소개 <span class="en">About</span></a>
+  </nav>
+</div>
+
+<main>
+  <!-- HERO -->
+  <header class="case-hero reveal" id="caseHero">
+    <img class="fimg" src="images/works/woosundam-2026/facade.jpg" alt="우선담 외관 브라스 사인">
+    <div class="ch-cap">
+      <a class="back" href="/brand">← Graphic Design</a>
+      <h1>우선담 <span style="opacity:.78">WOOSUNDAM</span></h1>
+      <p class="tagline">Black Angus Korean BBQ, Nonhyeon Seoul</p>
+    </div>
+  </header>
+
+  <div class="case-wrap">
+    <!-- HEAD -->
+    <section class="case-head">
+      <p class="lead reveal">브랜드 마크부터 외관 사인, 매장 곳곳의 사이니지까지 <span class="dim">하나로 묶은 블랙앵거스 한우 구이.</span></p>
+      <div class="meta reveal">
+        <div class="m"><span class="k">Client</span><span class="v">우선담 WOOSUNDAM</span></div>
+        <div class="m"><span class="k">Year</span><span class="v">2022</span></div>
+        <div class="m"><span class="k">Location</span><span class="v">논현, 서울</span></div>
+        <div class="m"><span class="k">Role</span><span class="v">Brand Identity, Signage</span></div>
+        <div class="m"><span class="k">Scope</span><span class="v">Logo, Facade Sign, Wayfinding, Interior Sign</span></div>
+      </div>
+    </section>
+
+    <div class="rows">
+      <!-- Identity -->
+      <div class="note reveal"><span class="k">01 / Identity</span>
+        <p>소뿔에서 딴 W 심볼과 묵직한 워드마크. 브라스와 백라이트로 구현한 사인.</p></div>
+      <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/woosundam-2026/signbox.jpg" alt="우선담 백라이트 사인박스"></div></div>
+      <div class="row two">
+        <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/facade2.jpg" alt="우선담 외관 브라스 사인"></div>
+        <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/counter.jpg" alt="우선담 호스트 카운터 로고"></div>
+      </div>
+      <div class="row solo reveal"><div class="fig"><img class="fimg" src="images/works/woosundam-2026/aframe.jpg" alt="우선담 입간판"></div></div>
+
+      <!-- Wayfinding -->
+      <div class="note reveal"><span class="k">02 / Wayfinding</span>
+        <p>예약석, 화장실, 스태프 도어까지. 같은 브라스 톤으로 이어지는 공간 사이니지.</p></div>
+      <div class="row two port">
+        <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/restroom.jpg" alt="우선담 화장실 사인"></div>
+        <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/staff.jpg" alt="우선담 스태프 도어 사인"></div>
+      </div>
+      <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/woosundam-2026/reserved.jpg" alt="우선담 예약석 사인"></div></div>
+    </div>
+
+    <!-- END -->
+    <div class="case-end">
+      <a href="/brand">← Graphic Design</a>
+      <a href="/signage">Next, Signage →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="f-top">
+    <div class="f-name">Pearway</div>
+    <div class="f-biz">
+      <span>대표 이희배</span>
+      <span>사업자등록번호 515-11-75407</span>
+      <span><a href="mailto:ppearwayy@gmail.com">ppearwayy@gmail.com</a></span>
+      <span><a href="https://instagram.com/thisispearway">@thisispearway</a></span>
+    </div>
+  </div>
+  <div class="f-copy">© 2026 PEARWAY</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="pearway.js"></script>
+<script>
+  // 히어로 이미지 줌인 트리거
+  (function(){ var h=document.getElementById('caseHero'); if(h) requestAnimationFrame(function(){ h.classList.add('in'); }); })();
+</script>
+</body>
+</html>
