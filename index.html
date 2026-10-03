@@ -90,6 +90,7 @@
   /* HERO */
   .hero{padding:calc(clamp(16px,2.2vw,24px) + clamp(44px,6vw,70px)) var(--pad) 0}
   .hero .hero-ph{width:100%;height:78svh;min-height:440px;border-radius:14px}
+  .hero-vid{object-fit:cover;display:block;overflow:hidden;background:var(--ph)}
 
   /* INTRO statement */
   .lede{padding:clamp(48px,8vw,120px) var(--pad)}
@@ -160,7 +161,9 @@
 
 <main>
   <header class="hero">
-    <div class="ph hero-ph" data-label="이미지 준비 중"></div>
+    <video class="hero-ph hero-vid" autoplay muted loop playsinline preload="auto">
+      <source src="videos/home-hero.mp4" type="video/mp4">
+    </video>
   </header>
 
   <section class="lede">
