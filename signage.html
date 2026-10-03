@@ -36,7 +36,8 @@
   .work{display:block;min-width:0}
   .work:nth-child(3n+1){grid-column:1 / -1}
   .work:nth-child(3n) .w-ph{margin-top:clamp(40px,8vw,120px)}
-  .work .w-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden}
+  .work .w-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--ph)}
+  .work .w-ph img{width:100%;height:100%;object-fit:cover;display:block}
   .work:nth-child(3n+1) .w-ph{aspect-ratio:16/9}
   @media(max-width:760px){.works{grid-template-columns:1fr;gap:clamp(40px,10vw,64px)}.work:nth-child(3n) .w-ph{margin-top:0}.work .w-ph{aspect-ratio:4/5}.work:nth-child(3n+1) .w-ph{aspect-ratio:4/3}}
   .work .w-cap{margin-top:clamp(16px,1.8vw,22px)}
@@ -100,10 +101,10 @@
     <span class="mono dim">06</span>
   </div>
   <div class="works">
-    <a class="work reveal" href="#contact">
-      <div class="ph w-ph" data-label="우선담"></div>
+    <a class="work reveal" href="/woosundam">
+      <div class="w-ph"><img src="images/works/woosundam-2026/facade.jpg" alt="우선담"></div>
       <div class="w-cap"><span class="w-nm">우선담</span>
-        <div class="w-tags"><span class="pill">Neon</span><span class="pill">Channel</span><span class="pill">Projecting</span></div></div>
+        <div class="w-tags"><span class="pill">Facade</span><span class="pill">Backlit</span><span class="pill">Wayfinding</span></div></div>
     </a>
     <a class="work reveal" href="#contact">
       <div class="ph w-ph" data-label="진대감"></div>

@@ -54,9 +54,10 @@
   .row.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px)}
   .row.two .fig{aspect-ratio:4/3}
   .row.two.port .fig{aspect-ratio:3/4}
-  .row.solo{display:flex;justify-content:center}
-  .row.solo .fig{width:min(100%,540px)}
-  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}}
+  .row.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
+  .row.three .fig{aspect-ratio:3/4}
+  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}
+    .row.three{grid-template-columns:1fr 1fr}}
 
   /* note between images */
   .note{max-width:52ch;padding:clamp(40px,6vw,88px) 0}
@@ -93,7 +94,7 @@
   <header class="case-hero reveal" id="caseHero">
     <img class="fimg" src="images/works/woosundam-2026/facade.jpg" alt="우선담 외관 브라스 사인">
     <div class="ch-cap">
-      <a class="back" href="/brand">← Graphic Design</a>
+      <a class="back" href="/signage">← Signage</a>
       <h1>우선담 <span style="opacity:.78">WOOSUNDAM</span></h1>
       <p class="tagline">Black Angus Korean BBQ, Nonhyeon Seoul</p>
     </div>
@@ -121,12 +122,12 @@
         <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/facade2.jpg" alt="우선담 외관 브라스 사인"></div>
         <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/counter.jpg" alt="우선담 호스트 카운터 로고"></div>
       </div>
-      <div class="row solo reveal"><div class="fig"><img class="fimg" src="images/works/woosundam-2026/aframe.jpg" alt="우선담 입간판"></div></div>
 
       <!-- Wayfinding -->
       <div class="note reveal"><span class="k">02 / Wayfinding</span>
-        <p>예약석, 화장실, 스태프 도어까지. 같은 브라스 톤으로 이어지는 공간 사이니지.</p></div>
-      <div class="row two port">
+        <p>입간판, 화장실, 스태프 도어까지. 같은 브라스 톤으로 이어지는 공간 사이니지.</p></div>
+      <div class="row three">
+        <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/aframe.jpg" alt="우선담 입간판"></div>
         <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/restroom.jpg" alt="우선담 화장실 사인"></div>
         <div class="fig reveal"><img class="fimg" src="images/works/woosundam-2026/staff.jpg" alt="우선담 스태프 도어 사인"></div>
       </div>
@@ -135,8 +136,8 @@
 
     <!-- END -->
     <div class="case-end">
-      <a href="/brand">← Graphic Design</a>
-      <a href="/signage">Next, Signage →</a>
+      <a href="/signage">← Signage</a>
+      <a href="/brand">Graphic Design →</a>
     </div>
   </div>
 </main>
