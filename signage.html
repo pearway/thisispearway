@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>간판 사이니지 PEARWAY</title>
-<meta name="description" content="간판은 브랜드의 얼굴입니다. 공간을 읽는 디자인과 25년의 시공. 디자이너가 직접 운영하는 간판과 사이니지.">
+<meta name="description" content="간판은 브랜드가 세상에 내거는 첫 문장입니다. 공간을 읽는 디자인과 25년의 시공. 디자이너가 직접 운영하는 간판과 사이니지.">
 <meta property="og:title" content="간판 사이니지 PEARWAY">
-<meta property="og:description" content="간판은 브랜드의 얼굴입니다. 공간을 읽는 디자인과 25년의 시공.">
+<meta property="og:description" content="간판은 브랜드가 세상에 내거는 첫 문장입니다. 공간을 읽는 디자인과 25년의 시공.">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,209 +14,253 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --plum:#17121A; --plum-2:#1E1822; --cream:#FBF6EC; --sub:#9A8EA2;
-    --line:rgba(251,246,236,.14); --line-2:rgba(251,246,236,.07);
+    --bg:#ECE8E0; --bg-2:#E4DFD5; --ink:#1A1813; --dim:#79746B;
+    --accent:#D1442A; --accent-ink:#fff;
+    --ph:#D6D1C5; --ph-2:#CFC9BC; --ph-ink:rgba(26,24,19,.42);
+    --line:rgba(26,24,19,.16); --line-2:rgba(26,24,19,.08);
     --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
-    --mono:'Geist','Pretendard Variable',sans-serif;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --mono:'Geist Mono',ui-monospace,monospace;
     --ease:cubic-bezier(.22,1,.36,1);
+    --pad:clamp(20px,5vw,72px);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    margin:0; color:var(--cream); background:var(--plum);
+    margin:0; background:var(--bg); color:var(--ink);
     font-family:var(--sans); font-weight:400; line-height:1.5;
     -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
     word-break:keep-all; overflow-wrap:break-word;
-    background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='300'%20height='300'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.9'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='300'%20height='300'%20filter='url(%23n)'%20opacity='.04'/%3E%3C/svg%3E");
   }
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(22px,5vw,64px)}
-  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--sub)}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+  .mono{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+  .ac{color:var(--accent)}
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
-      padding:clamp(16px,2.6vw,26px) clamp(22px,5vw,64px)}
-  .home{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);
-        border-radius:50%;color:var(--cream);transition:background .3s var(--ease),color .3s var(--ease)}
-  .home:hover{background:var(--cream);color:var(--plum)}
-  .home svg{width:18px;height:18px}
-  .nav-r{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);font-family:var(--mono);font-size:13px;font-weight:500}
-  .nav-r .tag{color:var(--sub);text-transform:uppercase;letter-spacing:.2em;font-size:11px}
-  .nav-r a.cta:hover{color:var(--sub)}
-  @media(max-width:620px){.nav-r .tag{display:none}}
+  /* 회색 이미지 플레이스홀더 (추후 AI 이미지 교체) */
+  .ph{background:var(--ph);position:relative;overflow:hidden}
+  .ph::before{content:"";position:absolute;inset:0;background:
+    repeating-linear-gradient(135deg,transparent 0 22px,rgba(26,24,19,.025) 22px 44px)}
+  .ph[data-label]::after{content:attr(data-label);position:absolute;left:16px;bottom:13px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ph-ink)}
 
-  .hero{position:relative;width:100%;height:92svh;min-height:520px;overflow:hidden;background:var(--plum-2)}
-  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(23,18,26,.62),rgba(23,18,26,0) 20%),linear-gradient(to top,rgba(23,18,26,.55),rgba(23,18,26,0) 30%)}
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+      padding:clamp(15px,2.2vw,24px) var(--pad);background:linear-gradient(var(--bg),rgba(236,232,224,0))}
+  nav .brand{font-family:var(--serif);font-size:19px;font-weight:500;letter-spacing:.01em}
+  nav .nav-r{display:flex;align-items:center;gap:clamp(16px,2.4vw,30px);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;color:var(--dim)}
+  nav .nav-r a:hover{color:var(--ink)}
+  nav .nav-r .cta{color:var(--accent)}
 
-  section{padding:clamp(84px,13vw,180px) 0}
+  /* HERO */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) clamp(28px,4vw,48px);position:relative}
+  .hero-eye{position:absolute;top:clamp(80px,12vh,140px);left:var(--pad);max-width:32ch}
+  .hero-eye .lead{margin:16px 0 0;font-size:clamp(1.02rem,1.5vw,1.3rem);color:var(--dim);line-height:1.6;letter-spacing:-.01em}
+  .hero h1{margin:0;font-weight:800;letter-spacing:-.045em;line-height:1;font-size:clamp(2.5rem,8vw,8rem)}
+  .hero h1 .l{display:block;overflow:hidden}
+  .hero h1 .l span{display:block;transform:translateY(102%);transition:transform 1s var(--ease)}
+  .hero.in h1 .l span{transform:none}
+  .hero h1 .l:nth-child(2) span{transition-delay:.08s}
+  .hero h1 .l:nth-child(3) span{transition-delay:.16s}
+  .hero-foot{margin-top:clamp(34px,5vw,60px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+             border-top:1px solid var(--line);padding-top:clamp(18px,2vw,24px);flex-wrap:wrap}
+  .hero-foot .meta{display:flex;gap:clamp(24px,4vw,64px);flex-wrap:wrap}
+  .hero-foot .meta .m .mv{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,2rem);font-weight:400}
+  .hero-foot .meta .m .mk{display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+  .hero-foot .cta{font-family:var(--mono);font-size:13px;letter-spacing:.04em;display:inline-flex;align-items:center;gap:8px;
+                  background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:13px 24px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .hero-foot .cta:hover{transform:translateY(-2px);opacity:.92}
 
-  /* 섹션 헤더 (인덱스 넘버) */
-  .sec-head{margin:0 0 clamp(44px,6vw,84px)}
-  .sec-head .idx{display:block;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--sub)}
-  .sec-head h2{margin:18px 0 0;font-weight:700;font-size:clamp(1.7rem,4vw,3rem);letter-spacing:-.03em;line-height:1.16;max-width:20ch}
-  .sec-head h2 .dim{color:var(--sub)}
+  /* SECTION */
+  section{padding:clamp(80px,12vw,160px) 0}
+  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);padding-bottom:22px;flex-wrap:wrap}
+  .shead h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,4vw,3.2rem);letter-spacing:-.01em}
+  .shead h2 em{font-style:italic}
 
-  /* 셀렉티드 워크 (대형 에디토리얼) */
-  .sel-list{display:flex;flex-direction:column;gap:clamp(72px,11vw,150px)}
-  .sel-img{overflow:hidden;background:var(--plum-2)}
-  .sel-img img{width:100%;aspect-ratio:16/10;object-fit:cover;transition:transform 1.3s var(--ease)}
-  .sel-item:hover .sel-img img{transform:scale(1.035)}
-  .sel-cap{display:flex;align-items:baseline;gap:clamp(16px,3vw,40px);margin-top:clamp(20px,2.4vw,30px);padding-top:clamp(18px,2vw,24px);border-top:1px solid var(--line)}
-  .sel-no{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--sub);flex:none;padding-top:.55em}
-  .sel-meta{flex:1;min-width:0}
-  .sel-meta h3{margin:0;font-weight:700;font-size:clamp(1.3rem,2.6vw,2rem);letter-spacing:-.02em}
-  .sel-type{display:block;margin-top:9px;color:var(--sub);font-size:clamp(.95rem,1.2vw,1.05rem)}
-  .sel-year{font-family:var(--mono);font-size:13px;color:var(--sub);flex:none}
+  /* WORKS (editorial index) */
+  .idx{margin-top:4px}
+  .idx-row{position:relative;display:grid;grid-template-columns:clamp(54px,7vw,96px) 1fr auto;align-items:center;gap:clamp(12px,3vw,40px);
+           padding:clamp(22px,3.4vw,40px) 0;border-bottom:1px solid var(--line);transition:opacity .4s var(--ease),padding-left .5s var(--ease)}
+  .idx-row .no{font-family:var(--serif);font-size:clamp(1rem,1.5vw,1.3rem);color:var(--dim)}
+  .idx-row .nm{font-weight:700;letter-spacing:-.025em;font-size:clamp(1.7rem,5vw,3.6rem);line-height:1;transition:transform .5s var(--ease),color .3s var(--ease)}
+  .idx-row .ty{font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--dim);text-align:right;max-width:22ch}
+  .idx-row .ty .yr{display:block;margin-top:5px;opacity:.7}
+  .idx-row .thumb{display:none}
+  @media(hover:hover){
+    .idx.hovering .idx-row{opacity:.3}
+    .idx.hovering .idx-row.on{opacity:1}
+    .idx-row.on{padding-left:clamp(10px,1.4vw,22px)}
+    .idx-row.on .nm{transform:translateX(6px);color:var(--accent)}
+  }
+  .idx-prev{position:fixed;left:0;top:0;width:clamp(260px,26vw,380px);aspect-ratio:4/5;z-index:40;pointer-events:none;
+            transform:translate3d(var(--mx,-50%),var(--my,-50%),0) translate(-50%,-50%) scale(.96);
+            opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:0 30px 70px rgba(26,24,19,.22)}
+  .idx-prev.on{opacity:1;transform:translate3d(var(--mx,-50%),var(--my,-50%),0) translate(-50%,-50%) scale(1)}
+  .idx-prev .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+  .idx-prev .pv-nm{font-weight:700;font-size:1.4rem;letter-spacing:-.02em;color:var(--ph-ink)}
+  @media(max-width:760px){
+    .idx-row{grid-template-columns:auto 1fr;grid-template-areas:"no nm" "thumb thumb" "ty ty";row-gap:16px}
+    .idx-row .no{grid-area:no}.idx-row .nm{grid-area:nm}.idx-row .ty{grid-area:ty;text-align:left;max-width:none}
+    .idx-row .thumb{grid-area:thumb;display:block;width:100%;aspect-ratio:16/10}
+    .idx-prev{display:none}
+  }
 
-  /* 팀: 디자인 10년 / 시공 25년 */
-  .nums{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
-  .num{border-top:1px solid var(--line);padding-top:clamp(22px,2.6vw,32px)}
-  .num .n{display:block;font-weight:800;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.04em;line-height:1}
-  .num .lb{display:block;margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--sub)}
-  .num p{margin:clamp(20px,2.4vw,28px) 0 0;color:var(--sub);font-size:clamp(1rem,1.3vw,1.14rem);line-height:1.75;max-width:34ch}
-  @media(max-width:700px){.nums{grid-template-columns:1fr;gap:clamp(40px,10vw,56px)}}
+  /* APPROACH */
+  .appr .lede{font-weight:700;letter-spacing:-.03em;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:1.18;max-width:20ch;margin:clamp(40px,5vw,70px) 0 0}
+  .appr .lede .d{color:var(--dim)}
+  .nums{margin-top:clamp(56px,8vw,110px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
+  .num{border-top:1px solid var(--line);padding-top:clamp(20px,2.4vw,30px)}
+  .num .n{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.04em;line-height:1}
+  .num .n .u{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.32em;letter-spacing:0;color:var(--accent)}
+  .num .lb{display:block;margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+  .num p{margin:clamp(18px,2.2vw,26px) 0 0;color:var(--dim);font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.75;max-width:34ch}
+  @media(max-width:700px){.nums{grid-template-columns:1fr;gap:clamp(40px,10vw,52px)}}
 
-  /* 가격 statement */
-  .price{background:var(--plum-2)}
-  .price p.stmt{margin:clamp(26px,3.4vw,44px) 0 0;font-weight:500;letter-spacing:-.025em;font-size:clamp(1.5rem,3.7vw,2.95rem);line-height:1.42;max-width:23ch}
-  .price p.stmt .dim{color:var(--sub)}
+  /* PRICING */
+  .price{background:var(--bg-2)}
+  .price .stmt{margin:clamp(34px,4vw,56px) 0 0;font-weight:500;letter-spacing:-.022em;font-size:clamp(1.6rem,4vw,3.1rem);line-height:1.4;max-width:24ch}
+  .price .stmt .d{color:var(--dim)}
 
-  /* 작업 롤링 (아카이브) */
-  .marquee{margin-top:clamp(40px,5vw,66px);overflow:hidden;
-    -webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);
-    mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
-  .track{display:flex;gap:clamp(12px,1.4vw,18px);width:max-content;animation:marq 84s linear infinite}
-  .track img{width:clamp(220px,25vw,330px);height:clamp(300px,34vw,460px);flex:none;display:block;object-fit:cover;object-position:center;background:var(--plum-2)}
-  .marquee:hover .track{animation-play-state:paused}
-  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @media(prefers-reduced-motion:reduce){.track{animation:none}}
-
-  /* 문의 */
-  .contact{text-align:center;padding:clamp(100px,16vw,220px) 0}
-  .contact h2{font-weight:800;font-size:clamp(2rem,6vw,4.4rem);letter-spacing:-.035em;line-height:1.08;margin:0 auto;max-width:16ch}
-  .contact p{margin:clamp(22px,3vw,30px) auto 0;color:var(--sub);font-size:clamp(1rem,1.4vw,1.18rem);line-height:1.7;max-width:none}
-  .btn{display:inline-flex;align-items:center;gap:12px;
-       background:var(--cream);color:var(--plum);font-family:var(--mono);font-size:14px;font-weight:600;
-       padding:17px 32px;border-radius:999px;border:0;cursor:pointer;transition:transform .3s var(--ease),opacity .3s var(--ease)}
-  .btn:hover{transform:translateY(-2px);opacity:.92}
-  .btn:hover .ar{transform:translate(3px,-3px)}
-  .btn .ar{transition:transform .3s var(--ease)}
-
-  /* 문의 폼 */
-  .inq{max-width:560px;margin:clamp(34px,4.5vw,52px) auto 0;text-align:left;display:flex;flex-direction:column;gap:12px}
-  .inq-row{display:flex;gap:12px}
-  .inq-row input{flex:1;min-width:0}
-  .inq input,.inq textarea{width:100%;background:rgba(251,246,236,.04);border:1px solid var(--line);border-radius:14px;
-    color:var(--cream);font-family:var(--sans);font-size:15px;letter-spacing:-.01em;padding:15px 17px;transition:border-color .25s var(--ease),background .25s var(--ease)}
+  /* CONTACT */
+  .contact h2{margin:clamp(34px,4vw,56px) 0 0;font-weight:800;letter-spacing:-.04em;line-height:1.02;font-size:clamp(2.4rem,8vw,6rem)}
+  .contact h2 .ac{color:var(--accent)}
+  .contact p{margin:clamp(20px,2.4vw,28px) 0 0;color:var(--dim);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.7}
+  .inq{max-width:620px;margin:clamp(40px,5vw,64px) 0 0;display:flex;flex-direction:column;gap:12px}
+  .inq-row{display:flex;gap:12px}.inq-row input{flex:1;min-width:0}
+  .inq input,.inq textarea{width:100%;background:rgba(26,24,19,.03);border:1px solid var(--line);border-radius:12px;
+    color:var(--ink);font-family:var(--sans);font-size:15px;letter-spacing:-.01em;padding:15px 17px;transition:border-color .25s var(--ease),background .25s var(--ease)}
   .inq textarea{resize:vertical;min-height:120px;line-height:1.6}
-  .inq input::placeholder,.inq textarea::placeholder{color:var(--sub);opacity:.75}
-  .inq input:focus,.inq textarea:focus{outline:none;border-color:var(--cream);background:rgba(251,246,236,.07)}
-  .inq input.err,.inq textarea.err{border-color:#E07A6B}
-  .inq .btn{align-self:flex-start;margin-top:6px}
-  .inq .btn:disabled{opacity:.5;cursor:default;transform:none}
+  .inq input::placeholder,.inq textarea::placeholder{color:var(--dim);opacity:.8}
+  .inq input:focus,.inq textarea:focus{outline:none;border-color:var(--ink);background:rgba(26,24,19,.05)}
+  .inq input.err,.inq textarea.err{border-color:var(--accent)}
+  .btn{align-self:flex-start;margin-top:6px;display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);
+       border:0;cursor:pointer;font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.03em;padding:16px 30px;border-radius:999px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);opacity:.92}
+  .btn:disabled{opacity:.5;cursor:default;transform:none}
   .inq-msg{min-height:1.2em;margin:4px 0 0;font-family:var(--mono);font-size:13px;letter-spacing:0}
-  .inq-msg.ok{color:#8FD0A6}
-  .inq-msg.bad{color:#E07A6B}
+  .inq-msg.ok{color:#2E7D55}.inq-msg.bad{color:var(--accent)}
   @media(max-width:560px){.inq-row{flex-direction:column}}
 
+  /* FOOTER */
   footer{border-top:1px solid var(--line)}
-  .f-top{display:flex;justify-content:space-between;gap:clamp(28px,5vw,64px);flex-wrap:wrap;
-         padding:clamp(48px,7vw,86px) clamp(22px,5vw,64px) clamp(26px,3vw,38px)}
-  .f-name{font-weight:700;font-size:20px;letter-spacing:-.01em;color:var(--cream)}
-  .f-brand p{margin:10px 0 0;font-size:13px;color:var(--sub)}
-  .f-biz{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:12.5px;color:var(--sub)}
-  .f-links{display:flex;flex-direction:column;gap:9px;font-family:var(--mono);font-size:13px}
-  .f-links a:hover,.f-biz a:hover{color:var(--cream)}
-  .f-copy{padding:0 clamp(22px,5vw,64px) clamp(40px,5vw,56px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--sub);opacity:.65}
+  .f-top{display:flex;justify-content:space-between;gap:clamp(28px,5vw,64px);flex-wrap:wrap;padding:clamp(48px,7vw,86px) var(--pad) clamp(26px,3vw,38px)}
+  .f-name{font-family:var(--serif);font-size:22px;letter-spacing:.01em}
+  .f-biz{display:flex;flex-direction:column;gap:7px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+  .f-biz a:hover{color:var(--ink)}
+  .f-copy{padding:0 var(--pad) clamp(40px,5vw,56px);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--dim);opacity:.8}
   @media(max-width:640px){.f-top{flex-direction:column;gap:30px}}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
   .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .hero h1 .l span{transform:none}
+    html{scroll-behavior:auto}
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="home" aria-label="홈으로">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
-  </a>
+  <a href="/" class="brand" aria-label="페어웨이 홈">Pearway</a>
   <div class="nav-r">
-    <span class="tag">Pearway Signage</span>
+    <span>Signage / Environment</span>
     <a class="cta" href="#contact">문의</a>
   </div>
 </nav>
 
 <main>
-  <header class="hero">
-    <img class="hero-bg" src="images/signage/hero.jpg" alt="페어웨이 간판 작업">
+  <header class="hero" id="hero">
+    <div class="hero-eye">
+      <span class="mono ac">Pearway Signage</span>
+    </div>
+    <h1>
+      <span class="l"><span>간판은 브랜드가</span></span>
+      <span class="l"><span>세상에 <span class="ac">내거는</span></span></span>
+      <span class="l"><span>첫 문장입니다.</span></span>
+    </h1>
+    <div class="hero-foot">
+      <div class="meta">
+        <div class="m"><span class="mv">10</span><span class="mk">Years / Design</span></div>
+        <div class="m"><span class="mv">25</span><span class="mk">Years / Craft</span></div>
+        <div class="m"><span class="mv">서울 경기</span><span class="mk">Based / Install</span></div>
+      </div>
+      <a class="cta" href="#contact">문의하기 <span aria-hidden="true">↗</span></a>
+    </div>
   </header>
 
-  <section class="sel">
+  <section class="works">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="idx">01 / Selected</span>
-        <h2>간판은 공간을 완성하는 <span class="dim">마지막 디자인입니다.</span></h2>
+      <div class="shead reveal">
+        <h2><em>Selected</em> Works</h2>
+        <span class="mono">007</span>
       </div>
-      <div class="sel-list">
-        <article class="sel-item reveal">
-          <div class="sel-img"><img src="images/signage/work-1.jpg" alt="우선담 간판" loading="lazy"></div>
-          <div class="sel-cap">
-            <span class="sel-no">01</span>
-            <div class="sel-meta">
-              <h3>우선담</h3>
-              <span class="sel-type">전구 마퀴 네온, 돌출 채널 사인</span>
-            </div>
-            <span class="sel-year">2023</span>
-          </div>
-        </article>
-        <article class="sel-item reveal">
-          <div class="sel-img"><img src="images/signage/work-8.jpg" alt="치킨파머스 간판" loading="lazy"></div>
-          <div class="sel-cap">
-            <span class="sel-no">02</span>
-            <div class="sel-meta">
-              <h3>치킨파머스</h3>
-              <span class="sel-type">파사드 전면 사인, 라운드 엠블럼</span>
-            </div>
-            <span class="sel-year">2024</span>
-          </div>
-        </article>
-        <article class="sel-item reveal">
-          <div class="sel-img"><img src="images/signage/work-3.jpg" alt="진대감 간판" loading="lazy"></div>
-          <div class="sel-cap">
-            <span class="sel-no">03</span>
-            <div class="sel-meta">
-              <h3>진대감</h3>
-              <span class="sel-type">블랙 박스 돌출 사인</span>
-            </div>
-            <span class="sel-year">2022</span>
-          </div>
-        </article>
+      <div class="idx" id="idx">
+        <a class="idx-row reveal" href="#contact" data-nm="우선담">
+          <span class="no">01</span>
+          <span class="nm">우선담</span>
+          <span class="ty">네온 채널 사인<span class="yr">2023</span></span>
+          <div class="thumb ph" data-label="우선담 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="진대감">
+          <span class="no">02</span>
+          <span class="nm">진대감</span>
+          <span class="ty">블랙 박스 돌출 사인<span class="yr">2022</span></span>
+          <div class="thumb ph" data-label="진대감 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="다락">
+          <span class="no">03</span>
+          <span class="nm">다락</span>
+          <span class="ty">채널 레터, 돌출 사인<span class="yr">2025</span></span>
+          <div class="thumb ph" data-label="다락 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="치킨파머스">
+          <span class="no">04</span>
+          <span class="nm">치킨파머스</span>
+          <span class="ty">파사드 사인<span class="yr">2024</span></span>
+          <div class="thumb ph" data-label="치킨파머스 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="듀오모">
+          <span class="no">05</span>
+          <span class="nm">듀오모</span>
+          <span class="ty">파사드 박스 사인<span class="yr">2025</span></span>
+          <div class="thumb ph" data-label="듀오모 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="올데이크레페">
+          <span class="no">06</span>
+          <span class="nm">올데이크레페</span>
+          <span class="ty">라운드 돌출 사인<span class="yr">2024</span></span>
+          <div class="thumb ph" data-label="올데이크레페 / 이미지 준비 중"></div>
+        </a>
+        <a class="idx-row reveal" href="#contact" data-nm="뼈구이집">
+          <span class="no">07</span>
+          <span class="nm">뼈구이집</span>
+          <span class="ty">파사드 사인<span class="yr">2023</span></span>
+          <div class="thumb ph" data-label="뼈구이집 / 이미지 준비 중"></div>
+        </a>
       </div>
     </div>
+    <div class="idx-prev" id="idxPrev" aria-hidden="true"><div class="ph" data-label="이미지 준비 중"><span class="pv-nm"></span></div></div>
   </section>
 
-  <section class="team">
+  <section class="appr">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="idx">02 / Approach</span>
-        <h2>설계부터 시공까지, <span class="dim">한 팀이 끝까지 맡습니다.</span></h2>
+      <div class="shead reveal">
+        <h2><em>Approach</em></h2>
       </div>
       <div class="nums">
         <div class="num reveal">
-          <span class="n">10년</span>
+          <span class="n">10<span class="u">years</span></span>
           <span class="lb">Design</span>
-          <p>공간과 브랜드를 읽고 간판을 그립니다. 달기 전, 공간 시뮬레이션으로 완성을 먼저 봅니다.</p>
         </div>
         <div class="num reveal">
-          <span class="n">25년</span>
+          <span class="n">25<span class="u">years</span></span>
           <span class="lb">Craft</span>
-          <p>직접 만들고 답니다. 되돌릴 수 없는 일이기에, 끝까지 손으로 책임집니다.</p>
         </div>
       </div>
     </div>
@@ -224,47 +268,18 @@
 
   <section class="price">
     <div class="wrap">
-      <span class="eyebrow reveal" style="display:block;margin-bottom:clamp(26px,3vw,38px)">03 / Pricing</span>
-      <p class="stmt reveal">가격은 충분히 비교해 보세요. <span class="dim">업체마다 해석이 다릅니다.</span> 간판은 되돌릴 수 없습니다. 그래서 처음부터 끝까지, 함께 고민합니다.</p>
-    </div>
-  </section>
-
-  <section class="work">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <span class="idx">04 / Archive</span>
-        <h2>설치된 간판.</h2>
+      <div class="shead reveal">
+        <h2><em>Pricing</em></h2>
       </div>
-    </div>
-    <div class="marquee" aria-label="작업 사진">
-      <div class="track">
-        <img src="images/signage/work-1.jpg" alt="우선담 간판" loading="lazy">
-        <img src="images/signage/work-3.jpg" alt="진대감 간판" loading="lazy">
-        <img src="images/signage/work-4.jpg" alt="올데이크레페 간판" loading="lazy">
-        <img src="images/signage/work-7.jpg" alt="다락 돌출 간판" loading="lazy">
-        <img src="images/signage/work-8.jpg" alt="치킨파머스 간판" loading="lazy">
-        <img src="images/signage/work-9.jpg" alt="듀오모 간판" loading="lazy">
-        <img src="images/signage/work-10.jpg" alt="다락 천장 사인" loading="lazy">
-        <img src="images/signage/work-11.jpg" alt="치킨파머스 팜투테이블 사인" loading="lazy">
-        <img src="images/signage/work-6.jpg" alt="뼈구이집 간판" loading="lazy">
-        <img src="images/signage/work-1.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-3.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-4.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-7.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-8.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-9.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-10.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-11.jpg" alt="" aria-hidden="true">
-        <img src="images/signage/work-6.jpg" alt="" aria-hidden="true">
-      </div>
+      <p class="stmt reveal">가격은 충분히 비교해 보세요. <span class="d">간판은 되돌릴 수 없으니까.</span></p>
     </div>
   </section>
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <span class="eyebrow reveal" style="display:block;margin-bottom:clamp(20px,2.4vw,28px)">05 / Contact</span>
-      <h2 class="reveal">간판, 함께 고민하겠습니다.</h2>
-      <p>작은 간판 하나도 신중하게. 편하게 문의 남겨 주세요.</p>
+      <span class="mono reveal">Contact</span>
+      <h2 class="reveal">간판, <span class="ac">함께</span> 고민하겠습니다.</h2>
+      <p class="reveal">편하게 문의 남겨 주세요.</p>
       <form class="inq" id="inq-form" novalidate>
         <div class="inq-row">
           <input type="text" id="inq-name" name="name" placeholder="성함 / 업체명" autocomplete="name" required>
@@ -280,9 +295,7 @@
 
 <footer>
   <div class="f-top">
-    <div class="f-brand">
-      <div class="f-name">PEARWAY</div>
-    </div>
+    <div class="f-brand"><div class="f-name">Pearway</div></div>
     <div class="f-biz">
       <span>대표 이희배</span>
       <span>사업자등록번호 515-11-75407</span>
@@ -295,15 +308,31 @@
 </footer>
 
 <script>
+  requestAnimationFrame(function(){ document.getElementById('hero').classList.add('in'); });
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  (function(){
+    var idx=document.getElementById('idx'), prev=document.getElementById('idxPrev');
+    if(!idx||!prev||!window.matchMedia('(hover:hover)').matches) return;
+    var pvNm=prev.querySelector('.pv-nm'), rows=idx.querySelectorAll('.idx-row');
+    rows.forEach(function(row){
+      row.addEventListener('mouseenter',function(){
+        pvNm.textContent=row.getAttribute('data-nm')||''; prev.classList.add('on'); idx.classList.add('hovering');
+        rows.forEach(function(r){r.classList.remove('on')}); row.classList.add('on');
+      });
+      row.addEventListener('mouseleave',function(){ prev.classList.remove('on'); idx.classList.remove('hovering'); row.classList.remove('on'); });
+    });
+    window.addEventListener('mousemove',function(e){
+      prev.style.setProperty('--mx', e.clientX+'px'); prev.style.setProperty('--my', e.clientY+'px');
+    },{passive:true});
+  })();
 </script>
 
 <script>
 (function(){
   var SB_URL = 'https://afbdebwyddlgbphsbash.supabase.co';
   var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmYmRlYnd5ZGRsZ2JwaHNiYXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjE3MTcsImV4cCI6MjA5ODc5NzcxN30.JgBeIhDi8Z44VLZfCyaPa0K4lnI8ub0yg2kg2vEAmvU';
-
   var form = document.getElementById('inq-form');
   var nameEl = document.getElementById('inq-name');
   var contactEl = document.getElementById('inq-contact');
@@ -311,16 +340,13 @@
   var submitEl = document.getElementById('inq-submit');
   var noteEl = document.getElementById('inq-msg');
   function setNote(t,k){ noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); }
-
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     [nameEl, contactEl].forEach(function(el){ el.classList.remove('err'); });
     var name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
     if(!name){ nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
     if(!contact){ contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
-
-    submitEl.disabled = true;
-    setNote('보내는 중…', '');
+    submitEl.disabled = true; setNote('보내는 중…', '');
     try {
       var res = await fetch(SB_URL + '/rest/v1/inquiries', {
         method: 'POST',
@@ -333,9 +359,7 @@
     } catch (err) {
       console.error(err);
       setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad');
-    } finally {
-      submitEl.disabled = false;
-    }
+    } finally { submitEl.disabled = false; }
   });
 })();
 </script>
