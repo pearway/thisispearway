@@ -18,10 +18,10 @@
 
 <style>
   :root{
-    --bg:#ECE8E0; --bg-2:#E4DFD5; --ink:#1A1813; --dim:#79746B;
-    --accent:#D1442A; --accent-ink:#fff;
-    --ph:#D6D1C5; --ph-2:#CFC9BC; --ph-ink:rgba(26,24,19,.42);
-    --line:rgba(26,24,19,.16); --line-2:rgba(26,24,19,.08);
+    --bg:#E7E7E6; --bg-2:#DEDEDC; --ink:#131315; --dim:#8A8A8E;
+    --accent:#131315; --accent-ink:#F2F2F1;
+    --ph:#D4D4D3; --ph-2:#CCCCCB; --ph-ink:rgba(19,19,21,.42);
+    --line:rgba(19,19,21,.15); --line-2:rgba(19,19,21,.07);
     --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
     --serif:'Fraunces',Georgia,'Times New Roman',serif;
     --mono:'Geist Mono',ui-monospace,monospace;
@@ -40,7 +40,7 @@
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
   .mono{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
-  .ac{color:var(--accent)}
+  .ac{color:var(--dim)}
 
   /* 회색 이미지 플레이스홀더 (추후 AI 이미지 교체) */
   .ph{background:var(--ph);position:relative;overflow:hidden}
@@ -95,7 +95,7 @@
     .idx.hovering .idx-row{opacity:.3}
     .idx.hovering .idx-row.on{opacity:1}
     .idx-row.on{padding-left:clamp(10px,1.4vw,22px)}
-    .idx-row.on .nm{transform:translateX(6px);color:var(--accent)}
+    .idx-row.on .nm{transform:translateX(6px);color:var(--ink)}
   }
   .idx-prev{position:fixed;left:0;top:0;width:clamp(260px,26vw,380px);aspect-ratio:4/5;z-index:40;pointer-events:none;
             transform:translate3d(var(--mx,-50%),var(--my,-50%),0) translate(-50%,-50%) scale(.96);
@@ -116,7 +116,7 @@
   .nums{margin-top:clamp(56px,8vw,110px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px)}
   .num{border-top:1px solid var(--line);padding-top:clamp(20px,2.4vw,30px)}
   .num .n{display:flex;align-items:baseline;gap:10px;font-weight:800;font-size:clamp(3rem,7vw,5.6rem);letter-spacing:-.04em;line-height:1}
-  .num .n .u{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.32em;letter-spacing:0;color:var(--accent)}
+  .num .n .u{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.32em;letter-spacing:0;color:var(--dim)}
   .num .lb{display:block;margin-top:14px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
   .num p{margin:clamp(18px,2.2vw,26px) 0 0;color:var(--dim);font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.75;max-width:34ch}
   @media(max-width:700px){.nums{grid-template-columns:1fr;gap:clamp(40px,10vw,52px)}}
@@ -128,7 +128,7 @@
 
   /* CONTACT */
   .contact h2{margin:clamp(34px,4vw,56px) 0 0;font-weight:800;letter-spacing:-.04em;line-height:1.02;font-size:clamp(2.4rem,8vw,6rem)}
-  .contact h2 .ac{color:var(--accent)}
+  .contact h2 .ac{color:var(--dim)}
   .contact p{margin:clamp(20px,2.4vw,28px) 0 0;color:var(--dim);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.7}
   .inq{max-width:620px;margin:clamp(40px,5vw,64px) 0 0;display:flex;flex-direction:column;gap:12px}
   .inq-row{display:flex;gap:12px}.inq-row input{flex:1;min-width:0}
