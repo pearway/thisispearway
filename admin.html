@@ -154,6 +154,22 @@ main { max-width: var(--max); margin: 0 auto; padding: clamp(2rem, 4vw, 3.5rem) 
 .config-notice strong { font-weight: 600; }
 .config-notice code { background: rgba(0,0,0,0.06); padding: 0.1rem 0.4rem; font-family: var(--font-mono); font-size: 0.85em; }
 .loading { display: flex; align-items: center; justify-content: center; padding: 3rem; color: var(--ink-3); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+#inquiries-section { margin-top: 3.5rem; }
+.inq-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.inq-card { border: 1px solid var(--line); background: var(--bg); padding: 1.1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; transition: border-color 0.15s var(--ease); }
+.inq-card.new { border-color: var(--ink); }
+.inq-card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); margin-top: 0.5rem; flex: none; }
+.inq-card.new .dot { background: var(--success); }
+.inq-card .body { flex: 1; min-width: 0; }
+.inq-card .top { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.inq-card .who { font-weight: 600; font-size: 1rem; }
+.inq-card .contact { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-2); }
+.inq-card .when { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink-3); margin-left: auto; }
+.inq-card .msg { margin-top: 0.5rem; color: var(--ink-2); font-size: 0.92rem; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.inq-card .ctrl { display: flex; gap: 0.4rem; flex: none; }
+.inq-card .badge { display: inline-block; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.15rem 0.45rem; border: 1px solid var(--line); color: var(--ink-3); }
+.inq-card.new .badge { border-color: var(--success); color: var(--success); }
 </style>
 </head>
 <body>
@@ -193,6 +209,20 @@ main { max-width: var(--max); margin: 0 auto; padding: clamp(2rem, 4vw, 3.5rem) 
     </div>
     <div id="loading" class="loading">— loading projects…</div>
     <div class="project-list" id="project-list" style="display:none"></div>
+  </section>
+
+  <section id="inquiries-section" style="display:none">
+    <div class="toolbar">
+      <div class="left">
+        <span class="marker">Inquiries</span>
+        <h2><span id="inq-count">0</span> 간판 문의.</h2>
+      </div>
+      <div class="actions">
+        <button class="btn" id="inq-refresh">Refresh</button>
+      </div>
+    </div>
+    <div id="inq-loading" class="loading">— loading inquiries…</div>
+    <div class="inq-list" id="inq-list" style="display:none"></div>
   </section>
 </main>
 
@@ -332,15 +362,18 @@ if (isConfigured) {
     if (user && ALLOWED_EMAILS.includes(user.email)) {
       loginSection.style.display = 'none';
       dashboard.style.display = 'block';
+      $('inquiries-section').style.display = 'block';
       userInfo.style.display = 'flex';
       userEmail.textContent = user.email;
       loadProjects();
+      loadInquiries();
     } else if (user) {
       loginDenied.style.display = 'block';
       signOut(auth);
     } else {
       loginSection.style.display = 'flex';
       dashboard.style.display = 'none';
+      $('inquiries-section').style.display = 'none';
       userInfo.style.display = 'none';
     }
   });
@@ -352,6 +385,90 @@ loginBtn.addEventListener('click', async () => {
   catch (e) { console.error(e); toast('로그인 실패: ' + (e.message || e.code), 'danger'); }
 });
 logoutBtn.addEventListener('click', () => signOut(auth));
+
+/* ---- Inquiries (간판 문의) ---- */
+let allInquiries = [];
+const inqListEl = $('inq-list'), inqLoadingEl = $('inq-loading'), inqCountEl = $('inq-count');
+$('inq-refresh').addEventListener('click', loadInquiries);
+
+function fmtWhen(ts) {
+  try {
+    const d = ts && ts.toDate ? ts.toDate() : (ts ? new Date(ts) : null);
+    if (!d) return '—';
+    const p = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+  } catch { return '—'; }
+}
+
+async function loadInquiries() {
+  inqLoadingEl.style.display = 'flex';
+  inqLoadingEl.textContent = '— loading inquiries…';
+  inqListEl.style.display = 'none';
+  try {
+    let snap;
+    try { snap = await getDocs(query(collection(db, 'inquiries'), orderBy('createdAt', 'desc'))); }
+    catch { snap = await getDocs(collection(db, 'inquiries')); }
+    allInquiries = snap.docs.map(d => ({ _docId: d.id, ...d.data() }));
+    allInquiries.sort((a, b) => {
+      const ta = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
+      const tb = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
+      return tb - ta;
+    });
+    renderInquiries();
+  } catch (e) {
+    console.error(e);
+    toast('문의 로드 실패: ' + (e.message || e.code), 'danger');
+    inqLoadingEl.textContent = '— failed to load inquiries';
+  }
+}
+
+function renderInquiries() {
+  inqLoadingEl.style.display = 'none';
+  inqListEl.style.display = 'flex';
+  const newCount = allInquiries.filter(q => (q.status || 'new') === 'new').length;
+  inqCountEl.textContent = newCount > 0 ? `${newCount} new / ${allInquiries.length}` : String(allInquiries.length);
+  if (allInquiries.length === 0) {
+    inqListEl.innerHTML = `<div class="empty"><div class="icon">∅</div><p>아직 들어온 문의가 없습니다.</p></div>`;
+    return;
+  }
+  inqListEl.innerHTML = allInquiries.map(q => {
+    const isNew = (q.status || 'new') === 'new';
+    const contact = esc(q.contact);
+    const isEmail = /@/.test(q.contact || '');
+    const href = isEmail ? `mailto:${contact}` : `tel:${(q.contact||'').replace(/[^0-9+]/g,'')}`;
+    return `
+      <div class="inq-card ${isNew ? 'new' : ''}" data-doc-id="${esc(q._docId)}">
+        <div class="dot"></div>
+        <div class="body">
+          <div class="top">
+            <span class="who">${esc(q.name) || '(이름 없음)'}</span>
+            <a class="contact" href="${href}">${contact || '—'}</a>
+            <span class="badge">${isNew ? 'NEW' : 'READ'}</span>
+            <span class="when">${fmtWhen(q.createdAt)}</span>
+          </div>
+          ${q.message ? `<div class="msg">${esc(q.message)}</div>` : ''}
+        </div>
+        <div class="ctrl">
+          <button class="btn small" data-act="toggle">${isNew ? '읽음' : '새 문의로'}</button>
+          <button class="btn small danger" data-act="delete">Del</button>
+        </div>
+      </div>`;
+  }).join('');
+  inqListEl.querySelectorAll('.inq-card').forEach(card => {
+    const id = card.dataset.docId;
+    const item = allInquiries.find(q => q._docId === id);
+    card.querySelector('[data-act="toggle"]').addEventListener('click', async () => {
+      const next = (item.status || 'new') === 'new' ? 'read' : 'new';
+      try { await setDoc(doc(db, 'inquiries', id), { status: next }, { merge: true }); item.status = next; renderInquiries(); }
+      catch (e) { toast('상태 변경 실패: ' + (e.message || e.code), 'danger'); }
+    });
+    card.querySelector('[data-act="delete"]').addEventListener('click', async () => {
+      if (!confirm('이 문의를 삭제할까요?')) return;
+      try { await deleteDoc(doc(db, 'inquiries', id)); allInquiries = allInquiries.filter(q => q._docId !== id); renderInquiries(); toast('삭제됨', 'success'); }
+      catch (e) { toast('삭제 실패: ' + (e.message || e.code), 'danger'); }
+    });
+  });
+}
 
 async function loadProjects() {
   loadingEl.style.display = 'flex';

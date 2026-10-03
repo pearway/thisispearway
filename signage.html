@@ -83,13 +83,30 @@
   /* 문의 */
   .contact{text-align:center;padding:clamp(100px,16vw,220px) 0}
   .contact h2{font-weight:800;font-size:clamp(2rem,6vw,4.4rem);letter-spacing:-.035em;line-height:1.08;margin:0 auto;max-width:16ch}
-  .contact p{margin:clamp(22px,3vw,30px) auto 0;color:var(--sub);font-size:clamp(1rem,1.4vw,1.18rem);line-height:1.7;max-width:30ch}
-  .btn{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(34px,4.5vw,52px);
+  .contact p{margin:clamp(22px,3vw,30px) auto 0;color:var(--sub);font-size:clamp(1rem,1.4vw,1.18rem);line-height:1.7;max-width:none}
+  .btn{display:inline-flex;align-items:center;gap:12px;
        background:var(--cream);color:var(--plum);font-family:var(--mono);font-size:14px;font-weight:600;
-       padding:17px 32px;border-radius:999px;transition:transform .3s var(--ease),opacity .3s var(--ease)}
+       padding:17px 32px;border-radius:999px;border:0;cursor:pointer;transition:transform .3s var(--ease),opacity .3s var(--ease)}
   .btn:hover{transform:translateY(-2px);opacity:.92}
   .btn:hover .ar{transform:translate(3px,-3px)}
   .btn .ar{transition:transform .3s var(--ease)}
+
+  /* 문의 폼 */
+  .inq{max-width:560px;margin:clamp(34px,4.5vw,52px) auto 0;text-align:left;display:flex;flex-direction:column;gap:12px}
+  .inq-row{display:flex;gap:12px}
+  .inq-row input{flex:1;min-width:0}
+  .inq input,.inq textarea{width:100%;background:rgba(251,246,236,.04);border:1px solid var(--line);border-radius:14px;
+    color:var(--cream);font-family:var(--sans);font-size:15px;letter-spacing:-.01em;padding:15px 17px;transition:border-color .25s var(--ease),background .25s var(--ease)}
+  .inq textarea{resize:vertical;min-height:120px;line-height:1.6}
+  .inq input::placeholder,.inq textarea::placeholder{color:var(--sub);opacity:.75}
+  .inq input:focus,.inq textarea:focus{outline:none;border-color:var(--cream);background:rgba(251,246,236,.07)}
+  .inq input.err,.inq textarea.err{border-color:#E07A6B}
+  .inq .btn{align-self:flex-start;margin-top:6px}
+  .inq .btn:disabled{opacity:.5;cursor:default;transform:none}
+  .inq-msg{min-height:1.2em;margin:4px 0 0;font-family:var(--mono);font-size:13px;letter-spacing:0}
+  .inq-msg.ok{color:#8FD0A6}
+  .inq-msg.bad{color:#E07A6B}
+  @media(max-width:560px){.inq-row{flex-direction:column}}
 
   footer{border-top:1px solid var(--line)}
   .f-top{display:flex;justify-content:space-between;gap:clamp(28px,5vw,64px);flex-wrap:wrap;
@@ -179,7 +196,15 @@
     <div class="wrap">
       <h2 class="reveal">간판, 함께 고민하겠습니다.</h2>
       <p>작은 간판 하나도 신중하게. 편하게 문의 남겨 주세요.</p>
-      <a class="btn" href="mailto:ppearwayy@gmail.com?subject=간판%20사이니지%20문의">문의하기 <span class="ar" aria-hidden="true">↗</span></a>
+      <form class="inq" id="inq-form" novalidate>
+        <div class="inq-row">
+          <input type="text" id="inq-name" name="name" placeholder="성함 / 업체명" autocomplete="name" required>
+          <input type="text" id="inq-contact" name="contact" placeholder="연락처 (전화 또는 이메일)" required>
+        </div>
+        <textarea id="inq-message" name="message" rows="4" placeholder="어떤 간판을 고민 중이신가요? 위치, 업종, 일정 등 편하게 적어 주세요."></textarea>
+        <button type="submit" class="btn" id="inq-submit">문의 남기기 <span class="ar" aria-hidden="true">↗</span></button>
+        <p class="inq-msg" id="inq-msg" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 </main>
@@ -203,6 +228,57 @@
 <script>
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px',threshold:.08});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAMUToYbDPOgV0uUekWVqKX2myN1sfF9as",
+    authDomain: "thisispearway.firebaseapp.com",
+    projectId: "thisispearway",
+    storageBucket: "thisispearway.firebasestorage.app",
+    messagingSenderId: "657205333061",
+    appId: "1:657205333061:web:bb6e2daebcc51b2e2e272c"
+  };
+  const db = getFirestore(initializeApp(firebaseConfig));
+
+  const form = document.getElementById('inq-form');
+  const nameEl = document.getElementById('inq-name');
+  const contactEl = document.getElementById('inq-contact');
+  const msgEl = document.getElementById('inq-message');
+  const submitEl = document.getElementById('inq-submit');
+  const noteEl = document.getElementById('inq-msg');
+
+  function setNote(text, kind){ noteEl.textContent = text; noteEl.className = 'inq-msg' + (kind ? ' ' + kind : ''); }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    [nameEl, contactEl].forEach(el => el.classList.remove('err'));
+    const name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
+    if(!name){ nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
+    if(!contact){ contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
+
+    submitEl.disabled = true;
+    setNote('보내는 중…', '');
+    try {
+      await addDoc(collection(db, 'inquiries'), {
+        name, contact, message,
+        source: 'signage',
+        status: 'new',
+        createdAt: serverTimestamp(),
+        ua: navigator.userAgent.slice(0, 180)
+      });
+      form.reset();
+      setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.', 'ok');
+    } catch (err) {
+      console.error(err);
+      setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad');
+    } finally {
+      submitEl.disabled = false;
+    }
+  });
 </script>
 </body>
 </html>
