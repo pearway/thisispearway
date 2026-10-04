@@ -162,10 +162,17 @@
 
 <main>
   <header class="hero">
-    <video class="hero-ph hero-vid" autoplay muted loop playsinline preload="auto">
-      <source src="videos/home-hero.mp4" type="video/mp4">
-    </video>
+    <video class="hero-ph hero-vid" id="heroVid" autoplay muted loop playsinline preload="auto"></video>
   </header>
+  <script>
+    (function(){var v=document.getElementById('heroVid');if(!v)return;
+      var m=window.matchMedia('(max-width:760px)').matches;
+      v.src=m?'videos/home-hero-mobile.mp4':'videos/home-hero.mp4';
+      function go(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+      v.addEventListener('canplay',go,{once:true});
+      v.addEventListener('loadeddata',go,{once:true});
+      go();})();
+  </script>
 
   <section class="lede">
     <p>Pearway is a Seoul-based design studio, <span class="dim">working across graphic, signage, type &amp; objet.</span></p>
