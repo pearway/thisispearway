@@ -105,7 +105,8 @@
   .div{display:block;min-width:0}
   .div:nth-child(3n+1){grid-column:1 / -1}
   .div:nth-child(3n) .d-ph{margin-top:clamp(40px,8vw,120px)}
-  .div .d-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;transition:transform .7s var(--ease)}
+  .div .d-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--ph);transition:transform .7s var(--ease)}
+  .div .d-ph img{width:100%;height:100%;object-fit:cover;display:block}
   .div:nth-child(3n+1) .d-ph{aspect-ratio:16/9}
   .div{cursor:pointer}
   @media(hover:hover){.div:hover .d-ph{transform:scale(1.016)}}
@@ -176,7 +177,7 @@
   </div>
   <div class="divs">
     <a class="div reveal" href="/brand">
-      <div class="ph d-ph" data-label="그래픽 디자인"></div>
+      <div class="d-ph"><img src="images/graphic/hero.webp" alt="그래픽 디자인"></div>
       <div class="d-cap">
         <span class="d-nm">그래픽 디자인</span>
         <div class="d-tags"><span class="pill">Logo</span><span class="pill">Brand Identity</span><span class="pill">Business Card</span><span class="pill">Print</span></div>
