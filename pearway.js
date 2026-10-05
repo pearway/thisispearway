@@ -100,3 +100,34 @@
     });
   }
 })();
+
+/* ---- 문의 폼 → Supabase inquiries (공용) ---- */
+(function () {
+  var form = document.getElementById('inq-form');
+  if (!form) return;
+  var SB_URL = 'https://afbdebwyddlgbphsbash.supabase.co';
+  var SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFmYmRlYnd5ZGRsZ2JwaHNiYXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyMjE3MTcsImV4cCI6MjA5ODc5NzcxN30.JgBeIhDi8Z44VLZfCyaPa0K4lnI8ub0yg2kg2vEAmvU';
+  var nameEl = document.getElementById('inq-name'), contactEl = document.getElementById('inq-contact'),
+      msgEl = document.getElementById('inq-message'), submitEl = document.getElementById('inq-submit'),
+      noteEl = document.getElementById('inq-msg');
+  var source = form.getAttribute('data-source') || 'site';
+  function setNote(t, k) { noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); }
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    [nameEl, contactEl].forEach(function (el) { el.classList.remove('err'); });
+    var name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
+    if (!name) { nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
+    if (!contact) { contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
+    submitEl.disabled = true; setNote('보내는 중…', '');
+    try {
+      var res = await fetch(SB_URL + '/rest/v1/inquiries', {
+        method: 'POST',
+        headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ name: name, contact: contact, message: message, source: source, ua: navigator.userAgent.slice(0, 180) })
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.reset(); setNote('문의가 접수되었습니다. 빠르게 연락드리겠습니다.', 'ok');
+    } catch (err) { console.error(err); setNote('전송에 실패했습니다. 잠시 후 다시 시도하거나 ppearwayy@gmail.com 으로 보내 주세요.', 'bad'); }
+    finally { submitEl.disabled = false; }
+  });
+})();
