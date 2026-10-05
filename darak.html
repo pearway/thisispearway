@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다락 / PEARWAY</title>
+<meta name="description" content="셀프스토리지 미니창고 다락 사이니지. 외관 사인부터 유도 사인, 박스 패키지까지. 페어웨이 작업.">
+<meta property="og:title" content="다락 / PEARWAY">
+<meta property="og:description" content="외관 사인부터 유도 사인, 박스 패키지까지. 매장 전체를 한 톤으로.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/works/darak/facade.webp">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="pearway.css?v=2">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<style>
+  .case-wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+
+  /* hero */
+  .case-hero{position:relative;width:100%;height:92svh;min-height:520px;overflow:hidden}
+  .case-hero img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+  .case-hero.in img{transform:scale(1)}
+  .case-hero .ch-cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(22px,3.4vw,46px);color:#fff}
+  .ch-cap .back{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);display:inline-block;margin-bottom:14px}
+  .ch-cap h1{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1;font-size:clamp(2rem,4.4vw,2.8rem);text-shadow:0 2px 30px rgba(0,0,0,.4)}
+  .ch-cap .tagline{margin:8px 0 0;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(255,255,255,.9);text-shadow:0 2px 24px rgba(0,0,0,.4)}
+
+  /* head: lead + meta */
+  .case-head{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(28px,6vw,90px);
+    padding:clamp(48px,8vw,120px) 0 clamp(36px,5vw,72px);align-items:start}
+  .case-head .lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.32;font-size:clamp(1.3rem,2.4vw,1.75rem);max-width:24ch}
+  .case-head .lead .dim{color:var(--dim)}
+  .meta{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+  .meta .m{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:baseline;
+    border-top:1px solid var(--line);padding-top:11px}
+  .meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .meta .v{font-size:14.5px;letter-spacing:-.01em;line-height:1.45}
+  @media(max-width:760px){.case-head{grid-template-columns:1fr;gap:30px}}
+
+  /* image rows */
+  .rows{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,20px)}
+  .fig{overflow:hidden;border-radius:12px;background:var(--ph)}
+  .fig img{display:block;width:100%;height:100%;object-fit:cover}
+  .fig .fimg{transition:transform 1.2s var(--ease)}
+  .reveal .fimg{transform:scale(1.06)}
+  .reveal.in .fimg{transform:scale(1)}
+  .row.full .fig img{height:auto}
+  .row.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.5vw,20px)}
+  .row.two .fig{aspect-ratio:4/3}
+  .row.two.port .fig{aspect-ratio:3/4}
+  .row.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
+  .row.three .fig{aspect-ratio:3/4}
+  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}
+    .row.three{grid-template-columns:1fr 1fr}}
+
+  /* note between images */
+  .note{max-width:52ch;padding:clamp(40px,6vw,88px) 0}
+  .note .k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+  .note p{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.4;font-size:clamp(1.25rem,2.2vw,1.6rem)}
+
+  /* closing / next */
+  .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
+    padding:clamp(56px,8vw,120px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px)}
+  .case-end a{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.3rem,2.4vw,1.8rem)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" aria-label="페어웨이 홈"><span class="mk foil-mark" role="img" aria-label="PEARWAY"></span></a>
+  <button class="menu-btn" id="menuOpen" aria-label="메뉴 열기">Menu <span class="bars" aria-hidden="true"><i></i><i></i></span></button>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <button class="menu-close" id="menuClose" aria-label="메뉴 닫기">Close</button>
+  <nav class="menu-list">
+    <a href="/brand">그래픽 디자인 <span class="en">Graphic Design</span></a>
+    <a href="/signage">간판 및 사이니지 <span class="en">Signage</span></a>
+    <a href="https://peartype.kr">폰트 파운더리 <span class="en">Type Foundry ↗</span></a>
+    <a href="/flormonde/">플로르몽드 <span class="en">Objet ↗</span></a>
+    <a href="/about">소개 <span class="en">About</span></a>
+  </nav>
+</div>
+
+<main>
+  <!-- HERO -->
+  <header class="case-hero reveal" id="caseHero">
+    <img class="fimg" src="images/works/darak/facade.webp" alt="다락 건물 외관 사인">
+    <div class="ch-cap">
+      <a class="back" href="/signage">← Signage</a>
+      <h1>다락 <span style="opacity:.78">DARAK</span></h1>
+      <p class="tagline">Self-storage, 셀프스토리지 미니창고</p>
+    </div>
+  </header>
+
+  <div class="case-wrap">
+    <!-- HEAD -->
+    <section class="case-head">
+      <p class="lead reveal">외관 사인부터 유도 사인, 박스 패키지까지 <span class="dim">매장 전체 사이니지를 코발트 블루 하나로 묶은 셀프스토리지.</span></p>
+      <div class="meta reveal">
+        <div class="m"><span class="k">Client</span><span class="v">다락 DARAK</span></div>
+        <div class="m"><span class="k">Year</span><span class="v">2026</span></div>
+        <div class="m"><span class="k">Sector</span><span class="v">Self-storage</span></div>
+        <div class="m"><span class="k">Role</span><span class="v">Signage</span></div>
+        <div class="m"><span class="k">Scope</span><span class="v">Facade Sign, Wayfinding, Package</span></div>
+      </div>
+    </section>
+
+    <div class="rows">
+      <!-- Identity -->
+      <div class="note reveal"><span class="k">01 / Identity</span>
+        <p>코발트 블루 하나로 밀어붙인 아이덴티티. 외관부터 박스, 테이프까지 같은 파랑으로 묶었습니다.</p></div>
+      <div class="row two port">
+        <div class="fig reveal"><img class="fimg" src="images/works/darak/entrance.webp" alt="다락 출입구 사인"></div>
+        <div class="fig reveal"><img class="fimg" src="images/works/darak/packaging.webp" alt="다락 박스 패키지"></div>
+      </div>
+      <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/darak/hangsign.jpg" alt="다락 행잉 사인"></div></div>
+
+      <!-- Wayfinding -->
+      <div class="note reveal"><span class="k">02 / Wayfinding</span>
+        <p>출입구, 카트 반납, 대기 위치, 지하 하역장까지. 바닥 선과 사인으로 길을 안내합니다.</p></div>
+      <div class="row three">
+        <div class="fig reveal"><img class="fimg" src="images/works/darak/wayfinding.webp" alt="다락 내부 유도 사인"></div>
+        <div class="fig reveal"><img class="fimg" src="images/works/darak/rules.webp" alt="다락 이용수칙 사인"></div>
+        <div class="fig reveal"><img class="fimg" src="images/works/darak/parking.webp" alt="다락 지하 하역장 사인"></div>
+      </div>
+    </div>
+
+    <!-- END -->
+    <div class="case-end">
+      <a href="/signage">← Signage</a>
+      <a href="/brand">Graphic Design →</a>
+    </div>
+  </div>
+</main>
+
+<footer id="contact">
+  <div class="f-top">
+    <div class="f-biz">
+      <span>대표 이희배</span>
+      <span>사업자등록번호 515-11-75407</span>
+      <span><a href="mailto:ppearwayy@gmail.com">ppearwayy@gmail.com</a></span>
+      <span><a href="https://instagram.com/thisispearway">@thisispearway</a></span>
+    </div>
+    <form class="f-inq" id="inq-form" data-source="darak" novalidate>
+      <div class="f-inq-h">문의하기 <span>Contact</span></div>
+      <div class="f-inq-row">
+        <input type="text" id="inq-name" name="name" placeholder="성함 / 업체명" autocomplete="name" required>
+        <input type="text" id="inq-contact" name="contact" placeholder="연락처 (전화 또는 이메일)" required>
+      </div>
+      <textarea id="inq-message" name="message" rows="2" placeholder="어떤 작업을 고민 중이신가요?"></textarea>
+      <button type="submit" class="f-inq-btn" id="inq-submit">문의 남기기 <span aria-hidden="true">↗</span></button>
+      <p class="inq-msg" id="inq-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="f-copy">© 2026 PEARWAY</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="pearway.js?v=2"></script>
+<script>
+  (function(){ var h=document.getElementById('caseHero'); if(h) requestAnimationFrame(function(){ h.classList.add('in'); }); })();
+</script>
+</body>
+</html>
