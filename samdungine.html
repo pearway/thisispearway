@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>삼둥이네 푸줏간 / PEARWAY</title>
-<meta name="description" content="삼둥이네 푸줏간 한우 브랜드 아이덴티티. 로고부터 명함, 패키지, 쇼핑백, 매장 간판까지. 페어웨이 작업.">
+<meta name="description" content="삼둥이네 푸줏간 한우 브랜드 아이덴티티. 로고 스케치부터 명함, 패키지, 쇼핑백, 매장 간판까지. 페어웨이 작업.">
 <meta property="og:title" content="삼둥이네 푸줏간 / PEARWAY">
-<meta property="og:description" content="로고부터 명함, 패키지, 쇼핑백, 매장 간판까지. 하나로 묶은 한우 정육점 브랜드.">
+<meta property="og:description" content="로고 스케치부터 명함, 패키지, 쇼핑백, 매장 간판까지. 하나로 묶은 한우 정육점 브랜드.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="images/works/samdungine/facade.jpg">
 
@@ -20,28 +20,43 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <style>
-  .g-wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
+  .case-wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
 
-  .g-intro{padding:calc(clamp(44px,6vw,70px) + clamp(28px,4vw,48px)) 0 clamp(26px,4vw,48px);text-align:center}
-  .g-back{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:inline-block;margin-bottom:clamp(30px,5vw,58px)}
-  .g-back:hover{color:var(--ink)}
-  .g-logo{margin:0 auto clamp(26px,4vw,42px);width:min(300px,62%)}
-  .g-logo img{width:100%;height:auto;display:block;border-radius:12px}
-  .g-intro h1{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.9rem,4vw,2.6rem)}
-  .g-intro h1 span{opacity:.5}
-  .g-lead{margin:clamp(14px,2vw,20px) auto 0;max-width:44ch;color:var(--dim);font-size:clamp(1rem,1.3vw,1.14rem);line-height:1.62}
+  /* hero (로고 스케치) */
+  .case-hero{position:relative;width:100%;height:92svh;min-height:520px;overflow:hidden}
+  .case-hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+  .case-hero.in img{transform:scale(1)}
+  .case-hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,.12) 42%,rgba(0,0,0,.18))}
+  .case-hero .ch-cap{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(22px,3.4vw,46px);color:#fff;z-index:1}
+  .ch-cap .back{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.85);display:inline-block;margin-bottom:14px}
+  .ch-cap h1{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1;font-size:clamp(2rem,4.4vw,2.8rem);text-shadow:0 2px 30px rgba(0,0,0,.5)}
+  .ch-cap .tagline{margin:8px 0 0;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(255,255,255,.92);text-shadow:0 2px 24px rgba(0,0,0,.5)}
+
+  /* head: lead + meta */
+  .case-head{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(28px,6vw,90px);
+    padding:clamp(48px,8vw,120px) 0 clamp(36px,5vw,72px);align-items:start}
+  .case-head .lead{margin:0;font-weight:500;letter-spacing:-.02em;line-height:1.32;font-size:clamp(1.3rem,2.4vw,1.75rem);max-width:24ch}
+  .case-head .lead .dim{color:var(--dim)}
+  .meta{display:flex;flex-direction:column;gap:14px;padding-top:6px}
+  .meta .m{display:grid;grid-template-columns:84px 1fr;gap:14px;align-items:baseline;
+    border-top:1px solid var(--line);padding-top:11px}
+  .meta .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .meta .v{font-size:14.5px;letter-spacing:-.01em;line-height:1.45}
+  @media(max-width:760px){.case-head{grid-template-columns:1fr;gap:30px}}
 
   /* 홈처럼 리듬: 2열 스태거, 자연비율, 여백 */
-  .g-flow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px) clamp(18px,3vw,44px);align-items:start;padding:clamp(24px,4vw,52px) 0 clamp(60px,10vw,120px)}
+  .g-flow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px) clamp(18px,3vw,44px);align-items:start;padding-bottom:clamp(20px,3vw,40px)}
   .g-pc{margin:0;min-width:0}
   .g-pc:nth-child(even){margin-top:clamp(32px,6vw,90px)}
   .g-pc img{width:100%;height:auto;display:block;border-radius:12px;background:var(--ph)}
   .g-cap{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
   @media(max-width:620px){.g-flow{grid-template-columns:1fr;gap:clamp(36px,9vw,56px)}.g-pc:nth-child(even){margin-top:0}}
 
-  .g-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
-    padding:clamp(40px,6vw,80px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line)}
-  .g-end a{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.3rem,2.4vw,1.8rem)}
+  /* closing / next */
+  .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
+    padding:clamp(56px,8vw,120px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line);margin-top:clamp(40px,6vw,80px)}
+  .case-end a{font-weight:600;letter-spacing:-.03em;font-size:clamp(1.3rem,2.4vw,1.8rem)}
 </style>
 </head>
 <body>
@@ -63,24 +78,40 @@
 </div>
 
 <main>
-  <div class="g-wrap">
-    <section class="g-intro reveal">
-      <a class="g-back" href="/brand">← Graphic Design</a>
-      <div class="g-logo"><img src="images/works/samdungine/card.jpg" alt="삼둥이네 푸줏간 로고"></div>
-      <h1>삼둥이네 푸줏간 <span>SAMDUNGINE</span></h1>
-      <p class="g-lead">로고부터 명함, 패키지, 쇼핑백, 매장 간판까지. 하나로 묶은 한우 정육점 브랜드.</p>
+  <!-- HERO: 로고 스케치 -->
+  <header class="case-hero reveal" id="caseHero">
+    <img class="fimg" src="images/works/samdungine/logo-concept.jpg" alt="삼둥이네 푸줏간 로고 스케치">
+    <div class="ch-cap">
+      <a class="back" href="/brand">← Graphic Design</a>
+      <h1>삼둥이네 푸줏간 <span style="opacity:.78">SAMDUNGINE</span></h1>
+      <p class="tagline">Hanwoo Butcher, Seoul</p>
+    </div>
+  </header>
+
+  <div class="case-wrap">
+    <!-- HEAD -->
+    <section class="case-head">
+      <p class="lead reveal">로고 스케치부터 명함, 패키지, 쇼핑백, 매장 간판까지 <span class="dim">하나로 묶은 한우 정육점 브랜드.</span></p>
+      <div class="meta reveal">
+        <div class="m"><span class="k">Client</span><span class="v">삼둥이네 푸줏간</span></div>
+        <div class="m"><span class="k">Year</span><span class="v">2026</span></div>
+        <div class="m"><span class="k">Sector</span><span class="v">한우 정육점 / Hanwoo Butcher</span></div>
+        <div class="m"><span class="k">Role</span><span class="v">Brand Identity</span></div>
+        <div class="m"><span class="k">Scope</span><span class="v">Logo, Business Card, Package, Facade Sign</span></div>
+      </div>
     </section>
 
+    <!-- 리듬 피드 -->
     <div class="g-flow">
+      <figure class="g-pc reveal"><img src="images/works/samdungine/card.jpg" alt="삼둥이네 푸줏간 로고 명함"><figcaption class="g-cap">로고 / Logo</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/cards.jpg" alt="삼둥이네 푸줏간 명함"><figcaption class="g-cap">명함 / Business Card</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/package.jpg" alt="삼둥이네 푸줏간 한우 패키지"><figcaption class="g-cap">패키지 / Package</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/samdungine/package2.jpg" alt="삼둥이네 푸줏간 한우 등심 패키지"><figcaption class="g-cap">한우 등심 패키지 / Package</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/bag.jpg" alt="삼둥이네 푸줏간 쇼핑백"><figcaption class="g-cap">쇼핑백 / Shopping Bag</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/samdungine/logo-concept.jpg" alt="삼둥이네 푸줏간 로고 콘셉트"><figcaption class="g-cap">로고 콘셉트 / Logo Concept</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/facade.jpg" alt="삼둥이네 푸줏간 매장 간판"><figcaption class="g-cap">매장 간판 / Storefront</figcaption></figure>
     </div>
 
-    <div class="g-end">
+    <!-- END -->
+    <div class="case-end">
       <a href="/brand">← Graphic Design</a>
       <a href="/signage">Signage →</a>
     </div>
@@ -109,5 +140,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script src="pearway.js?v=2"></script>
+<script>
+  (function(){ var h=document.getElementById('caseHero'); if(h) requestAnimationFrame(function(){ h.classList.add('in'); }); })();
+</script>
 </body>
 </html>
