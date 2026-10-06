@@ -30,10 +30,11 @@
   .g-intro h1 span{opacity:.5}
   .g-lead{margin:clamp(14px,2vw,20px) auto 0;max-width:44ch;color:var(--dim);font-size:clamp(1rem,1.3vw,1.14rem);line-height:1.62}
 
-  .g-flow{display:flex;flex-direction:column;gap:clamp(44px,7vw,104px);padding:clamp(24px,4vw,52px) 0 clamp(60px,10vw,120px)}
-  .g-pc{margin:0}
-  .g-pc img{width:100%;height:auto;display:block;border-radius:14px;background:var(--ph)}
-  .g-cap{margin-top:15px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--dim)}
+  .g-flow{columns:2;column-gap:clamp(14px,2vw,26px);padding:clamp(24px,4vw,52px) 0 clamp(60px,10vw,120px)}
+  @media(max-width:600px){.g-flow{columns:1}}
+  .g-pc{break-inside:avoid;margin:0 0 clamp(14px,2vw,26px)}
+  .g-pc img{width:100%;height:auto;display:block;border-radius:12px;background:var(--ph)}
+  .g-cap{margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
 
   .g-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
     padding:clamp(40px,6vw,80px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line)}

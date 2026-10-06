@@ -43,10 +43,11 @@
   .meta .v{font-size:14.5px;letter-spacing:-.01em;line-height:1.45}
   @media(max-width:760px){.case-head{grid-template-columns:1fr;gap:30px}}
 
-  /* 낱장 피드 (단일 컬럼, 전부 풀폭 자연비율) */
-  .rows{display:flex;flex-direction:column;gap:clamp(16px,2.6vw,34px)}
-  .rows .row,.rows .row.two,.rows .row.three{display:flex;flex-direction:column;gap:clamp(16px,2.6vw,34px)}
-  .fig{overflow:hidden;border-radius:12px;background:var(--ph)}
+  /* 메이슨리 피드 (2열 촘촘) */
+  .rows{columns:2;column-gap:clamp(14px,2vw,26px)}
+  @media(max-width:600px){.rows{columns:1}}
+  .rows .row,.rows .row.two,.rows .row.three{display:contents}
+  .fig{break-inside:avoid;margin:0 0 clamp(14px,2vw,26px);overflow:hidden;border-radius:12px;background:var(--ph)}
   .fig img{display:block;width:100%;height:auto}
   .fig .fimg{transition:transform 1.2s var(--ease)}
   .reveal .fimg{transform:scale(1.04)}
