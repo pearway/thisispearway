@@ -53,6 +53,10 @@
   .g-pc img{width:100%;height:auto;display:block;border-radius:12px;background:var(--ph)}
   .g-cap{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
   @media(max-width:620px){.g-flow{grid-template-columns:1fr;gap:clamp(36px,9vw,56px)}.g-pc:nth-child(3n){margin-top:0}}
+  /* 로고를 히어로 바로 아래 맨 위에 */
+  .g-lead-logo{display:flex;flex-direction:column;align-items:center;padding:0 0 clamp(44px,7vw,100px)}
+  .g-lead-logo img{width:min(640px,100%);height:auto;display:block;border-radius:12px;background:var(--ph)}
+  .g-lead-logo figcaption{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim);text-align:center}
 
   /* closing / next */
   .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
@@ -102,20 +106,24 @@
       </div>
     </section>
 
+    <!-- 로고 (히어로 바로 아래, 맨 위) -->
+    <figure class="g-lead-logo reveal">
+      <img src="images/works/chickenfarmers/logo-concept.jpg" alt="치킨파머스 로고 스케치">
+      <figcaption>로고 콘셉트 / Logo Concept</figcaption>
+    </figure>
+
     <!-- 리듬 피드 -->
     <div class="g-flow">
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/box.jpg" alt="치킨파머스 포장 박스"><figcaption class="g-cap">포장 박스 / Package</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/logo-concept.jpg" alt="치킨파머스 로고 스케치"><figcaption class="g-cap">로고 콘셉트 / Logo Concept</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/emblem.jpg" alt="치킨파머스 앰블럼 로고"><figcaption class="g-cap">앰블럼 / Emblem</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot.jpg" alt="치킨파머스 마스코트 콘셉트"><figcaption class="g-cap">마스코트 콘셉트 / Mascot Concept</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/poster.jpg" alt="치킨파머스 메뉴 포스터"><figcaption class="g-cap">메뉴 포스터 / Poster</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/emblem.jpg" alt="치킨파머스 앰블럼 로고"><figcaption class="g-cap">앰블럼 / Emblem</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/stamp.jpg" alt="치킨파머스 스탬프"><figcaption class="g-cap">스탬프 / Stamp</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/coaster.jpg" alt="치킨파머스 코스터"><figcaption class="g-cap">코스터 / Coaster</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-final.jpg" alt="치킨파머스 마스코트"><figcaption class="g-cap">마스코트 / Mascot</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-poses.jpg" alt="치킨파머스 마스코트 포즈"><figcaption class="g-cap">마스코트 포즈 / Mascot Poses</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/aframe.jpg" alt="치킨파머스 스페셜 메뉴 입간판"><figcaption class="g-cap">스페셜 메뉴 입간판 / A-frame</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/bucket.jpg" alt="치킨파머스 치킨 버킷"><figcaption class="g-cap">치킨 버킷 / Bucket</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/stamp.jpg" alt="치킨파머스 스탬프"><figcaption class="g-cap">스탬프 / Stamp</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/aframe.jpg" alt="치킨파머스 스페셜 메뉴 입간판"><figcaption class="g-cap">스페셜 메뉴 입간판 / A-frame</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/banner.jpg" alt="치킨파머스 프로모션 배너"><figcaption class="g-cap">프로모션 배너 / Banner</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-poses.jpg" alt="치킨파머스 마스코트 포즈"><figcaption class="g-cap">마스코트 포즈 / Mascot Poses</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-final.jpg" alt="치킨파머스 마스코트"><figcaption class="g-cap">마스코트 / Mascot</figcaption></figure>
     </div>
 
     <!-- END -->

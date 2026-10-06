@@ -52,6 +52,10 @@
   .g-pc img{width:100%;height:auto;display:block;border-radius:12px;background:var(--ph)}
   .g-cap{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
   @media(max-width:620px){.g-flow{grid-template-columns:1fr;gap:clamp(36px,9vw,56px)}.g-pc:nth-child(even){margin-top:0}}
+  /* 로고를 히어로 바로 아래 맨 위에 */
+  .g-lead-logo{display:flex;flex-direction:column;align-items:center;padding:0 0 clamp(44px,7vw,100px)}
+  .g-lead-logo img{width:min(640px,100%);height:auto;display:block;border-radius:12px;background:var(--ph)}
+  .g-lead-logo figcaption{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim);text-align:center}
 
   /* closing / next */
   .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
@@ -101,13 +105,18 @@
       </div>
     </section>
 
+    <!-- 로고 (히어로 바로 아래, 맨 위) -->
+    <figure class="g-lead-logo reveal">
+      <img src="images/works/samdungine/logo-concept.jpg" alt="삼둥이네 푸줏간 로고 스케치">
+      <figcaption>로고 콘셉트 / Logo Concept</figcaption>
+    </figure>
+
     <!-- 리듬 피드 -->
     <div class="g-flow">
       <figure class="g-pc reveal"><img src="images/works/samdungine/card.jpg" alt="삼둥이네 푸줏간 로고 명함"><figcaption class="g-cap">로고 / Logo</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/cards.jpg" alt="삼둥이네 푸줏간 명함"><figcaption class="g-cap">명함 / Business Card</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/package.jpg" alt="삼둥이네 푸줏간 한우 패키지"><figcaption class="g-cap">패키지 / Package</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/samdungine/bag.jpg" alt="삼둥이네 푸줏간 쇼핑백"><figcaption class="g-cap">쇼핑백 / Shopping Bag</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/samdungine/logo-concept.jpg" alt="삼둥이네 푸줏간 로고 스케치"><figcaption class="g-cap">로고 콘셉트 / Logo Concept</figcaption></figure>
     </div>
 
     <!-- END -->
