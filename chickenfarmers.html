@@ -43,15 +43,22 @@
   .meta .v{font-size:14.5px;letter-spacing:-.01em;line-height:1.45}
   @media(max-width:760px){.case-head{grid-template-columns:1fr;gap:30px}}
 
-  /* 메이슨리 피드 (2열 촘촘) */
-  .rows{columns:2;column-gap:clamp(14px,2vw,26px)}
-  @media(max-width:600px){.rows{columns:1}}
-  .rows .row,.rows .row.two,.rows .row.three{display:contents}
-  .fig{break-inside:avoid;margin:0 0 clamp(14px,2vw,26px);overflow:hidden;border-radius:12px;background:var(--ph)}
+  /* 홈처럼 리듬: 풀폭 + 2열 스태거, 자연비율, 여백 */
+  .rows{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px) clamp(18px,3vw,44px);align-items:start}
+  .rows .row,.rows .row.two,.rows .row.three,.rows .row.full{display:contents}
+  .fig{overflow:hidden;border-radius:12px;background:var(--ph)}
   .fig img{display:block;width:100%;height:auto}
   .fig .fimg{transition:transform 1.2s var(--ease)}
   .reveal .fimg{transform:scale(1.04)}
   .reveal.in .fimg{transform:scale(1)}
+  .rows .row.full .fig{grid-column:1 / -1}
+  .rows .row.two .fig:nth-child(2){margin-top:clamp(28px,6vw,80px)}
+  .rows .row.three .fig:nth-child(2){margin-top:clamp(28px,6vw,80px)}
+  @media(max-width:620px){
+    .rows{grid-template-columns:1fr;gap:clamp(36px,9vw,56px)}
+    .rows .row.full .fig{grid-column:auto}
+    .rows .row.two .fig:nth-child(2),.rows .row.three .fig:nth-child(2){margin-top:0}
+  }
 
   /* closing / next */
   .case-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;

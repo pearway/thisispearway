@@ -32,11 +32,14 @@
   .g-intro h1 span{opacity:.5}
   .g-lead{margin:clamp(14px,2vw,20px) auto 0;max-width:44ch;color:var(--dim);font-size:clamp(1rem,1.3vw,1.14rem);line-height:1.62}
 
-  .g-flow{columns:2;column-gap:clamp(14px,2vw,26px);padding:clamp(24px,4vw,52px) 0 clamp(60px,10vw,120px)}
-  @media(max-width:600px){.g-flow{columns:1}}
-  .g-pc{break-inside:avoid;margin:0 0 clamp(14px,2vw,26px)}
+  /* 홈처럼 리듬 배치: 3개마다 1개 풀폭 + 1개 오프셋, 자연비율, 여백 */
+  .g-flow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,88px) clamp(18px,3vw,44px);align-items:start;padding:clamp(24px,4vw,52px) 0 clamp(60px,10vw,120px)}
+  .g-pc{margin:0;min-width:0}
+  .g-pc:nth-child(3n+1){grid-column:1 / -1}
+  .g-pc:nth-child(3n){margin-top:clamp(28px,6vw,90px)}
   .g-pc img{width:100%;height:auto;display:block;border-radius:12px;background:var(--ph)}
-  .g-cap{margin-top:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
+  .g-cap{margin-top:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--dim)}
+  @media(max-width:620px){.g-flow{grid-template-columns:1fr;gap:clamp(36px,9vw,56px)}.g-pc:nth-child(3n){margin-top:0}}
 
   .g-end{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;align-items:baseline;
     padding:clamp(40px,6vw,80px) 0 clamp(30px,4vw,56px);border-top:1px solid var(--line)}
@@ -71,18 +74,18 @@
       <p class="g-lead">팜 투 테이블 치킨 다이닝의 브랜드 아이덴티티. 로고와 앰블럼, 마스코트.</p>
     </section>
 
-    <!-- 메이슨리 피드 -->
+    <!-- 홈처럼 리듬 배치 -->
     <div class="g-flow">
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/brand-guide.jpg" alt="치킨파머스 브랜드 가이드 로고 시스템"><figcaption class="g-cap">브랜드 가이드 / Brand Guide</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/logo-concept.jpg" alt="치킨파머스 로고 콘셉트"><figcaption class="g-cap">로고 콘셉트 / Logo Concept</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot.jpg" alt="치킨파머스 마스코트 콘셉트"><figcaption class="g-cap">마스코트 콘셉트 / Mascot Concept</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-final.jpg" alt="치킨파머스 마스코트"><figcaption class="g-cap">마스코트 / Mascot</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-poses.jpg" alt="치킨파머스 마스코트 포즈"><figcaption class="g-cap">마스코트 포즈 / Mascot Poses</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/box.jpg" alt="치킨파머스 포장 박스"><figcaption class="g-cap">포장 박스 / Package</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/bucket.jpg" alt="치킨파머스 치킨 버킷"><figcaption class="g-cap">치킨 버킷 / Bucket</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/stamp.jpg" alt="치킨파머스 스탬프"><figcaption class="g-cap">스탬프 / Stamp</figcaption></figure>
-      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/coaster.jpg" alt="치킨파머스 코스터"><figcaption class="g-cap">코스터 / Coaster</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/poster.jpg" alt="치킨파머스 메뉴 포스터"><figcaption class="g-cap">메뉴 포스터 / Poster</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-final.jpg" alt="치킨파머스 마스코트"><figcaption class="g-cap">마스코트 / Mascot</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/mascot-poses.jpg" alt="치킨파머스 마스코트 포즈"><figcaption class="g-cap">마스코트 포즈 / Mascot Poses</figcaption></figure>
+      <figure class="g-pc reveal"><img src="images/works/chickenfarmers/coaster.jpg" alt="치킨파머스 코스터"><figcaption class="g-cap">코스터 / Coaster</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/banner.jpg" alt="치킨파머스 프로모션 배너"><figcaption class="g-cap">프로모션 배너 / Banner</figcaption></figure>
       <figure class="g-pc reveal"><img src="images/works/chickenfarmers/aframe.jpg" alt="치킨파머스 스페셜 메뉴 입간판"><figcaption class="g-cap">입간판 / A-frame</figcaption></figure>
     </div>
