@@ -8,7 +8,7 @@
 <meta property="og:title" content="진대감 / PEARWAY">
 <meta property="og:description" content="외관 사인부터 주차장, 룸, 유리문 안내까지. 매장 전체를 한 톤으로.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="images/works/jindaegam/facade-night.jpg">
+<meta property="og:image" content="images/works/jindaegam/facade-day.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,8 +56,11 @@
   .row.two.port .fig{aspect-ratio:3/4}
   .row.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
   .row.three .fig{aspect-ratio:3/4}
-  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}
-    .row.three{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){
+    .row.two,.row.three{grid-template-columns:1fr}
+    .row.two .fig,.row.two.port .fig,.row.three .fig{aspect-ratio:auto}
+    .row.two .fig img,.row.three .fig img{height:auto}
+  }
 
   /* note between images */
   .note{max-width:52ch;padding:clamp(40px,6vw,88px) 0}
@@ -92,7 +95,7 @@
 <main>
   <!-- HERO -->
   <header class="case-hero reveal" id="caseHero">
-    <img class="fimg" src="images/works/jindaegam/facade-night.jpg" alt="진대감 야간 외관 사인">
+    <img class="fimg" src="images/works/jindaegam/facade-day.jpg" alt="진대감 주간 외관 사인">
     <div class="ch-cap">
       <a class="back" href="/signage">← Signage</a>
       <h1>진대감 <span style="opacity:.78">JINDAEGAM</span></h1>
@@ -115,7 +118,7 @@
 
     <div class="rows">
       <!-- Facade -->
-      <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/jindaegam/facade-day.jpg" alt="진대감 주간 외관"></div></div>
+      <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/jindaegam/facade-night.jpg" alt="진대감 야간 외관"></div></div>
       <div class="row full reveal"><div class="fig"><img class="fimg" src="images/works/jindaegam/signboard.webp" alt="진대감 돌출 간판"></div></div>
       <div class="row two">
         <div class="fig reveal"><img class="fimg" src="images/works/jindaegam/counter.jpg" alt="진대감 내부 사인"></div>

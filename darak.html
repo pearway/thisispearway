@@ -56,8 +56,11 @@
   .row.two.port .fig{aspect-ratio:3/4}
   .row.three{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px)}
   .row.three .fig{aspect-ratio:3/4}
-  @media(max-width:760px){.row.two{grid-template-columns:1fr}.row.two .fig{aspect-ratio:3/2}.row.two.port .fig{aspect-ratio:3/4}
-    .row.three{grid-template-columns:1fr 1fr}}
+  @media(max-width:760px){
+    .row.two,.row.three{grid-template-columns:1fr}
+    .row.two .fig,.row.two.port .fig,.row.three .fig{aspect-ratio:auto}
+    .row.two .fig img,.row.three .fig img{height:auto}
+  }
 
   /* note between images */
   .note{max-width:52ch;padding:clamp(40px,6vw,88px) 0}
