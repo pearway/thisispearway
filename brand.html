@@ -28,16 +28,19 @@
   .phead .sub{margin:clamp(16px,2vw,24px) 0 0;max-width:52ch;color:var(--dim);font-size:clamp(.95rem,1.1vw,1.06rem);line-height:1.6}
   .shead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 var(--pad) clamp(20px,2.4vw,30px);border-bottom:1px solid var(--line)}
   .shead h2{margin:0;font-weight:600;letter-spacing:-.02em;font-size:clamp(1rem,1.4vw,1.15rem)}
-  /* 개별 작업물 피드 (프로젝트로 묶지 않고 낱장으로) */
-  .g-feed{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);columns:2;column-gap:clamp(22px,3.4vw,56px)}
-  @media(max-width:720px){.g-feed{columns:1}}
-  .g-item{break-inside:avoid;margin:0 0 clamp(40px,5vw,70px)}
-  .g-ph{width:100%;border-radius:12px;overflow:hidden;background:var(--ph)}
-  .g-ph img{width:100%;height:auto;display:block}
-  .g-cap{margin-top:14px}
-  .g-nm{display:block;font-weight:600;letter-spacing:-.02em;font-size:clamp(1.02rem,1.5vw,1.2rem);line-height:1.2}
-  .g-spec{display:block;margin-top:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--dim);line-height:1.5}
-  @media(hover:hover){.g-item:hover .g-ph{opacity:.95}}
+  /* 풀폭 / 2-up 섞인 리듬 그리드 */
+  .works{padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,6vw,90px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px) clamp(22px,3.4vw,56px);align-items:start}
+  .work{display:block;min-width:0}
+  .work:nth-child(3n+1){grid-column:1 / -1}
+  .work:nth-child(3n) .w-ph{margin-top:clamp(40px,8vw,120px)}
+  .work .w-ph{width:100%;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--ph)}
+  .work .w-ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .work:nth-child(3n+1) .w-ph{aspect-ratio:16/9}
+  @media(max-width:760px){.works{grid-template-columns:1fr;gap:clamp(40px,10vw,64px)}.work:nth-child(3n) .w-ph{margin-top:0}.work .w-ph{aspect-ratio:4/5}.work:nth-child(3n+1) .w-ph{aspect-ratio:4/3}}
+  .work .w-cap{margin-top:clamp(16px,1.8vw,22px)}
+  .work .w-nm{display:block;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.1}
+  .w-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  @media(hover:hover){.work:hover .w-ph{opacity:.95}.work:hover .pill{background:#E6E6E8;color:var(--ink)}}
   .contact{padding:clamp(80px,12vw,160px) 0}
   .contact h2{margin:0;font-weight:600;letter-spacing:-.04em;line-height:1.05;font-size:clamp(1.9rem,4vw,2.5rem)}
   .inq{max-width:620px;margin:clamp(34px,4.5vw,56px) 0 0;display:flex;flex-direction:column;gap:12px}
@@ -81,25 +84,19 @@
 
   <div class="shead reveal">
     <h2>Work</h2>
-    <span class="mono dim"></span>
+    <span class="mono dim">02</span>
   </div>
-  <div class="g-feed">
-    <figure class="g-item reveal">
-      <div class="g-ph" style="aspect-ratio:4/3"></div>
-      <figcaption class="g-cap"><span class="g-nm">작업명</span><span class="g-spec">용지 / 사이즈 (예: 아트지 200g / 90×50mm)</span></figcaption>
-    </figure>
-    <figure class="g-item reveal">
-      <div class="g-ph" style="aspect-ratio:3/4"></div>
-      <figcaption class="g-cap"><span class="g-nm">작업명</span><span class="g-spec">용지 / 사이즈</span></figcaption>
-    </figure>
-    <figure class="g-item reveal">
-      <div class="g-ph" style="aspect-ratio:1/1"></div>
-      <figcaption class="g-cap"><span class="g-nm">작업명</span><span class="g-spec">용지 / 사이즈</span></figcaption>
-    </figure>
-    <figure class="g-item reveal">
-      <div class="g-ph" style="aspect-ratio:3/4"></div>
-      <figcaption class="g-cap"><span class="g-nm">작업명</span><span class="g-spec">용지 / 사이즈</span></figcaption>
-    </figure>
+  <div class="works">
+    <a class="work reveal" href="/chickenfarmers-graphic">
+      <div class="w-ph"><img src="images/works/chickenfarmers/aframe.jpg" alt="치킨파머스 브랜드"></div>
+      <div class="w-cap"><span class="w-nm">치킨파머스</span>
+        <div class="w-tags"><span class="pill">Logo</span><span class="pill">Emblem</span><span class="pill">Mascot</span></div></div>
+    </a>
+    <a class="work reveal" href="/samdungine">
+      <div class="w-ph"><img src="images/works/samdungine/package.jpg" alt="삼둥이네 푸줏간"></div>
+      <div class="w-cap"><span class="w-nm">삼둥이네 푸줏간</span>
+        <div class="w-tags"><span class="pill">Logo</span><span class="pill">Package</span><span class="pill">Card</span></div></div>
+    </a>
   </div>
 </main>
 
