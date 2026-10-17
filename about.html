@@ -15,13 +15,14 @@
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="pearway.css?v=3">
+<link rel="stylesheet" href="pearway.css?v=4">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <style>
   .wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
   .hero{padding:calc(clamp(16px,2.2vw,24px) + clamp(44px,6vw,70px)) var(--pad) 0}
   .hero-ph{width:min(100%,440px);aspect-ratio:2/3;border-radius:14px;overflow:hidden;background:var(--ph)}
+  @media(min-width:821px){.hero-ph{width:auto;height:clamp(300px,48vh,410px)}}
   .hero-ph img{width:100%;height:100%;object-fit:cover;display:block}
 
   .abo{padding:clamp(48px,8vw,120px) var(--pad);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,6vw,90px);align-items:start}
