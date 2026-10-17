@@ -26,7 +26,7 @@
 <link rel="stylesheet" as="style" crossorigin
   href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="pearway.css?v=4">
+<link rel="stylesheet" href="pearway.css?v=5">
 
 <style>
   :root{
@@ -42,7 +42,7 @@
   }
   /* 실버 은박: 마크 모양에 금속 그라디언트가 흐르며 빛 반짝 */
   .foil-mark{display:block;background-image:var(--foil);background-size:100% 100%;background-position:0 0;
-    -webkit-mask:url(images/pearway-mark-ink.png) no-repeat center/contain;mask:url(images/pearway-mark-ink.png) no-repeat center/contain}
+    -webkit-mask:url(images/pearway-symbol.svg) no-repeat center/contain;mask:url(images/pearway-symbol.svg) no-repeat center/contain}
   .foil-txt{background-image:var(--foil);background-size:100% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -69,7 +69,7 @@
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
       padding:clamp(16px,2.2vw,24px) var(--pad);mix-blend-mode:normal}
-  nav .mk{width:clamp(28px,3vw,36px);aspect-ratio:660/592;background-image:var(--foil-d)}
+  nav .mk{width:clamp(26px,2.7vw,32px);aspect-ratio:884/1000;background-image:var(--foil-d)}
   .menu-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
             background:none;border:0;cursor:pointer;color:var(--ink);padding:6px 2px}
   .menu-btn .bars{display:inline-flex;flex-direction:column;gap:4px;width:20px}
@@ -285,7 +285,7 @@
 
     };
     img.onerror=function(){ setTimeout(end, 500); };
-    img.src='images/pearway-mark-ink.png';
+    img.src='images/pearway-symbol.png';
 
     var t0=null, exitAt=null;
     function startExit(){ if(exitAt===null) exitAt=performance.now(); }
