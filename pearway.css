@@ -3,8 +3,8 @@
    홈/간판/공간그래픽/소개 공통. (플로르몬드, 어드민 제외)
    ============================================================ */
 :root{
-  --bg:#FFFFFF; --ink:#0B0B0C; --dim:#8D8D90;
-  --ph:#F3F3F4; --ph-ink:rgba(11,11,12,.3);
+  --bg:#CBC9C4; --ink:#0B0B0C; --dim:#6F6F6B;
+  --ph:#D8D6D1; --ph-ink:rgba(11,11,12,.3);
   --line:rgba(11,11,12,.12); --line-2:rgba(11,11,12,.055);
   /* 실버 = peartype(#C7CBD2) 메탈 톤과 통일 (브랜드 브릿지) */
   --foil:linear-gradient(100deg,#a4a9b0 0%,#cfd2d8 20%,#f6f7f9 38%,#b8bcc3 52%,#e8eaee 66%,#a9aeb5 82%,#d4d7dd 100%);
@@ -36,8 +36,8 @@ a{color:inherit;text-decoration:none}
 .ph[data-label]::after{content:attr(data-label);position:absolute;left:16px;bottom:13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ph-ink)}
 
 /* 태그 pill */
-.pill{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.02em;color:#5A5A5D;background:#EEEEEF;border:none;border-radius:3px;padding:5px 9px;white-space:nowrap;transition:background .25s,color .25s}
-@media(hover:hover){.work:hover .pill,.div:hover .pill{background:#E6E6E8}}
+.pill{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.02em;color:#5A5A5D;background:#D8D6D1;border:none;border-radius:0;padding:5px 9px;white-space:nowrap;transition:background .25s,color .25s}
+@media(hover:hover){.work:hover .pill,.div:hover .pill{background:#CFCDC7}}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:clamp(16px,2.2vw,24px) var(--pad)}
@@ -84,11 +84,11 @@ footer{border-top:1px solid var(--line)}
 .f-inq-h{font-weight:600;letter-spacing:-.02em;font-size:1.05rem}
 .f-inq-h span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-left:9px}
 .f-inq-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.f-inq input,.f-inq textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:var(--sans);font-size:13.5px;letter-spacing:-.01em;padding:10px 12px;transition:border-color .2s var(--ease)}
+.f-inq input,.f-inq textarea{width:100%;background:#D8D6D1;border:1px solid var(--line);border-radius:0;color:var(--ink);font-family:var(--sans);font-size:13.5px;letter-spacing:-.01em;padding:10px 12px;transition:border-color .2s var(--ease)}
 .f-inq input:focus,.f-inq textarea:focus{outline:none;border-color:var(--ink)}
 .f-inq input.err{border-color:#c0392b}
 .f-inq textarea{resize:vertical;min-height:52px;line-height:1.5}
-.f-inq-btn{align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:11px 20px;border-radius:999px;transition:opacity .25s var(--ease)}
+.f-inq-btn{align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:11px 20px;border-radius:0;transition:opacity .25s var(--ease)}
 .f-inq-btn:hover{opacity:.85}
 .f-inq-btn:disabled{opacity:.5;cursor:default}
 .inq-msg{min-height:1em;margin:1px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:0;color:var(--dim)}
