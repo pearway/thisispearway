@@ -357,7 +357,7 @@
 <main id="v-home" data-view="/">
   <section class="hero">
     <div class="hero-carousel">
-      <img class="hs on" src="img/hero.jpg?v=2" alt="플로르몽드">
+      <img class="hs on" src="img/hero.jpg?v=3" alt="플로르몽드">
     </div>
   </section>
 
@@ -385,10 +385,10 @@
 <main id="v-product" data-view="/product" hidden>
   <div class="pdp">
     <div class="pdp-media">
-      <div class="ph"><img src="img/product-orange.jpg?v=2" alt="페탈 엄브렐라 스탠드"></div>
-      <div class="ph"><img src="img/product-orange-d.jpg?v=2" alt="페탈 엄브렐라 스탠드 상단 디테일"></div>
-      <div class="ph"><img src="img/pack-1.jpg?v=2" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
-      <div class="ph"><img src="img/pack-2.jpg?v=2" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
+      <div class="ph"><img src="img/product-orange.jpg?v=3" alt="페탈 엄브렐라 스탠드"></div>
+      <div class="ph"><img src="img/product-orange-d.jpg?v=3" alt="페탈 엄브렐라 스탠드 상단 디테일"></div>
+      <div class="ph"><img src="img/pack-1.jpg?v=3" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
+      <div class="ph"><img src="img/pack-2.jpg?v=3" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
     </div>
 
     <div class="pdp-info">
@@ -440,16 +440,22 @@
           <summary>배송 &amp; 반품 정책</summary>
           <div class="body">
             <b style="color:var(--ink);font-weight:500">배송 정책</b><br>
-            배송비는 상품 가격에 포함되어 있습니다. 주문 후 2~3 영업일 내 출고.<br><br>
-            <b style="color:var(--ink);font-weight:500">반품 정책</b><br>
-            수령 후 7일 이내 신청. 반품 신청 건당 3,000원 (고객 귀책 사유 한정).
+            배송비는 상품 가격에 포함되어 있습니다. 수도권(서울 · 경기 · 인천) 지역은 저희가 직접 방문해 문 앞까지 전달해 드립니다. 리본을 묶고 천으로 감싸, 꽃을 전하듯 가져다 드려요.<br><br>
+            <b style="color:var(--ink);font-weight:500">교환 · 반품 정책</b><br>
+            주문 확인 후 제작해 직접 전달하는 상품입니다. 전달하실 때 함께 상태를 확인하고, 제작 불량이나 파손이 있으면 바로 교환해 드립니다. 주문 제작 상품이라 단순 변심에 의한 반품·교환은 어렵습니다.
           </div>
         </details>
         <details class="row">
           <summary>도움이 필요하신가요?</summary>
           <div class="body">
-            이메일 문의 · hello@flormonde.kr<br>
-            고객 센터 운영 시간 · 월요일부터 금요일, 10:00–18:00 (공휴일 제외)
+            궁금한 점을 남겨 주시면 평일 기준 1~2일 안에 메일로 답장드려요.
+            <form id="inqForm" class="inq-form" novalidate>
+              <input type="email" id="inqEmail" placeholder="회신받을 이메일" autocomplete="email">
+              <textarea id="inqMsg" rows="3" placeholder="문의 내용을 적어 주세요"></textarea>
+              <button type="submit" class="btn btn-o" id="inqSubmit">문의 접수</button>
+              <p class="inq-msg" id="inqResult"></p>
+            </form>
+            이메일로 직접 보내셔도 돼요 · hello@flormonde.kr
           </div>
         </details>
       </div>
@@ -465,7 +471,7 @@
 
 <!-- ================= 브랜드 ================= -->
 <main id="v-story" data-view="/story" hidden>
-  <figure class="st-hero"><img src="img/lb-gala.jpg?v=2" alt="플로르몽드"></figure>
+  <figure class="st-hero"><img src="img/lb-gala.jpg?v=3" alt="플로르몽드"></figure>
 
   <section class="st-lead">
     <h1>Brand</h1>
@@ -473,36 +479,32 @@
     <p>꽃을 뜻하는 라틴어 플로르(FLOR), 세계를 뜻하는 프랑스어 몽드(MONDE).</p>
   </section>
 
-  <figure class="st-fig"><img src="img/st-concierge.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy" style="object-position:center 42%"></figure>
+  <figure class="st-fig"><img src="img/st-concierge.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy" style="object-position:center 42%"></figure>
 
   <section class="st-block">
     <p>생화는 언젠가 시들지만, 금속으로 만든 꽃은 지지 않습니다. 플로르몽드의 물건이 놓인 자리는 계절과 상관없이 늘 만개해 있습니다.</p>
   </section>
 
   <div class="st-cw">
-    <img src="img/cw-orange.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
-    <img src="img/cw-green.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
-    <img src="img/cw-yellow.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
-    <img src="img/cw-pink.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-orange.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-green.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-yellow.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-pink.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy">
   </div>
 
   <section class="st-block">
     <p>강판을 자르고 구부려 분체도장으로 구워 마감합니다. 절단과 절곡, 도장까지 모두 국내에서 생산하고, 실내에서 오래 곁에 둘 수 있도록 단단하게 완성합니다.</p>
   </section>
 
-  <figure class="st-fig"><img src="img/lb-blue.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/lb-blue.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 
-  <section class="st-block">
-    <p>우산꽂이에서 시작해 조명으로 이어집니다. 현관과 창가, 식탁과 책상까지, 일상의 자리마다 지지 않는 꽃 한 송이를 놓습니다.</p>
-  </section>
-
-  <figure class="st-fig"><img src="img/st-entry.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/st-entry.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 
   <section class="st-lead st-close">
     <p class="st-big">꽃이 지지 않는 세계, 플로르몽드</p>
   </section>
 
-  <figure class="st-fig"><img src="img/st-green.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/st-green.jpg?v=3" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 </main>
 
 <!-- ================= 고객센터 ================= -->
@@ -560,21 +562,39 @@
   .om-chk input{margin-top:2px;flex:none;}
   .om-submit{width:100%;padding:13px;font-size:15px;border-radius:3px;cursor:pointer;}
   .om-msg{min-height:1em;margin:10px 0 0;font-size:12.5px;color:#b4442e;text-align:center;}
+  .post-wrap{position:fixed;inset:0;z-index:400;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(10,10,12,.6);}
+  .post-wrap[hidden]{display:none;}
+  .post-box{position:relative;width:100%;max-width:440px;background:#fff;border-radius:4px;padding:36px 8px 8px;box-shadow:0 20px 60px rgba(0,0,0,.4);}
+  .post-x{position:absolute;top:6px;right:12px;background:none;border:0;font-size:24px;line-height:1;color:#888;cursor:pointer;padding:2px 6px;}
+  #postEmbed{width:100%;height:460px;}
+  .inq-form{display:flex;flex-direction:column;gap:8px;margin:12px 0 14px;}
+  .inq-form input,.inq-form textarea{width:100%;box-sizing:border-box;padding:10px 11px;font:inherit;font-size:13.5px;color:var(--ink);background:#fff;border:1px solid var(--line,rgba(0,0,0,.15));border-radius:3px;}
+  .inq-form textarea{resize:vertical;min-height:64px;line-height:1.5;}
+  .inq-form input:focus,.inq-form textarea:focus{outline:none;border-color:var(--ink);}
+  .inq-form .btn{align-self:flex-start;padding:9px 18px;font-size:13.5px;border-radius:3px;cursor:pointer;}
+  .inq-msg{min-height:1em;margin:2px 0 0;font-size:12px;color:var(--sub,#777);}
 </style>
 <div class="om" id="orderModal" hidden role="dialog" aria-modal="true" aria-label="구매 신청">
   <div class="om-card">
     <button class="om-x" id="omClose" type="button" aria-label="닫기">&times;</button>
     <h3 class="om-h">구매 신청</h3>
-    <p class="om-sub">페탈 엄브렐라 스탠드 · 오렌지 · <b>199,000원</b> · 배송비 포함</p>
+    <p class="om-sub">페탈 엄브렐라 스탠드 · 오렌지 · <b>199,000원</b> · 배송비 포함<br>수도권(서울 · 경기 · 인천) 직접 방문 배송이에요.</p>
     <form id="orderForm" novalidate>
       <label class="om-f"><span>이름</span><input type="text" id="ofName" autocomplete="name" required></label>
       <label class="om-f"><span>연락처</span><input type="tel" id="ofPhone" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required></label>
-      <label class="om-f"><span>주소</span><input type="text" id="ofAddr" autocomplete="street-address" placeholder="배송받으실 주소" required></label>
-      <label class="om-f"><span>상세 주소 (선택)</span><input type="text" id="ofAddr2" autocomplete="address-line2" placeholder="동 · 호수 등"></label>
+      <label class="om-f"><span>주소</span><input type="text" id="ofAddr" placeholder="클릭하여 주소 검색" readonly required style="cursor:pointer;background:#fff"></label>
+      <label class="om-f"><span>상세 주소</span><input type="text" id="ofAddr2" autocomplete="address-line2" placeholder="동 · 호수 등 나머지 주소"></label>
       <label class="om-chk"><input type="checkbox" id="ofAgree"><span>개인정보 수집·이용에 동의합니다. 이름·연락처·주소를 주문 처리 목적으로만 수집하며, 처리 완료 후 지체 없이 파기합니다.</span></label>
       <button class="btn btn-o om-submit" type="submit" id="ofSubmit">신청하기</button>
       <p class="om-msg" id="ofMsg"></p>
     </form>
+  </div>
+</div>
+
+<div class="post-wrap" id="postWrap" hidden role="dialog" aria-modal="true" aria-label="주소 검색">
+  <div class="post-box">
+    <button class="post-x" id="postClose" type="button" aria-label="닫기">&times;</button>
+    <div id="postEmbed"></div>
   </div>
 </div>
 
@@ -586,10 +606,10 @@
   function say(m){ toast.textContent=m; toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('on');},2200); }
 
   var COLORS = [
-    {n:'오렌지',c:'RAL 2002',hex:'#CA371D',full:'img/product-orange.jpg?v=2',det:'img/product-orange-d.jpg?v=2'}
+    {n:'오렌지',c:'RAL 2002',hex:'#CA371D',full:'img/product-orange.jpg?v=3',det:'img/product-orange-d.jpg?v=3'}
   ];
   var PRODUCTS = [
-    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-orange.jpg?v=2'}
+    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-orange.jpg?v=3'}
   ];
 
   function card(p, i){
@@ -649,22 +669,15 @@
       ['어디서 만드나요?','국내에서 제작합니다. 절단과 절곡, 분체도장 모두 국내 협력사와 함께 진행합니다.']
     ]},
     { id:'shipping', label:'배송', desc:'출고와 배송에 관한 안내입니다.', items:[
-      ['배송은 얼마나 걸리나요?','주문 후 2~3 영업일 내 출고됩니다. 도서산간은 2일이 추가됩니다.'],
+      ['배송은 어떻게 되나요?','주문 제작 후 수도권 내에 저희가 직접 방문해 문 앞까지 전달해 드립니다. 신청을 확인한 뒤 전달 일정을 함께 조율해요.'],
       ['배송비는 얼마인가요?','배송비는 상품 가격에 포함되어 있습니다.'],
-      ['포장은 어떻게 되나요?','부피가 큰 제품이라 이중 골판지와 완충재로 포장합니다. 박스는 재활용 소재를 씁니다.'],
-      ['해외 배송이 되나요?','현재는 국내 배송만 가능합니다.']
+      ['어디까지 배송되나요?','현재 수도권(서울 · 경기 · 인천) 지역에 직접 방문 배송합니다.']
     ]},
     { id:'return', label:'교환 · 반품', desc:'교환과 반품 정책입니다.', items:[
-      ['언제까지 가능한가요?','수령 후 7일 이내 신청하실 수 있습니다.'],
-      ['비용은 어떻게 되나요?','단순 변심은 반품 신청 건당 3,000원입니다. 불량과 오배송은 전액 저희가 부담합니다.'],
-      ['어떤 상태여야 하나요?','포장을 훼손하지 않은 상태여야 합니다. 사용 흔적이 있으면 어렵습니다.'],
-      ['환불은 언제 되나요?','회수 확인 후 3영업일 이내 처리됩니다.']
-    ]},
-    { id:'brand', label:'브랜드', desc:'플로르몽드에 관한 질문입니다.', items:[
-      ['다음 제품은 언제 나오나요?','코트 스탠드가 다음 순서입니다. 뉴스레터를 신청해 두시면 가장 먼저 알려드립니다.'],
-      ['매장에서 직접 볼 수 있나요?','아직 오프라인 매장은 없습니다. 팝업 일정이 잡히면 공지합니다.'],
-      ['협업이나 도매 문의','hello@flormonde.kr 로 보내주세요.'],
-      ['운영 시간','월요일부터 금요일, 10:00–18:00 (공휴일 제외)']
+      ['언제까지 가능한가요?','주문 제작 상품이라 단순 변심에 의한 반품·교환은 어렵습니다. 제품 불량·파손은 전달 시 또는 수령 후 7일 이내 교환 신청하실 수 있습니다.'],
+      ['비용은 어떻게 되나요?','제품 불량이나 파손으로 인한 교환은 전액 저희가 부담합니다.'],
+      ['어떤 상태여야 하나요?','직접 전달 시 함께 상태를 확인하므로, 불량이나 파손은 그 자리에서 바로 교환 접수해 드립니다.'],
+      ['환불은 언제 되나요?','교환이 어려운 경우 협의 후 처리해 드립니다.']
     ]}
   ];
   var csTabs=document.getElementById('csTabs'), csTitle=document.getElementById('csTitle'),
@@ -739,6 +752,7 @@
   })();
 })();
 </script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 /* ===== 구매 신청 폼 → haru Supabase inquiries (source=flormonde-order) ===== */
 (function(){
@@ -755,6 +769,38 @@
     else if(t&&(t.id==='omClose'||t===modal||(t.closest&&t.closest('#omClose')))){ closeM(); }
   });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
+  /* 주소 검색: 다음(카카오) 우편번호 팝업 */
+  var postWrap=document.getElementById('postWrap'), postEmbed=document.getElementById('postEmbed');
+  function clearEmbed(){ setTimeout(function(){ try{ if(postEmbed) postEmbed.innerHTML=''; }catch(e){} }, 300); }
+  function closePost(){ if(postWrap){ postWrap.hidden=true; clearEmbed(); } }
+  function openPostcode(){
+    var a=document.getElementById('ofAddr');
+    if(!window.daum||!window.daum.Postcode||!postWrap){ a.readOnly=false; a.placeholder='주소를 직접 입력해 주세요'; a.style.cursor='text'; a.focus(); return; }
+    try{ postEmbed.innerHTML=''; }catch(e){} postWrap.hidden=false;
+    new daum.Postcode({
+      oncomplete:function(data){
+        var msg=document.getElementById('ofMsg');
+        if(!/^(서울|경기|인천)/.test(data.sido||'')){
+          closePost(); a.value='';
+          if(msg){ msg.style.color='#b4442e'; msg.textContent='현재 수도권(서울 · 경기 · 인천) 지역만 배송 가능해요.'; }
+          return;
+        }
+        var addr=data.roadAddress||data.jibunAddress||'';
+        a.value=(data.zonecode?'('+data.zonecode+') ':'')+addr;
+        closePost();
+        if(msg){ msg.style.color='var(--sub,#777)'; msg.textContent=''; }
+        var d=document.getElementById('ofAddr2'); if(d) setTimeout(function(){ d.focus(); },60);
+      },
+      width:'100%', height:'100%'
+    }).embed(postEmbed);
+  }
+  var addrEl=document.getElementById('ofAddr');
+  if(addrEl){ addrEl.addEventListener('click', openPostcode); addrEl.addEventListener('focus', function(){ if(addrEl.readOnly) openPostcode(); }); }
+  if(postWrap){
+    var pc=document.getElementById('postClose');
+    if(pc) pc.addEventListener('click', closePost);
+    postWrap.addEventListener('click', function(e){ if(e.target===postWrap) closePost(); });
+  }
   function v(id){ var e=document.getElementById(id); return e? e.value.trim() : ''; }
   var form=document.getElementById('orderForm');
   if(form) form.addEventListener('submit', function(e){
@@ -781,6 +827,29 @@
       msg.style.color='#b4442e';
       msg.textContent='전송에 실패했어요. 잠시 후 다시 시도하거나 hello@flormonde.kr로 연락 주세요.';
     }).finally(function(){ btn.disabled=false; });
+  });
+
+  /* 문의 접수 폼(도움이 필요하신가요) → haru Supabase inquiries(source=flormonde-inquiry) */
+  var inqForm=document.getElementById('inqForm');
+  if(inqForm) inqForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var res=document.getElementById('inqResult');
+    var email=v('inqEmail'), q=v('inqMsg');
+    if(!q){ res.style.color='#b4442e'; res.textContent='문의 내용을 적어 주세요.'; return; }
+    if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ res.style.color='#b4442e'; res.textContent='회신받을 이메일을 정확히 입력해 주세요.'; return; }
+    var b=document.getElementById('inqSubmit'); b.disabled=true; res.style.color='var(--sub,#777)'; res.textContent='접수 중…';
+    fetch(SUPA_URL+'/rest/v1/inquiries', {
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify({ name:'', contact:email, source:'flormonde-inquiry', ua:navigator.userAgent, message:'[문의] 페탈 엄브렐라 스탠드 상세\n'+q })
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      inqForm.reset(); res.style.color='var(--sub,#777)';
+      res.textContent='문의가 접수되었어요. 평일 기준 1~2일 안에 메일로 답장드릴게요.';
+    }).catch(function(){
+      res.style.color='#b4442e';
+      res.textContent='접수에 실패했어요. 잠시 후 다시 시도하거나 hello@flormonde.kr로 보내 주세요.';
+    }).finally(function(){ b.disabled=false; });
   });
 })();
 </script>
