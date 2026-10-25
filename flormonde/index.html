@@ -328,7 +328,7 @@
 <div class="lift"></div>
 
 <div class="notice">
-  <p id="noticeText">10만원 이상 무료 배송</p>
+  <p id="noticeText">전 상품 배송비 포함</p>
   <button aria-label="공지 닫기" onclick="this.parentElement.hidden=true">
     <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l10 10M11 1L1 11"/></svg>
   </button>
@@ -342,7 +342,6 @@
     <div class="nav-menu" id="navMenu">
       <a href="#/shop">전체</a>
       <a href="#/c/entrance">현관</a>
-      <a href="#/c/table">식탁</a>
       <a href="#/story">브랜드</a>
     </div>
   </div>
@@ -358,10 +357,7 @@
 <main id="v-home" data-view="/">
   <section class="hero">
     <div class="hero-carousel">
-      <img class="hs on" src="img/campaign-hero.jpg" alt="플로르몽드">
-      <img class="hs" src="img/hero-poppy1.jpg" alt="플로르몽드" loading="lazy">
-      <img class="hs" src="img/hero-poppy2.jpg" alt="플로르몽드" loading="lazy">
-      <div class="hero-dots"><button class="on" type="button" aria-label="1"></button><button type="button" aria-label="2"></button><button type="button" aria-label="3"></button></div>
+      <img class="hs on" src="img/hero.jpg?v=2" alt="플로르몽드">
     </div>
   </section>
 
@@ -389,8 +385,10 @@
 <main id="v-product" data-view="/product" hidden>
   <div class="pdp">
     <div class="pdp-media">
-      <div class="ph"><img src="img/product-orange.jpg" alt="페탈 엄브렐라 스탠드"></div>
-      <div class="ph"><img src="img/product-orange-d.jpg" alt="페탈 엄브렐라 스탠드 받침 디테일"></div>
+      <div class="ph"><img src="img/product-orange.jpg?v=2" alt="페탈 엄브렐라 스탠드"></div>
+      <div class="ph"><img src="img/product-orange-d.jpg?v=2" alt="페탈 엄브렐라 스탠드 상단 디테일"></div>
+      <div class="ph"><img src="img/pack-1.jpg?v=2" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
+      <div class="ph"><img src="img/pack-2.jpg?v=2" alt="페탈 엄브렐라 스탠드 포장" loading="lazy"></div>
     </div>
 
     <div class="pdp-info">
@@ -398,39 +396,17 @@
       <h1>페탈 엄브렐라 스탠드</h1>
 
       <div class="price">
-        <p class="price-tag">249,000<span>원</span> <em class="price-soon">출시 예정</em></p>
-        <p class="price-line">국내 생산</p>
-      </div>
-
-      <div class="open-price">
-        <ul class="op-rows">
-          <li><span>제작 단가 · 국내 생산</span><b>150,000원</b></li>
-          <li class="op-ind"><span>꽃잎 × 6</span><b>40,000원</b></li>
-          <li class="op-cap">강판 1.5T 레이저 절단 · 디버링 · 곡면 밴딩</li>
-          <li class="op-ind"><span>육각 코어 축</span><b>30,000원</b></li>
-          <li class="op-cap">레이저 절단 · 절곡(접어 올림) · 심 용접 · 천공</li>
-          <li class="op-ind"><span>받침 트레이</span><b>16,000원</b></li>
-          <li class="op-cap">레이저 절단 · 절곡 · 용접</li>
-          <li class="op-ind"><span>분체도장 무광 · 전체</span><b>31,000원</b></li>
-          <li class="op-ind"><span>볼트 압입 · 부자재</span><b>13,000원</b></li>
-          <li class="op-cap">셀프클린칭 너트 · 스터드 압입</li>
-          <li class="op-ind"><span>공정 간 운송</span><b>12,000원</b></li>
-          <li class="op-cap">절단 · 절곡 · 도장 · 압입 협력사 간 이동</li>
-          <li class="op-ind"><span>조립 · 검수 · 포장</span><b>8,000원</b></li>
-          <li><span>배송비</span><b>10,000원</b></li>
-          <li class="op-sub"><span>원가 소계 (약 64%)</span><b>160,000원</b></li>
-          <li><span>마진 · 운영 · 순수익 (약 36%)</span><b>89,000원</b></li>
-          <li class="op-total"><span>판매가 · 예정</span><b>249,000원</b></li>
-        </ul>
+        <p class="price-tag">199,000<span>원</span></p>
+        <p class="price-line">배송비 포함 · 국내 생산</p>
       </div>
 
       <div class="opt">
-        <p class="opt-l">색상 · <span id="cName">오렌지</span> <span id="cCode" style="color:var(--pht)">RAL 2002</span></p>
+        <p class="opt-l">색상 · <span id="cName">오렌지</span></p>
         <div class="sw-row" id="swRow"></div>
       </div>
 
       <div class="acts">
-        <a class="btn btn-o" href="#/cs">문의하기</a>
+        <button class="btn btn-o" type="button" id="orderBtn">구매 신청하기</button>
       </div>
 
       <div class="rows">
@@ -438,16 +414,14 @@
           <summary>제품 세부 정보</summary>
           <div class="body">
             <dl class="dl">
-              <dt>재질</dt><dd>냉간압연강판 1.5T</dd>
-              <dt>마감</dt><dd>분체도장 무광</dd>
-              <dt>크기</dt><dd>약 450 × 450 × 640 mm (펼친 꽃잎 기준)</dd>
-              <dt>몸통</dt><dd>240 × 208 mm</dd>
-              <dt>받침</dt><dd>336 mm (육각)</dd>
-              <dt>입구 지름</dt><dd>약 200 mm</dd>
-              <dt>무게</dt><dd>3.2 kg</dd>
-              <dt>수용량</dt><dd>장우산 5개 · 단우산 8개</dd>
-              <dt>구성</dt><dd>본체 1, 분리형 물받이 1</dd>
-              <dt>출시</dt><dd>출시 예정</dd>
+              <dt>재질</dt><dd>철판 약 1.5T</dd>
+              <dt>가공</dt><dd>도금</dd>
+              <dt>마감</dt><dd>분체도장 반광</dd>
+              <dt>색상</dt><dd>오렌지</dd>
+              <dt>높이</dt><dd>약 640 mm</dd>
+              <dt>펼친 꽃잎</dt><dd>약 470 mm</dd>
+              <dt>육각 몸체 지름</dt><dd>면 기준 약 210 mm · 대각 기준 약 240 mm</dd>
+              <dt>구성</dt><dd>육각형 본체 1 · 분리형 물받이 1 · 꽃잎 6 · 스크류 볼트 12</dd>
               <dt>제조자</dt><dd>플로르몽드 및 국내 협력사</dd>
               <dt>제조국</dt><dd>대한민국</dd>
             </dl>
@@ -456,6 +430,7 @@
         <details class="row">
           <summary>취급 시 주의사항</summary>
           <div class="body">
+            도금과 분체도장으로 녹이 잘 생기지 않지만, 강한 스크래치로 도장이나 도금이 벗겨지면 녹이 생길 수 있습니다.<br>
             물기는 마른 천으로 닦아 주세요. 물받이에 물이 고인 채로 오래 두면 도장면이 상할 수 있습니다.<br>
             연마제와 알코올 세정제는 사용하지 마세요.<br>
             용도 외 사용을 금합니다.
@@ -465,7 +440,7 @@
           <summary>배송 &amp; 반품 정책</summary>
           <div class="body">
             <b style="color:var(--ink);font-weight:500">배송 정책</b><br>
-            10만원 이상 구매 시 무료 배송. 주문 후 2~3 영업일 내 출고.<br><br>
+            배송비는 상품 가격에 포함되어 있습니다. 주문 후 2~3 영업일 내 출고.<br><br>
             <b style="color:var(--ink);font-weight:500">반품 정책</b><br>
             수령 후 7일 이내 신청. 반품 신청 건당 3,000원 (고객 귀책 사유 한정).
           </div>
@@ -490,7 +465,7 @@
 
 <!-- ================= 브랜드 ================= -->
 <main id="v-story" data-view="/story" hidden>
-  <figure class="st-hero"><img src="img/lb-gala.jpg" alt="플로르몽드"></figure>
+  <figure class="st-hero"><img src="img/lb-gala.jpg?v=2" alt="플로르몽드"></figure>
 
   <section class="st-lead">
     <h1>Brand</h1>
@@ -498,36 +473,36 @@
     <p>꽃을 뜻하는 라틴어 플로르(FLOR), 세계를 뜻하는 프랑스어 몽드(MONDE).</p>
   </section>
 
-  <figure class="st-fig"><img src="img/st-concierge.jpg" alt="플로르몽드 연출 컷" loading="lazy" style="object-position:center 42%"></figure>
+  <figure class="st-fig"><img src="img/st-concierge.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy" style="object-position:center 42%"></figure>
 
   <section class="st-block">
     <p>생화는 언젠가 시들지만, 금속으로 만든 꽃은 지지 않습니다. 플로르몽드의 물건이 놓인 자리는 계절과 상관없이 늘 만개해 있습니다.</p>
   </section>
 
   <div class="st-cw">
-    <img src="img/cw-orange.jpg" alt="오렌지" loading="lazy">
-    <img src="img/cw-green.jpg" alt="그린" loading="lazy">
-    <img src="img/cw-yellow.jpg" alt="옐로" loading="lazy">
-    <img src="img/cw-pink.jpg" alt="핑크" loading="lazy">
+    <img src="img/cw-orange.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-green.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-yellow.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
+    <img src="img/cw-pink.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy">
   </div>
 
   <section class="st-block">
     <p>강판을 자르고 구부려 분체도장으로 구워 마감합니다. 절단과 절곡, 도장까지 모두 국내에서 생산하고, 실내에서 오래 곁에 둘 수 있도록 단단하게 완성합니다.</p>
   </section>
 
-  <figure class="st-fig"><img src="img/lb-blue.jpg" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/lb-blue.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 
   <section class="st-block">
-    <p>우산꽂이에서 시작해 화분 트레이, 와인 트레이, 조명으로 이어집니다. 현관과 창가, 식탁과 책상까지, 일상의 자리마다 지지 않는 꽃 한 송이를 놓습니다.</p>
+    <p>우산꽂이에서 시작해 조명으로 이어집니다. 현관과 창가, 식탁과 책상까지, 일상의 자리마다 지지 않는 꽃 한 송이를 놓습니다.</p>
   </section>
 
-  <figure class="st-fig"><img src="img/st-entry.jpg" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/st-entry.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 
   <section class="st-lead st-close">
     <p class="st-big">꽃이 지지 않는 세계, 플로르몽드</p>
   </section>
 
-  <figure class="st-fig"><img src="img/st-green.jpg" alt="플로르몽드 연출 컷" loading="lazy"></figure>
+  <figure class="st-fig"><img src="img/st-green.jpg?v=2" alt="플로르몽드 연출 컷" loading="lazy"></figure>
 </main>
 
 <!-- ================= 고객센터 ================= -->
@@ -569,6 +544,40 @@
   </div>
 </footer>
 
+<!-- ================= 구매 신청 모달 ================= -->
+<style>
+  .om{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,10,12,.55);backdrop-filter:blur(3px);}
+  .om[hidden]{display:none;}
+  .om-card{width:100%;max-width:420px;max-height:90vh;overflow-y:auto;background:var(--bg,#f4f1ea);color:var(--ink,#1b1b1b);border:1px solid var(--line,rgba(0,0,0,.12));border-radius:4px;padding:28px 26px 24px;position:relative;}
+  .om-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:22px;line-height:1;color:var(--sub,#888);cursor:pointer;padding:4px;}
+  .om-h{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;}
+  .om-sub{font-size:13px;color:var(--sub,#777);margin:0 0 18px;}
+  .om-f{display:block;margin-bottom:12px;}
+  .om-f span{display:block;font-size:12px;color:var(--sub,#777);margin-bottom:5px;}
+  .om-f input{width:100%;box-sizing:border-box;padding:11px 12px;font-size:14px;font-family:inherit;color:var(--ink);background:#fff;border:1px solid var(--line,rgba(0,0,0,.15));border-radius:3px;}
+  .om-f input:focus{outline:none;border-color:var(--ink);}
+  .om-chk{display:flex;gap:9px;align-items:flex-start;font-size:12px;line-height:1.5;color:var(--sub,#777);margin:4px 0 18px;cursor:pointer;}
+  .om-chk input{margin-top:2px;flex:none;}
+  .om-submit{width:100%;padding:13px;font-size:15px;border-radius:3px;cursor:pointer;}
+  .om-msg{min-height:1em;margin:10px 0 0;font-size:12.5px;color:#b4442e;text-align:center;}
+</style>
+<div class="om" id="orderModal" hidden role="dialog" aria-modal="true" aria-label="구매 신청">
+  <div class="om-card">
+    <button class="om-x" id="omClose" type="button" aria-label="닫기">&times;</button>
+    <h3 class="om-h">구매 신청</h3>
+    <p class="om-sub">페탈 엄브렐라 스탠드 · 오렌지 · <b>199,000원</b> · 배송비 포함</p>
+    <form id="orderForm" novalidate>
+      <label class="om-f"><span>이름</span><input type="text" id="ofName" autocomplete="name" required></label>
+      <label class="om-f"><span>연락처</span><input type="tel" id="ofPhone" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000" required></label>
+      <label class="om-f"><span>주소</span><input type="text" id="ofAddr" autocomplete="street-address" placeholder="배송받으실 주소" required></label>
+      <label class="om-f"><span>상세 주소 (선택)</span><input type="text" id="ofAddr2" autocomplete="address-line2" placeholder="동 · 호수 등"></label>
+      <label class="om-chk"><input type="checkbox" id="ofAgree"><span>개인정보 수집·이용에 동의합니다. 이름·연락처·주소를 주문 처리 목적으로만 수집하며, 처리 완료 후 지체 없이 파기합니다.</span></label>
+      <button class="btn btn-o om-submit" type="submit" id="ofSubmit">신청하기</button>
+      <p class="om-msg" id="ofMsg"></p>
+    </form>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -577,11 +586,10 @@
   function say(m){ toast.textContent=m; toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){toast.classList.remove('on');},2200); }
 
   var COLORS = [
-    {n:'오렌지',c:'RAL 2002',hex:'#CA371D',full:'img/product-orange.jpg',det:'img/product-orange-d.jpg'}
+    {n:'오렌지',c:'RAL 2002',hex:'#CA371D',full:'img/product-orange.jpg?v=2',det:'img/product-orange-d.jpg?v=2'}
   ];
   var PRODUCTS = [
-    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-orange.jpg'},
-    {t:'페탈 플랜트 & 와인 트레이', en:'Petal Plant & Wine Tray', place:'식탁', cat:'table', soon:true, img:'img/product-tray.jpg'}
+    {t:'페탈 엄브렐라 스탠드', en:'Petal Umbrella Stand', place:'현관', cat:'entrance', href:'#/product', img:'img/product-orange.jpg?v=2'}
   ];
 
   function card(p, i){
@@ -611,11 +619,11 @@
   });
 
   /* 색상 · 수량 · 합계 */
-  var swRow=document.getElementById('swRow'), cN=document.getElementById('cName'), cC=document.getElementById('cCode');
+  var swRow=document.getElementById('swRow'), cN=document.getElementById('cName');
   COLORS.forEach(function(c,i){
     var b=document.createElement('button'); b.className='sw'+(i===0?' on':'');
     b.style.background=c.hex; b.setAttribute('aria-label',c.n);
-    b.onclick=function(){ swRow.querySelectorAll('.sw').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); cN.textContent=c.n; cC.textContent=c.c;
+    b.onclick=function(){ swRow.querySelectorAll('.sw').forEach(function(x){x.classList.remove('on');}); b.classList.add('on'); cN.textContent=c.n;
       var media=document.querySelectorAll('.pdp-media .ph img');
       if(media[0]&&c.full) media[0].src=c.full;
       if(media[1]&&c.det) media[1].src=c.det;
@@ -625,7 +633,7 @@
 
 
   /* 공지 롤링 */
-  var NOTICES=['10만원 이상 무료 배송','페탈 엄브렐라 스탠드 출시 예정'];
+  var NOTICES=['전 상품 배송비 포함','페탈 엄브렐라 스탠드 구매 신청 받는 중'];
   var ni=0, nt=document.getElementById('noticeText');
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(function(){ ni=(ni+1)%NOTICES.length; nt.textContent=NOTICES[ni]; }, 4000);
 
@@ -636,13 +644,13 @@
   var CS = [
     { id:'product', label:'제품', desc:'소재와 사용에 관한 질문입니다.', items:[
       ['엄브렐라 스탠드에 물이 고이나요?','바닥에 분리형 물받이가 있습니다. 빼서 비우고 헹굴 수 있습니다.'],
-      ['녹이 슬지 않나요?','강판에 분체도장을 입혀 구운 마감이라 실내에서는 녹이 잘 생기지 않습니다. 도장면이 깊게 긁히면 그 자리에서 시작될 수 있으니 마른 천으로 닦아 주세요.'],
-      ['장우산과 단우산을 같이 꽂아도 되나요?','됩니다. 입구 지름이 200 mm라 장우산 5개 또는 단우산 8개까지 들어갑니다.'],
+      ['녹이 슬지 않나요?','철판에 도금과 분체도장을 입혀 녹이 잘 생기지 않습니다. 다만 강한 스크래치로 도장이나 도금이 벗겨지면 그 자리에서 녹이 생길 수 있습니다.'],
+      ['장우산과 단우산을 같이 꽂아도 되나요?','됩니다. 입구가 육각형이라 면 기준 약 210 mm · 대각 기준 약 240 mm로 넉넉해, 장우산과 단우산을 함께 꽂을 수 있습니다.'],
       ['어디서 만드나요?','국내에서 제작합니다. 절단과 절곡, 분체도장 모두 국내 협력사와 함께 진행합니다.']
     ]},
     { id:'shipping', label:'배송', desc:'출고와 배송에 관한 안내입니다.', items:[
       ['배송은 얼마나 걸리나요?','주문 후 2~3 영업일 내 출고됩니다. 도서산간은 2일이 추가됩니다.'],
-      ['배송비는 얼마인가요?','10만원 이상 구매 시 무료입니다.'],
+      ['배송비는 얼마인가요?','배송비는 상품 가격에 포함되어 있습니다.'],
       ['포장은 어떻게 되나요?','부피가 큰 제품이라 이중 골판지와 완충재로 포장합니다. 박스는 재활용 소재를 씁니다.'],
       ['해외 배송이 되나요?','현재는 국내 배송만 가능합니다.']
     ]},
@@ -653,7 +661,7 @@
       ['환불은 언제 되나요?','회수 확인 후 3영업일 이내 처리됩니다.']
     ]},
     { id:'brand', label:'브랜드', desc:'플로르몽드에 관한 질문입니다.', items:[
-      ['다음 제품은 언제 나오나요?','코트 스탠드와 플랜트 트레이가 다음 순서입니다. 뉴스레터를 신청해 두시면 가장 먼저 알려드립니다.'],
+      ['다음 제품은 언제 나오나요?','코트 스탠드가 다음 순서입니다. 뉴스레터를 신청해 두시면 가장 먼저 알려드립니다.'],
       ['매장에서 직접 볼 수 있나요?','아직 오프라인 매장은 없습니다. 팝업 일정이 잡히면 공지합니다.'],
       ['협업이나 도매 문의','hello@flormonde.kr 로 보내주세요.'],
       ['운영 시간','월요일부터 금요일, 10:00–18:00 (공휴일 제외)']
@@ -729,5 +737,50 @@
     dots.forEach(function(d,idx){ d.addEventListener('click', function(){ go(idx); play(); }); });
     play();
   })();
+})();
+</script>
+<script>
+/* ===== 구매 신청 폼 → haru Supabase inquiries (source=flormonde-order) ===== */
+(function(){
+  var SUPA_URL='https://afbdebwyddlgbphsbash.supabase.co';
+  var SUPA_KEY='sb_publishable_eR5Zuai2c0xX38RA4iCmxA_EQlr2G6j';
+  var modal=document.getElementById('orderModal');
+  if(!modal) return;
+  function toast(m){ var t=document.getElementById('toast'); if(!t){ alert(m); return; } t.textContent=m; t.classList.add('on'); setTimeout(function(){ t.classList.remove('on'); },2800); }
+  function openM(){ modal.hidden=false; document.body.style.overflow='hidden'; var n=document.getElementById('ofName'); if(n) setTimeout(function(){n.focus();},60); }
+  function closeM(){ modal.hidden=true; document.body.style.overflow=''; }
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    if(t&&t.closest&&t.closest('#orderBtn')){ e.preventDefault(); openM(); }
+    else if(t&&(t.id==='omClose'||t===modal||(t.closest&&t.closest('#omClose')))){ closeM(); }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&!modal.hidden) closeM(); });
+  function v(id){ var e=document.getElementById(id); return e? e.value.trim() : ''; }
+  var form=document.getElementById('orderForm');
+  if(form) form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg=document.getElementById('ofMsg');
+    var name=v('ofName'), phone=v('ofPhone'), addr=v('ofAddr'), addr2=v('ofAddr2');
+    var agree=document.getElementById('ofAgree').checked;
+    if(!name||!phone||!addr){ msg.textContent='이름 · 연락처 · 주소를 모두 입력해 주세요.'; return; }
+    if(!agree){ msg.textContent='개인정보 수집·이용에 동의해 주세요.'; return; }
+    var btn=document.getElementById('ofSubmit'); btn.disabled=true; msg.style.color='var(--sub,#777)'; msg.textContent='신청 중…';
+    var body={
+      name:name, contact:phone, source:'flormonde-order', ua:navigator.userAgent,
+      message:'[구매 신청] 페탈 엄브렐라 스탠드 · 오렌지 · 199,000원 (배송비 포함)\n주소: '+addr+(addr2?' '+addr2:'')+'\n개인정보 수집·이용 동의: 동의함'
+    };
+    fetch(SUPA_URL+'/rest/v1/inquiries', {
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=minimal'},
+      body:JSON.stringify(body)
+    }).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      form.reset(); closeM(); msg.textContent='';
+      toast('구매 신청이 접수되었어요. 확인 후 연락드릴게요.');
+    }).catch(function(){
+      msg.style.color='#b4442e';
+      msg.textContent='전송에 실패했어요. 잠시 후 다시 시도하거나 hello@flormonde.kr로 연락 주세요.';
+    }).finally(function(){ btn.disabled=false; });
+  });
 })();
 </script>
