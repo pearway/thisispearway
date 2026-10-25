@@ -141,6 +141,9 @@
     html{scroll-behavior:auto}
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1FSZ3XWBC"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R1FSZ3XWBC');</script>
 </head>
 <body>
 
@@ -317,6 +320,16 @@
     window.addEventListener('resize', resize);
     setTimeout(startExit, 3600); // safety: 이미지 지연 대비
   })();
+</script>
+<script>
+  // 홈 → 섹션 클릭 추적 (그래픽·사이니지·플로르몽드) — 메뉴·인덱스 카드 모두
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || !window.gtag) return;
+    var h = a.getAttribute('href') || '';
+    var map = { '/brand': 'nav_graphic', '/signage': 'nav_signage', '/flormonde/': 'nav_flormonde' };
+    if (map[h]) gtag('event', map[h]);
+  });
 </script>
 </body>
 </html>
