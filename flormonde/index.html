@@ -186,8 +186,9 @@
 
   /* ===== PDP ===== */
   .pdp { display: grid; grid-template-columns: 1fr 440px; gap: 48px; padding: 20px 20px 70px; align-items: start; }
-  .pdp-media { display: grid; gap: 8px; }
-  .pdp-media .ph { aspect-ratio: 1/1; }
+  .pdp-media { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pdp-media .ph { aspect-ratio: 9 / 16; background: #EDE9E2; }
+  .pdp-media .ph img { object-fit: contain; }   /* 세로 제품 전체 보이게 — 정사각 크롭 제거 */
   .pdp-info { position: sticky; top: 76px; }
   .crumb { font-size: 12px; color: var(--sub); margin-bottom: 14px; }
   .pdp-info h1 { font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.2; letter-spacing: -.01em; }
@@ -314,6 +315,7 @@
     .cs-tabs button .n { display: none; }
     .nav { grid-template-columns: auto 1fr auto; }
     .pdp { grid-template-columns: 1fr; gap: 26px; }
+    .pdp-media { grid-template-columns: 1fr; }
     .pdp-info { position: static; }
     .grid { grid-template-columns: repeat(2,1fr); }
     .duo, .trio { grid-template-columns: 1fr; }
