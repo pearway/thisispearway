@@ -3,12 +3,14 @@
    홈/간판/공간그래픽/소개 공통. (플로르몬드, 어드민 제외)
    ============================================================ */
 :root{
-  --bg:#CBC9C4; --ink:#0B0B0C; --dim:#6F6F6B;
-  --ph:#D8D6D1; --ph-ink:rgba(11,11,12,.3);
-  --line:rgba(11,11,12,.12); --line-2:rgba(11,11,12,.055);
-  /* 실버 = peartype(#C7CBD2) 메탈 톤과 통일 (브랜드 브릿지) */
-  --foil:linear-gradient(100deg,#a4a9b0 0%,#cfd2d8 20%,#f6f7f9 38%,#b8bcc3 52%,#e8eaee 66%,#a9aeb5 82%,#d4d7dd 100%);
-  --foil-d:linear-gradient(100deg,#474a50 0%,#9a9ea6 17%,#c7cbd2 30%,#696d74 47%,#b4b8c0 63%,#505259 82%,#8b8f97 100%);
+  /* 무채색 매트 알루미늄 — 비행기 내부/로봇·AI 톤 (블루 캐스트 없음) */
+  --bg:#C3C4C5; --ink:#0C0C0D; --dim:#6D6E6F;
+  --ph:#CBCCCD; --ph-ink:rgba(12,12,13,.32);
+  --line:rgba(12,12,13,.14); --line-2:rgba(12,12,13,.06);
+  --steel-hi:rgba(255,255,255,.55); --steel-lo:rgba(70,70,72,.16);
+  /* 무채색 브러시드 실버 (블루 캐스트 제거) */
+  --foil:linear-gradient(100deg,#9a9a9c 0%,#cfcfd1 20%,#f7f7f8 38%,#b6b6b8 52%,#e9e9ea 66%,#a6a6a8 82%,#d2d2d4 100%);
+  --foil-d:linear-gradient(100deg,#48484a 0%,#9c9c9e 17%,#cacacc 30%,#6a6a6c 47%,#b6b6b8 63%,#505052 82%,#8c8c8e 100%);
   --sans:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
   --mono:'Geist Mono',ui-monospace,monospace;
   --ease:cubic-bezier(.22,1,.36,1);
@@ -16,7 +18,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.5;
+body{margin:0;background-color:var(--bg);background-image:radial-gradient(135% 78% at 50% -12%,rgba(255,255,255,.055),transparent 46%),linear-gradient(0deg,rgba(48,48,50,.05),transparent 13%);background-attachment:fixed;color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.5;
      -webkit-font-smoothing:antialiased;letter-spacing:-.011em;word-break:keep-all;overflow-wrap:break-word}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
@@ -36,8 +38,8 @@ a{color:inherit;text-decoration:none}
 .ph[data-label]::after{content:attr(data-label);position:absolute;left:16px;bottom:13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ph-ink)}
 
 /* 태그 pill */
-.pill{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.02em;color:#5A5A5D;background:#D8D6D1;border:none;border-radius:0;padding:5px 9px;white-space:nowrap;transition:background .25s,color .25s}
-@media(hover:hover){.work:hover .pill,.div:hover .pill{background:#CFCDC7}}
+.pill{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.02em;color:#5A5A5D;background:#CBCCCD;border:none;border-radius:0;padding:5px 9px;white-space:nowrap;transition:background .25s,color .25s}
+@media(hover:hover){.work:hover .pill,.div:hover .pill{background:#C1C2C3}}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;padding:clamp(16px,2.2vw,24px) var(--pad)}
@@ -84,11 +86,11 @@ footer{border-top:1px solid var(--line)}
 .f-inq-h{font-weight:600;letter-spacing:-.02em;font-size:1.05rem}
 .f-inq-h span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-left:9px}
 .f-inq-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.f-inq input,.f-inq textarea{width:100%;background:#D8D6D1;border:1px solid var(--line);border-radius:0;color:var(--ink);font-family:var(--sans);font-size:13.5px;letter-spacing:-.01em;padding:10px 12px;transition:border-color .2s var(--ease)}
+.f-inq input,.f-inq textarea{width:100%;background:#CBCCCD;border:1px solid var(--line);border-radius:0;color:var(--ink);font-family:var(--sans);font-size:13.5px;letter-spacing:-.01em;padding:10px 12px;transition:border-color .2s var(--ease)}
 .f-inq input:focus,.f-inq textarea:focus{outline:none;border-color:var(--ink)}
 .f-inq input.err{border-color:#c0392b}
 .f-inq textarea{resize:vertical;min-height:52px;line-height:1.5}
-.f-inq-btn{align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;gap:8px;background:#BBB9B4;color:#26261F;border:1px solid rgba(11,11,12,.14);cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:6px 16px;border-radius:0;transition:opacity .25s var(--ease)}
+.f-inq-btn{align-self:flex-start;margin-top:2px;display:inline-flex;align-items:center;gap:8px;background:#ADADAF;color:#232324;border:1px solid rgba(11,11,12,.14);cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.03em;padding:6px 16px;border-radius:0;transition:opacity .25s var(--ease)}
 .f-inq-btn:hover{opacity:.85}
 .f-inq-btn:disabled{opacity:.5;cursor:default}
 .inq-msg{min-height:1em;margin:1px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:0;color:var(--dim)}
@@ -115,3 +117,171 @@ html.leaving body{opacity:0;transition:opacity .3s var(--ease)}
 @media(prefers-reduced-motion:reduce){body{animation:none}.reveal .w-ph,.reveal .d-ph{transform:none}}
 
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.w-ph,.d-ph,.hero-ph{transition:none}html{scroll-behavior:auto}}
+
+/* ============================================================
+   SHELL DETAIL / MOTION — 하나의 웹 스파인 (pearway.js 와 짝)
+   ============================================================ */
+/* 필름 그레인 */
+.grain{position:fixed;inset:0;z-index:95;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E")}
+
+/* 스크롤 진행바 */
+.scroll-prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:130;transform:scaleX(0);transform-origin:0 50%;
+  background-image:var(--foil);background-size:100vw 100%;transition:transform .12s linear;pointer-events:none}
+
+/* 네비 거동 */
+nav{transition:transform .5s var(--ease),background-color .4s var(--ease),backdrop-filter .4s var(--ease),border-color .4s var(--ease);border-bottom:1px solid transparent}
+nav.nav-solid{background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(14px) saturate(1.1);-webkit-backdrop-filter:blur(14px) saturate(1.1);border-bottom-color:var(--line-2)}
+nav.nav-up{transform:translateY(-104%)}
+.menu-btn .bars i{transition:transform .35s var(--ease),opacity .25s}
+.menu-btn:hover .bars i:first-child{transform:translateY(1px)}
+.menu-btn:hover .bars i:last-child{transform:translateY(-1px)}
+
+/* 마스크 리빌 — 텍스트가 가려진 선 뒤에서 차오름 */
+.rline{display:block;overflow:hidden}
+.rline > *{display:block;transform:translateY(112%);transition:transform 1.05s var(--ease) var(--d,0s)}
+.rline.in > *{transform:none}
+
+/* 본문 링크 밑줄 드로우 */
+.ln{position:relative;white-space:nowrap}
+.ln::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:0 50%;transition:transform .5s var(--ease)}
+@media(hover:hover){.ln:hover::after{transform:scaleX(1)}}
+
+/* 키네틱 마퀴 — 네 세계를 잇는 흐르는 띠 */
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;padding:clamp(12px,1.5vw,18px) 0}
+.marq-in{display:inline-flex;align-items:center;will-change:transform;animation:marq 34s linear infinite}
+.marq:hover .marq-in{animation-play-state:paused}
+.marq span{font-family:var(--mono);font-size:clamp(12px,1.4vw,15px);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:0 clamp(14px,2vw,26px)}
+.marq span b{color:var(--ink);font-weight:500}
+.marq .dot{width:5px;height:5px;border-radius:50%;background:var(--dim);display:inline-block}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+@media(prefers-reduced-motion:reduce){
+  .grain{display:none}.scroll-prog{display:none}
+  nav.nav-up{transform:none}
+  .rline > *{transform:none;transition:none}
+  .marq-in{animation:none}
+}
+
+/* ============================================================
+   DARK MACHINED METAL HUD — 전 페이지 다크 통일 (무채색, 로봇·AI)
+   index.html(인라인)·admin 제외. 하위 페이지는 변수+!important로 일괄 반전.
+   ============================================================ */
+:root{
+  --bg:#0C0D0E; --ink:#ECECEE; --dim:#8A8C8F;
+  --ph:#17181A; --ph-ink:rgba(236,236,238,.3);
+  --line:rgba(236,236,238,.14); --line-2:rgba(236,236,238,.06);
+}
+body{background-color:var(--bg);
+  background-image:radial-gradient(135% 80% at 50% -12%,rgba(255,255,255,.05),transparent 46%),radial-gradient(120% 60% at 50% 112%,rgba(255,255,255,.015),transparent 40%);}
+.grain{mix-blend-mode:screen;opacity:.06}
+nav .mk{background-image:var(--foil);background-color:transparent}
+nav.nav-solid{background:color-mix(in srgb,#0C0D0E 68%,transparent);border-bottom-color:rgba(236,236,238,.08)}
+.pill{background:rgba(236,236,238,.055);color:rgba(236,236,238,.62);border:1px solid rgba(236,236,238,.09)}
+@media(hover:hover){.work:hover .pill,.div:hover .pill{background:rgba(236,236,238,.1)!important;color:var(--ink)!important}}
+.ph{background:var(--ph)}
+.ph::before{background:repeating-linear-gradient(135deg,transparent 0 26px,rgba(236,236,238,.02) 26px 52px)}
+/* 공용 푸터 문의 폼 */
+.f-inq input,.f-inq textarea{background:rgba(236,236,238,.04);border:1px solid var(--line);color:var(--ink)}
+.f-inq input::placeholder,.f-inq textarea::placeholder{color:rgba(236,236,238,.4)}
+.f-inq input:focus,.f-inq textarea:focus{border-color:rgba(236,236,238,.5)}
+.f-inq-btn{background:#D9DADC;color:#0C0D0E;border:1px solid rgba(236,236,238,.2)}
+/* 하위 페이지 공통(인라인 하드코딩 라이트 덮기) */
+.inq input,.inq textarea{background:rgba(236,236,238,.04)!important;border-color:var(--line)!important;color:var(--ink)!important}
+.inq input::placeholder,.inq textarea::placeholder{color:rgba(236,236,238,.4)!important}
+.inq input:focus,.inq textarea:focus{border-color:rgba(236,236,238,.55)!important}
+.btn{background:#D9DADC!important;color:#0C0D0E!important;border-color:rgba(236,236,238,.2)!important}
+
+/* ============================================================
+   HUD FRAME — 전 페이지 공유 장비 프레임 (hub은 자체 인라인, 나머지는 여기서)
+   ============================================================ */
+.hud{position:fixed;inset:clamp(14px,2.4vw,30px);z-index:80;pointer-events:none;border:1px solid var(--line-2)}
+.hud .tick{position:absolute;width:14px;height:14px;border:1px solid rgba(236,236,238,.4)}
+.hud .tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.hud .tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.hud .bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.hud .br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.hud .rd{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.hud .r-tl{top:10px;left:14px}
+.hud .r-bl{bottom:10px;left:14px}
+.hud .r-br{bottom:10px;right:14px;text-align:right}
+@media(max-width:720px){.hud .r-br{display:none}}
+.scan{position:fixed;inset:0;z-index:79;pointer-events:none;opacity:.5;
+  background:linear-gradient(rgba(236,236,238,.035),rgba(236,236,238,0) 3px);background-size:100% 4px;mix-blend-mode:screen}
+@media(prefers-reduced-motion:reduce){.scan{display:none}}
+
+/* ============================================================
+   HUD INTERACTIVE — 전 페이지 공유 (리티클·크로스헤어·부팅·STANDBY·파형·메뉴내비)
+   hub은 자체 인라인 사본이 있어 그걸 우선; 나머지는 여기 + pearway.js 주입.
+   ============================================================ */
+.xh{position:fixed;z-index:78;pointer-events:none;background:rgba(236,236,238,.13);opacity:0;transition:opacity .3s var(--ease)}
+.xh.live{opacity:1}.xh-x{left:0;right:0;height:1px}.xh-y{top:0;bottom:0;width:1px}
+@media(hover:none){.xh{display:none}}
+.reticle{position:fixed;top:0;left:0;width:22px;height:22px;z-index:85;pointer-events:none;transform:translate(-50%,-50%);
+  opacity:0;transition:width .22s var(--ease),height .22s var(--ease),opacity .25s var(--ease)}
+.reticle.live{opacity:1}
+.reticle i{position:absolute;width:6px;height:6px;border:1px solid rgba(236,236,238,.85)}
+.reticle .a{top:0;left:0;border-right:0;border-bottom:0}.reticle .b{top:0;right:0;border-left:0;border-bottom:0}
+.reticle .c{bottom:0;left:0;border-right:0;border-top:0}.reticle .d{bottom:0;right:0;border-left:0;border-top:0}
+.reticle.hot{width:42px;height:42px}
+.reticle .cd{position:absolute;top:50%;left:50%;width:2px;height:2px;background:rgba(236,236,238,.9);transform:translate(-50%,-50%);transition:opacity .2s}
+.reticle.hot .cd{opacity:0}
+@media(hover:none){.reticle{display:none}}
+@media(hover:hover){body.reticle-on,body.reticle-on *{cursor:none!important}}
+.boot{position:fixed;inset:0;z-index:300;background:#070809;display:flex;align-items:center;justify-content:flex-start;
+  padding:0 clamp(22px,8vw,120px);transition:opacity .6s var(--ease)}
+.boot.done{opacity:0;pointer-events:none}
+.boot pre{margin:0;font-family:var(--mono);font-size:clamp(10.5px,1.5vw,14px);line-height:1.85;color:#A9ACB0;letter-spacing:.06em;white-space:pre}
+.boot .ok{color:#fff}
+body.booting{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.boot{display:none}}
+/* 아이들 STANDBY */
+.standby{position:fixed;inset:0;z-index:72;pointer-events:none;background:rgba(7,8,9,0);transition:background .8s var(--ease);display:flex;align-items:center;justify-content:center}
+.standby.on{background:rgba(7,8,9,.6)}
+.standby .sb{opacity:0;transition:opacity .6s var(--ease);font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:rgba(236,236,238,.55);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.standby.on .sb{opacity:1}
+.standby .sb b{font-size:clamp(18px,3vw,26px);letter-spacing:.42em;color:#ECECEE;font-weight:400}
+.standby .sb .pls{width:8px;height:8px;border-radius:50%;background:#C9CCCF;animation:pulse 2s var(--ease) infinite}
+@media(prefers-reduced-motion:reduce){.standby{display:none}}
+/* 신호 파형 (프레임 하단 중앙) */
+.hud .wave{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:86px;height:14px;opacity:.6}
+.hud .wave path{fill:none;stroke:var(--dim);stroke-width:1}
+@media(max-width:720px){.hud .wave{display:none}}
+/* 메뉴 = 시스템 내비 */
+.menu-sel{position:relative;z-index:1;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin:0 auto clamp(14px,2vw,22px);width:100%;max-width:1080px;display:flex;justify-content:space-between;gap:12px}
+.menu-list a .m-ix{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;color:#6b6b6e;margin-right:16px;align-self:center}
+
+/* ============================================================
+   WORK CATALOG — 하위 페이지 작품 리스트를 모듈/스펙 디렉토리로 (공유)
+   ============================================================ */
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,204,207,.45)}70%{box-shadow:0 0 0 6px rgba(201,204,207,0)}100%{box-shadow:0 0 0 0 rgba(201,204,207,0)}}
+@keyframes sweep{0%{transform:translateY(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(100%);opacity:0}}
+.cat{padding:clamp(10px,2vw,20px) var(--pad) clamp(50px,8vw,110px)}
+.cat-h{display:flex;align-items:baseline;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);padding-bottom:14px;border-bottom:1px solid var(--line)}
+.cat-h b{color:var(--ink);font-weight:500}
+.cat-grid{display:grid;grid-template-columns:1fr minmax(290px,0.72fr);gap:clamp(24px,4vw,60px);margin-top:clamp(20px,3vw,36px);align-items:start}
+@media(max-width:860px){.cat-grid{grid-template-columns:1fr}}
+.cat-list{display:flex;flex-direction:column}
+.cat-row{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:16px;padding:clamp(16px,2.2vw,26px) 4px;border-bottom:1px solid var(--line);position:relative;transition:padding-left .4s var(--ease);cursor:pointer}
+.cat-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(236,236,238,.04);transition:width .4s var(--ease);z-index:-1}
+.cat-row:hover::before,.cat-row.on::before{width:100%}
+.cat-row:hover,.cat-row.on{padding-left:14px}
+.cat-row .ix{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--dim)}
+.cat-row .nm{min-width:0}
+.cat-row .nm b{display:block;font-weight:600;letter-spacing:-.03em;font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.08}
+.cat-row .nm .cls{display:block;margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.cat-row .st{display:flex;align-items:center;gap:13px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.cat-row .dot{width:7px;height:7px;border-radius:50%;background:#C9CCCF;animation:pulse 2.4s var(--ease) infinite}
+.cat-row .go{font-family:var(--mono);font-size:14px;color:var(--ink);transition:transform .3s var(--ease)}
+.cat-row:hover .go,.cat-row.on .go{transform:translate(3px,-3px)}
+@media(max-width:520px){.cat-row .st .yr{display:none}}
+.cat-prev{position:sticky;top:calc(clamp(14px,2.4vw,30px) + 74px);border:1px solid var(--line);background:#000;overflow:hidden;aspect-ratio:4/5}
+@media(max-width:860px){.cat-prev{display:none}}
+.cat-prev .shot{position:absolute;inset:0}
+.cat-prev .shot img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease);filter:grayscale(.08) contrast(1.03)}
+.cat-prev .shot.on img{opacity:.96}
+.cat-prev .ov{position:absolute;inset:0;pointer-events:none}
+.cat-prev .ov .cap{position:absolute;left:14px;bottom:13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.85)}
+.cat-prev .ov .spec{position:absolute;left:14px;top:13px;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);line-height:1.8;text-shadow:0 1px 8px rgba(0,0,0,.85)}
+.cat-prev .ov .idx{position:absolute;top:13px;right:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:rgba(255,255,255,.8)}
+.cat-prev .ov .ln{position:absolute;left:0;right:0;top:0;height:1px;background:rgba(236,236,238,.5);animation:sweep 4.5s var(--ease) infinite}

@@ -42,15 +42,16 @@
 
 <style>
   :root {
-    --bg: #B6B9C2; --ink: #14131A; --sub: #45424E; --line: #8A8D99; --line2: #9A9DA8;
-    --ph: #C4C6CE; --pht: #7A7D88; --brand: #17161C; --green: #2C5140;
+    /* 무채색 매트 메탈 (블루/퍼플 캐스트 제거) */
+    --bg: #BBBCBE; --ink: #121214; --sub: #46474A; --line: #8C8D90; --line2: #9B9C9F;
+    --ph: #C6C7C9; --pht: #7C7D80; --brand: #151518; --green: #3C3D40;
     --serif: 'Cormorant Garamond', Archivo, serif;  /* 숫자(가격) 전용 */
   }
   * { box-sizing: border-box; }
   body {
     margin: 0; color: var(--ink);
     background-color: var(--bg);
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%2723%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%200.08%20%200%200%200%200%200.07%20%200%200%200%200%200.06%20%200.78%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27260%27%20height%3D%27260%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.25%27%20numOctaves%3D%272%27%20seed%3D%2741%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%201%20%200%200%200%200%200.98%20%200%200%200%200%200.94%20%200.58%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27260%27%20height%3D%27260%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%2723%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%200.08%20%200%200%200%200%200.07%20%200%200%200%200%200.06%20%200.78%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27260%27%20height%3D%27260%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.25%27%20numOctaves%3D%272%27%20seed%3D%2741%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%201%20%200%200%200%200%201%20%200%200%200%200%201%20%200.58%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27260%27%20height%3D%27260%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E");
     background-size: 300px 300px, 260px 260px;
     font-family: Archivo, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     font-size: 16px; line-height: 1.5; letter-spacing: -.005em;
@@ -98,7 +99,7 @@
   /* ===== 내비 60px ===== */
   .nav { height: 60px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
          padding: 0 20px; position: sticky; top: 0; z-index: 60;
-         background-color: var(--bg); background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%2723%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%200.08%20%200%200%200%200%200.07%20%200%200%200%200%200.06%20%200.78%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27260%27%20height%3D%27260%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.25%27%20numOctaves%3D%272%27%20seed%3D%2741%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%201%20%200%200%200%200%200.98%20%200%200%200%200%200.94%20%200.58%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27260%27%20height%3D%27260%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"); background-size: 300px 300px, 260px 260px; }
+         background-color: var(--bg); background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27300%27%20height%3D%27300%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.1%27%20numOctaves%3D%272%27%20seed%3D%2723%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%200.08%20%200%200%200%200%200.07%20%200%200%200%200%200.06%20%200.78%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27300%27%20height%3D%27300%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"), url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27260%27%20height%3D%27260%27%3E%3Cfilter%20id%3D%27n%27%20x%3D%270%27%20y%3D%270%27%20width%3D%27100%25%27%20height%3D%27100%25%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%271.25%27%20numOctaves%3D%272%27%20seed%3D%2741%27%20stitchTiles%3D%27stitch%27%20result%3D%27t%27%2F%3E%3CfeColorMatrix%20in%3D%27t%27%20type%3D%27matrix%27%20values%3D%270%200%200%200%201%20%200%200%200%200%201%20%200%200%200%200%201%20%200.58%200%200%200%20-0.32%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27260%27%20height%3D%27260%27%20filter%3D%27url%28%23n%29%27%2F%3E%3C%2Fsvg%3E"); background-size: 300px 300px, 260px 260px; }
   .nav-l, .nav-r { display: flex; align-items: center; gap: 18px; }
   .nav-r { justify-content: flex-end; }
   .nav a, .nav button { font-size: 14px; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; }
@@ -228,6 +229,33 @@
   .qty span { min-width: 30px; text-align: center; font-size: 14px; }
   .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 26px; }
   .acts .btn { padding: 0 12px; }
+  /* 배송 지역 배지 */
+  .ship-badge { display:flex; align-items:center; gap:10px; margin-top:16px; padding:11px 14px; border:1px solid var(--line); font-size:13px; color:var(--ink); line-height:1.45; }
+  .ship-badge svg { width:19px; height:19px; flex:none; color:var(--green); }
+  .ship-badge b { font-weight:600; }
+  /* 구매 과정 4단계 */
+  .buy-steps { display:grid; grid-template-columns:repeat(4,1fr); margin-top:26px; list-style:none; padding:0; }
+  .buy-steps li { position:relative; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
+  .buy-steps li::before { content:""; position:absolute; top:13px; left:-50%; width:100%; height:1px; background:var(--line); z-index:0; }
+  .buy-steps li:first-child::before { display:none; }
+  .bs-n { position:relative; z-index:1; width:27px; height:27px; border-radius:50%; border:1px solid var(--line); background:var(--bg); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:15px; font-weight:600; color:var(--ink); }
+  .bs-t { font-size:12px; color:var(--sub); letter-spacing:-.01em; line-height:1.3; }
+  .buy-steps-note { margin-top:14px; font-size:12.5px; line-height:1.6; color:var(--sub); }
+  /* 크기 다이어그램 */
+  .size-viz { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }
+  .sv-h { font-size:13px; color:var(--sub); margin-bottom:12px; letter-spacing:.02em; }
+  .sv-svg { width:100%; max-width:340px; height:auto; color:var(--ink); display:block; }
+  /* 모바일 고정 구매 바 */
+  .pdp-bar { display:none; }
+  @media (max-width:900px) {
+    body:has(#v-product:not([hidden])) .pdp-bar { display:flex; align-items:center; gap:12px; position:fixed; left:0; right:0; bottom:0; z-index:200;
+      padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:var(--bg); border-top:1px solid var(--line); box-shadow:0 -6px 20px -12px rgba(0,0,0,.4); }
+    .pdp-bar .pb-info { display:flex; flex-direction:column; line-height:1.15; min-width:0; }
+    .pb-name { font-size:11.5px; color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .pb-price { font-family:var(--serif); font-size:18px; font-weight:600; color:var(--ink); }
+    .pb-btn { flex:1; height:46px; }
+    #v-product { padding-bottom:74px; }
+  }
 
   details.row { border-top: 1px solid var(--line2); }
   details.row:last-of-type { border-bottom: 1px solid var(--line2); }
@@ -402,6 +430,11 @@
         <p class="price-line">배송비 포함 · 국내 생산</p>
       </div>
 
+      <div class="ship-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h11v8H3V7Z" stroke="currentColor" stroke-width="1.5"/><path d="M14 10h4l3 3v2h-7v-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="7" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/><circle cx="17" cy="17" r="1.8" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span><b>수도권 직접 배송</b> · 서울 · 경기 · 인천, 문 앞까지 전해 드려요</span>
+      </div>
+
       <div class="opt">
         <p class="opt-l">색상 · <span id="cName">오렌지</span></p>
         <div class="sw-row" id="swRow"></div>
@@ -409,6 +442,45 @@
 
       <div class="acts">
         <button class="btn btn-o" type="button" id="orderBtn">구매 신청하기</button>
+      </div>
+
+      <ol class="buy-steps" aria-label="구매 과정">
+        <li><span class="bs-n">1</span><span class="bs-t">구매 신청</span></li>
+        <li><span class="bs-n">2</span><span class="bs-t">연락·결제 안내</span></li>
+        <li><span class="bs-n">3</span><span class="bs-t">주문 제작</span></li>
+        <li><span class="bs-n">4</span><span class="bs-t">직접 배송</span></li>
+      </ol>
+      <p class="buy-steps-note">신청해 주시면 평일 기준 1~2일 안에 연락드려 결제와 배송 일정을 안내해 드려요. 수도권만 주문 가능해요.</p>
+
+      <div class="size-viz">
+        <p class="sv-h">크기 한눈에</p>
+        <svg class="sv-svg" viewBox="0 0 340 200" role="img" aria-label="크기 비교: 사람 약 170cm, 제품 높이 약 64cm, 펼친 꽃잎 약 47cm">
+          <line x1="20" y1="178" x2="320" y2="178" stroke="currentColor" stroke-width="1" opacity=".3"/>
+          <!-- 사람 실루엣 (약 170cm) -->
+          <g stroke="currentColor" stroke-width="1.4" fill="none" opacity=".45">
+            <circle cx="70" cy="34" r="9"/>
+            <path d="M70 43 L70 120 M70 66 L50 96 M70 66 L90 96 M70 120 L56 178 M70 120 L84 178" stroke-linecap="round"/>
+          </g>
+          <text x="104" y="40" font-size="10" fill="currentColor" opacity=".5">약 170cm</text>
+          <!-- 제품 (약 64cm = 사람의 약 0.38) -->
+          <g transform="translate(210,0)">
+            <!-- 몸통 (육각 기둥) -->
+            <path d="M-16 178 L-16 132 L0 122 L16 132 L16 178 Z" fill="#D94E22" stroke="#B23C17" stroke-width="1"/>
+            <!-- 꽃잎 -->
+            <g fill="#E85A2A" stroke="#B23C17" stroke-width="1">
+              <path d="M0 126 C-30 120 -36 150 -22 150 C-10 150 -2 136 0 126Z"/>
+              <path d="M0 126 C30 120 36 150 22 150 C10 150 2 136 0 126Z"/>
+              <path d="M0 122 C-14 104 -8 96 0 100 C8 96 14 104 0 122Z"/>
+            </g>
+            <!-- 높이 치수선 -->
+            <line x1="44" y1="100" x2="44" y2="178" stroke="currentColor" stroke-width="1" opacity=".55"/>
+            <path d="M41 103 L44 99 L47 103 M41 175 L44 179 L47 175" stroke="currentColor" stroke-width="1" fill="none" opacity=".55"/>
+            <text x="52" y="143" font-size="11" fill="currentColor" font-weight="600">약 64cm</text>
+            <!-- 폭 치수선 -->
+            <line x1="-24" y1="166" x2="24" y2="166" stroke="currentColor" stroke-width="1" opacity=".45"/>
+            <text x="-24" y="192" font-size="10" fill="currentColor" opacity=".6">펼친 꽃잎 약 47cm</text>
+          </g>
+        </svg>
       </div>
 
       <div class="rows">
@@ -470,6 +542,12 @@
     <div class="grid" id="recGrid"></div>
   </section>
 </main>
+
+<!-- 모바일 고정 구매 바 (상세 뷰에서만 · body 직속이라 fixed가 뷰포트 기준) -->
+<div class="pdp-bar">
+  <div class="pb-info"><span class="pb-name">페탈 엄브렐라 스탠드</span><span class="pb-price">199,000원</span></div>
+  <button class="btn btn-o pb-btn" type="button" onclick="document.getElementById('orderBtn').click()">구매 신청하기</button>
+</div>
 
 <!-- ================= 브랜드 ================= -->
 <main id="v-story" data-view="/story" hidden>
@@ -854,3 +932,83 @@
   });
 })();
 </script>
+
+<!-- ===== PEARWAY 공유 메뉴 스파인 (하나의 웹) ===== -->
+<style id="fmShell">
+  .nav-menu{display:none!important;}            /* 인라인 숍 네비 → 풀스크린 메뉴로 */
+  .nav-burger{display:inline-flex!important;align-items:center;}  /* 전 사이즈 메뉴 트리거 */
+  html.fm-lock,body.fm-lock{overflow:hidden;}
+  #fmMenu{position:fixed;inset:0;z-index:300;background:#0D0D0E;color:#ECECEE;display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(18px,4vw,52px);clip-path:inset(0 0 100% 0);transition:clip-path .7s cubic-bezier(.22,1,.36,1);pointer-events:none;}
+  #fmMenu.open{clip-path:inset(0 0 0 0);pointer-events:auto;}
+  #fmMenu::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(1100px 620px at 12% -6%,rgba(255,255,255,.06),transparent 60%);}
+  .fm-close{position:absolute;top:clamp(16px,2.2vw,24px);right:clamp(18px,4vw,52px);z-index:5;font-family:ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:none;border:0;color:#ECECEE;cursor:pointer;padding:6px 4px;}
+  .fm-list{position:relative;z-index:1;display:flex;flex-direction:column;width:100%;max-width:1080px;margin:0 auto;}
+  .fm-eyebrow{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(236,236,238,.5);margin-bottom:clamp(12px,1.6vw,20px);}
+  .fm-eyebrow2{margin-top:clamp(20px,3vw,40px);}
+  .fm-list a{width:100%;display:flex;align-items:baseline;gap:18px;padding:clamp(9px,1.3vw,15px) 0;border-bottom:1px solid rgba(236,236,238,.14);
+    font-weight:700;letter-spacing:-.02em;font-size:clamp(1.3rem,3.1vw,2.2rem);line-height:1.12;color:#ECECEE;text-decoration:none;
+    transition:padding-left .4s cubic-bezier(.22,1,.36,1),color .3s;}
+  .fm-list a .en{margin-left:auto;font-family:ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(236,236,238,.42);align-self:center;white-space:nowrap;}
+  @media(hover:hover){.fm-list a:hover{padding-left:16px;color:#fff;}.fm-list a:hover .en{color:#fff;}}
+  .fm-list a[aria-current="page"]{color:#fff;}
+  @media(prefers-reduced-motion:reduce){#fmMenu{transition:none;}}
+</style>
+<nav id="fmMenu" aria-label="사이트 메뉴" aria-hidden="true">
+  <button class="fm-close" type="button" aria-label="메뉴 닫기">Close</button>
+  <div class="fm-list">
+    <span class="fm-eyebrow">PEARWAY · 네 개의 세계</span>
+    <a href="https://pearway.kr/brand">그래픽 디자인 <span class="en">Graphic ↗</span></a>
+    <a href="https://pearway.kr/signage">간판 및 사이니지 <span class="en">Signage ↗</span></a>
+    <a href="https://peartype.kr">폰트 파운더리 <span class="en">Type ↗</span></a>
+    <a href="#/" aria-current="page">플로르몽드 <span class="en">Objet · 현재</span></a>
+    <span class="fm-eyebrow fm-eyebrow2">FlorMonde</span>
+    <a href="#/shop">전체 제품 <span class="en">Shop</span></a>
+    <a href="#/c/entrance">현관 <span class="en">Entrance</span></a>
+    <a href="#/story">브랜드 <span class="en">Story</span></a>
+    <a href="#/cs">문의 <span class="en">Contact</span></a>
+  </div>
+</nav>
+<script>
+  (function(){
+    var menu=document.getElementById('fmMenu'); if(!menu) return;
+    var burger=document.querySelector('.nav-burger');
+    function openM(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); document.documentElement.classList.add('fm-lock'); }
+    function closeM(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); document.documentElement.classList.remove('fm-lock'); }
+    if(burger) burger.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation();
+      menu.classList.contains('open')?closeM():openM(); });
+    var cl=menu.querySelector('.fm-close'); if(cl) cl.addEventListener('click', closeM);
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape'&&menu.classList.contains('open')) closeM(); });
+    // 해시 라우트(#/…)는 flormonde 라우터가 hashchange로 처리 → 기본 동작 유지, 닫기만
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ closeM(); }); });
+  })();
+</script>
+
+<!-- ===== DARK MACHINED METAL HUD — flormonde 다크 통일 (무채색, 로봇·AI) ===== -->
+<style id="fmDark">
+  :root{
+    --bg:#0C0D0E; --ink:#ECECEE; --sub:#9A9C9F;
+    --line:rgba(236,236,238,.16); --line2:rgba(236,236,238,.09);
+    --ph:#17181A; --pht:rgba(236,236,238,.42); --brand:#ECECEE; --green:#C9CCCF;
+  }
+  body{background-color:var(--bg);}
+  /* 공지바 → 다크 */
+  .notice{background:#17181A!important;color:#ECECEE!important;}
+  .notice button{color:#ECECEE!important;}
+  /* 프라이머리 버튼 → 실버 칩(다크 텍스트) */
+  .btn{background:#D9DADC!important;color:#0C0D0E!important;border-color:#D9DADC!important;}
+  .btn-o{background:transparent!important;color:var(--ink)!important;border-color:var(--line)!important;}
+  .btn-o:hover{background:#D9DADC!important;color:#0C0D0E!important;}
+  /* 토스트 → 다크 */
+  .toast{background:#1C1D1F!important;color:#ECECEE!important;}
+  /* 카테고리 액티브 */
+  .cats button.on{color:#ECECEE!important;border-bottom-color:#ECECEE!important;}
+  /* 모달/문의 입력(daum 팝업 위젯 제외) */
+  .om-f input,.inq-form input,.inq-form textarea,#ofAddr{background:rgba(236,236,238,.05)!important;color:var(--ink)!important;border-color:var(--line)!important;}
+  .om-f input::placeholder,.inq-form input::placeholder,.inq-form textarea::placeholder{color:rgba(236,236,238,.4)!important;}
+</style>
+
+<!-- ===== 공유 HUD 프레임 (self-contained) ===== -->
+<link rel="stylesheet" href="../hud.css?v=1">
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="../hud.js?v=1"></script>
