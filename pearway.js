@@ -167,13 +167,23 @@
       msgEl = document.getElementById('inq-message'), submitEl = document.getElementById('inq-submit'),
       noteEl = document.getElementById('inq-msg');
   var source = form.getAttribute('data-source') || 'site';
+  // 공용 폼 정책: 연락처는 이메일만, 내용은 필수 (전 사이트 inq-form 동일 적용)
+  var EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  if (contactEl) {
+    contactEl.type = 'email';
+    contactEl.setAttribute('inputmode', 'email');
+    contactEl.setAttribute('autocomplete', 'email');
+    contactEl.placeholder = '이메일 주소 (답변받으실 메일)';
+  }
+  if (msgEl) msgEl.required = true;
   function setNote(t, k) { noteEl.textContent = t; noteEl.className = 'inq-msg' + (k ? ' ' + k : ''); }
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    [nameEl, contactEl].forEach(function (el) { el.classList.remove('err'); });
+    [nameEl, contactEl, msgEl].forEach(function (el) { if (el) el.classList.remove('err'); });
     var name = nameEl.value.trim(), contact = contactEl.value.trim(), message = msgEl.value.trim();
     if (!name) { nameEl.classList.add('err'); nameEl.focus(); setNote('성함 또는 업체명을 입력해 주세요.', 'bad'); return; }
-    if (!contact) { contactEl.classList.add('err'); contactEl.focus(); setNote('연락받으실 연락처를 입력해 주세요.', 'bad'); return; }
+    if (!EMAIL_RE.test(contact)) { contactEl.classList.add('err'); contactEl.focus(); setNote('답변받으실 이메일 주소를 정확히 입력해 주세요.', 'bad'); return; }
+    if (!message) { msgEl.classList.add('err'); msgEl.focus(); setNote('문의 내용을 입력해 주세요.', 'bad'); return; }
     submitEl.disabled = true; setNote('보내는 중…', '');
     try {
       var res = await fetch(SB_URL + '/rest/v1/inquiries', {
